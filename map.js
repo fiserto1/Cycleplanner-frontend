@@ -1,0 +1,96 @@
+var map = L.map('map').setView([50.08165, 14.40505], 14);
+
+var cycleMap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    maxZoom: 18,
+    id: 'fiserto1.mlpdi4he',
+    accessToken: 'pk.eyJ1IjoiZmlzZXJ0bzEiLCJhIjoiNmE1NzkzMjQ5ZjdhYTMxZDllNzhlNmQxNGMzZGIyMTAifQ.2xblvAvcBqHdhd3GnKNrbQ'
+});
+
+var streetsMap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    maxZoom: 18,
+    id: 'fiserto1.3ed94b1c',
+    accessToken: 'pk.eyJ1IjoiZmlzZXJ0bzEiLCJhIjoiNmE1NzkzMjQ5ZjdhYTMxZDllNzhlNmQxNGMzZGIyMTAifQ.2xblvAvcBqHdhd3GnKNrbQ'
+}).addTo(map);
+
+var baseMaps = {
+    "Streets + cyklostezky": cycleMap,
+    "Streets": streetsMap
+};
+
+var cycleLayer = L.geoJson(cycleRoutes, {
+    style: function () {
+        return {
+            color: "purple",
+            opacity: 0.5,
+            weight: 2,
+            dashArray: "5, 10"
+        };
+    },
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup(feature.properties.description);
+    }
+});
+var overlayMaps = {
+    "Cyklostezky": cycleLayer
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+
+    var div = document.getElementById("legend");
+
+    div.style.display = "block";
+    return div;
+};
+
+function changeLegend(choice) {
+    var div = document.getElementById("legend");
+
+
+    switch (segChoice) {
+        case ELEVATION_SEGMENTS:
+            div.innerHTML = "<strong>Prevyseni trasy</strong>" +
+                "<nav class='legend clearfix'>" +
+                "        <span style='background:#FF0000;'></span>" +
+                "        <span style='background:#FF5D54;'></span>" +
+                "        <span style='background:#FFC000;'></span>" +
+                "        <span style='background:#90BB00;'></span>" +
+                "        <span style='background:#15B0FF;'></span>" +
+                "        <span style='background:#0080FF;'></span>" +
+                "        <span style='background:#0040FF;'></span>" +
+                "        <label>>10m</label>" +
+                "    <label>8 az 10m</label>" +
+                "    <label>5 az 7m</label>" +
+                "    <label>4 az -4m</label>" +
+                "    <label>-5 az -7m</label>" +
+                "    <label>-8 az -10m</label>" +
+                "    <label><-10m</label>" +
+                "    </nav>";
+            break;
+        case SPEED_SEGMENTS:
+            div.innerHTML = "<strong>Rychlost trasy</strong>" +
+                "<nav class='legend clearfix'>" +
+                "        <span style='background:#FF0000;'></span>" +
+                "        <span style='background:#FF5D54;'></span>" +
+                "        <span style='background:#FFC000;'></span>" +
+                "        <span style='background:#90BB00;'></span>" +
+                "        <span style='background:#15B0FF;'></span>" +
+                "        <span style='background:#0080FF;'></span>" +
+                "        <span style='background:#0040FF;'></span>" +
+                "        <label><5km/h</label>" +
+                "    <label>5-9km/h</label>" +
+                "    <label>10-14km/h</label>" +
+                "    <label>15-19km/h</label>" +
+                "    <label>20-24km/h</label>" +
+                "    <label>25-30km/h</label>" +
+                "    <label>>30km/h</label>" +
+                "    </nav>";
+            break;
+    }
+
+}
+//legend.addTo(map);

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+        <link rel="stylesheet" href="style.css" />
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+        <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <title></title>
+        <script>
+            $(function() {
+                $('body').on('mousedown', 'div', function() {
+                    $(this).addClass('draggable').parents().on('mousemove', function(e) {
+                        $('.draggable').offset({
+                            top: e.pageY - $('.draggable').outerHeight() / 2,
+                            left: e.pageX - $('.draggable').outerWidth() / 2
+                        }).on('mouseup', function() {
+                            $(this).removeClass('draggable');
+                        });
+                    });
+//                    e.preventDefault();
+                }).on('mouseup', function() {
+                    $('.draggable').removeClass('draggable');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id='legend' style='display:none;'>
+
+        </div>
+        <div id="map"></div>
+        <script src="cycleRoutes.js"></script>
+        <script src="map.js"></script>
+        <script src="markers.js"></script>
+        <script src="routing.js"></script>
+        <div id="draggable" class="ui-widget-content">
+            <p>Cykloplanovac.cz</p>
+            <button type="button" id="search" onclick="getPlans()">Search</button>
+            <button type="button" id="swap" onclick="swapMarkers()">Swap</button>
+            <form id="changeSegment" onclick="changeSegment()">
+                <input type="radio" name="segment" value="0" checked>Stoupani<br>
+                <input type="radio" name="segment" value="1">Rychlost
+            </form>
+        </div>
+        <script src="routing.js"></script>
+        <div id="routes" class="ui-widget-content"></div>
+
+</body>
+</html>
