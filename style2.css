@@ -1,0 +1,90 @@
+
+/*body {margin: 0;}*/
+/*#right {float: right;}*/
+#map {
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+}
+
+#startIcon {
+    color: dodgerblue;
+    font-size: 18px;
+}
+
+#destinationIcon {
+    color: red;
+    font-size: 18px;
+}
+
+#settingsIcon, #hideIcon {
+    font-size: 20px;
+}
+#hideIcon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+#settingsIcon {
+    position: absolute;
+    top: 90px;
+    right: 5px;
+}
+
+.vCenter {
+    text-align:center;
+    line-height:70px;
+    width:30px;
+    height:70px;
+    font-size:20px;
+    float:left;
+}
+
+.startDest {
+    width: 80%;
+    float:left;
+}
+
+#example {
+    background-color: white;
+    box-shadow: black 4px 6px 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 25%;
+    height: 18%;
+    padding: 0.5em;
+    border-color: black;
+}
+
+
+#routes {
+    display: none;
+    box-shadow: black 4px 6px 20px;
+    position: absolute;
+    top: 140px;
+    left: 10px;
+    width: 300px;
+    height: 300px;
+    padding: 0.5em;
+    border-color: black;
+}
+
+#legend {
+    background-color: white;
+    padding: 10px;
+    width: 500px;
+}
+#legend label,
+#legend span {
+    display:block;
+    float:left;
+    height:15px;
+    width:14%;
+    text-align:center;
+    font-size:10px;
+    color:black;
+}
+

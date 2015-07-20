@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="style2.css" />
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <title></title>
 </head>
 <body>
+<div id="map"></div>
+<div id='legend' style='display:none;'>
 
+</div>
+
+<script src="cycleRoutes.js"></script>
+<script src="map.js"></script>
+<script src="markers.js"></script>
+<script src="routing.js"></script>
+
+
+<div id="example">
+    <div class="startDest">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">
+                <span class="glyphicon glyphicon-map-marker" id="startIcon" aria-hidden="true"></span>
+            </span>
+            <input type="text" class="form-control" placeholder="Start" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon2">
+                <span class="glyphicon glyphicon-map-marker" id="destinationIcon" aria-hidden="true"></span>
+            </span>
+            <input type="text" class="form-control" placeholder="Cíl" aria-describedby="basic-addon2">
+        </div>
+    </div>
+    <div class="vCenter">
+        <span class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></span>
+    </div>
+    <span class="glyphicon glyphicon-eye-open" id="hideIcon" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-cog" id="settingsIcon" aria-hidden="true"></span>
+</div>
+<script src="routing.js"></script>
+<div id="routes" class="ui-widget-content"></div>
 </body>
 </html>
