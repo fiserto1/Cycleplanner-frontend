@@ -50,7 +50,7 @@ legend.onAdd = function (map) {
     return div;
 };
 
-function changeLegend(choice) {
+function changeLegend(segChoice) {
     var div = document.getElementById("legend");
 
 
