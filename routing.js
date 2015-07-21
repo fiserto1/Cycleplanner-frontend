@@ -19,14 +19,16 @@ var SPEED_SEGMENTS = 1;
 
 
 function getPlans() {
-    $.ajax({
-        url: "http://its.felk.cvut.cz/cycle-planner-mc/api/v2/journeys/mc?startLat=" + startMarker.getLatLng().lat
-        + "&startLon=" + startMarker.getLatLng().lng
-        + "&endLat=" + endMarker.getLatLng().lat
-        + "&endLon=" + endMarker.getLatLng().lng,
+    if (endMarker.getLatLng() != null && startMarker.getLatLng() != null) {
+        $.ajax({
+            url: "http://its.felk.cvut.cz/cycle-planner-mc/api/v2/journeys/mc?startLat=" + startMarker.getLatLng().lat
+            + "&startLon=" + startMarker.getLatLng().lng
+            + "&endLat=" + endMarker.getLatLng().lat
+            + "&endLon=" + endMarker.getLatLng().lng,
 
-        success: handler
-    });
+            success: handler
+        });
+    }
 }
 
 var elevationRoutes = L.layerGroup();

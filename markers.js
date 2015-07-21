@@ -14,21 +14,22 @@ var endMarker = L.marker(null, {
     title: "End"
 });
 
-var mapClickCounter = 0;
-function onMapClick(e) {
-    if (mapClickCounter == 0) {
-        startMarker.setLatLng(e.latlng).addTo(map);
-        mapClickCounter++;
-    } else if (mapClickCounter == 1) {
-        endMarker.setLatLng(e.latlng).addTo(map);
-        getPlans();
-        mapClickCounter++;
-    } else {
 
+function onMapClick(e) {
+    if (startMarker.getLatLng() == null) {
+        startMarker.setLatLng(e.latlng).addTo(map);
+        document.getElementById("searchStart").value = e.latlng;
+
+    } else if (endMarker.getLatLng() == null) {
+        endMarker.setLatLng(e.latlng).addTo(map);
+        document.getElementById("searchDestination").value = e.latlng;
     }
+    getPlans();
 }
 
 function onMarkerDrag(e) {
+    document.getElementById("searchStart").value = startMarker.getLatLng();
+    document.getElementById("searchDestination").value = endMarker.getLatLng();
     getPlans();
     //var marker = e.target;
     //marker.setLatLng(marker.getLatLng());
@@ -38,10 +39,16 @@ function swapMarkers() {
     var latLng = startMarker.getLatLng();
     startMarker.setLatLng(endMarker.getLatLng());
     endMarker.setLatLng(latLng);
-    if (endMarker.getLatLng() != null && startMarker.getLatLng() != null) {
-        getPlans();
-    }
+    swapSearchForm();
+    getPlans();
 }
+
+function swapSearchForm() {
+    var value = document.getElementById("searchStart").value;
+    document.getElementById("searchStart").value = document.getElementById("searchDestination").value;
+    document.getElementById("searchDestination").value = value;
+}
+
 document.getElementById("chDir").onclick = swapMarkers;
 
 map.on("click", onMapClick);

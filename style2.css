@@ -48,30 +48,24 @@
 }
 
 #example, #routes {
-    width: 350px;
-}
-
-#example {
     background-color: white;
     box-shadow: black 4px 6px 20px;
     position: absolute;
-    top: 10px;
+    width: 350px;
     left: 10px;
-    height: 115px;
     padding: 0.5em;
-    border-color: black;
+}
+
+#example {
+    top: 10px;
+    height: 115px;
 }
 
 
 #routes {
     display: none;
-    box-shadow: black 4px 6px 20px;
-    position: absolute;
-    top: 140px;
-    left: 10px;
+    top: 135px;
     height: 300px;
-    padding: 0.5em;
-    border-color: black;
 }
 
 #legend {
@@ -90,3 +84,8 @@
     color:black;
 }
 
+
+.autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
+.autocomplete-suggestion { padding: 7px 5px; font-size: 12px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #f0f0f0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
