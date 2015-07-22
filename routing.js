@@ -142,6 +142,7 @@ function handler(obj) {
         oneBasicRoute.on('click', routeClick);
         basicRoutes.addLayer(oneBasicRoute);
         createButtonForRoute(obj, i);
+        createPanelForRoute(obj, i);
     }
     basicRoutes.addTo(map);
 
@@ -191,6 +192,33 @@ function routeButtonClick(routeIndex) {
             break;
     }
 }
+
+function createPanelForRoute(obj, routeIndex) {
+    $("#accordion").append(
+        "<div class='panel panel-default'>" +
+            "<div class='panel-heading' data-toggle='collapse' data-parent='#accordion' href='#collapse" + routeIndex + "'>" +
+                "<p>Route " + routeIndex +"</p>" +
+            "</div>" +
+            "<div id='collapse" + routeIndex +"' class='panel-collapse collapse'>" +
+                "<div class='panel-body'>Lorem ipsum dolor sit amet, consectetur adipisicing elit," +
+                    "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam," +
+                    "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." +
+                "</div>" +
+            "</div>" +
+        "</div>");
+}
+//<div class="panel panel-default">
+//    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+//    <p >Collapsible Group 1</p>
+//</div>
+//<div id="collapse1" class="panel-collapse collapse in">
+//    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+//    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+//    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+//</div>
+//</div>
+//</div>
+
 function changeSegment() {
     var form = document.getElementById("changeSegment");
     var value = form.elements["segment"].value;

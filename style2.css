@@ -73,6 +73,13 @@
     top: 125px;
 }
 
+#accordion {
+    position: absolute;
+    top: 10px;
+    left: 365px;
+
+}
+
 #legend {
     background-color: white;
     padding: 10px;
