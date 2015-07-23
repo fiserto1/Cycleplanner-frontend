@@ -101,3 +101,74 @@
 .autocomplete-suggestion { padding: 7px 5px; font-size: 12px; white-space: nowrap; overflow: hidden; }
 .autocomplete-selected { background: #f0f0f0; }
 .autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
+
+
+#tr{
+    fill:transparent;
+    transition:fill .3s;
+}
+#tr:hover{
+    fill: orange;
+}
+
+/*svg {*/
+    /*position: absolute;*/
+    /*top: 150px;*/
+    /*display:block;*/
+    /*width:30%;*/
+/*}*/
+
+
+/*TRIANGLES v2*/
+
+.triangle {
+    overflow:hidden;
+    height:102px;
+}
+
+#tFirst {
+    position:absolute;
+    top: 200px;
+    left: 10px;
+}
+#tSecond {
+    position:absolute;
+    top: 300px;
+    left: 10px;
+
+    -ms-transform:rotate(60deg);
+    -webkit-transform:rotate(60deg);
+    transform: rotate(60deg);
+}
+#tThird {
+    position:absolute;
+    top: 300px;
+    left: 10px;
+}
+#tFourth {
+    position:absolute;
+    top: 350px;
+    left: 10px;
+}
+
+.tInner {
+    display:block;
+    height:102px;
+    width:117px;
+    background-color: #2382ff;
+
+    -ms-transform-origin: 0 100%;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+
+    -ms-transform:rotate(60deg) skewX(30deg);
+    -webkit-transform:rotate(60deg) skewX(30deg);
+    transform: rotate(60deg) skewX(30deg);
+}
+
+.tInner:hover {
+    background-color: #3a4cff;
+    cursor: pointer;
+}
+
+

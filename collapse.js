@@ -8,4 +8,8 @@ $(document).ready(function(){
     $("#settings").on("show.bs.collapse", function(){
         $("#settingsIcon").css("color", "deepskyblue");
     });
+
+    //$("#hideIcon").click(function() {
+    //    $("#routes").toggle("fold");
+    //});
 });
