@@ -18,7 +18,18 @@
     font-size: 18px;
 }
 
-#settingsIcon, #hideIcon {
+#changeDirectionIcon {
+    -ms-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    transform: rotate(90deg);
+}
+
+/*#addPointIcon {*/
+    /*left: 15px;*/
+    /*padding: 5px;*/
+/*}*/
+
+#settingsIcon, #hideIcon, #addPointIcon, #changeDirectionIcon{
     font-size: 20px;
 }
 #hideIcon {
@@ -33,14 +44,47 @@
     right: 5px;
 }
 
-.vCenter {
-    text-align:center;
-    line-height:70px;
-    width:30px;
-    height:70px;
-    font-size:20px;
-    float:left;
+/*.vCenter {*/
+    /*text-align:center;*/
+    /*line-height:90px;*/
+    /*width:30px;*/
+    /*height:70px;*/
+    /*font-size:20px;*/
+    /*float:left;*/
+/*}*/
+.routeBut > hr {
+    color: grey;
+    background-color: grey;
+    height: 1px;
+    /*clear:      both;*/
+    margin:     0;
+    /*display:    block;*/
+    width: 80%;
 }
+.routeBut {
+    /*background-color: blue;*/
+    /*text-align: center;*/
+    border-radius: 5px;
+    margin: 0px;
+    padding-left: 10px;
+    width:110px;
+    height: 70px;
+    font-size: 12px;
+    line-height:20px;
+
+    float: left;
+    border: 1px solid grey;
+}
+
+.routeBut:hover {
+    background-color: #c4c4c4;
+}
+
+.current {
+    width: 330px;
+    background-color: #bbb9ab;
+}
+
 
 .startDest {
     width: 80%;

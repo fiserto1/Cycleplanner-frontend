@@ -42,7 +42,7 @@ function handler(obj) {
     if (segColoredClickedRoute != null) {
         map.removeLayer(segColoredClickedRoute);
     }
-    document.getElementById("routes").innerHTML = "<p>Trasy</p>";
+    document.getElementById("routes").innerHTML = "";
     elevationRoutes.clearLayers();
     speedRoutes.clearLayers();
     basicRoutes.clearLayers();
@@ -164,7 +164,7 @@ function routeClick(e) {
     routeButtonClick(basicRoutes.getLayers().indexOf(e.target));
 }
 
-function createButtonForRoute(obj, routeIndex) {
+function createButtonForRoute1(obj, routeIndex) {
     var div = document.getElementById("routes");
     div.style.display = "block";
     var button = document.createElement("BUTTON");
@@ -176,12 +176,54 @@ function createButtonForRoute(obj, routeIndex) {
         (obj.plans[routeIndex].length / 1000).toFixed(1) + " km, " +
         (obj.plans[routeIndex].duration / 60).toFixed(0) + " min, " +
         obj.plans[routeIndex].elevationGain + " m");
-    button.appendChild(text);
     div.appendChild(button);
     //document.getElementById("basicRoutes").innerHTML += button;
 }
+
+function createButtonForRoute(obj, routeIndex) {
+    //document.getElementById("routes").innerHTML += "<button class='routeBut'>" +
+    //    "        <table border='1' width='100%'>" +
+    //    "        <tr>" +
+    //    "        <td width='19%'><img src='' /></td>" +
+    //    "        <td width='81%'>Under<hr> Construction</td>" +
+    //    "    </tr>" +
+    //    "    </table>" +
+    //    "    </button>";
+
+    var routeButton = $("<div>").addClass("routeBut");
+    //var routeDiv = $("<div>").addClass("routeDiv");
+    var routeSpan1 = $("<span>").text((obj.plans[routeIndex].length / 1000).toFixed(1) + " km");
+    routeSpan1.addClass("glyphicon glyphicon-resize-vertical");
+    var routeSpan2 = $("<span>").text((obj.plans[routeIndex].duration / 60).toFixed(0) + " min");
+    routeSpan2.addClass("glyphicon glyphicon-time");
+    var routeSpan3 = $("<span>").text(obj.plans[routeIndex].elevationGain + " m");
+    routeSpan3.addClass("glyphicon glyphicon-picture");
+    var hr1 = $("<hr>");
+    var hr2 = $("<hr>");
+
+    routeSpan1.appendTo(routeButton);
+    hr1.appendTo(routeButton);
+    routeSpan2.appendTo(routeButton);
+    hr2.appendTo(routeButton);
+    routeSpan3.appendTo(routeButton);
+    //routeDiv.appendTo("#routes");
+    routeButton.appendTo("#routes");
+
+    routeButton.attr("onClick", "routeButtonClick(" + routeIndex + ")")
+    $(".routeBut").click(function() {
+        $(".routeBut").removeClass("current");
+        $(this).addClass("current");
+        $(this).prependTo("#routes");
+    });
+    $("#routes").show();
+
+}
+
+
+
 function routeButtonClick(routeIndex) {
     //map.removeLayer(basicRoutes);
+
 
     switch (segChoice) {
         case ELEVATION_SEGMENTS:

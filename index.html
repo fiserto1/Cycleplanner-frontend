@@ -39,6 +39,14 @@
 
 
 <div id="example">
+    <div class="col-md-1 vCenter" id="chDir">
+        <div class="row">
+            <span class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></span>
+        </div>
+        <div class="row">
+            <span class="glyphicon glyphicon-plus" id="addPointIcon" aria-hidden="true"></span>
+        </div>
+    </div>
     <div class="startDest">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">
@@ -46,6 +54,7 @@
             </span>
             <input type="text" class="form-control" id="searchStart" placeholder="Start" aria-describedby="basic-addon1">
         </div>
+
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon2">
                 <span class="glyphicon glyphicon-map-marker" id="destinationIcon" aria-hidden="true"></span>
@@ -53,9 +62,7 @@
             <input type="search" class="form-control" id="searchDestination" placeholder="Cíl" aria-describedby="basic-addon2" onsearch="findGps(this)">
         </div>
     </div>
-    <div class="vCenter" id="chDir">
-        <span class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></span>
-    </div>
+
     <span class="glyphicon glyphicon-eye-open" id="hideIcon" aria-hidden="true"></span>
     <span class="glyphicon glyphicon-cog" id="settingsIcon" aria-hidden="true" data-toggle="collapse" data-target="#settings"></span>
 
