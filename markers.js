@@ -19,12 +19,14 @@ function onMapClick(e) {
     if (startMarker.getLatLng() == null) {
         startMarker.setLatLng(e.latlng).addTo(map);
         document.getElementById("searchStart").value = e.latlng;
+        getPlans();
 
     } else if (endMarker.getLatLng() == null) {
         endMarker.setLatLng(e.latlng).addTo(map);
         document.getElementById("searchDestination").value = e.latlng;
+        getPlans();
     }
-    getPlans();
+
 }
 
 function onMarkerDrag(e) {
