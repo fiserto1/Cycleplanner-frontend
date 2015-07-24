@@ -65,13 +65,13 @@ function changeLegend(segChoice) {
                 "        <span style='background:#15B0FF;'></span>" +
                 "        <span style='background:#0080FF;'></span>" +
                 "        <span style='background:#0040FF;'></span>" +
-                "        <label>>10m</label>" +
-                "    <label>8 az 10m</label>" +
-                "    <label>5 az 7m</label>" +
-                "    <label>4 az -4m</label>" +
-                "    <label>-5 az -7m</label>" +
-                "    <label>-8 az -10m</label>" +
-                "    <label><-10m</label>" +
+                "        <label>Stoupání</label>" + //>10m
+                "    <label></label>" +             //8 az 10m
+                "    <label></label>" +             //5 az 7m
+                "    <label>Po rovinì</label>" +       //4 az -4m
+                "    <label></label>" +             //-5 az -7m
+                "    <label></label>" +             //-8 az -10m
+                "    <label>Klesání</label>" +      //<-10m
                 "    </nav>";
             break;
         case SPEED_SEGMENTS:
