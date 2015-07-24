@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="windows-1250">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -9,24 +9,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
-
-    <link rel="stylesheet" href="style2.css" />
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-
-    <!--<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>-->
-    <!--<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />-->
-
-
-    <title></title>
     <script type="text/javascript" src="externaljs/jquery.autocomplete.min.js"></script>
+
+    <link rel="stylesheet" href="style2.css" />
     <script src="autocomplete.js"></script>
 
+    <title>Cykloplánovaè</title>
 </head>
 <body>
 <div id="map"></div>
@@ -60,7 +57,7 @@
             <span class="input-group-addon" id="basic-addon2">
                 <span class="glyphicon glyphicon-map-marker" id="destinationIcon" aria-hidden="true"></span>
             </span>
-            <input type="search" class="form-control" id="searchDestination" placeholder="CÃ­l" aria-describedby="basic-addon2" onsearch="findGps(this)">
+            <input type="search" class="form-control" id="searchDestination" placeholder="Cíl" aria-describedby="basic-addon2" onsearch="findGps(this)">
         </div>
     </div>
 

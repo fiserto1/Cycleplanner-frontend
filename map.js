@@ -56,7 +56,7 @@ function changeLegend(segChoice) {
 
     switch (segChoice) {
         case ELEVATION_SEGMENTS:
-            div.innerHTML = "<strong>Prevyseni trasy</strong>" +
+            div.innerHTML = "<strong>Pøevýšení trasy</strong>" +
                 "<nav class='legend clearfix'>" +
                 "        <span style='background:#FF0000;'></span>" +
                 "        <span style='background:#FF5D54;'></span>" +
@@ -68,7 +68,7 @@ function changeLegend(segChoice) {
                 "        <label>Stoupání</label>" + //>10m
                 "    <label></label>" +             //8 az 10m
                 "    <label></label>" +             //5 az 7m
-                "    <label>Po rovinì</label>" +       //4 az -4m
+                "    <label>Rovina</label>" +       //4 az -4m
                 "    <label></label>" +             //-5 az -7m
                 "    <label></label>" +             //-8 az -10m
                 "    <label>Klesání</label>" +      //<-10m

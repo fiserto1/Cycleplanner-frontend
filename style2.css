@@ -1,3 +1,6 @@
+.btn, .input-group-addon, .form-control{
+    border-radius: 0;
+}
 
 /*body {margin: 0;}*/
 /*#right {float: right;}*/
@@ -118,7 +121,7 @@
 #routes {
     display: none;
     top: 135px;
-    height: 300px;
+    /*height: 300px;*/
 }
 
 #settings {
@@ -130,14 +133,15 @@
     position: absolute;
     top: 10px;
     left: 365px;
-
 }
 
 #legend {
     background-color: white;
-    padding: 10px;
-    width: 500px;
+    box-shadow: black 4px 6px 20px;
+    padding: 0.5em;
+    width: 300px;
 }
+
 #legend label,
 #legend span {
     display:block;
