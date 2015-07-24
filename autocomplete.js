@@ -20,7 +20,7 @@ $(function() {
     $( "#searchDestination" ).autocomplete({
         lookup: availableTags,
         onSelect: function(suggestion) {
-            endMarker.setLatLng(suggestion.data).addTo(map);
+            destinationMarker.setLatLng(suggestion.data).addTo(map);
             getPlans();
         }
     });

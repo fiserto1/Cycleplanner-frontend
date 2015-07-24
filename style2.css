@@ -7,6 +7,9 @@
     bottom:0;
     width:100%;
 }
+.awesome-marker i {
+    /*font-size: 14px;*/
+}
 
 #startIcon {
     color: dodgerblue;
@@ -84,8 +87,8 @@
 
 .current {
     /*width: 330px;*/
-    background-color: #bbb9ab;
-    color: red;
+    /*background-color: #549dff;*/
+    /*color: white;*/
 }
 
 .routeBut {

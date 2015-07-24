@@ -4,14 +4,27 @@
 //var startLatLng = L.latLng(50.07697, 14.43226);
 //var endLatLng = L.latLng(50.08744, 14.38728);
 
+var startIcon = L.AwesomeMarkers.icon({
+    prefix: 'fa', //font awesome rather than bootstrap
+    markerColor: 'blue',
+    //spin: true,
+    icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
+});
+var destinationIcon = L.AwesomeMarkers.icon({
+    prefix: 'fa', //font awesome rather than bootstrap
+    markerColor: 'red',
+    icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
+});
+
 var startMarker = L.marker(null, {
+    icon: startIcon,
     draggable:true,
     title: "Start"
 });
-var endMarker = L.marker(null, {
-    icon: L.icon({iconUrl: "marker-icon-red.png"}),
+var destinationMarker = L.marker(null, {
+    icon: destinationIcon,
     draggable:true,
-    title: "End"
+    title: "Destination"
 });
 
 
@@ -21,8 +34,8 @@ function onMapClick(e) {
         document.getElementById("searchStart").value = e.latlng;
         getPlans();
 
-    } else if (endMarker.getLatLng() == null) {
-        endMarker.setLatLng(e.latlng).addTo(map);
+    } else if (destinationMarker.getLatLng() == null) {
+        destinationMarker.setLatLng(e.latlng).addTo(map);
         document.getElementById("searchDestination").value = e.latlng;
         getPlans();
     }
@@ -31,7 +44,7 @@ function onMapClick(e) {
 
 function onMarkerDrag(e) {
     document.getElementById("searchStart").value = startMarker.getLatLng();
-    document.getElementById("searchDestination").value = endMarker.getLatLng();
+    document.getElementById("searchDestination").value = destinationMarker.getLatLng();
     getPlans();
     //var marker = e.target;
     //marker.setLatLng(marker.getLatLng());
@@ -39,8 +52,8 @@ function onMarkerDrag(e) {
 
 function swapMarkers() {
     var latLng = startMarker.getLatLng();
-    startMarker.setLatLng(endMarker.getLatLng());
-    endMarker.setLatLng(latLng);
+    startMarker.setLatLng(destinationMarker.getLatLng());
+    destinationMarker.setLatLng(latLng);
     swapSearchForm();
     getPlans();
 }
@@ -55,4 +68,4 @@ document.getElementById("chDir").onclick = swapMarkers;
 
 map.on("click", onMapClick);
 startMarker.on('dragend', onMarkerDrag);
-endMarker.on('dragend', onMarkerDrag);
+destinationMarker.on('dragend', onMarkerDrag);
