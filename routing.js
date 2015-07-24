@@ -190,30 +190,29 @@ function createButtonForRoute(obj, routeIndex) {
     //    "    </table>" +
     //    "    </button>";
 
-    var routeButton = $("<div>").addClass("routeBut");
+    var routeButton = $("<button>").addClass("btn btn-default routeBut");
+    var routeDiv = $("<div>").addClass("routeDesc");
     //var routeDiv = $("<div>").addClass("routeDiv");
-    var routeSpan1 = $("<span>").text((obj.plans[routeIndex].length / 1000).toFixed(1) + " km");
-    routeSpan1.addClass("glyphicon glyphicon-resize-vertical");
-    var routeSpan2 = $("<span>").text((obj.plans[routeIndex].duration / 60).toFixed(0) + " min");
-    routeSpan2.addClass("glyphicon glyphicon-time");
-    var routeSpan3 = $("<span>").text(obj.plans[routeIndex].elevationGain + " m");
-    routeSpan3.addClass("glyphicon glyphicon-picture");
-    var hr1 = $("<hr>");
-    var hr2 = $("<hr>");
+    var routeSpan1 = $("<i>").text(" " + (obj.plans[routeIndex].length / 1000).toFixed(1) + " km");
+    routeSpan1.addClass("fa fa-arrows-v");
+    var routeSpan2 = $("<i>").text(" " + (obj.plans[routeIndex].duration / 60).toFixed(0) + " min");
+    routeSpan2.addClass("fa fa-clock-o");
+    var routeSpan3 = $("<i>").text(" " + obj.plans[routeIndex].elevationGain + " m");
+    routeSpan3.addClass("fa fa-area-chart");
 
-    routeSpan1.appendTo(routeButton);
-    hr1.appendTo(routeButton);
-    routeSpan2.appendTo(routeButton);
-    hr2.appendTo(routeButton);
-    routeSpan3.appendTo(routeButton);
-    //routeDiv.appendTo("#routes");
+    routeSpan1.appendTo(routeDiv);
+    $("<hr>").appendTo(routeDiv);
+    routeSpan2.appendTo(routeDiv);
+    $("<hr>").appendTo(routeDiv);
+    routeSpan3.appendTo(routeDiv);
+    routeDiv.appendTo(routeButton);
     routeButton.appendTo("#routes");
 
     routeButton.attr("onClick", "routeButtonClick(" + routeIndex + ")")
     $(".routeBut").click(function() {
         $(".routeBut").removeClass("current");
         $(this).addClass("current");
-        $(this).prependTo("#routes");
+        //$(this).prependTo("#routes");
     });
     $("#routes").show();
 
