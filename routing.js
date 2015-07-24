@@ -2,7 +2,7 @@
  * Created by Tomas on 7. 7. 2015.
  */
 
-var ROUTE_COLOR = "#2382FF";
+var ROUTE_COLOR = "#717171"; //2382FF
 var BORDER_CLICKED_ROUTE_COLOR = "#6F9000";
 var CLICKED_ROUTE_COLOR = "#90BB00";
 
