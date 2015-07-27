@@ -64,7 +64,24 @@ function swapSearchForm() {
     document.getElementById("searchDestination").value = value;
 }
 
+
+function addPoint() {
+    var inputGroup = $("<div>").addClass("input-group");
+    var markerAddon = $("<div>").addClass("input-group-addon");
+    var closeAddon = $("<div>").addClass("input-group-addon");
+    closeAddon.click(function() {
+        $(this).parent().remove();
+    });
+    $("<i>").addClass("fa fa-map-marker middle-point-icon").appendTo(markerAddon);
+    $("<i>").addClass("fa fa-times").appendTo(closeAddon);
+    markerAddon.appendTo(inputGroup);
+    $("<input type='text'>").addClass("form-control whisper").appendTo(inputGroup);
+    closeAddon.appendTo(inputGroup);
+    inputGroup.insertBefore($("#destination-input"));
+}
+
 document.getElementById("chDir").onclick = swapMarkers;
+document.getElementById("add-point").onclick = addPoint;
 
 map.on("click", onMapClick);
 startMarker.on('dragend', onMarkerDrag);
