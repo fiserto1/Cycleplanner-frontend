@@ -42,7 +42,7 @@ function handler(obj) {
     if (segColoredClickedRoute != null) {
         map.removeLayer(segColoredClickedRoute);
     }
-    document.getElementById("routes").innerHTML = "";
+    document.getElementById("routes-panel").innerHTML = "";
     elevationRoutes.clearLayers();
     speedRoutes.clearLayers();
     basicRoutes.clearLayers();
@@ -165,7 +165,7 @@ function routeClick(e) {
 }
 
 function createButtonForRoute1(obj, routeIndex) {
-    var div = document.getElementById("routes");
+    var div = document.getElementById("routes-panel");
     div.style.display = "block";
     var button = document.createElement("BUTTON");
     button.setAttribute("type", "button");
@@ -190,7 +190,7 @@ function createButtonForRoute(obj, routeIndex) {
     //    "    </table>" +
     //    "    </button>";
 
-    var routeButton = $("<button>").addClass("btn btn-default routeBut");
+    var routeButton = $("<button>").addClass("btn btn-default routeBut col-md-4");
     var routeDiv = $("<div>").addClass("routeDesc");
     //var routeDiv = $("<div>").addClass("routeDiv");
     var routeSpan1 = $("<i>").text(" " + (obj.plans[routeIndex].length / 1000).toFixed(1) + " km");
@@ -206,15 +206,15 @@ function createButtonForRoute(obj, routeIndex) {
     $("<hr>").appendTo(routeDiv);
     routeSpan3.appendTo(routeDiv);
     routeDiv.appendTo(routeButton);
-    routeButton.appendTo("#routes");
+    routeButton.appendTo("#routes-panel");
 
     routeButton.attr("onClick", "routeButtonClick(" + routeIndex + ")")
     $(".routeBut").click(function() {
         $(".routeBut").removeClass("current");
         $(this).addClass("current");
-        //$(this).prependTo("#routes");
+        //$(this).prependTo("#routes-panel");
     });
-    $("#routes").show();
+    $("#routes-panel").show();
 
 }
 

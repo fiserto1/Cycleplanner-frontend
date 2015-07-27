@@ -98,12 +98,12 @@
     /*margin: 1px;*/
 }
 
-.startDest {
+#search-group {
     width: 80%;
     float:left;
 }
 
-#example, #routes, #settings {
+#search-panel, #routes-panel, #settings-panel {
     background-color: white;
     box-shadow: black 4px 6px 20px;
     position: absolute;
@@ -112,19 +112,19 @@
     padding: 0.5em;
 }
 
-#example {
+#search-panel {
     top: 10px;
     height: 115px;
 }
 
 
-#routes {
+#routes-panel {
     display: none;
     top: 135px;
     /*height: 300px;*/
 }
 
-#settings {
+#settings-panel {
     height: 100px;
     top: 125px;
 }

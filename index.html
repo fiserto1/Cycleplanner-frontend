@@ -20,53 +20,60 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
     <script type="text/javascript" src="externaljs/jquery.autocomplete.min.js"></script>
 
-    <link rel="stylesheet" href="style2.css" />
+    <!--<link rel="stylesheet" href="style2.css" />-->
+    <link rel="stylesheet" href="main.css" />
     <script src="autocomplete.js"></script>
 
     <title>Cykloplánovaè</title>
 </head>
 <body>
 <div id="map"></div>
-<div id='legend' style='display:none;'>
-
-</div>
+<div id='legend' style='display:none;'></div>
 
 <script src="cycleRoutes.js"></script>
 <script src="map.js"></script>
 <script src="routing.js"></script>
 
+<div class="col-md-3 left-block">
+    <div id="search-panel" class="row panel">
+        <div class="col-md-1" >
+            <div class="row">
+                <div class="col-md-12" id="chDir">
+                    <span class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-12" id="add-point">
+                    <span class="glyphicon glyphicon-plus" id="addPointIcon" aria-hidden="true"></span>
+                </div>
+            </div>
 
-<div id="example">
-    <div class="col-md-1 vCenter" >
-        <div class="row" id="chDir">
-            <span class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></span>
         </div>
-        <div class="row">
-            <span class="glyphicon glyphicon-plus" id="addPointIcon" aria-hidden="true"></span>
+        <div class="col-md-10 " id="search-group">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-map-marker" id="startIcon" aria-hidden="true"></span>
+                </span>
+                <input type="text" class="form-control whisper" id="searchStart" placeholder="Start" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group" id="destination-input">
+                <span class="input-group-addon" id="basic-addon2">
+                    <span class="glyphicon glyphicon-map-marker" id="destinationIcon" aria-hidden="true"></span>
+                </span>
+                <input type="search" class="form-control whisper" id="searchDestination" placeholder="Cíl" aria-describedby="basic-addon2" onsearch="findGps(this)">
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="">
+                <span class="glyphicon glyphicon-eye-open" id="hideIcon" aria-hidden="true"></span>
+            </div>
+            <div class="">
+                <span class="glyphicon glyphicon-cog" id="settingsIcon" aria-hidden="true" data-toggle="collapse" data-target="#settings-panel"></span>
+            </div>
         </div>
     </div>
-    <div class="startDest">
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">
-                <span class="glyphicon glyphicon-map-marker" id="startIcon" aria-hidden="true"></span>
-            </span>
-            <input type="text" class="form-control" id="searchStart" placeholder="Start" aria-describedby="basic-addon1">
-        </div>
-
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon2">
-                <span class="glyphicon glyphicon-map-marker" id="destinationIcon" aria-hidden="true"></span>
-            </span>
-            <input type="search" class="form-control" id="searchDestination" placeholder="Cíl" aria-describedby="basic-addon2" onsearch="findGps(this)">
-        </div>
-    </div>
-
-    <span class="glyphicon glyphicon-eye-open" id="hideIcon" aria-hidden="true"></span>
-    <span class="glyphicon glyphicon-cog" id="settingsIcon" aria-hidden="true" data-toggle="collapse" data-target="#settings"></span>
-
+    <div id="settings-panel" class="collapse row panel">Nastaveni</div>
+    <div id="routes-panel" class="row panel"></div>
 </div>
-<div id="routes" class="ui-widget-content"></div>
-
 
 <!--<div class="panel-group" id="accordion"></div>-->
 
@@ -90,7 +97,7 @@
 <!--<div class="triangle" id="tThird"><div class="tInner"></div></div>-->
 <!--<div class="triangle" id="tFourth"><div class="tInner"></div></div>-->
 
-<div id="settings" class="collapse">Nastaveni</div>
+
 <script src="routing.js"></script>
 <script src="markers.js"></script>
 <script src="collapse.js"></script>
