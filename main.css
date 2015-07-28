@@ -19,7 +19,6 @@
 }
 .panel {
   box-shadow: black 4px 6px 20px;
-  width: 390px;
   background-color: white;
   border-radius: 2px;
   margin: 0px 0px 7px 0px;
@@ -57,6 +56,14 @@
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
+#settingsIcon,
+#hideIcon {
+  float: right;
+}
+#addPointIcon,
+#changeDirectionIcon {
+  float: left;
+}
 /*#addPointIcon {*/
 /*left: 15px;*/
 /*padding: 5px;*/
@@ -66,6 +73,7 @@
 #addPointIcon,
 #changeDirectionIcon {
   font-size: 20px;
+  margin: 4px;
 }
 /*.vCenter {*/
 /*text-align:center;*/

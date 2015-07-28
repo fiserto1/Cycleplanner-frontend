@@ -31,7 +31,7 @@ background-color: red;
 .panel {
   //position: relative;
   box-shadow: black 4px 6px 20px;
-  width: @panel-width;
+  //width: @panel-width;
   background-color: white;
   border-radius: @radius;
   margin: 0px 0px @panel-spacing 0px;
@@ -80,7 +80,13 @@ background-color: red;
   -webkit-transform:rotate(90deg);
   transform: rotate(90deg);
 }
+#settingsIcon, #hideIcon {
+  float: right;
+}
 
+#addPointIcon, #changeDirectionIcon {
+  float: left;
+}
 /*#addPointIcon {*/
 /*left: 15px;*/
 /*padding: 5px;*/
@@ -88,6 +94,7 @@ background-color: red;
 
 #settingsIcon, #hideIcon, #addPointIcon, #changeDirectionIcon{
   font-size: 20px;
+  margin: 4px;
 }
 
 

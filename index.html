@@ -34,42 +34,40 @@
 <script src="map.js"></script>
 <script src="routing.js"></script>
 
-<div class="col-md-3 left-block">
+<div class="col-md-4 left-block">
     <div id="search-panel" class="row panel">
-        <div class="col-md-1" >
-            <div class="row">
-                <div class="col-md-12" id="chDir">
-                    <span class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></span>
-                </div>
-                <div class="col-md-12" id="add-point">
-                    <span class="glyphicon glyphicon-plus" id="addPointIcon" aria-hidden="true"></span>
-                </div>
-            </div>
 
-        </div>
-        <div class="col-md-10 " id="search-group">
+        <div id="search-group">
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-map-marker" id="startIcon" aria-hidden="true"></span>
+                    <i class="fa fa-map-marker" id="startIcon" aria-hidden="true"></i>
                 </span>
                 <input type="text" class="form-control whisper" id="searchStart" placeholder="Start" aria-describedby="basic-addon1">
+                <span class="input-group-addon">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
             </div>
 
             <div class="input-group" id="destination-input">
                 <span class="input-group-addon" id="basic-addon2">
-                    <span class="glyphicon glyphicon-map-marker" id="destinationIcon" aria-hidden="true"></span>
+                    <i class="fa fa-map-marker" id="destinationIcon" aria-hidden="true"></i>
                 </span>
                 <input type="search" class="form-control whisper" id="searchDestination" placeholder="Cíl" aria-describedby="basic-addon2" onsearch="findGps(this)">
+                <span class="input-group-addon">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
             </div>
         </div>
-        <div class="col-md-1">
-            <div class="">
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="glyphicon glyphicon-plus" id="addPointIcon" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></span>
                 <span class="glyphicon glyphicon-eye-open" id="hideIcon" aria-hidden="true"></span>
-            </div>
-            <div class="">
                 <span class="glyphicon glyphicon-cog" id="settingsIcon" aria-hidden="true" data-toggle="collapse" data-target="#settings-panel"></span>
             </div>
         </div>
+
     </div>
     <div id="settings-panel" class="collapse row panel">Nastaveni</div>
     <div id="routes-panel" class="row panel"></div>

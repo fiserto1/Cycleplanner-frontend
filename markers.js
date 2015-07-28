@@ -80,8 +80,8 @@ function addPoint() {
     inputGroup.insertBefore($("#destination-input"));
 }
 
-document.getElementById("chDir").onclick = swapMarkers;
-document.getElementById("add-point").onclick = addPoint;
+document.getElementById("changeDirectionIcon").onclick = swapMarkers;
+document.getElementById("addPointIcon").onclick = addPoint;
 
 map.on("click", onMapClick);
 startMarker.on('dragend', onMarkerDrag);
