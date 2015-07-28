@@ -161,8 +161,8 @@ function handler(obj) {
 }
 
 function routeClick(e) {
-    $(".routeBut").trigger("click");
-    //routeButtonClick(basicRoutes.getLayers().indexOf(e.target));
+    var button = $("#routes-panel").children().eq(basicRoutes.getLayers().indexOf(e.target));
+    button.trigger("click").focus();
 }
 
 function createButtonForRoute1(obj, routeIndex) {
@@ -211,8 +211,8 @@ function createButtonForRoute(obj, routeIndex) {
 
     routeButton.attr("onClick", "routeButtonClick(" + routeIndex + ")")
     $(".routeBut").click(function() {
-        $(".routeBut").removeClass("current");
-        $(this).addClass("current");
+        $(".routeBut").removeClass("selected-but");
+        $(this).addClass("selected-but");
         //$(this).prependTo("#routes-panel");
     });
     $("#routes-panel").show();
@@ -223,7 +223,6 @@ function createButtonForRoute(obj, routeIndex) {
 
 function routeButtonClick(routeIndex) {
     //map.removeLayer(basicRoutes);
-
 
     switch (segChoice) {
         case ELEVATION_SEGMENTS:
