@@ -56,6 +56,9 @@
 .destination-icon {
   color: red;
 }
+.disabled-icon {
+  color: gray;
+}
 #changeDirectionIcon {
   -ms-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
