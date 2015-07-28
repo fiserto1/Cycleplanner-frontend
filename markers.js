@@ -135,7 +135,7 @@ function onRemovePointClick() {
         $(".search-destination").removeClass("search-destination");
         $(".search-start").removeClass("search-start");
 
-
+        //TODO jeste pohrat s middle-point classama
 
 
         var index = $(this).parent().index();
@@ -157,7 +157,7 @@ function onRemovePointClick() {
         $("#search-group").children().eq(lastIndex).children().eq(0).children().eq(0).addClass("destination-icon");
         $("#search-group").children().eq(0).children().eq(1).addClass("search-start");
         $("#search-group").children().eq(lastIndex).children().eq(1).addClass("search-destination");
-
+        $(".start-icon").removeClass("middle-point-icon");
         getPlans();
         //udelat refresh do funkce/i aby se dalo pouzit i pro drag & drop
         //TODO refreshInputs();
