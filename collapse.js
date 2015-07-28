@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
     $("#settings-panel").on("hide.bs.collapse", function(){
-        $("#settingsIcon").css("color", "black");
+        $("#settingsIcon").css("color", "gray");
     });
     $("#settings-panel").on("show.bs.collapse", function(){
         $("#settingsIcon").css("color", "deepskyblue");

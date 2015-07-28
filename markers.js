@@ -27,7 +27,9 @@ var destinationMarker = L.marker(null, {
     title: "Destination"
 });
 
-
+var allMarkers = [];
+allMarkers.push(startMarker);
+allMarkers.push(destinationMarker);
 function onMapClick(e) {
     if (startMarker.getLatLng() == null) {
         startMarker.setLatLng(e.latlng).addTo(map);

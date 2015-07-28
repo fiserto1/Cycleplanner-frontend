@@ -161,7 +161,8 @@ function handler(obj) {
 }
 
 function routeClick(e) {
-    routeButtonClick(basicRoutes.getLayers().indexOf(e.target));
+    $(".routeBut").trigger("click");
+    //routeButtonClick(basicRoutes.getLayers().indexOf(e.target));
 }
 
 function createButtonForRoute1(obj, routeIndex) {

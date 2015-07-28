@@ -39,17 +39,17 @@
 .awesome-marker i {
   /*font-size: 14px;*/
 }
-#startIcon {
-  color: dodgerblue;
+#search-group i {
   font-size: 18px;
+}
+.start-icon {
+  color: dodgerblue;
 }
 .middle-point-icon {
   color: darkorange;
-  font-size: 18px;
 }
-#destinationIcon {
+.destination-icon {
   color: red;
-  font-size: 18px;
 }
 #changeDirectionIcon {
   -ms-transform: rotate(90deg);

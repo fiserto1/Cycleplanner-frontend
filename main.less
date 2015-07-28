@@ -1,6 +1,5 @@
 @radius: 2px;
 @panel-spacing: 7px;
-@panel-width: 390px;
 
 .one, .two, .three {
   //height: 20px;
@@ -31,7 +30,6 @@ background-color: red;
 .panel {
   //position: relative;
   box-shadow: black 4px 6px 20px;
-  //width: @panel-width;
   background-color: white;
   border-radius: @radius;
   margin: 0px 0px @panel-spacing 0px;
@@ -60,19 +58,22 @@ background-color: red;
   /*font-size: 14px;*/
 }
 
-#startIcon {
-  color: dodgerblue;
-  font-size: 18px;
+
+#search-group {
+  //icons
+  i {
+    font-size: 18px;
+  }
 }
 
+.start-icon {
+  color: dodgerblue;
+}
 .middle-point-icon {
   color: darkorange;
-  font-size: 18px;
 }
-
-#destinationIcon {
+.destination-icon {
   color: red;
-  font-size: 18px;
 }
 
 #changeDirectionIcon {
