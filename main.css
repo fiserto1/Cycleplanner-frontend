@@ -44,6 +44,10 @@
 .awesome-marker i {
   /*font-size: 14px;*/
 }
+#search-group .input-group-addon {
+  border: none;
+  background-color: white;
+}
 #search-group i {
   font-size: 18px;
 }
@@ -64,8 +68,7 @@
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-#settingsIcon,
-#hideIcon {
+#settingsIcon {
   float: right;
 }
 #addPointIcon,
@@ -77,7 +80,6 @@
 /*padding: 5px;*/
 /*}*/
 #settingsIcon,
-#hideIcon,
 #addPointIcon,
 #changeDirectionIcon {
   font-size: 20px;
