@@ -7,7 +7,7 @@
 }
 
 .one {
-background-color: red;
+  background-color: red;
 }
 .two {
   background-color: green;
@@ -29,6 +29,10 @@ background-color: red;
   border-color: #8c8c8c;
 }
 
+.remove-point {
+  //color: @panel-bgcolor;
+}
+
 #routes-panel {
   display: none;
 }
@@ -39,7 +43,7 @@ background-color: red;
   background-color: @panel-bgcolor;
   border-radius: @radius;
   margin: 0px 0px @panel-spacing 0px;
-  padding: 5px;
+  //padding: 5px;
 }
 
 .left-block {
@@ -53,11 +57,18 @@ background-color: red;
   //margin-left: 0px;
 }
 
-.btn, .input-group-addon, .form-control{
-  border-radius: @radius;
+
+.input-group, .form-control {
+  :focus, :active {
+    //box-shadow: inset 0px -1px 4px -1px rgb(84, 157, 255);
+  }
+  border-left: none;
+  border-top: none;
+  border-right: none;
 }
-#search-group {
-  background-color: transparent;
+
+.btn, .input-group-addon, .input-group, .form-control {
+  border-radius: @radius;
 }
 
 .awesome-marker i {
@@ -66,13 +77,21 @@ background-color: red;
 
 
 #search-group {
-  //icons
+  background-color: transparent;
+  border-bottom: solid #CCCCCC 1px; //to same jako hr s margin 0
+  .search-destination {
+    border:none;
+  }
+  input {
+    height: 35px;
+  }
   .input-group-addon {
-
     border: none;
+    //padding: 7px;
     background-color: @panel-bgcolor;
   }
 
+  //icons
   i {
     font-size: 18px;
   }
@@ -108,8 +127,11 @@ background-color: red;
 /*}*/
 
 #settingsIcon, #addPointIcon, #changeDirectionIcon{
-  font-size: 20px;
-  margin: 4px;
+  font-size: 18px;
+  margin: 8px;
+  :hover {
+    cursor: hand;
+  }
 }
 
 

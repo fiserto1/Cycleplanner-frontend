@@ -27,22 +27,35 @@
   background-color: white;
   border-radius: 2px;
   margin: 0px 0px 7px 0px;
-  padding: 5px;
 }
 .left-block {
   padding: 0px 0px 0px 0px;
   margin: 10px;
 }
+.input-group,
+.form-control {
+  border-left: none;
+  border-top: none;
+  border-right: none;
+}
 .btn,
 .input-group-addon,
+.input-group,
 .form-control {
   border-radius: 2px;
 }
-#search-group {
-  background-color: transparent;
-}
 .awesome-marker i {
   /*font-size: 14px;*/
+}
+#search-group {
+  background-color: transparent;
+  border-bottom: solid #CCCCCC 1px;
+}
+#search-group .search-destination {
+  border: none;
+}
+#search-group input {
+  height: 35px;
 }
 #search-group .input-group-addon {
   border: none;
@@ -82,8 +95,13 @@
 #settingsIcon,
 #addPointIcon,
 #changeDirectionIcon {
-  font-size: 20px;
-  margin: 4px;
+  font-size: 18px;
+  margin: 8px;
+}
+#settingsIcon :hover,
+#addPointIcon :hover,
+#changeDirectionIcon :hover {
+  cursor: hand;
 }
 /*.vCenter {*/
 /*text-align:center;*/

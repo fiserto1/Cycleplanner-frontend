@@ -86,8 +86,12 @@ function addMiddlePoint() {
         var markerAddon = $("<div>").addClass("input-group-addon");
         var closeAddon = $("<div>").addClass("input-group-addon remove-point");
         closeAddon.click(onRemovePointClick);
+    //<button type="button" class="close" ><span>&times;</span></button>
+        var closeButton = $("<button>").addClass("close");
+        $("<span>").html("&times").appendTo(closeButton);
+        closeButton.appendTo(closeAddon);
         $("<i>").addClass("fa fa-map-marker destination-icon").appendTo(markerAddon);
-        $("<i>").addClass("fa fa-times").appendTo(closeAddon);
+        //$("<i>").addClass("fa fa-times").appendTo(closeAddon);
         markerAddon.appendTo(inputGroup);
         $("<input type='search'>").addClass("form-control search-destination whisper").appendTo(inputGroup);
         closeAddon.appendTo(inputGroup);
@@ -112,6 +116,9 @@ function addMiddlePoint() {
 
         if ($("#search-group").children().length == (MIDDLE_POINT_LIMIT + 2)) {
             $("#addPointIcon").addClass("disabled-icon");
+        }
+        if ($("#search-group").children().length > 2) {
+            //$(".remove-point").css("color", "#333333");
         }
 
         destinationMarker.setIcon(middlePointIcon);
@@ -165,6 +172,9 @@ function onRemovePointClick() {
 
         if ($("#search-group").children().length < (MIDDLE_POINT_LIMIT + 2)) {
             $("#addPointIcon").removeClass("disabled-icon");
+        }
+        if ($("#search-group").children().length == 2) {
+            //$(".remove-point").css("color", white);
         }
     }
 }
