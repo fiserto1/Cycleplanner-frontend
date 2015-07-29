@@ -38,6 +38,9 @@
   border-top: none;
   border-right: none;
 }
+.action-icon:hover {
+  cursor: pointer;
+}
 .btn,
 .input-group-addon,
 .input-group,
@@ -97,11 +100,6 @@
 #changeDirectionIcon {
   font-size: 18px;
   margin: 8px;
-}
-#settingsIcon :hover,
-#addPointIcon :hover,
-#changeDirectionIcon :hover {
-  cursor: hand;
 }
 /*.vCenter {*/
 /*text-align:center;*/
