@@ -58,7 +58,7 @@ function onMarkerDrag(e) {
     //marker.setLatLng(marker.getLatLng());
 }
 
-function swapMarkers() {
+function onChangeDirectionClick() {
     var latLng = startMarker.getLatLng();
     startMarker.setLatLng(destinationMarker.getLatLng());
     destinationMarker.setLatLng(latLng);
@@ -73,7 +73,7 @@ function swapSearchForm() {
 }
 
 
-function addMiddlePoint() {
+function onAddPointClick() {
     //if allMarkers.length < limit
     //console.log($("#search-group").children().length);
     if ($("#search-group").children().length < (MIDDLE_POINT_LIMIT + 2)) {
@@ -84,10 +84,9 @@ function addMiddlePoint() {
         $(".search-destination").removeClass("search-destination");
         var inputGroup = $("<div>").addClass("input-group");
         var markerAddon = $("<div>").addClass("input-group-addon");
-        var closeAddon = $("<div>").addClass("input-group-addon remove-point");
-        closeAddon.click(onRemovePointClick);
-    //<button type="button" class="close" ><span>&times;</span></button>
-        var closeButton = $("<button>").addClass("close");
+        var closeAddon = $("<div>").addClass("input-group-addon");
+        var closeButton = $("<button type='button'>").addClass("close remove-point");
+        closeButton.click(onRemovePointClick);
         $("<span>").html("&times").appendTo(closeButton);
         closeButton.appendTo(closeAddon);
         $("<i>").addClass("fa fa-map-marker destination-icon").appendTo(markerAddon);
@@ -137,38 +136,20 @@ function addMiddlePoint() {
 function onRemovePointClick() {
     if ($("#search-group").children().length > 2) {
 
-        $(".destination-icon").removeClass("destination-icon");
-        $(".start-icon").removeClass("start-icon");
-        $(".search-destination").removeClass("search-destination");
-        $(".search-start").removeClass("search-start");
-
-        //TODO jeste pohrat s middle-point classama
-
-
-        var index = $(this).parent().index();
-        $(this).parent().remove();
-        map.removeLayer(allMarkers[index]);
-        allMarkers.splice(index, 1);
+        var wholeInput = $(this).parent().parent();
+        //$(this).parent().parent().hide( "slide", { direction: "up" }, "slow" );
+        map.removeLayer(allMarkers[wholeInput.index()]);
+        allMarkers.splice(wholeInput.index(), 1);
+        wholeInput.remove();
 
         startMarker = allMarkers[0];
         startMarker.setIcon(startIcon);
         destinationMarker = allMarkers[allMarkers.length-1];
         destinationMarker.setIcon(destinationIcon);
 
-        $(".destination-icon").removeClass("destination-icon");
-        $(".start-icon").removeClass("start-icon");
-        $(".search-destination").removeClass("search-destination");
-        $(".search-start").removeClass("search-start");
-        var lastIndex = $("#search-group").children().length-1;
-        $("#search-group").children().eq(0).children().eq(0).children().eq(0).addClass("start-icon");
-        $("#search-group").children().eq(lastIndex).children().eq(0).children().eq(0).addClass("destination-icon");
-        $("#search-group").children().eq(0).children().eq(1).addClass("search-start");
-        $("#search-group").children().eq(lastIndex).children().eq(1).addClass("search-destination");
-        $(".start-icon").removeClass("middle-point-icon");
+        refreshSearchGroup();
         getPlans();
-        //udelat refresh do funkce/i aby se dalo pouzit i pro drag & drop
-        //TODO refreshInputs();
-        //TODO refreshMarkers();
+
 
         if ($("#search-group").children().length < (MIDDLE_POINT_LIMIT + 2)) {
             $("#addPointIcon").removeClass("disabled-icon");
@@ -179,12 +160,29 @@ function onRemovePointClick() {
     }
 }
 
+function refreshSearchGroup() {
+    $(".form-control").removeClass("search-start search-destination search-middle-point");
+    $(".fa-map-marker").removeClass("start-icon destination-icon middle-point-icon");
+    var allInputs = $("#search-group").children();
+    for (var i = 0; i < allInputs.length; i++) {
+        if (i == 0) {
+            allInputs.eq(i).find("i").addClass("start-icon");
+            allInputs.eq(i).find("input").addClass("search-start");
+        } else if (i == (allInputs.length - 1)) {
+            allInputs.eq(i).find("i").addClass("destination-icon");
+            allInputs.eq(i).find("input").addClass("search-destination");
+        } else {
+            allInputs.eq(i).find("i").addClass("middle-point-icon");
+            allInputs.eq(i).find("input").addClass("search-middle-point"); //zatim k nicemu nepouzivam
+        }
+    }
+}
 
-document.getElementById("changeDirectionIcon").onclick = swapMarkers;
-document.getElementById("addPointIcon").onclick = addMiddlePoint;
-document.getElementById("addPointIcon").onclick = addMiddlePoint;
+
+$("#changeDirectionIcon").click(onChangeDirectionClick);
+$("#addPointIcon").click(onAddPointClick);
+$(".remove-point").click(onRemovePointClick);
 
 map.on("click", onMapClick);
 startMarker.on('dragend', onMarkerDrag);
 destinationMarker.on('dragend', onMarkerDrag);
-$(".remove-point").click(onRemovePointClick);
