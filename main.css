@@ -40,6 +40,7 @@
   border-left: none;
   border-top: none;
   border-right: none;
+  box-shadow: none;
 }
 .action-icon:hover {
   cursor: pointer;
@@ -53,6 +54,9 @@
 .awesome-marker i {
   /*font-size: 14px;*/
 }
+.drag-drop {
+  border: none;
+}
 .drag-drop :hover {
   cursor: -webkit-grab;
   cursor: -moz-grab;
@@ -65,7 +69,8 @@
   background-color: transparent;
   border-bottom: solid #CCCCCC 1px;
 }
-#search-group .input-group:hover button {
+#search-group .input-group:hover button,
+#search-group .input-group input.active button {
   color: #666666;
 }
 #search-group .search-destination {
@@ -74,7 +79,7 @@
 #search-group input {
   height: 35px;
 }
-#search-group .input-group-addon {
+#search-group .right-addon {
   border: none;
   background-color: white;
 }
