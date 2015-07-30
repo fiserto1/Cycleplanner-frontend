@@ -99,7 +99,7 @@ function changeLegend(segChoice) {
 //legend.addTo(map);
 var lastClickedPosition = null;
 $(function() {
-
+    //TODO zaridit aby se kontextove menu u kraje zobrazilo na spravnou stranu
     var $contextMenu = $("#contextMenu");
     map.on("click", function() {$contextMenu.hide();})
     map.on("contextmenu", function(e) {

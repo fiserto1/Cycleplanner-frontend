@@ -72,6 +72,7 @@ function swapSearchForm() {
     $(".search-destination").val(value);
 }
 
+//TODO spojit fce addNewStartPoint() a onAddPointClick()... jedna vklada pred druha za seznam
 function addNewStartPoint() {
 
     if ($("#search-group").children().length < (MIDDLE_POINT_LIMIT + 2)) {
@@ -90,7 +91,9 @@ function addNewStartPoint() {
         $("<i>").addClass("fa fa-map-marker start-icon").appendTo(markerAddon);
         //$("<i>").addClass("fa fa-times").appendTo(closeAddon);
         markerAddon.appendTo(inputGroup);
-        $("<input type='search'>").addClass("form-control search-start whisper").appendTo(inputGroup);
+        var searchInput = $("<input type='search'>").addClass("form-control search-start whisper");
+        setShowCloseOnFocus(searchInput);
+        searchInput.appendTo(inputGroup);
         closeAddon.appendTo(inputGroup);
         inputGroup.prependTo($("#search-group"));
 
@@ -148,7 +151,9 @@ function onAddPointClick() {
         $("<i>").addClass("fa fa-map-marker destination-icon").appendTo(markerAddon);
         //$("<i>").addClass("fa fa-times").appendTo(closeAddon);
         markerAddon.appendTo(inputGroup);
-        $("<input type='search'>").addClass("form-control search-destination whisper").appendTo(inputGroup);
+        var searchInput = $("<input type='search'>").addClass("form-control search-start whisper");
+        setShowCloseOnFocus(searchInput);
+        searchInput.appendTo(inputGroup);
         closeAddon.appendTo(inputGroup);
         inputGroup.appendTo($("#search-group"));
 
@@ -268,3 +273,14 @@ $(function() {
     }});
     $( "#search-group" ).disableSelection();
 });
+
+
+function setShowCloseOnFocus(focusedElement) {
+    focusedElement.focusin(function() {
+        $(this).next().children().css("color", "black");
+    });
+    focusedElement.focusout(function() {
+        $(this).next().children().css("color", "white");
+    });
+}
+setShowCloseOnFocus($("input"));
