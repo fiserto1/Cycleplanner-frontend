@@ -83,7 +83,7 @@ function onAddPointClick() {
         $(".search-destination").addClass("search-middle-point");
         $(".search-destination").removeClass("search-destination");
         var inputGroup = $("<div>").addClass("input-group");
-        var markerAddon = $("<div>").addClass("input-group-addon");
+        var markerAddon = $("<div>").addClass("input-group-addon drag-drop");
         var closeAddon = $("<div>").addClass("input-group-addon");
         var closeButton = $("<button type='button'>").addClass("close remove-point");
         closeButton.click(onRemovePointClick);
@@ -134,9 +134,9 @@ function onAddPointClick() {
 
 }
 function onRemovePointClick() {
-    if ($("#search-group").children().length > 2) {
+    var wholeInput = $(this).parent().parent();
 
-        var wholeInput = $(this).parent().parent();
+    if ($("#search-group").children().length > 2) {
         //$(this).parent().parent().hide( "slide", { direction: "up" }, "slow" );
         map.removeLayer(allMarkers[wholeInput.index()]);
         allMarkers.splice(wholeInput.index(), 1);
@@ -157,6 +157,11 @@ function onRemovePointClick() {
         if ($("#search-group").children().length == 2) {
             //$(".remove-point").css("color", white);
         }
+    } else {
+        allMarkers[wholeInput.index()].setLatLng(null);
+        map.removeLayer(allMarkers[wholeInput.index()]);
+        wholeInput.val("");
+
     }
 }
 
@@ -177,6 +182,19 @@ function refreshSearchGroup() {
         }
     }
 }
+function assignMarkersToInputs() {
+
+    var allInputs = $("#search-group").children();
+    for (var i = 0; i < allInputs.length; i++) {
+        var text = allInputs.eq(i).find("input").val();
+        //if input is not empty {
+        //
+        //    allMarkers[i].setLatLng([50.07989, 14.39844]).addTo(map);
+        //} else {
+        //    map.removeLayer(allMarkers[i]);
+        //}
+    }
+}
 
 
 $("#changeDirectionIcon").click(onChangeDirectionClick);
@@ -186,3 +204,11 @@ $(".remove-point").click(onRemovePointClick);
 map.on("click", onMapClick);
 startMarker.on('dragend', onMarkerDrag);
 destinationMarker.on('dragend', onMarkerDrag);
+
+$(function() {
+    $( "#search-group" ).sortable({handle: ".drag-drop", update: function( event, ui ) {
+        refreshSearchGroup();
+        //assignMarkersToInputs();
+    }});
+    $( "#search-group" ).disableSelection();
+});

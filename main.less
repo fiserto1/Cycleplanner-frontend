@@ -78,10 +78,22 @@
   /*font-size: 14px;*/
 }
 
-
+.drag-drop {
+  :hover {
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+  }
+  :active {
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+  }
+}
 #search-group {
   background-color: transparent;
   border-bottom: solid #CCCCCC 1px; //to same jako hr s margin 0
+
+
+
   .search-destination {
     border:none;
   }

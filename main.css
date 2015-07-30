@@ -50,6 +50,14 @@
 .awesome-marker i {
   /*font-size: 14px;*/
 }
+.drag-drop :hover {
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+.drag-drop :active {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+}
 #search-group {
   background-color: transparent;
   border-bottom: solid #CCCCCC 1px;
