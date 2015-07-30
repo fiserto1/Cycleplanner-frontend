@@ -70,6 +70,9 @@
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
 }
+.focus-in {
+  color: #666666;
+}
 #search-group {
   background-color: transparent;
 }

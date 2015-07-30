@@ -137,11 +137,3 @@ $(function() {
     });
 
 });
-
-//function onDropdownItemClick(e) {
-//    onAddPointClick();
-//    if ($("#search-group").children().length <= (MIDDLE_POINT_LIMIT + 2)) {
-//
-//        console.log(lastClickedPosition);
-//    }
-//}

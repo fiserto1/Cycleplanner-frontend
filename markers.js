@@ -151,7 +151,7 @@ function onAddPointClick() {
         $("<i>").addClass("fa fa-map-marker destination-icon").appendTo(markerAddon);
         //$("<i>").addClass("fa fa-times").appendTo(closeAddon);
         markerAddon.appendTo(inputGroup);
-        var searchInput = $("<input type='search'>").addClass("form-control search-start whisper");
+        var searchInput = $("<input type='search'>").addClass("form-control search-destination whisper");
         setShowCloseOnFocus(searchInput);
         searchInput.appendTo(inputGroup);
         closeAddon.appendTo(inputGroup);
@@ -276,11 +276,12 @@ $(function() {
 
 
 function setShowCloseOnFocus(focusedElement) {
-    focusedElement.focusin(function() {
-        $(this).next().children().css("color", "black");
+    focusedElement.focus(function() {
+        $(this).next().children().addClass("focus-in");
     });
-    focusedElement.focusout(function() {
-        $(this).next().children().css("color", "white");
+    focusedElement.blur(function() {
+        //console.log($(this).next().children());
+        $(this).next().children().removeClass("focus-in");
     });
 }
 setShowCloseOnFocus($("input"));
