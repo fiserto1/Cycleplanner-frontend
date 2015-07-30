@@ -1,3 +1,9 @@
+#contextMenu {
+  position: absolute;
+  display: none;
+  overflow: hidden;
+  z-index: 9999;
+}
 .panel,
 .input-group-addon {
   border: none;

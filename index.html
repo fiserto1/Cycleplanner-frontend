@@ -26,7 +26,17 @@
     <title>Cykloplánovaè</title>
 </head>
 <body>
-<div id="map"></div>
+<div id="map">
+    <div id="contextMenu" class="dropdown clearfix">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
+            <li><a id="add-destination-item" tabindex="-1" href="#"><i class="fa fa-map-marker destination-icon"></i> Pøidat destinaci</a></li>
+            <li><a id="add-start-item" tabindex="-1" href="#"><i class="fa fa-map-marker start-icon"></i> Pøidat zaèátek</a></li>
+            <li><a tabindex="-1" href="#"><i class="fa fa-map-marker middle-point-icon"></i> Pøidat prùjezdní bod</a></li>
+            <!--<li class="divider"></li>-->
+            <!--<li><a tabindex="-1" href="#">Separated link</a></li>-->
+        </ul>
+    </div>
+</div>
 <div id='legend' style='display:none;'></div>
 
 <script src="cycleRoutes.js"></script>
@@ -69,6 +79,7 @@
     <div id="settings-panel" class="collapse row panel">Nastaveni</div>
     <div id="routes-panel" class="row panel"></div>
 </div>
+
 
 <!--<div class="panel-group" id="accordion"></div>-->
 
