@@ -19,6 +19,9 @@
   background-color: #e6e6e6;
   border-color: #8c8c8c;
 }
+.remove-point {
+  color: white;
+}
 #routes-panel {
   display: none;
 }
@@ -61,6 +64,9 @@
 #search-group {
   background-color: transparent;
   border-bottom: solid #CCCCCC 1px;
+}
+#search-group .input-group:hover button {
+  color: #666666;
 }
 #search-group .search-destination {
   border: none;
