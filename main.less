@@ -1,7 +1,11 @@
 @radius: 2px;
 @panel-spacing: 7px;
 @panel-bgcolor: white;
-
+.panel, .input-group-addon{
+  //margin:0;
+  //padding: 0;
+  border: none;
+}
 .one, .two, .three {
   //height: 20px;
 }
@@ -62,9 +66,7 @@
   :focus, :active {
     //box-shadow: inset 0px -1px 4px -1px rgb(84, 157, 255);
   }
-  border-left: none;
-  border-top: none;
-  border-right: none;
+  border:none;
   box-shadow: none;
 }
 .action-icon:hover {
@@ -80,7 +82,8 @@
 }
 
 .drag-drop {
-  border: none;
+  //border: none;
+
 
   :hover {
     cursor: -webkit-grab;
@@ -93,11 +96,17 @@
 }
 #search-group {
   background-color: transparent;
-  border-bottom: solid #CCCCCC 1px; //to same jako hr s margin 0
 
-  .input-group:hover button, .input-group input.active button {
+  .input-group {
+    border-bottom: solid #CCCCCC 1px;
+  }
+
+  .input-group:hover button {
     color: #666666;
   }
+  //input:focus {
+  //   background-color: red;
+  //}
 
 
   .search-destination {

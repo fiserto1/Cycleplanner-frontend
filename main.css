@@ -1,3 +1,7 @@
+.panel,
+.input-group-addon {
+  border: none;
+}
 .one {
   background-color: red;
 }
@@ -37,9 +41,7 @@
 }
 .input-group,
 .form-control {
-  border-left: none;
-  border-top: none;
-  border-right: none;
+  border: none;
   box-shadow: none;
 }
 .action-icon:hover {
@@ -54,9 +56,6 @@
 .awesome-marker i {
   /*font-size: 14px;*/
 }
-.drag-drop {
-  border: none;
-}
 .drag-drop :hover {
   cursor: -webkit-grab;
   cursor: -moz-grab;
@@ -67,10 +66,11 @@
 }
 #search-group {
   background-color: transparent;
+}
+#search-group .input-group {
   border-bottom: solid #CCCCCC 1px;
 }
-#search-group .input-group:hover button,
-#search-group .input-group input.active button {
+#search-group .input-group:hover button {
   color: #666666;
 }
 #search-group .search-destination {
