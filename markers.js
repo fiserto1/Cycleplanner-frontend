@@ -3,40 +3,68 @@
  */
 //var startLatLng = L.latLng(50.07697, 14.43226);
 //var endLatLng = L.latLng(50.08744, 14.38728);
-
 var MIDDLE_POINT_LIMIT = 3;
 
-var startIcon = L.AwesomeMarkers.icon({
-    prefix: 'fa', //font awesome rather than bootstrap
-    markerColor: 'blue',
-    //spin: true,
-    icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
-});
-var destinationIcon = L.AwesomeMarkers.icon({
-    prefix: 'fa', //font awesome rather than bootstrap
-    markerColor: 'red',
-    icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
-});
-var middlePointIcon = L.AwesomeMarkers.icon({
-    prefix: 'fa', //font awesome rather than bootstrap
-    markerColor: 'orange',
-    icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
-});
-
-var startMarker = L.marker(null, {
-    icon: startIcon,
-    draggable:true
-});
-var destinationMarker = L.marker(null, {
-    icon: destinationIcon,
-    draggable:true
-});
-
+var startIcon, destinationIcon, middlePointIcon;
+var startMarker, destinationMarker;
 var allMarkers = [];
-allMarkers.push(startMarker);
-allMarkers.push(destinationMarker);
 
-//function onMapClick(e) {
+$(document).ready(function() {
+
+    startIcon = L.AwesomeMarkers.icon({
+        prefix: 'fa', //font awesome rather than bootstrap
+        markerColor: 'blue',
+        //spin: true,
+        icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
+    });
+    destinationIcon = L.AwesomeMarkers.icon({
+        prefix: 'fa', //font awesome rather than bootstrap
+        markerColor: 'red',
+        icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
+    });
+
+    middlePointIcon = L.AwesomeMarkers.icon({
+        prefix: 'fa', //font awesome rather than bootstrap
+        markerColor: 'orange',
+        icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
+    });
+    startMarker = L.marker(null, {
+        icon: startIcon,
+        draggable: true
+    });
+
+    destinationMarker = L.marker(null, {
+        icon: destinationIcon,
+        draggable: true
+    });
+    allMarkers.push(startMarker);
+    allMarkers.push(destinationMarker);
+
+
+
+
+    $("#changeDirectionIcon").click(onChangeDirectionClick);
+    $("#addPointIcon").click(onAddPointClick);
+    $(".remove-point").click(onRemovePointClick);
+
+    map.on("click", onMapClick);
+    startMarker.on('dragend', onMarkerDrag);
+    destinationMarker.on('dragend', onMarkerDrag);
+
+
+
+    setShowCloseOnFocus($("input"));
+
+});
+
+function onMapClick(e) {
+    $.ajax({
+        url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/reverse?lat=" + e.latlng.lat
+        + "&lon=" + e.latlng.lng,
+        success: setPoint
+    });
+
+
 //    if (startMarker.getLatLng() == null) {
 //        startMarker.setLatLng(e.latlng).addTo(map);
 //        $(".search-start").val(e.latlng);
@@ -48,7 +76,14 @@ allMarkers.push(destinationMarker);
 //        getPlans();
 //    }
 //
-//}
+}
+
+function setPoint(data) {
+    //prohozene souradnice
+    console.log(data.features[0].geometry.coordinates);
+    console.log(data.features[0].properties.text);
+}
+
 
 function onMarkerDrag(e) {
     $(".search-start").val(startMarker.getLatLng());
@@ -97,22 +132,7 @@ function addNewStartPoint() {
         closeAddon.appendTo(inputGroup);
         inputGroup.prependTo($("#search-group"));
 
-        //
-        // AUTOCOMPLETE.js COPY
-        // musim volat funkce misto pridavat tridu whisper !!!!
-        //
-        $(".whisper").autocomplete( {
-            lookup: availableTags,
-            onSelect: function(suggestion) {
-                console.log($(this).parent().index());
-                var markerIndex = $(this).parent().index();
-                allMarkers[markerIndex].setLatLng(suggestion.data).addTo(map);
-                getPlans();
-            }
-        });
-        //
-        //END OF COPY
-        //
+        setAC();
 
         if ($("#search-group").children().length == (MIDDLE_POINT_LIMIT + 2)) {
             $("#addPointIcon").addClass("disabled-icon");
@@ -125,13 +145,14 @@ function addNewStartPoint() {
 
         var newMarker = L.marker(null, {
             icon: startIcon,
-            draggable:true
+            draggable: true
         });
         newMarker.on('dragend', onMarkerDrag);
         allMarkers.unshift(newMarker);
         startMarker = newMarker;
     }
 }
+
 function onAddPointClick() {
     //if allMarkers.length < limit
     //console.log($("#search-group").children().length);
@@ -157,22 +178,7 @@ function onAddPointClick() {
         closeAddon.appendTo(inputGroup);
         inputGroup.appendTo($("#search-group"));
 
-        //
-        // AUTOCOMPLETE.js COPY
-        // musim volat funkce misto pridavat tridu whisper !!!!
-        //
-        $(".whisper").autocomplete( {
-            lookup: availableTags,
-            onSelect: function(suggestion) {
-                console.log($(this).parent().index());
-                var markerIndex = $(this).parent().index();
-                allMarkers[markerIndex].setLatLng(suggestion.data).addTo(map);
-                getPlans();
-            }
-        });
-        //
-        //END OF COPY
-        //
+        setAC();
 
         if ($("#search-group").children().length == (MIDDLE_POINT_LIMIT + 2)) {
             $("#addPointIcon").addClass("disabled-icon");
@@ -185,7 +191,7 @@ function onAddPointClick() {
 
         var newMarker = L.marker(null, {
             icon: destinationIcon,
-            draggable:true
+            draggable: true
         });
         newMarker.on('dragend', onMarkerDrag);
         allMarkers.push(newMarker);
@@ -194,6 +200,7 @@ function onAddPointClick() {
 
 
 }
+
 function onRemovePointClick() {
     var wholeInput = $(this).parent().parent();
 
@@ -205,7 +212,7 @@ function onRemovePointClick() {
 
         startMarker = allMarkers[0];
         startMarker.setIcon(startIcon);
-        destinationMarker = allMarkers[allMarkers.length-1];
+        destinationMarker = allMarkers[allMarkers.length - 1];
         destinationMarker.setIcon(destinationIcon);
 
         refreshSearchGroup();
@@ -243,6 +250,7 @@ function refreshSearchGroup() {
         }
     }
 }
+
 function assignMarkersToInputs() {
 
     var allInputs = $("#search-group").children();
@@ -257,31 +265,23 @@ function assignMarkersToInputs() {
     }
 }
 
-
-$("#changeDirectionIcon").click(onChangeDirectionClick);
-$("#addPointIcon").click(onAddPointClick);
-$(".remove-point").click(onRemovePointClick);
-
-//map.on("click", onMapClick);
-startMarker.on('dragend', onMarkerDrag);
-destinationMarker.on('dragend', onMarkerDrag);
-
-$(function() {
-    $( "#search-group" ).sortable({handle: ".drag-drop", update: function( event, ui ) {
-        refreshSearchGroup();
-        //assignMarkersToInputs();
-    }});
-    $( "#search-group" ).disableSelection();
+$(function () {
+    $("#search-group").sortable({
+        handle: ".drag-drop", update: function (event, ui) {
+            refreshSearchGroup();
+            //assignMarkersToInputs();
+        }
+    });
+    $("#search-group").disableSelection();
 });
 
 
 function setShowCloseOnFocus(focusedElement) {
-    focusedElement.focus(function() {
+    focusedElement.focus(function () {
         $(this).next().children().addClass("focus-in");
     });
-    focusedElement.blur(function() {
+    focusedElement.blur(function () {
         //console.log($(this).next().children());
         $(this).next().children().removeClass("focus-in");
     });
 }
-setShowCloseOnFocus($("input"));

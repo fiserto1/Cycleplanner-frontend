@@ -1,4 +1,10 @@
-var map = L.map('map', {zoomControl: false}).setView([50.08165, 14.40505], 14);
+var map;
+var legend;
+$(document).ready(function() {
+
+
+
+map = L.map('map', {zoomControl: false}).setView([50.08165, 14.40505], 14);
 
 var zoomControl = L.control.zoom({position:"topright"});
 zoomControl.addTo(map);
@@ -40,7 +46,7 @@ var overlayMaps = {
 L.control.locate({ position: 'topright', keepCurrentZoomLevel: true }).addTo(map);
 L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-var legend = L.control({position: 'bottomright'});
+legend = L.control({position: 'bottomright'});
 
 legend.onAdd = function (map) {
 
@@ -49,7 +55,7 @@ legend.onAdd = function (map) {
     div.style.display = "block";
     return div;
 };
-
+});
 function changeLegend(segChoice) {
     var div = document.getElementById("legend");
 
@@ -96,7 +102,6 @@ function changeLegend(segChoice) {
     }
 
 }
-//legend.addTo(map);
 var lastClickedPosition = null;
 $(function() {
     //TODO zaridit aby se kontextove menu u kraje zobrazilo na spravnou stranu
