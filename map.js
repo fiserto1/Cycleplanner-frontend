@@ -37,8 +37,8 @@ var overlayMaps = {
     "Cyklostezky": cycleLayer
 };
 
+L.control.locate({ position: 'topright', keepCurrentZoomLevel: true }).addTo(map);
 L.control.layers(baseMaps, overlayMaps).addTo(map);
-
 
 var legend = L.control({position: 'bottomright'});
 
