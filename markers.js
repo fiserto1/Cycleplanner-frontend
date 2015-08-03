@@ -61,7 +61,8 @@ function onMapClick(e) {
     $.ajax({
         url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/reverse?lat=" + e.latlng.lat
         + "&lon=" + e.latlng.lng,
-        success: setPoint
+        success: setPoint,
+        error: serverError
     });
 
 

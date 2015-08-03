@@ -26,8 +26,24 @@ function getPlans() {
             + "&endLat=" + destinationMarker.getLatLng().lat
             + "&endLon=" + destinationMarker.getLatLng().lng,
 
-            success: handler
+            success: handler,
+            error: serverError
         });
+    }
+}
+function serverError(xhr,status,error) {
+    var text = xhr.responseText;
+    console.log(xhr.status);
+    //BAD REQUEST
+    var errorCode = xhr.status;
+    if (errorCode == 400) {
+        $("#error-panel").text("Zde není možné nalézt trasy.").show();
+        $("#routes-panel").hide();
+        //$("#routes-panel").text("Zde není možné nalézt trasy.").show();
+        //alert("Zde není možné nalézt trasy.");
+    } else if (errorCode >= 500 && errorCode < 510) {
+        $("#error-panel").text("Server nyní není dostupný.").show();
+        $("#routes-panel").hide();
     }
 }
 
@@ -216,6 +232,8 @@ function createButtonForRoute(obj, routeIndex) {
         //$(this).prependTo("#routes-panel");
     });
     $("#routes-panel").show();
+    $("#error-panel").hide();
+
 
 }
 

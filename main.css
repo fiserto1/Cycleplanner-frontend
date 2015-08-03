@@ -32,7 +32,8 @@
 .remove-point {
   color: white;
 }
-#routes-panel {
+#routes-panel,
+#error-panel {
   display: none;
 }
 .panel {
