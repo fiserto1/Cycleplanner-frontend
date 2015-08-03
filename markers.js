@@ -48,6 +48,7 @@ $(document).ready(function() {
     $(".remove-point").click(onRemovePointClick);
 
     map.on('click', onMapClick);
+    map.on('moveend', changeParams);
     startMarker.on('dragend', onMarkerDrag);
     destinationMarker.on('dragend', onMarkerDrag);
 
@@ -62,7 +63,7 @@ function onMapClick(e) {
         url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/reverse?lat=" + e.latlng.lat
         + "&lon=" + e.latlng.lng,
         success: setPoint,
-        error: serverError
+        //error: serverError
     });
 
 

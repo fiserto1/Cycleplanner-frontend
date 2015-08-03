@@ -14,12 +14,12 @@ function setAC() {
 
 
     $(".whisper").autocomplete( {
-        serviceUrl: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/suggest",
+        serviceUrl: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/suggest/nearby",
         paramName: "input",
         dataType: "jsonp",
         params: {
-            lat: 50.08165,
-            lon: 14.40505
+            lat: map.getCenter().lat,
+            lon: map.getCenter().lng
         },
         transformResult: function(response) {
             return {
@@ -37,10 +37,7 @@ function setAC() {
             console.log(suggestion);
             //console.log($(this).parent().index());
             var markerIndex = $(this).parent().index();
-            L.marker(suggestion.data, {
-                icon: startIcon,
-                draggable:true
-            }).addTo(map);
+            map.setView(L.latLng(suggestion.data[1],suggestion.data[0]));
             allMarkers[markerIndex].setLatLng(L.latLng(suggestion.data[1],suggestion.data[0])).addTo(map);
             getPlans();
         }
@@ -55,7 +52,14 @@ function setAC() {
     //});
 };
 
-
+function changeParams() {
+    $(".whisper").autocomplete().setOptions({
+        params: {
+            lat: map.getCenter().lat,
+            lon: map.getCenter().lng
+        }
+    })
+}
 
 function findGps(element) {
     console.log(element.value);
