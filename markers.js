@@ -47,7 +47,7 @@ $(document).ready(function() {
     $("#addPointIcon").click(onAddPointClick);
     $(".remove-point").click(onRemovePointClick);
 
-    map.on("click", onMapClick);
+    map.on('click', onMapClick);
     startMarker.on('dragend', onMarkerDrag);
     destinationMarker.on('dragend', onMarkerDrag);
 
@@ -83,8 +83,8 @@ function setPoint(data) {
     console.log(data.features[0].geometry.coordinates);
     console.log(data.features[0].properties.text);
 }
-
-
+//
+//
 function onMarkerDrag(e) {
     $(".search-start").val(startMarker.getLatLng());
     $(".search-destination").val(destinationMarker.getLatLng());
@@ -107,7 +107,7 @@ function swapSearchForm() {
     $(".search-destination").val(value);
 }
 
-//TODO spojit fce addNewStartPoint() a onAddPointClick()... jedna vklada pred druha za seznam
+////TODO spojit fce addNewStartPoint() a onAddPointClick()... jedna vklada pred druha za seznam
 function addNewStartPoint() {
 
     if ($("#search-group").children().length < (MIDDLE_POINT_LIMIT + 2)) {
@@ -250,7 +250,7 @@ function refreshSearchGroup() {
         }
     }
 }
-
+//
 function assignMarkersToInputs() {
 
     var allInputs = $("#search-group").children();
@@ -264,7 +264,7 @@ function assignMarkersToInputs() {
         //}
     }
 }
-
+//
 $(function () {
     $("#search-group").sortable({
         handle: ".drag-drop", update: function (event, ui) {
@@ -272,10 +272,10 @@ $(function () {
             //assignMarkersToInputs();
         }
     });
-    $("#search-group").disableSelection();
+    //$("#search-group").disableSelection(); //// nefunguje ve firefoxu
 });
-
-
+//
+//
 function setShowCloseOnFocus(focusedElement) {
     focusedElement.focus(function () {
         $(this).next().children().addClass("focus-in");
