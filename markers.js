@@ -59,7 +59,7 @@ $(document).ready(function() {
 });
 
 //function onMapClick(e) {
-//
+    //TODO if input isFocused then add appropriate marker
 //}
 
 function onMarkerDrag(e) {
@@ -244,6 +244,8 @@ $(function () {
     $("#search-group").sortable({
         handle: ".drag-drop", update: function (event, ui) {
             refreshSearchGroup();
+            //console.log(event);
+            //console.log(ui);
             //assignMarkersToInputs();
         }
     });
