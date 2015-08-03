@@ -34,10 +34,10 @@ function setAC() {
             // DULEZITE
             // odpoved ze serveru ma prohozene LAT,LNG[leaflet] na LNG,LAT[odpoved]
             //
-            console.log(suggestion);
+            //console.log(suggestion);
             //console.log($(this).parent().index());
             var markerIndex = $(this).parent().index();
-            map.setView(L.latLng(suggestion.data[1],suggestion.data[0]));
+            map.setView(L.latLng(suggestion.data[1],suggestion.data[0] - LONGITUDE_SHIFT));
             allMarkers[markerIndex].setLatLng(L.latLng(suggestion.data[1],suggestion.data[0])).addTo(map);
             getPlans();
         }
@@ -53,6 +53,7 @@ function setAC() {
 };
 
 function changeParams() {
+    //console.log(map.getCenter());
     $(".whisper").autocomplete().setOptions({
         params: {
             lat: map.getCenter().lat,

@@ -47,7 +47,7 @@ $(document).ready(function() {
     $("#addPointIcon").click(onAddPointClick);
     $(".remove-point").click(onRemovePointClick);
 
-    map.on('click', onMapClick);
+    //map.on('click', onMapClick);
     map.on('moveend', changeParams);
     startMarker.on('dragend', onMarkerDrag);
     destinationMarker.on('dragend', onMarkerDrag);
@@ -58,41 +58,13 @@ $(document).ready(function() {
 
 });
 
-function onMapClick(e) {
-    $.ajax({
-        url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/reverse?lat=" + e.latlng.lat
-        + "&lon=" + e.latlng.lng,
-        success: setPoint,
-        //error: serverError
-    });
+//function onMapClick(e) {
+//
+//}
 
-
-//    if (startMarker.getLatLng() == null) {
-//        startMarker.setLatLng(e.latlng).addTo(map);
-//        $(".search-start").val(e.latlng);
-//        getPlans();
-//
-//    } else if (destinationMarker.getLatLng() == null) {
-//        destinationMarker.setLatLng(e.latlng).addTo(map);
-//        $(".search-destination").val(e.latlng);
-//        getPlans();
-//    }
-//
-}
-
-function setPoint(data) {
-    //prohozene souradnice
-    console.log(data.features[0].geometry.coordinates);
-    console.log(data.features[0].properties.text);
-}
-//
-//
 function onMarkerDrag(e) {
-    $(".search-start").val(startMarker.getLatLng());
-    $(".search-destination").val(destinationMarker.getLatLng());
+    findAddressFromCoordinates(allMarkers.indexOf(e.target), e.target.getLatLng());
     getPlans();
-    //var marker = e.target;
-    //marker.setLatLng(marker.getLatLng());
 }
 
 function onChangeDirectionClick() {
@@ -198,6 +170,7 @@ function onAddPointClick() {
         newMarker.on('dragend', onMarkerDrag);
         allMarkers.push(newMarker);
         destinationMarker = newMarker;
+        searchInput.focus();
     }
 
 

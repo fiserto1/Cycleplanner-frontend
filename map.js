@@ -1,5 +1,6 @@
 var map;
 var legend;
+var LONGITUDE_SHIFT = 0.015;
 $(document).ready(function() {
 
 
@@ -121,24 +122,34 @@ $(function() {
 
     $contextMenu.on("click", "#add-destination-item", function() {
         $contextMenu.hide();
-
         if (destinationMarker.getLatLng() != null) {
             onAddPointClick();
         }
         destinationMarker.setLatLng(lastClickedPosition).addTo(map);
-        $(".search-destination").val(lastClickedPosition);
+        findAddressFromCoordinates(allMarkers.length-1, lastClickedPosition);
         getPlans();
     });
 
     $contextMenu.on("click", "#add-start-item", function() {
         $contextMenu.hide();
-
         if (startMarker.getLatLng() != null) {
             addNewStartPoint();
         }
         startMarker.setLatLng(lastClickedPosition).addTo(map);
-        $(".search-start").val(lastClickedPosition);
+        findAddressFromCoordinates(0, lastClickedPosition);
         getPlans();
     });
 
 });
+
+function findAddressFromCoordinates(inputIndex, latlng) {
+    $.ajax({
+        url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/reverse?lat=" + latlng.lat
+        + "&lon=" + latlng.lng,
+        success: function(data) {
+            console.log(data.features[0].properties.text);
+            var lastClickedAddress = data.features[0].properties.text;
+            $("#search-group").children().eq(inputIndex).find("input").val(lastClickedAddress);
+        }
+    });
+}
