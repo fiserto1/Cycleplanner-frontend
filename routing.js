@@ -47,6 +47,10 @@ function serverError(xhr,status,error) {
     }
 }
 
+var allChartData = [];
+var allChartOptions = [];
+
+
 var elevationRoutes = L.layerGroup();
 var speedRoutes = L.layerGroup();
 var basicRoutes = L.layerGroup();
@@ -55,6 +59,7 @@ var segColoredClickedRouteIndex;
 var segChoice = ELEVATION_SEGMENTS;
 
 function handler(obj) {
+
     if (segColoredClickedRoute != null) {
         map.removeLayer(segColoredClickedRoute);
     }
@@ -69,15 +74,24 @@ function handler(obj) {
         var oneBasicRouteLatLngs = [];
         var k = 0;
         var elevationA = obj.plans[i].steps[0].coordinate.elevation;
-        var distance = 0;
+        var segmentDistance = 0;
         var time = 0;
 
+        var chartLabels = [];
+        var chartSeries = [];
+        var distanceFromStart = 0;
         for (var j = 0; j < (obj.plans[i].steps.length); j++) {
+            //chart
+            chartLabels.push(distanceFromStart);
+            chartSeries.push(obj.plans[i].steps[j].coordinate.elevation);
+            distanceFromStart += obj.plans[i].steps[j].distanceToNextStep;
+
+
             pathLatLngs[k] = L.latLng(obj.plans[i].steps[j].coordinate.latE6 / 1000000,
                 obj.plans[i].steps[j].coordinate.lonE6 / 1000000);
             oneBasicRouteLatLngs[j] = pathLatLngs[k];
 
-            if (distance > MAX_SEGMENT_DISTANCE || j == obj.plans[i].steps.length-1) {
+            if (segmentDistance > MAX_SEGMENT_DISTANCE || j == obj.plans[i].steps.length-1) {
                 var clickedRouteOptions = {
                     color: CLICKED_ROUTE_COLOR,
                     weight: CLICKED_ROUTE_WEIGHT,
@@ -93,7 +107,7 @@ function handler(obj) {
                 var oneSpeedPath = L.polyline(pathLatLngs, clickedRouteOptions);
 
                 var elevationB = obj.plans[i].steps[j].coordinate.elevation;
-                var elevationPerc = 100*(elevationB - elevationA) / distance;
+                var elevationPerc = 100*(elevationB - elevationA) / segmentDistance;
 
                 if (elevationPerc > 10) {
                     oneElevationPath.setStyle({color: "#FF0000"});
@@ -109,7 +123,7 @@ function handler(obj) {
                     oneElevationPath.setStyle({color: "#15B0FF"});
                 }
 
-                var speedInKmh = (distance/time) * 3.6;
+                var speedInKmh = (segmentDistance/time) * 3.6;
 
                 if (speedInKmh < 5) {
                     oneSpeedPath.setStyle({color: "#FF0000"});
@@ -130,18 +144,30 @@ function handler(obj) {
                 oneSpeedRoute.addLayer(oneSpeedPath);
 
                 elevationA = elevationB;
-                distance = obj.plans[i].steps[j].distanceToNextStep;
+                segmentDistance = obj.plans[i].steps[j].distanceToNextStep;
                 time = obj.plans[i].steps[j].travelTimeToNextStep;
                 k = 1;
                 pathLatLngs = [];
                 pathLatLngs[0] = L.latLng(obj.plans[i].steps[j].coordinate.latE6 / 1000000,
                     obj.plans[i].steps[j].coordinate.lonE6 / 1000000);
             } else {
-                distance += obj.plans[i].steps[j].distanceToNextStep;
+                segmentDistance += obj.plans[i].steps[j].distanceToNextStep;
                 time += obj.plans[i].steps[j].travelTimeToNextStep;
                 k++;
             }
         }
+        var maxElevation = Math.max.apply(Math, chartSeries);
+        var minElevation = Math.min.apply(Math, chartSeries);
+        var chData = {
+            labels: chartLabels,
+            series: [chartSeries]
+        }
+        var chOptions = {
+            high: maxElevation + 5,
+            low: minElevation - 5
+        };
+        allChartData.push(chData);
+        allChartOptions.push(chOptions);
         elevationRoutes.addLayer(oneElevationRoute);
         speedRoutes.addLayer(oneSpeedRoute);
 
@@ -241,7 +267,8 @@ function createButtonForRoute(obj, routeIndex) {
 
 function routeButtonClick(routeIndex) {
     //map.removeLayer(basicRoutes);
-
+    $(".ct-chart").show();
+    chart.update(allChartData[routeIndex], allChartOptions[routeIndex], true);
     switch (segChoice) {
         case ELEVATION_SEGMENTS:
             showSegments(elevationRoutes, routeIndex);
