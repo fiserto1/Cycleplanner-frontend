@@ -61,7 +61,7 @@ function serverError(xhr,status,error) {
 
 var allChartData = [];
 var allChartOptions = [];
-
+var hChartData= [];
 
 var elevationRoutes = L.layerGroup();
 var speedRoutes = L.layerGroup();
@@ -91,9 +91,11 @@ function handler(obj) {
 
         var chartLabels = [];
         var chartSeries = [];
+        var XYData = [];
         var distanceFromStart = 0;
         for (var j = 0; j < (obj.plans[i].steps.length); j++) {
             //chart
+            XYData.push([distanceFromStart, obj.plans[i].steps[j].coordinate.elevation]);
             chartLabels.push(distanceFromStart);
             chartSeries.push(obj.plans[i].steps[j].coordinate.elevation);
             distanceFromStart += obj.plans[i].steps[j].distanceToNextStep;
@@ -170,6 +172,7 @@ function handler(obj) {
         }
         var maxElevation = Math.max.apply(Math, chartSeries);
         var minElevation = Math.min.apply(Math, chartSeries);
+        hChartData.push(XYData);
         var chData = {
             labels: chartLabels,
             series: [chartSeries]
@@ -280,6 +283,8 @@ function createButtonForRoute(obj, routeIndex) {
 function routeButtonClick(routeIndex) {
     //map.removeLayer(basicRoutes);
     $(".ct-chart").show();
+    createChart(hChartData[routeIndex], allChartOptions[routeIndex].low, allChartOptions[routeIndex].high);
+    $("#hChart").show();
     chart.update(allChartData[routeIndex], allChartOptions[routeIndex], true);
     switch (segChoice) {
         case ELEVATION_SEGMENTS:
