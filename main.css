@@ -1,3 +1,6 @@
+.ct-series-a .ct-line {
+  stroke-width: 2px;
+}
 .ct-series-a .ct-area {
   fill-opacity: 0.2;
 }

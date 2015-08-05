@@ -208,9 +208,10 @@ function onRemovePointClick() {
             //$(".remove-point").css("color", white);
         }
     } else {
-        allMarkers[wholeInput.index()].setLatLng(null);
         map.removeLayer(allMarkers[wholeInput.index()]);
-        wholeInput.val("");
+        allMarkers[wholeInput.index()].setLatLng(null);
+        $(this).parent().prev().val("");
+        getPlans();
 
     }
 }

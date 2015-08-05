@@ -29,6 +29,18 @@ function getPlans() {
             success: handler,
             error: serverError
         });
+    } else {
+        if (segColoredClickedRoute != null) {
+            map.removeLayer(segColoredClickedRoute);
+        }
+        map.removeLayer(basicRoutes);
+        $("#routes-panel").html("").hide();
+        $("#legend").hide();
+        $(".ct-chart").hide();
+        $("#error-panel").hide();
+        elevationRoutes.clearLayers();
+        speedRoutes.clearLayers();
+        basicRoutes.clearLayers();
     }
 }
 function serverError(xhr,status,error) {

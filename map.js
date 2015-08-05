@@ -107,8 +107,11 @@ var lastClickedPosition = null;
 $(function() {
     //TODO zaridit aby se kontextove menu u kraje zobrazilo na spravnou stranu
     var $contextMenu = $("#contextMenu");
-    map.on("click", function() {$contextMenu.hide();})
+
+
     map.on("contextmenu", function(e) {
+        map.off("click");
+        map.on("click", function() {$contextMenu.hide();});
         $contextMenu.css({
             display: "block",
             left: e.containerPoint.x,
@@ -121,7 +124,7 @@ $(function() {
     //$(".dropdown-menu li").click( {param1: clickLatLng}, onDropdownItemClick);
 
     $contextMenu.on("click", "#add-destination-item", function() {
-        $contextMenu.hide();
+        //$contextMenu.hide();
         if (destinationMarker.getLatLng() != null) {
             onAddPointClick();
         }
@@ -131,7 +134,7 @@ $(function() {
     });
 
     $contextMenu.on("click", "#add-start-item", function() {
-        $contextMenu.hide();
+        //$contextMenu.hide();
         if (startMarker.getLatLng() != null) {
             addNewStartPoint();
         }
@@ -150,6 +153,9 @@ function findAddressFromCoordinates(inputIndex, latlng) {
             console.log(data.features[0].properties.text);
             var lastClickedAddress = data.features[0].properties.text;
             $("#search-group").children().eq(inputIndex).find("input").val(lastClickedAddress);
+        },
+        error: function() {
+            $("#search-group").children().eq(inputIndex).find("input").val(latlng);
         }
     });
 }
