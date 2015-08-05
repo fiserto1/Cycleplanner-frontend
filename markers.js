@@ -58,9 +58,16 @@ $(document).ready(function() {
 
 });
 
-//function onMapClick(e) {
-    //TODO if input isFocused then add appropriate marker
-//}
+function onMapClick(e, input) {
+    //console.log(e.target);
+    //console.log(input);
+
+    var $input = $(input.target);
+    allMarkers[$input.parent().index()].setLatLng(e.latlng).addTo(map);
+    findAddressFromCoordinates($input.parent().index(), e.latlng);
+    getPlans();
+    map.off("click");
+}
 
 function onMarkerDrag(e) {
     findAddressFromCoordinates(allMarkers.indexOf(e.target), e.target.getLatLng());
@@ -254,11 +261,16 @@ $(function () {
 //
 //
 function setShowCloseOnFocus(focusedElement) {
-    focusedElement.focus(function () {
+    focusedElement.focus(function (eFocus) {
         $(this).next().children().addClass("focus-in");
+        map.off("click");
+        map.on("click", function(eClick) {
+            onMapClick(eClick,eFocus);
+        });
     });
     focusedElement.blur(function () {
         //console.log($(this).next().children());
         $(this).next().children().removeClass("focus-in");
+
     });
 }
