@@ -70,6 +70,8 @@ function onMapClick(e, input) {
 }
 
 function onMarkerDrag(e) {
+    $("#chart-panel").hide();
+    $("#legend").hide();
     findAddressFromCoordinates(allMarkers.indexOf(e.target), e.target.getLatLng());
     getPlans();
 }

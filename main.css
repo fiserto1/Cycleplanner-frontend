@@ -1,5 +1,6 @@
-#hChart {
-  height: 150px;
+#chart-panel {
+  height: 100px;
+  display: none;
 }
 .ct-series-a .ct-line {
   stroke-width: 2px;

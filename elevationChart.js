@@ -1,14 +1,35 @@
 // data format: [[x1,y1],[x2,y2],[x3,y3],...]
+//$(document).ready(function() {
+var elevationCircle = L.circleMarker(null,{
+    fillColor: "#2A98FF",
+    color: "white",
+    opacity: 1,
+    fillOpacity: 1
+}).setRadius(5);
+//});
+
 function createChart(data, min, max) {
-    $('#hChart').highcharts({
+    var hChart = $('#hChart').highcharts({
         chart: {
-            type: 'area' //areaspline
+            //width: 200,
+            height: 100,
+            type: 'area',//areaspline
+            borderRadius: 2,
+            marginTop: 0,
+            marginRight: 0,
+            marginLeft: 0,
+            marginBottom: 0,
+            //spacingBottom: 0,
+            //spacingTop: 0,
+            //spacingLeft: 0,
+            //spacingRight: 0,
         },
         title: {
             text: null
         },
         xAxis: {
-
+            maxPadding: 0,
+            minPadding: 0,
             allowDecimals: false,
             //labels: {
             //    formatter: function () {
@@ -20,6 +41,16 @@ function createChart(data, min, max) {
             title: {
                 text: null
             },
+            //labels: {
+            //    align: "left",
+            //    x: 10,
+            //    y: 5,
+            //
+            //},
+            //tickWidth: 1,
+            //tickPosition: "inside",
+            //opposite: true,
+            gridLineWidth: 0,
             endOnTick: false,
             startOnTick: false,
             max: max+20,
@@ -30,7 +61,11 @@ function createChart(data, min, max) {
             //    }
             //}
         },
+        credits: {
+            enabled: false
+        },
         tooltip: {
+            enabled: false
         },
         legend: {
             enabled: false
@@ -50,7 +85,9 @@ function createChart(data, min, max) {
                 }
             }
         },
-        series: [{
+        series: [
+
+            {
             //name: 'Trasa',
             data: data,
             zoneAxis: "x",
@@ -64,6 +101,37 @@ function createChart(data, min, max) {
             //}, {
             //    color: '#90ed7d'
             //}],
+            point: {
+                events: {
+                    mouseOver: function () {
+                        //console.log(this.index);
+                        elevationCircle.setLatLng(basicRoutes.getLayers()[segColoredClickedRouteIndex].getLatLngs()[this.index]).addTo(map);
+                        elevationCircle.bindPopup("Výška: " + this.y + " m.n.m.").openPopup();
+                        //elevationP(map);
+                        //var chart = this.series.chart;
+                        //if (!chart.lbl) {
+                        //    chart.lbl = chart.renderer.label('')
+                        //        .attr({
+                        //            padding: 10,
+                        //            r: 10,
+                        //            fill: Highcharts.getOptions().colors[1]
+                        //        })
+                        //        .css({
+                        //            color: '#FFFFFF'
+                        //        })
+                        //        .add();
+                        //}
+                        //chart.lbl
+                        //    .show()
+                        //    .attr({
+                        //        text: 'x: ' + this.x + ', y: ' + this.y
+                        //    });
+                    },
+                    mouseOut: function () {
+                        map.removeLayer(elevationCircle);
+                    }
+                }
+            },
             fillColor : {
                 linearGradient : {
                     x1: 0,

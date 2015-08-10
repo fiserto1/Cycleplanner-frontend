@@ -202,6 +202,7 @@ function handler(obj) {
         createPanelForRoute(obj, i);
     }
     basicRoutes.addTo(map);
+    $("#chart-panel").hide();
 
     switch (segChoice) {
         case ELEVATION_SEGMENTS:
@@ -213,8 +214,7 @@ function handler(obj) {
             segColoredClickedRouteIndex = 0;
             break;
     }
-    legend.addTo(map);
-    changeLegend(segChoice);
+
 }
 
 function routeClick(e) {
@@ -282,10 +282,13 @@ function createButtonForRoute(obj, routeIndex) {
 
 function routeButtonClick(routeIndex) {
     //map.removeLayer(basicRoutes);
-    $(".ct-chart").show();
+    //$(".ct-chart").show();
+    //$("#hChart").hide();
+    $("#chart-panel").show();
     createChart(hChartData[routeIndex], allChartOptions[routeIndex].low, allChartOptions[routeIndex].high);
-    $("#hChart").show();
-    chart.update(allChartData[routeIndex], allChartOptions[routeIndex], true);
+    legend.addTo(map);
+    changeLegend(segChoice);
+    //chart.update(allChartData[routeIndex], allChartOptions[routeIndex], true);
     switch (segChoice) {
         case ELEVATION_SEGMENTS:
             showSegments(elevationRoutes, routeIndex);
