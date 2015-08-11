@@ -8,7 +8,7 @@ var elevationCircle = L.circleMarker(null,{
 }).setRadius(5);
 //});
 
-function createChart(data, min, max) {
+function createChart(data, min, max, routeIndex) {
     var hChart = $('#hChart').highcharts({
         chart: {
             //width: 200,
@@ -104,8 +104,8 @@ function createChart(data, min, max) {
             point: {
                 events: {
                     mouseOver: function () {
-                        //console.log(this.index);
-                        elevationCircle.setLatLng(basicRoutes.getLayers()[segColoredClickedRouteIndex].getLatLngs()[this.index]).addTo(map);
+                        elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
+                        elevationCircle.addTo(map);
                         elevationCircle.bindPopup("Výška: " + this.y + " m.n.m.").openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;

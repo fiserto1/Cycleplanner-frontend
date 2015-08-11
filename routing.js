@@ -79,6 +79,7 @@ function handler(obj) {
     elevationRoutes.clearLayers();
     speedRoutes.clearLayers();
     basicRoutes.clearLayers();
+    hChartData= [];
     for (var i = 0; i < obj.plans.length; i++) {
         var oneElevationRoute = L.layerGroup();
         var oneSpeedRoute = L.layerGroup();
@@ -284,10 +285,6 @@ function routeButtonClick(routeIndex) {
     //map.removeLayer(basicRoutes);
     //$(".ct-chart").show();
     //$("#hChart").hide();
-    $("#chart-panel").show();
-    createChart(hChartData[routeIndex], allChartOptions[routeIndex].low, allChartOptions[routeIndex].high);
-    legend.addTo(map);
-    changeLegend(segChoice);
     //chart.update(allChartData[routeIndex], allChartOptions[routeIndex], true);
     switch (segChoice) {
         case ELEVATION_SEGMENTS:
@@ -297,6 +294,11 @@ function routeButtonClick(routeIndex) {
             showSegments(speedRoutes, routeIndex);
             break;
     }
+
+    $("#chart-panel").show();
+    createChart(hChartData[routeIndex], allChartOptions[routeIndex].low, allChartOptions[routeIndex].high, routeIndex);
+    legend.addTo(map);
+    changeLegend(segChoice);
 }
 
 function createPanelForRoute(obj, routeIndex) {
