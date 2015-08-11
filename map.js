@@ -58,47 +58,25 @@ legend.onAdd = function (map) {
 };
 });
 function changeLegend(segChoice) {
-    var div = document.getElementById("legend");
-
 
     switch (segChoice) {
         case ELEVATION_SEGMENTS:
-            div.innerHTML = "<strong>Pøevýšení trasy</strong>" +
-                "<nav class='legend clearfix'>" +
-                "        <span style='background:#FF0000;'></span>" +
-                "        <span style='background:#FF5D54;'></span>" +
-                "        <span style='background:#FFC000;'></span>" +
-                "        <span style='background:#90BB00;'></span>" +
-                "        <span style='background:#15B0FF;'></span>" +
-                "        <span style='background:#0080FF;'></span>" +
-                "        <span style='background:#0040FF;'></span>" +
-                "        <label>Stoupání</label>" + //>10m
-                "    <label></label>" +             //8 az 10m
-                "    <label></label>" +             //5 az 7m
-                "    <label>Rovina</label>" +       //4 az -4m
-                "    <label></label>" +             //-5 az -7m
-                "    <label></label>" +             //-8 az -10m
-                "    <label>Klesání</label>" +      //<-10m
-                "    </nav>";
+            $("#legend-title").text("Pøevýšení trasy");
+            $("#legend-left-label").text("Stoupání");
+            $("#legend-middle-label").text("Rovina");
+            $("#legend-right-label").text("Klesání");
             break;
         case SPEED_SEGMENTS:
-            div.innerHTML = "<strong>Rychlost trasy</strong>" +
-                "<nav class='legend clearfix'>" +
-                "        <span style='background:#FF0000;'></span>" +
-                "        <span style='background:#FF5D54;'></span>" +
-                "        <span style='background:#FFC000;'></span>" +
-                "        <span style='background:#90BB00;'></span>" +
-                "        <span style='background:#15B0FF;'></span>" +
-                "        <span style='background:#0080FF;'></span>" +
-                "        <span style='background:#0040FF;'></span>" +
-                "        <label><5km/h</label>" +
-                "    <label>5-9km/h</label>" +
-                "    <label>10-14km/h</label>" +
-                "    <label>15-19km/h</label>" +
-                "    <label>20-24km/h</label>" +
-                "    <label>25-30km/h</label>" +
-                "    <label>>30km/h</label>" +
-                "    </nav>";
+            $("#legend-title").text("Rychlost trasy");
+            $("#legend-left-label").text("Pomalá");
+            $("#legend-middle-label").text("Støední");
+            $("#legend-right-label").text("Rychlá");
+            break;
+        case ROAD_TYPE_SEGMENTS:
+            $("#legend-title").text("Typ cesty");
+            $("#legend-left-label").text("PAVED_COBBLESTONE");
+            $("#legend-middle-label").text("");
+            $("#legend-right-label").text("PAVED_SMOOTH");
             break;
     }
 

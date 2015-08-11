@@ -2,12 +2,6 @@
   height: 80px;
   display: none;
 }
-.ct-series-a .ct-line {
-  stroke-width: 2px;
-}
-.ct-series-a .ct-area {
-  fill-opacity: 0.2;
-}
 #contextMenu {
   position: absolute;
   display: none;

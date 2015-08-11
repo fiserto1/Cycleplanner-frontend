@@ -40,17 +40,34 @@
         <ul class="dropdown-menu panel" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
             <li><a id="add-start-item" tabindex="-1" href="#"><i class="fa fa-map-marker start-icon"></i> Pøidat zaèátek</a></li>
             <li><a id="add-destination-item" tabindex="-1" href="#"><i class="fa fa-map-marker destination-icon"></i> Pøidat destinaci</a></li>
-            <!--<li><a tabindex="-1" href="#"><i class="fa fa-map-marker middle-point-icon"></i> Pøidat prùjezdní bod</a></li>-->
             <!--<li class="divider"></li>-->
-            <!--<li><a tabindex="-1" href="#">Separated link</a></li>-->
         </ul>
     </div>
 </div>
-<div id='legend' style='display:none;'></div>
+<div id='legend' style="display: none;">
+    <strong id="legend-title">Pøevýšení trasy</strong>
+    <button type="button" class="legend-button">elev</button>
+    <button type="button" class="legend-button">speed</button>
+    <button type="button" class="legend-button">surface</button>
+    <button type="button" class="legend-button">type</button>
+    <nav class='legend clearfix'>
+        <span style='background:#FF0000;'></span>
+        <span style='background:#FF5D54;'></span>
+        <span style='background:#FFC000;'></span>
+        <span style='background:#90BB00;'></span>
+        <span style='background:#15B0FF;'></span>
+        <span style='background:#0080FF;'></span>
+        <span style='background:#0040FF;'></span>
+        <label id="legend-left-label">Stoupání</label>
+        <label></label>
+        <label></label>
+        <label id="legend-middle-label">Rovina</label>
+        <label></label>
+        <label></label>
+        <label id="legend-right-label">Klesání</label>
+        </nav>
+</div>
 
-<!--<script src="cycleRoutes.js"></script>-->
-<!--<script src="map.js"></script>-->
-<!--<script src="routing.js"></script>-->
 
 <div class="col-md-4 left-block">
     <div id="search-panel" class="row panel">
@@ -91,7 +108,6 @@
     <div id="settings-panel" class="collapse row panel">Nastaveni</div>
     <div id="error-panel" class="alert alert-danger panel"></div>
     <div id="routes-panel" class="row panel"></div>
-    <!--<div class="ccharts.js"></script>-->
     <div id="chart-panel" class=" row panel">
         <div id="hChart"></div>
     </div>
