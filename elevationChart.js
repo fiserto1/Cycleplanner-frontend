@@ -18,7 +18,7 @@ function createChart(data, min, max, routeIndex) {
             marginTop: 0,
             marginRight: 0,
             marginLeft: 0,
-            marginBottom: 0,
+            marginBottom: 25,
             //spacingBottom: 0,
             //spacingTop: 0,
             //spacingLeft: 0,
@@ -30,31 +30,34 @@ function createChart(data, min, max, routeIndex) {
         xAxis: {
             maxPadding: 0,
             minPadding: 0,
-            allowDecimals: false,
-            //labels: {
-            //    formatter: function () {
-            //        return this.value; // clean, unformatted number for year
-            //    }
-            //}
+            allowDecimals: true,
+            labels: {
+                formatter: function () {
+                    return this.value/1000 + ' km';
+                }
+            }
         },
         yAxis: {
+            tickPositions: [min, max],
             title: {
                 text: null
             },
-            //labels: {
-            //    align: "left",
-            //    x: 10,
-            //    y: 5,
-            //
-            //},
-            //tickWidth: 1,
-            //tickPosition: "inside",
+            //showFirstLabel: true,
+            //showLastLabel: true,
+            labels: {
+                align: "left",
+                x: 10,
+                y: 5,
+
+            },
+            tickWidth: 1,
+            tickPosition: "inside",
             //opposite: true,
             gridLineWidth: 0,
             endOnTick: false,
             startOnTick: false,
-            max: max+20,
-            min: min-20,
+            max: max+30,
+            min: min-30,
             //labels: {
             //    formatter: function () {
             //        return this.value ;
@@ -65,7 +68,12 @@ function createChart(data, min, max, routeIndex) {
             enabled: false
         },
         tooltip: {
-            enabled: false
+            enabled: false,
+            crosshairs: [{
+                dashStyle: 'dash'
+            }, {
+               dashStyle: "dash"
+            }]
         },
         legend: {
             enabled: false

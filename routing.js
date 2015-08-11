@@ -80,6 +80,7 @@ function handler(obj) {
     speedRoutes.clearLayers();
     basicRoutes.clearLayers();
     hChartData= [];
+    allChartOptions = [];
     for (var i = 0; i < obj.plans.length; i++) {
         var oneElevationRoute = L.layerGroup();
         var oneSpeedRoute = L.layerGroup();
@@ -89,6 +90,8 @@ function handler(obj) {
         var elevationA = obj.plans[i].steps[0].coordinate.elevation;
         var segmentDistance = 0;
         var time = 0;
+        //var minElevation = Number.MAX_VALUE;
+        //var maxElevation = Number.MIN_VALUE;
 
         var chartLabels = [];
         var chartSeries = [];
@@ -96,6 +99,13 @@ function handler(obj) {
         var distanceFromStart = 0;
         for (var j = 0; j < (obj.plans[i].steps.length); j++) {
             //chart
+            //var currentElevation = obj.plans[i].steps[j].coordinate.elevation;
+            //console.log(currentElevation);
+            //
+            //minElevation = Math.min(minElevation, currentElevation);
+            //maxElevation = Math.max(maxElevation, currentElevation);
+            //console.log("max " + maxElevation);
+            //console.log("min " + minElevation);
             XYData.push([distanceFromStart, obj.plans[i].steps[j].coordinate.elevation]);
             chartLabels.push(distanceFromStart);
             chartSeries.push(obj.plans[i].steps[j].coordinate.elevation);
@@ -179,8 +189,8 @@ function handler(obj) {
             series: [chartSeries]
         }
         var chOptions = {
-            high: maxElevation + 5,
-            low: minElevation - 5
+            high: maxElevation,
+            low: minElevation
         };
         allChartData.push(chData);
         allChartOptions.push(chOptions);
@@ -296,6 +306,8 @@ function routeButtonClick(routeIndex) {
     }
 
     $("#chart-panel").show();
+    console.log(allChartOptions[routeIndex].high);
+    console.log(allChartOptions[routeIndex].low);
     createChart(hChartData[routeIndex], allChartOptions[routeIndex].low, allChartOptions[routeIndex].high, routeIndex);
     legend.addTo(map);
     changeLegend(segChoice);
