@@ -17,7 +17,7 @@ function createChart(data, min, max, routeIndex) {
             borderRadius: 2,
             marginTop: 0,
             marginRight: 0,
-            marginLeft: 0,
+            marginLeft: 38,
             marginBottom: 25,
             //spacingBottom: 0,
             //spacingTop: 0,
@@ -45,22 +45,23 @@ function createChart(data, min, max, routeIndex) {
             //showFirstLabel: true,
             //showLastLabel: true,
             labels: {
-                align: "left",
-                x: 10,
+                align: "right",
+                x: -12,
                 y: 5,
 
             },
             tickWidth: 1,
-            tickPosition: "inside",
+            //tickPosition: "inside",
             //opposite: true,
             gridLineWidth: 0,
+            lineWidth: 1,
             endOnTick: false,
             startOnTick: false,
-            max: max+30,
-            min: min-30,
+            max: max+15,
+            min: min-15,
             //labels: {
             //    formatter: function () {
-            //        return this.value ;
+            //        return this.value + ' m';
             //    }
             //}
         },

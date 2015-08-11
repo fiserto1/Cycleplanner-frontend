@@ -306,8 +306,6 @@ function routeButtonClick(routeIndex) {
     }
 
     $("#chart-panel").show();
-    console.log(allChartOptions[routeIndex].high);
-    console.log(allChartOptions[routeIndex].low);
     createChart(hChartData[routeIndex], allChartOptions[routeIndex].low, allChartOptions[routeIndex].high, routeIndex);
     legend.addTo(map);
     changeLegend(segChoice);
