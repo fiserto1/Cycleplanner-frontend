@@ -12,7 +12,7 @@ function createChart(data, min, max, routeIndex) {
     var hChart = $('#hChart').highcharts({
         chart: {
             //width: 200,
-            height: 100,
+            height: 80,
             type: 'area',//areaspline
             borderRadius: 2,
             marginTop: 0,
