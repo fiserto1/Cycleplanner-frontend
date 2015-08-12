@@ -56,6 +56,19 @@ legend.onAdd = function (map) {
     div.style.display = "block";
     return div;
 };
+
+    $("#legend").hover(function() {
+        map.dragging.disable();
+        map.doubleClickZoom.disable();
+        map.touchZoom.disable();
+        map.off("click");
+        //TODO vypnout context menu map.off("contextmenu");
+    }, function() {
+        map.dragging.enable();
+        map.doubleClickZoom.enable();
+        map.touchZoom.enable();
+        //TODO zapnout context menu
+    });
 });
 //function changeLegend(segChoice) {
 //
@@ -83,7 +96,7 @@ legend.onAdd = function (map) {
 //}
 var lastClickedPosition = null;
 $(function() {
-    //TODO zaridit aby se kontextove menu u kraje zobrazilo na spravnou stranu
+    //TODO zaridit aby se kontextove menu u kraje zobrazilo na spravnou stranu edit: pouzit leaflet.contextmenu plugin
     var $contextMenu = $("#contextMenu");
 
 
