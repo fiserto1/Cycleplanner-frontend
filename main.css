@@ -179,18 +179,29 @@
 #legend {
   background-color: white;
   box-shadow: black 4px 6px 20px;
-  padding: 0.5em;
-  width: 300px;
 }
 #legend label,
 #legend span {
   display: block;
   float: left;
   height: 15px;
-  width: 14%;
   text-align: center;
   font-size: 10px;
   color: black;
+}
+#speed-legend label,
+#speed-legend span,
+#elevation-legend label,
+#elevation-legend span {
+  width: 14.28%;
+}
+#surface-legend label,
+#surface-legend span {
+  width: 25%;
+}
+#road-type-legend label,
+#road-type-legend span {
+  width: 12.5%;
 }
 .autocomplete-suggestions {
   border: 1px solid #999;

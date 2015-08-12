@@ -57,30 +57,30 @@ legend.onAdd = function (map) {
     return div;
 };
 });
-function changeLegend(segChoice) {
-
-    switch (segChoice) {
-        case ELEVATION_SEGMENTS:
-            $("#legend-title").text("Pøevýšení trasy");
-            $("#legend-left-label").text("Stoupání");
-            $("#legend-middle-label").text("Rovina");
-            $("#legend-right-label").text("Klesání");
-            break;
-        case SPEED_SEGMENTS:
-            $("#legend-title").text("Rychlost trasy");
-            $("#legend-left-label").text("Pomalá");
-            $("#legend-middle-label").text("Støední");
-            $("#legend-right-label").text("Rychlá");
-            break;
-        case ROAD_TYPE_SEGMENTS:
-            $("#legend-title").text("Typ cesty");
-            $("#legend-left-label").text("PAVED_COBBLESTONE");
-            $("#legend-middle-label").text("");
-            $("#legend-right-label").text("PAVED_SMOOTH");
-            break;
-    }
-
-}
+//function changeLegend(segChoice) {
+//
+//    switch (segChoice) {
+//        case ELEVATION_SEGMENTS:
+//            $("#legend-title").text("Pøevýšení trasy");
+//            $("#legend-left-label").text("Stoupání");
+//            $("#legend-middle-label").text("Rovina");
+//            $("#legend-right-label").text("Klesání");
+//            break;
+//        case SPEED_SEGMENTS:
+//            $("#legend-title").text("Rychlost trasy");
+//            $("#legend-left-label").text("Pomalá");
+//            $("#legend-middle-label").text("Støední");
+//            $("#legend-right-label").text("Rychlá");
+//            break;
+//        case ROAD_TYPE_SEGMENTS:
+//            $("#legend-title").text("Typ cesty");
+//            $("#legend-left-label").text("PAVED_COBBLESTONE");
+//            $("#legend-middle-label").text("");
+//            $("#legend-right-label").text("PAVED_SMOOTH");
+//            break;
+//    }
+//
+//}
 var lastClickedPosition = null;
 $(function() {
     //TODO zaridit aby se kontextove menu u kraje zobrazilo na spravnou stranu

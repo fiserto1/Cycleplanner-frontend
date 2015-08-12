@@ -21,8 +21,8 @@ var ROAD_TYPE_SEGMENTS = 3;
 
 $(document).ready(function() {
     $(".legend-button").click(function(e) {
-        changeSegment($(e.target).index() - 1);
-        console.log($(e.target).index() - 1);
+        changeSegment($(e.target).parent().index());
+        //console.log($(e.target).parent().index());
     });
 });
 
@@ -49,6 +49,7 @@ function getPlans() {
         elevationRoutes.clearLayers();
         speedRoutes.clearLayers();
         roadTypeRoutes.clearLayers();
+        surfaceRoutes.clearLayers();
         basicRoutes.clearLayers();
     }
 }
@@ -75,6 +76,7 @@ var hChartData= [];
 var elevationRoutes = L.layerGroup();
 var speedRoutes = L.layerGroup();
 var roadTypeRoutes = L.layerGroup();
+var surfaceRoutes = L.layerGroup();
 var basicRoutes = L.layerGroup();
 var segColoredClickedRoute;
 var segColoredClickedRouteIndex;
@@ -89,6 +91,7 @@ function handler(obj) {
     elevationRoutes.clearLayers();
     speedRoutes.clearLayers();
     roadTypeRoutes.clearLayers();
+    surfaceRoutes.clearLayers();
     basicRoutes.clearLayers();
     hChartData= [];
     allChartOptions = [];
@@ -96,6 +99,7 @@ function handler(obj) {
         var oneElevationRoute = L.layerGroup();
         var oneSpeedRoute = L.layerGroup();
         var oneRoadTypeRoute = L.layerGroup();
+        var oneSurfaceRoute = L.layerGroup();
         var pathLatLngs = [];
         var oneBasicRouteLatLngs = [];
         var k = 0;
@@ -111,7 +115,7 @@ function handler(obj) {
         var distanceFromStart = 0;
         for (var j = 0; j < (obj.plans[i].steps.length); j++) {
             //console.log(obj.plans[i].steps[j].roadType);
-            console.log(obj.plans[i].steps[j].surface);
+            //console.log(obj.plans[i].steps[j].surface);
             //chart
             XYData.push([distanceFromStart, obj.plans[i].steps[j].coordinate.elevation]);
             chartLabels.push(distanceFromStart);
@@ -138,10 +142,12 @@ function handler(obj) {
                 var oneElevationPath = L.polyline(pathLatLngs, clickedRouteOptions);
                 var oneSpeedPath = L.polyline(pathLatLngs, clickedRouteOptions);
                 var oneRoadTypePath = L.polyline(pathLatLngs, clickedRouteOptions);
+                var oneSurfacePath = L.polyline(pathLatLngs, clickedRouteOptions);
 
                 var elevationB = obj.plans[i].steps[j].coordinate.elevation;
                 var elevationPerc = 100*(elevationB - elevationA) / segmentDistance;
                 var currentRoadType = obj.plans[i].steps[j].roadType;
+                var currentSurface = obj.plans[i].steps[j].surface;
 
                 if (elevationPerc > 10) {
                     oneElevationPath.setStyle({color: "#FF0000"});
@@ -173,16 +179,39 @@ function handler(obj) {
                     oneSpeedPath.setStyle({color: "#15B0FF"});
                 }
 
-                if (currentRoadType == "PAVED_SMOOTH") {
-                    oneRoadTypePath.setStyle({color: "#15B0FF"});
-                } else if (currentRoadType == "PAVED_COBBLESTONE") {
+                if (currentRoadType == "PRIMARY") {
                     oneRoadTypePath.setStyle({color: "#FF0000"});
+                } else if (currentRoadType == "SECONDARY") {
+                    oneRoadTypePath.setStyle({color: "#FF5D54"});
+                } else if (currentRoadType == "TERTIARY") {
+                    oneRoadTypePath.setStyle({color: "#FF8115"});
+                } else if (currentRoadType == "ROAD") {
+                    oneRoadTypePath.setStyle({color: "#FFC000"});
+                } else if (currentRoadType == "STEPS"){
+                    oneRoadTypePath.setStyle({color: "#0040FF"});
+                } else if (currentRoadType == "FOOTWAY") {
+                    oneRoadTypePath.setStyle({color: "#0080FF"});
+                } else if (currentRoadType == "CYCLEWAY") {
+                    oneRoadTypePath.setStyle({color: "#15B0FF"});
+                } else if (currentRoadType != null) {
+                    console.log(currentRoadType);
                 }
-
-
                 oneElevationRoute.addLayer(oneElevationPath);
+
+
+                if (currentSurface == "PAVED_SMOOTH") {
+                    oneSurfacePath.setStyle({color: "#15B0FF"});
+                } else if (currentSurface == "PAVED_COBBLESTONE") {
+                    oneSurfacePath.setStyle({color: "#FF0000"});
+                }
+                else if (currentSurface == "UNPAVED") {
+                    oneSurfacePath.setStyle({color: "#FFC000"});
+                } else if (currentSurface != null){
+                    console.log(currentSurface);
+                }
                 oneSpeedRoute.addLayer(oneSpeedPath);
                 oneRoadTypeRoute.addLayer(oneRoadTypePath);
+                oneSurfaceRoute.addLayer(oneSurfacePath);
 
                 elevationA = elevationB;
                 segmentDistance = obj.plans[i].steps[j].distanceToNextStep;
@@ -213,6 +242,7 @@ function handler(obj) {
         elevationRoutes.addLayer(oneElevationRoute);
         speedRoutes.addLayer(oneSpeedRoute);
         roadTypeRoutes.addLayer(oneRoadTypeRoute);
+        surfaceRoutes.addLayer(oneSurfaceRoute);
 
         var oneBasicRoute = L.polyline(oneBasicRouteLatLngs, {
             color: ROUTE_COLOR,
@@ -239,6 +269,10 @@ function handler(obj) {
             break;
         case SPEED_SEGMENTS:
             segColoredClickedRoute = speedRoutes.getLayers()[0];
+            segColoredClickedRouteIndex = 0;
+            break;
+        case SURFACE_SEGMENTS:
+            segColoredClickedRoute = surfaceRoutes.getLayers()[0];
             segColoredClickedRouteIndex = 0;
             break;
         case ROAD_TYPE_SEGMENTS:
@@ -324,6 +358,9 @@ function routeButtonClick(routeIndex) {
         case SPEED_SEGMENTS:
             showSegments(speedRoutes, routeIndex);
             break;
+        case SURFACE_SEGMENTS:
+            showSegments(surfaceRoutes, routeIndex);
+            break;
         case ROAD_TYPE_SEGMENTS:
             showSegments(roadTypeRoutes, routeIndex);
             break;
@@ -332,7 +369,7 @@ function routeButtonClick(routeIndex) {
     $("#chart-panel").show();
     createChart(hChartData[routeIndex], allChartOptions[routeIndex].low, allChartOptions[routeIndex].high, routeIndex);
     legend.addTo(map);
-    changeLegend(segChoice);
+    //changeLegend(segChoice);
 }
 
 function createPanelForRoute(obj, routeIndex) {
@@ -365,7 +402,7 @@ function changeSegment(index) {
     segChoice = index;
     switch (segChoice) {
         case ELEVATION_SEGMENTS:
-            changeLegend(segChoice);
+            //changeLegend(segChoice);
             var lastClicked = basicRoutes.getLayers()[segColoredClickedRouteIndex];
             lastClicked.setStyle({color: ROUTE_COLOR, opacity: ROUTE_OPACITY, weight: ROUTE_WEIGHT});
             map.removeLayer(segColoredClickedRoute);
@@ -373,15 +410,23 @@ function changeSegment(index) {
             //segColoredClickedRouteIndex = 0;
             break;
         case SPEED_SEGMENTS:
-            changeLegend(segChoice);
+            //changeLegend(segChoice);
             var lastClicked = basicRoutes.getLayers()[segColoredClickedRouteIndex];
             lastClicked.setStyle({color: ROUTE_COLOR, opacity: ROUTE_OPACITY, weight: ROUTE_WEIGHT});
             map.removeLayer(segColoredClickedRoute);
             segColoredClickedRoute = speedRoutes.getLayers()[segColoredClickedRouteIndex].addTo(map);
             //segColoredClickedRouteIndex = 0;
             break;
+        case SURFACE_SEGMENTS:
+            //changeLegend(segChoice);
+            var lastClicked = basicRoutes.getLayers()[segColoredClickedRouteIndex];
+            lastClicked.setStyle({color: ROUTE_COLOR, opacity: ROUTE_OPACITY, weight: ROUTE_WEIGHT});
+            map.removeLayer(segColoredClickedRoute);
+            segColoredClickedRoute = surfaceRoutes.getLayers()[segColoredClickedRouteIndex].addTo(map);
+            //segColoredClickedRouteIndex = 0;
+            break;
         case ROAD_TYPE_SEGMENTS:
-            changeLegend(segChoice);
+            //changeLegend(segChoice);
             var lastClicked = basicRoutes.getLayers()[segColoredClickedRouteIndex];
             lastClicked.setStyle({color: ROUTE_COLOR, opacity: ROUTE_OPACITY, weight: ROUTE_WEIGHT});
             map.removeLayer(segColoredClickedRoute);
