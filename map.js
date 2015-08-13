@@ -50,11 +50,7 @@ L.control.layers(baseMaps, overlayMaps).addTo(map);
 legend = L.control({position: 'bottomright'});
 
 legend.onAdd = function (map) {
-
-    var div = document.getElementById("legend");
-
-    div.style.display = "block";
-    return div;
+    return document.getElementById("legend");
 };
 
     $("#legend").hover(function() {
@@ -69,6 +65,7 @@ legend.onAdd = function (map) {
         map.touchZoom.enable();
         //TODO zapnout context menu
     });
+    legend.addTo(map);
 });
 //function changeLegend(segChoice) {
 //

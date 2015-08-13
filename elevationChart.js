@@ -8,7 +8,7 @@ var elevationCircle = L.circleMarker(null,{
 }).setRadius(5);
 //});
 
-function createChart(data, min, max, routeIndex) {
+function createChart(chartOptionsAndData, routeIndex) {
     var hChart = $('#hChart').highcharts({
         chart: {
             //width: 200,
@@ -38,7 +38,7 @@ function createChart(data, min, max, routeIndex) {
             }
         },
         yAxis: {
-            tickPositions: [min, max],
+            tickPositions: [chartOptionsAndData.min, chartOptionsAndData.max],
             title: {
                 text: null
             },
@@ -57,8 +57,8 @@ function createChart(data, min, max, routeIndex) {
             lineWidth: 1,
             endOnTick: false,
             startOnTick: false,
-            max: max+15,
-            min: min-15,
+            max: chartOptionsAndData.max+15,
+            min: chartOptionsAndData.min-15,
             //labels: {
             //    formatter: function () {
             //        return this.value + ' m';
@@ -98,7 +98,7 @@ function createChart(data, min, max, routeIndex) {
 
             {
             //name: 'Trasa',
-            data: data,
+            data: chartOptionsAndData.data,
             zoneAxis: "x",
             //TODO obarvit zony v grafu stejne jako segmenty
             //zones: [{
