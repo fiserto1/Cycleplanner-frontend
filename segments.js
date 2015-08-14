@@ -12,8 +12,9 @@ var LEGEND_LVL_2_COLOR = "#0080FF";
 var LEGEND_LVL_3_COLOR = "#15B0FF";
 var LEGEND_LVL_4_MIDDLE_COLOR = "#90BB00";
 var LEGEND_LVL_5_COLOR = "#FFC000";
-var LEGEND_LVL_6_COLOR = "#FF5D54";
-var LEGEND_LVL_7_COLOR = "#FF0000";
+var LEGEND_LVL_6_COLOR = "#FF8115";
+var LEGEND_LVL_7_COLOR = "#FF5D54";
+var LEGEND_LVL_8_COLOR = "#FF0000";
 
 var MAX_SEGMENT_DISTANCE = 50;
 
@@ -86,17 +87,17 @@ function showElevationSegments(plan, routeIndex) {
             var elevationPerc = 100*(elevationB - elevationA) / segmentDistance;
 
             if (elevationPerc > 10) {
-                oneElevationPath.setStyle({color: "#FF0000"});
+                oneElevationPath.setStyle({color: LEGEND_LVL_8_COLOR});
             } else if (elevationPerc > 7) {
-                oneElevationPath.setStyle({color: "#FF5D54"});
+                oneElevationPath.setStyle({color: LEGEND_LVL_7_COLOR});
             } else if (elevationPerc > 4) {
-                oneElevationPath.setStyle({color: "#FFC000"});
+                oneElevationPath.setStyle({color: LEGEND_LVL_5_COLOR});
             }  else if (elevationPerc < -10){
-                oneElevationPath.setStyle({color: "#0040FF"});
+                oneElevationPath.setStyle({color: LEGEND_LVL_1_COLOR});
             } else if (elevationPerc < -7) {
-                oneElevationPath.setStyle({color: "#0080FF"});
+                oneElevationPath.setStyle({color: LEGEND_LVL_2_COLOR});
             } else if (elevationPerc < -4) {
-                oneElevationPath.setStyle({color: "#15B0FF"});
+                oneElevationPath.setStyle({color: LEGEND_LVL_3_COLOR});
             }
             segmentRoute.addLayer(oneElevationPath);
 
@@ -128,17 +129,17 @@ function showSpeedSegments(plan, routeIndex) {
             var speedInKmh = (segmentDistance/time) * 3.6;
 
             if (speedInKmh < 5) {
-                oneSpeedPath.setStyle({color: "#FF0000"});
+                oneSpeedPath.setStyle({color: LEGEND_LVL_8_COLOR});
             } else if (speedInKmh < 10) {
-                oneSpeedPath.setStyle({color: "#FF5D54"});
+                oneSpeedPath.setStyle({color: LEGEND_LVL_7_COLOR});
             } else if (speedInKmh < 15) {
-                oneSpeedPath.setStyle({color: "#FFC000"});
+                oneSpeedPath.setStyle({color: LEGEND_LVL_5_COLOR});
             }  else if (speedInKmh > 30){
-                oneSpeedPath.setStyle({color: "#0040FF"});
+                oneSpeedPath.setStyle({color: LEGEND_LVL_1_COLOR});
             } else if (speedInKmh > 25) {
-                oneSpeedPath.setStyle({color: "#0080FF"});
+                oneSpeedPath.setStyle({color: LEGEND_LVL_2_COLOR});
             } else if (speedInKmh > 20) {
-                oneSpeedPath.setStyle({color: "#15B0FF"});
+                oneSpeedPath.setStyle({color: LEGEND_LVL_3_COLOR});
             }
             segmentRoute.addLayer(oneSpeedPath);
 
@@ -164,18 +165,22 @@ function showSurfaceSegments(plan, routeIndex) {
         var lng = coordinate.lonE6 / 1000000;
         var currentSurface = steps[i].surface;
         segmentLatLngs.push(L.latLng(lat, lng));
+
         if (i == steps.length - 2) {
             continue;
         } else if (surfaceForOneSegment != currentSurface || i == steps.length-1) {
             var oneSurfacePath = L.polyline(segmentLatLngs, segmentRouteOptions);
-            if (surfaceForOneSegment == "PAVED_SMOOTH") {
-                oneSurfacePath.setStyle({color: "#15B0FF"});
-            } else if (surfaceForOneSegment == "PAVED_COBBLESTONE") {
-                oneSurfacePath.setStyle({color: "#FF0000"});
-            } else if (surfaceForOneSegment == "UNPAVED") {
-                oneSurfacePath.setStyle({color: "#FFC000"});
-            } else if (surfaceForOneSegment != null){
-                console.log(surfaceForOneSegment);
+
+            switch (surfaceForOneSegment) {
+                case "PAVED_SMOOTH":
+                    oneSurfacePath.setStyle({color: LEGEND_LVL_3_COLOR});
+                    break;
+                case "UNPAVED":
+                    oneSurfacePath.setStyle({color: LEGEND_LVL_5_COLOR});
+                    break;
+                case "PAVED_COBBLESTONE":
+                    oneSurfacePath.setStyle({color: LEGEND_LVL_8_COLOR});
+                    break;
             }
 
             segmentRoute.addLayer(oneSurfacePath);
@@ -193,7 +198,6 @@ function showRoadTypeSegments(plan, routeIndex) {
     var steps = plan.steps;
     var roadTypeForOneSegment = null;
     var segmentLatLngs = [];
-
     for (var i = 0; i < steps.length; i++) {
         var coordinate = steps[i].coordinate;
         var lat = coordinate.latE6 / 1000000;
@@ -204,23 +208,31 @@ function showRoadTypeSegments(plan, routeIndex) {
             continue;
         } else if (roadTypeForOneSegment != currentRoadType || i == steps.length - 1) {
             var oneRoadTypePath = L.polyline(segmentLatLngs, segmentRouteOptions);
-            if (roadTypeForOneSegment == "PRIMARY") {
-                oneRoadTypePath.setStyle({color: "#FF0000"});
-            } else if (roadTypeForOneSegment == "SECONDARY") {
-                oneRoadTypePath.setStyle({color: "#FF5D54"});
-            } else if (roadTypeForOneSegment == "TERTIARY") {
-                oneRoadTypePath.setStyle({color: "#FF8115"});
-            } else if (roadTypeForOneSegment == "ROAD") {
-                oneRoadTypePath.setStyle({color: "#FFC000"});
-            } else if (roadTypeForOneSegment == "STEPS") {
-                oneRoadTypePath.setStyle({color: "#0040FF"});
-            } else if (roadTypeForOneSegment == "FOOTWAY") {
-                oneRoadTypePath.setStyle({color: "#0080FF"});
-            } else if (roadTypeForOneSegment == "CYCLEWAY") {
-                oneRoadTypePath.setStyle({color: "#15B0FF"});
-            } else if (roadTypeForOneSegment != null) {
-                console.log(roadTypeForOneSegment);
+
+            switch(roadTypeForOneSegment) {
+                case "PRIMARY":
+                    oneRoadTypePath.setStyle({color: LEGEND_LVL_8_COLOR});
+                    break;
+                case "SECONDARY":
+                    oneRoadTypePath.setStyle({color: LEGEND_LVL_7_COLOR});
+                    break;
+                case "TERTIARY":
+                    oneRoadTypePath.setStyle({color: LEGEND_LVL_6_COLOR});
+                    break;
+                case "ROAD":
+                    oneRoadTypePath.setStyle({color: LEGEND_LVL_5_COLOR});
+                    break;
+                case "STEPS":
+                    oneRoadTypePath.setStyle({color: LEGEND_LVL_3_COLOR});
+                    break;
+                case "FOOTWAY":
+                    oneRoadTypePath.setStyle({color: LEGEND_LVL_2_COLOR});
+                    break;
+                case "CYCLEWAY":
+                    oneRoadTypePath.setStyle({color: LEGEND_LVL_1_COLOR});
+                    break;
             }
+
             segmentRoute.addLayer(oneRoadTypePath);
 
             roadTypeForOneSegment = currentRoadType;
