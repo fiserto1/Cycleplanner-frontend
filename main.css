@@ -1,3 +1,22 @@
+.nav-tabs > li {
+  margin: 0;
+}
+.nav-tabs > li a {
+  margin-right: 0;
+  border-radius: 0;
+  border: none;
+}
+.nav-tabs {
+  border: none;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  overflow: hidden;
+  border: none;
+  color: #060606;
+  background-color: #a9a9a9;
+}
 #chart-panel {
   height: 80px;
   display: none;
@@ -179,6 +198,9 @@
 #legend {
   background-color: white;
   box-shadow: black 4px 6px 20px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 #legend label,
 #legend span {

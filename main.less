@@ -1,6 +1,29 @@
 @radius: 2px;
 @panel-spacing: 7px;
 @panel-bgcolor: white;
+@button-pressed-bgcolor: #A9A9A9;
+@button-pressed-color: #060606;
+
+
+.nav-tabs>li {
+  margin: 0;
+  a {
+    margin-right: 0;
+    border-radius: 0;
+    border: none;
+  }
+}
+.nav-tabs {
+  border: none;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  overflow: hidden;
+  border: none;
+  color: @button-pressed-color;
+  background-color: @button-pressed-bgcolor;
+}
+
 
 #chart-panel {
   height: 80px;
@@ -235,6 +258,9 @@
 #legend {
   background-color: @panel-bgcolor;
   box-shadow: black 4px 6px 20px;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
   //padding: 0.5em;
   //width: 340px;
 }
