@@ -69,6 +69,8 @@ function removeAllRoutesFromMap() {
 function getPlans() {
     if (destinationMarker.getLatLng() != null && startMarker.getLatLng() != null) {
         //console.log("Start");
+        var target = document.getElementById('map');
+        spinner.spin(target);
         $.ajax({
             url: "http://its.felk.cvut.cz/cycle-planner-mc/api/v2/journeys/mc?startLat=" + startMarker.getLatLng().lat
             + "&startLon=" + startMarker.getLatLng().lng
@@ -84,6 +86,7 @@ function getPlans() {
     }
 }
 function serverError(xhr,status,error) {
+    spinner.stop();
     removeAllRoutesFromMap();
     hidePanelsExceptSearch();
     //var text = xhr.responseText;
@@ -104,6 +107,7 @@ var basicRoutes = L.layerGroup();
 var response;
 
 function handler(obj) {
+    spinner.stop();
     //console.log(obj);
     response = obj;
     allChartOptions = []; //TODO prepsat na lokalni promennou
