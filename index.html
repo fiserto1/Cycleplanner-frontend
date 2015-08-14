@@ -12,6 +12,7 @@
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
+    <link rel="stylesheet" href="externalcss/leaflet.contextmenu.css">
 
     <script src="externaljs/jquery-1.11.3.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -22,6 +23,7 @@
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript" src="externaljs/jquery.autocomplete.min.js"></script>
     <script type="text/javascript" src="externaljs/L.Control.Locate.js"></script>
+    <script type="text/javascript" src="externaljs/leaflet.contextmenu.js"></script>
     <script type="text/javascript" src="externaljs/spin.min.js"></script>
 
 
@@ -39,13 +41,13 @@
 </head>
 <body>
 <div id="map">
-    <div id="contextMenu" class="dropdown clearfix">
-        <ul class="dropdown-menu panel" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">
-            <li><a id="add-start-item" tabindex="-1" href="#"><i class="fa fa-map-marker start-icon"></i> Pøidat zaèátek</a></li>
-            <li><a id="add-destination-item" tabindex="-1" href="#"><i class="fa fa-map-marker destination-icon"></i> Pøidat destinaci</a></li>
-            <!--<li class="divider"></li>-->
-        </ul>
-    </div>
+    <!--<div id="contextMenu" class="dropdown clearfix">-->
+        <!--<ul class="dropdown-menu panel" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">-->
+            <!--<li><a id="add-start-item" tabindex="-1" href="#"><i class="fa fa-map-marker start-icon"></i> Pøidat zaèátek</a></li>-->
+            <!--<li><a id="add-destination-item" tabindex="-1" href="#"><i class="fa fa-map-marker destination-icon"></i> Pøidat destinaci</a></li>-->
+            <!--&lt;!&ndash;<li class="divider"></li>&ndash;&gt;-->
+        <!--</ul>-->
+    <!--</div>-->
 </div>
 <div id='legend' style="display: none;">
     <ul id="myTab" class="nav nav-tabs">

@@ -5,7 +5,32 @@ $(document).ready(function() {
 
 
 
-map = L.map('map', {zoomControl: false}).setView([50.08165, 14.40505], 14);
+map = L.map('map', {zoomControl: false,
+    contextmenu: true,
+    contextmenuItems: [{
+        text: "Pøidat zaèátek",
+        iconCls: "fa fa-map-marker start-icon",
+        callback : function(){
+            if (startMarker.getLatLng() != null) {
+                addNewStartPoint();
+            }
+            startMarker.setLatLng(lastClickedPosition).addTo(map);
+            findAddressFromCoordinates(0, lastClickedPosition);
+            getPlans();
+        }
+    }, {
+        text: "Pøidat destinaci",
+        iconCls: "fa fa-map-marker destination-icon",
+        callback : function(){
+            if (destinationMarker.getLatLng() != null) {
+                onAddPointClick();
+            }
+            destinationMarker.setLatLng(lastClickedPosition).addTo(map);
+            findAddressFromCoordinates(allMarkers.length-1, lastClickedPosition);
+            getPlans();
+        }
+    }]
+}).setView([50.08165, 14.40505], 14);
 
 var zoomControl = L.control.zoom({position:"topright"});
 zoomControl.addTo(map);
@@ -93,44 +118,11 @@ legend.onAdd = function (map) {
 //}
 var lastClickedPosition = null;
 $(function() {
-    //TODO zaridit aby se kontextove menu u kraje zobrazilo na spravnou stranu edit: pouzit leaflet.contextmenu plugin
-    var $contextMenu = $("#contextMenu");
-
-
     map.on("contextmenu", function(e) {
-        map.off("click");
-        map.on("click", function() {$contextMenu.hide();});
-        $contextMenu.css({
-            display: "block",
-            left: e.containerPoint.x,
-            top: e.containerPoint.y
-        });
         lastClickedPosition = e.latlng;
         return false;
 
     });
-    //$(".dropdown-menu li").click( {param1: clickLatLng}, onDropdownItemClick);
-
-    $contextMenu.on("click", "#add-destination-item", function() {
-        //$contextMenu.hide();
-        if (destinationMarker.getLatLng() != null) {
-            onAddPointClick();
-        }
-        destinationMarker.setLatLng(lastClickedPosition).addTo(map);
-        findAddressFromCoordinates(allMarkers.length-1, lastClickedPosition);
-        getPlans();
-    });
-
-    $contextMenu.on("click", "#add-start-item", function() {
-        //$contextMenu.hide();
-        if (startMarker.getLatLng() != null) {
-            addNewStartPoint();
-        }
-        startMarker.setLatLng(lastClickedPosition).addTo(map);
-        findAddressFromCoordinates(0, lastClickedPosition);
-        getPlans();
-    });
-
 });
 
 function findAddressFromCoordinates(inputIndex, latlng) {
