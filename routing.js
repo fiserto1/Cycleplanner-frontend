@@ -186,6 +186,7 @@ function routeButtonClick(e) {
 
     if (firstRouteClick == 0) {
         console.log("first click");
+        var fullDescDiv = $("#full-route-description").html("");
         //TODO predepsat do index.html.. a zde menit pouze hodnoty
         var routeDiv = $("<div>").addClass("col-md-11");
         var firstRow = $("<div>").addClass("all-route-params row");
@@ -222,8 +223,8 @@ function routeButtonClick(e) {
         var routeSpan22 = $("<i>").addClass("fa fa-floppy-o action-icon");
         routeSpan12.appendTo(routeOptionsDiv);
         routeSpan22.appendTo(routeOptionsDiv);
-        routeDiv.appendTo($("#full-route-description"));
-        routeOptionsDiv.appendTo($("#full-route-description"));
+        routeDiv.appendTo(fullDescDiv);
+        routeOptionsDiv.appendTo(fullDescDiv);
     }
 
     $("#chart-panel").show("blind", 500, afterChartShow(routeIndex));
