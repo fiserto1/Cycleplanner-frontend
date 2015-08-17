@@ -158,7 +158,7 @@ function routeClick(e) {
 function createButtonForRoute(plan, routeIndex) {
     var routeButton = $("<button>").addClass("btn btn-default route-but col-md-4");
     var routeDiv = $("<div>").addClass("route-desc");
-    var routeSpan1 = $("<i>").addClass("fa fa-arrows-v");
+    var routeSpan1 = $("<i>").addClass("fa fa-arrows-h");
     var planLength = (plan.length / 1000).toFixed(1);
     var planDuration = (plan.duration / 60).toFixed(0);
     routeSpan1.text(" " + planLength + " km");
