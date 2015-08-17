@@ -1,5 +1,10 @@
+#route-description {
+  border-bottom: solid #CCCCCC 1px;
+}
 .leaflet-contextmenu {
   border: none;
+  -webkit-box-shadow: black 4px 6px 20px;
+  -moz-box-shadow: black 4px 6px 20px;
   box-shadow: black 4px 6px 20px;
   background-color: white;
   border-radius: 2px;
@@ -27,10 +32,6 @@
   border: none;
   color: #060606;
   background-color: #a9a9a9;
-}
-#chart-panel {
-  height: 80px;
-  display: none;
 }
 .panel,
 .input-group-addon {
@@ -62,10 +63,12 @@
 }
 #routes-panel,
 #error-panel,
-.ct-chart {
+#chart-panel {
   display: none;
 }
 .panel {
+  -webkit-box-shadow: black 4px 6px 20px;
+  -moz-box-shadow: black 4px 6px 20px;
   box-shadow: black 4px 6px 20px;
   background-color: white;
   border-radius: 2px;

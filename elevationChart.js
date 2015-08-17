@@ -11,7 +11,7 @@ var elevationCircle = L.circleMarker(null,{
 function createChart(chartOptionsAndData, routeIndex) {
     var hChart = $('#hChart').highcharts({
         chart: {
-            //width: 200,
+            width: $("#search-panel").width(),
             height: 80,
             type: 'area',//areaspline
             borderRadius: 2,

@@ -4,6 +4,10 @@
 @button-pressed-bgcolor: #A9A9A9;
 @button-pressed-color: #060606;
 
+#route-description {
+  border-bottom: solid #CCCCCC 1px;
+}
+
 .leaflet-contextmenu {
   .panel;
 }
@@ -34,11 +38,11 @@
 }
 
 
-#chart-panel {
-  height: 80px;
-  //width: 300px;
-  display: none;
-}
+//#chart-panel {
+//  //height: 80px;
+//  //width: 300px;
+//  display: none;
+//}
 
 //#contextMenu {
 //  position: absolute;
@@ -83,12 +87,15 @@
   color: @panel-bgcolor;
 }
 
-#routes-panel, #error-panel, .ct-chart {
+#routes-panel, #error-panel, #chart-panel {
   display: none;
 }
 
 .panel {
+
   //position: relative;
+  -webkit-box-shadow: black 4px 6px 20px;
+  -moz-box-shadow: black 4px 6px 20px;
   box-shadow: black 4px 6px 20px;
   background-color: @panel-bgcolor;
   border-radius: @radius;

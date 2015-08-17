@@ -57,6 +57,7 @@ function hidePanelsExceptSearch() {
     $("#routes-panel").html("").hide();
     $("#legend").hide();
     $("#chart-panel").hide();
+    firstRouteClick = 0;
     $("#error-panel").hide();
 }
 
@@ -144,7 +145,7 @@ function handler(obj) {
         createButtonForRoute(plans[i], i);
     }
     basicRoutes.addTo(map);
-    $("#routes-panel").show();
+    $("#routes-panel").show("blind");
 
 }
 
@@ -156,6 +157,7 @@ function routeClick(e) {
 }
 
 function createButtonForRoute(plan, routeIndex) {
+    //data-toggle="collapse" data-target="#settings-panel"
     var routeButton = $("<button>").addClass("btn btn-default route-but col-md-4");
     var routeDiv = $("<div>").addClass("route-desc");
     var routeSpan1 = $("<i>").addClass("fa fa-arrows-h");
@@ -166,7 +168,6 @@ function createButtonForRoute(plan, routeIndex) {
     routeSpan2.text(" " + planDuration + " min");
     var routeSpan3 = $("<i>").addClass("fa fa-area-chart");
     routeSpan3.text(" " + plan.elevationGain + " m");
-
     routeSpan1.appendTo(routeDiv);
     $("<hr>").appendTo(routeDiv);
     routeSpan2.appendTo(routeDiv);
@@ -176,13 +177,23 @@ function createButtonForRoute(plan, routeIndex) {
     routeButton.appendTo("#routes-panel");
     routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
 }
-
+var firstRouteClick=0;
 function routeButtonClick(e) {
     var routeIndex = e.data.param1;
     var plan = e.data.param2;
     showSegments(routeIndex, plan);
-
-    $("#chart-panel").show();
-    $("#legend").show();
     createChart(allChartOptions[routeIndex], routeIndex);
+    $("#route-description").html("trasa <br> popis");
+    $("#chart-panel").show("blind", 500, afterChartShow(routeIndex));
+    $("#legend").show("blind", 500);
+}
+
+function afterChartShow(routeIndex) {
+    if (firstRouteClick != 0) {
+
+        $("#route-description").hide("blind", 350);
+        $("#route-description").show("blind", 350);
+    }
+    firstRouteClick = 1;
+
 }
