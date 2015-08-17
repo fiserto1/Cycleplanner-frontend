@@ -271,8 +271,11 @@ function setShowCloseOnFocus(focusedElement) {
             onMapClick(eClick,eFocus);
         });
     });
-    focusedElement.blur(function () {
-        //console.log($(this).next().children());
+    focusedElement.blur(function (e) {
+        var mapDiv = document.getElementById("map");
+        if (e.relatedTarget != mapDiv) {
+            map.off("click");
+        }
         $(this).next().children().removeClass("focus-in");
 
     });
