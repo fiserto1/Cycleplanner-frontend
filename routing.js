@@ -183,16 +183,58 @@ function routeButtonClick(e) {
     var plan = e.data.param2;
     showSegments(routeIndex, plan);
     createChart(allChartOptions[routeIndex], routeIndex);
-    $("#route-description").html("trasa <br> popis");
+
+    if (firstRouteClick == 0) {
+        console.log("first click");
+        //TODO predepsat do index.html.. a zde menit pouze hodnoty
+        var routeDiv = $("<div>").addClass("col-md-11");
+        var firstRow = $("<div>").addClass("all-route-params row");
+        var planLength = (plan.length / 1000).toFixed(1);
+        var planDuration = (plan.duration / 60).toFixed(0);
+        var routeSpan1 = $("<i>").addClass("fa fa-arrows-h col-md-3");
+        routeSpan1.text(" " + planLength + " km");
+        var routeSpan2 = $("<i>").addClass("fa fa-clock-o col-md-3");
+        routeSpan2.text(" " + planDuration + " min");
+        var routeSpan3 = $("<i>").addClass("fa fa-area-chart col-md-3");
+        routeSpan3.text(" " + plan.elevationGain + " m");
+        var routeSpan4 = $("<i>").addClass("fa fa-arrows col-md-3");
+        routeSpan4.text(" " + plan.elevationGain);
+        var routeSpan5 = $("<i>").addClass("fa fa-bolt col-md-3");
+        routeSpan5.text(" " + plan.elevationGain + " kcal");
+        var routeSpan6 = $("<i>").addClass("fa fa-long-arrow-up col-md-3");
+        routeSpan6.text(" " + plan.elevationGain + " m");
+        var routeSpan7 = $("<i>").addClass("fa fa-long-arrow-down col-md-3");
+        routeSpan7.text(" " + plan.elevationGain + " m");
+        var routeSpan8 = $("<i>").addClass("fa fa-car col-md-3");
+        routeSpan8.text(" " + plan.elevationGain + " kg");
+        routeSpan1.appendTo(firstRow);
+        routeSpan2.appendTo(firstRow);
+        routeSpan3.appendTo(firstRow);
+        routeSpan4.appendTo(firstRow);
+        routeSpan5.appendTo(firstRow);
+        routeSpan6.appendTo(firstRow);
+        routeSpan7.appendTo(firstRow);
+        //$("<hr>").appendTo(routeDiv);
+        routeSpan8.appendTo(firstRow);
+        firstRow.appendTo(routeDiv);
+        var routeOptionsDiv = $("<div>").addClass("route-options col-md-1");
+        var routeSpan12 = $("<i>").addClass("fa fa-share-alt action-icon");
+        var routeSpan22 = $("<i>").addClass("fa fa-floppy-o action-icon");
+        routeSpan12.appendTo(routeOptionsDiv);
+        routeSpan22.appendTo(routeOptionsDiv);
+        routeDiv.appendTo($("#full-route-description"));
+        routeOptionsDiv.appendTo($("#full-route-description"));
+    }
+
     $("#chart-panel").show("blind", 500, afterChartShow(routeIndex));
     $("#legend").show("blind", 500);
 }
 
 function afterChartShow(routeIndex) {
     if (firstRouteClick != 0) {
-
-        $("#route-description").hide("blind", 350);
-        $("#route-description").show("blind", 350);
+        console.log("nth click");
+        $("#full-route-description").hide("blind", 350);
+        $("#full-route-description").show("blind", 350);
     }
     firstRouteClick = 1;
 

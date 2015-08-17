@@ -1,4 +1,22 @@
-#route-description {
+.glyphicon {
+  top: 0;
+}
+.all-route-params i {
+  text-align: center;
+  font-size: 16px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+.route-options {
+  text-align: right;
+  border-left: solid #CCCCCC 1px;
+}
+.col-md-12,
+.col-md-1,
+.col-md-11 {
+  padding: 0;
+}
+#full-route-description {
   border-bottom: solid #CCCCCC 1px;
 }
 .leaflet-contextmenu {
@@ -83,6 +101,10 @@
   border: none;
   box-shadow: none;
 }
+.action-icon {
+  font-size: 18px;
+  margin: 8px;
+}
 .action-icon:hover {
   cursor: pointer;
 }
@@ -156,12 +178,6 @@
 /*left: 15px;*/
 /*padding: 5px;*/
 /*}*/
-#settingsIcon,
-#addPointIcon,
-#changeDirectionIcon {
-  font-size: 18px;
-  margin: 8px;
-}
 /*.vCenter {*/
 /*text-align:center;*/
 /*line-height:90px;*/
