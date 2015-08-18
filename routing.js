@@ -116,7 +116,7 @@ function handler(obj) {
     hidePanelsExceptSearch();
     var plans = obj.plans;
     var butZIndex = 500;
-    var routeDiv;
+    //var fourRoutesDiv = $("<div>").addClass("four-routes-panel");
     for (var i = 0; i < plans.length; i++) {
         var oneBasicRouteLatLngs = [];
         var distanceFromStart = 0;
@@ -144,12 +144,16 @@ function handler(obj) {
         var oneBasicRoute = L.polyline(oneBasicRouteLatLngs, basicRouteOptions);
         oneBasicRoute.on('click', routeClick);
         basicRoutes.addLayer(oneBasicRoute);
-        if (i%4 == 0) {
-            routeDiv = null;
-            routeDiv =  $("<div>").addClass("four-routes-panel");
-            butZIndex--;
-        }
-        createButtonForRoute(plans[i], i, butZIndex, routeDiv);
+        //if (i%4 == 0) {
+        //    console.log(i);
+        //    fourRoutesDiv = null;
+        //    fourRoutesDiv = $("<div>").addClass("four-routes-panel");
+        //    fourRoutesDiv.css("z-index", butZIndex);
+        //    fourRoutesDiv.appendTo("#routes-panel");
+        //    butZIndex--;
+        //}
+        //createButtonForRoute(plans[i], i, butZIndex, fourRoutesDiv);
+        createButtonForRoute(plans[i], i);
     }
     basicRoutes.addTo(map);
     $("#routes-panel").show("blind");
@@ -164,11 +168,11 @@ function routeClick(e) {
     button.trigger("click").focus();
 }
 
-function createButtonForRoute(plan, routeIndex, butZIndex, routeDiv) {
+function createButtonForRoute(plan, routeIndex) {
 
     //data-toggle="collapse" data-target="#settings-panel"
     var routeButton = $("<button>").addClass("btn btn-default route-but col-md-3");
-    routeButton.css("z-index", butZIndex);
+    //routeButton.css("z-index", butZIndex);
     var routeDiv = $("<div>").addClass("route-desc");
     var routeSpan1 = $("<i>").addClass("fa fa-arrows-h");
     var planLength = (plan.length / 1000).toFixed(1);
@@ -184,7 +188,8 @@ function createButtonForRoute(plan, routeIndex, butZIndex, routeDiv) {
     $("<hr>").appendTo(routeDiv);
     routeSpan3.appendTo(routeDiv);
     routeDiv.appendTo(routeButton);
-    routeButton.appendTo("#routes-panel");
+    //routeButton.appendTo(fourRoutesDiv);
+    routeButton.appendTo($("#routes-panel"));
     routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
 
 }

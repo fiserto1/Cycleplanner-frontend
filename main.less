@@ -4,6 +4,12 @@
 @button-pressed-bgcolor: #A9A9A9;
 @button-pressed-color: #060606;
 
+.panel-shadow {
+  -webkit-box-shadow: black 3px 3px 10px;
+  -moz-box-shadow: black 3px 3px 10px;
+  box-shadow: black 3px 3px 10px;
+}
+
 .glyphicon {
   top: 0;
 }
@@ -60,9 +66,7 @@
 }
 
 .routes-panel {
-  //-webkit-box-shadow: black 3px 3px 20px;
-  //-moz-box-shadow: black 3px 3px 20px;
-  //box-shadow: black 3px 3px 20px;
+  //.panel-shadow;
   //background-color: @panel-bgcolor;
   //border-radius: @radius;
   margin: 0px 0px @panel-spacing 0px;
@@ -70,9 +74,7 @@
 
 #chart-panel {
   position: relative;
-  -webkit-box-shadow: black 3px 3px 20px;
-  -moz-box-shadow: black 3px 3px 20px;
-  box-shadow: black 3px 3px 20px;
+  .panel-shadow;
   background-color: @panel-bgcolor;
   border-radius: @radius;
   margin: 0px 0px 0px 0px;
@@ -129,9 +131,7 @@
 .panel {
 
   //position: relative;
-  -webkit-box-shadow: black 3px 3px 20px;
-  -moz-box-shadow: black 3px 3px 20px;
-  box-shadow: black 3px 3px 20px;
+  .panel-shadow;
   background-color: @panel-bgcolor;
   border-radius: @radius;
   margin: 0px 0px @panel-spacing 0px;
@@ -169,8 +169,10 @@
 }
 
 .btn, .input-group-addon, .input-group, .form-control {
-  border-radius: @radius;
-  border: 0;
+  border-radius: 0;
+  border-left: 0;
+  border-top: 0;
+
 }
 
 .awesome-marker i {
@@ -300,14 +302,10 @@
 .route-desc:hover {
   /*background-color: #d5ddda;*/
 }
-.four-routes-panel {
 
-}
 
 .route-but {
-  -webkit-box-shadow: black 3px 3px 20px;
-  -moz-box-shadow: black 3px 3px 20px;
-  box-shadow: black 3px 3px 20px;
+  .panel-shadow;
   /*margin: 1px;*/
 }
 
@@ -320,8 +318,8 @@
 }
 
 #legend {
+  .panel-shadow;
   background-color: @panel-bgcolor;
-  box-shadow: black 3px 3px 20px;
   -webkit-border-radius: @radius;
   -moz-border-radius: @radius;
   border-radius: @radius;
