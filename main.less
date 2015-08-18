@@ -59,12 +59,25 @@
   background-color: @button-pressed-bgcolor;
 }
 
+.routes-panel {
+  //-webkit-box-shadow: black 3px 3px 20px;
+  //-moz-box-shadow: black 3px 3px 20px;
+  //box-shadow: black 3px 3px 20px;
+  //background-color: @panel-bgcolor;
+  //border-radius: @radius;
+  margin: 0px 0px @panel-spacing 0px;
+}
 
-//#chart-panel {
-//  //height: 80px;
-//  //width: 300px;
-//  display: none;
-//}
+#chart-panel {
+  position: relative;
+  -webkit-box-shadow: black 3px 3px 20px;
+  -moz-box-shadow: black 3px 3px 20px;
+  box-shadow: black 3px 3px 20px;
+  background-color: @panel-bgcolor;
+  border-radius: @radius;
+  margin: 0px 0px 0px 0px;
+  z-index: 88888;
+}
 
 //#contextMenu {
 //  position: absolute;
@@ -116,9 +129,9 @@
 .panel {
 
   //position: relative;
-  -webkit-box-shadow: black 4px 6px 20px;
-  -moz-box-shadow: black 4px 6px 20px;
-  box-shadow: black 4px 6px 20px;
+  -webkit-box-shadow: black 3px 3px 20px;
+  -moz-box-shadow: black 3px 3px 20px;
+  box-shadow: black 3px 3px 20px;
   background-color: @panel-bgcolor;
   border-radius: @radius;
   margin: 0px 0px @panel-spacing 0px;
@@ -157,6 +170,7 @@
 
 .btn, .input-group-addon, .input-group, .form-control {
   border-radius: @radius;
+  border: 0;
 }
 
 .awesome-marker i {
@@ -286,9 +300,14 @@
 .route-desc:hover {
   /*background-color: #d5ddda;*/
 }
+.four-routes-panel {
 
+}
 
 .route-but {
+  -webkit-box-shadow: black 3px 3px 20px;
+  -moz-box-shadow: black 3px 3px 20px;
+  box-shadow: black 3px 3px 20px;
   /*margin: 1px;*/
 }
 
@@ -302,7 +321,7 @@
 
 #legend {
   background-color: @panel-bgcolor;
-  box-shadow: black 4px 6px 20px;
+  box-shadow: black 3px 3px 20px;
   -webkit-border-radius: @radius;
   -moz-border-radius: @radius;
   border-radius: @radius;

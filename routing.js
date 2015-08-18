@@ -115,6 +115,8 @@ function handler(obj) {
     removeAllRoutesFromMap();
     hidePanelsExceptSearch();
     var plans = obj.plans;
+    var butZIndex = 500;
+    var routeDiv;
     for (var i = 0; i < plans.length; i++) {
         var oneBasicRouteLatLngs = [];
         var distanceFromStart = 0;
@@ -142,10 +144,16 @@ function handler(obj) {
         var oneBasicRoute = L.polyline(oneBasicRouteLatLngs, basicRouteOptions);
         oneBasicRoute.on('click', routeClick);
         basicRoutes.addLayer(oneBasicRoute);
-        createButtonForRoute(plans[i], i);
+        if (i%4 == 0) {
+            routeDiv = null;
+            routeDiv =  $("<div>").addClass("four-routes-panel");
+            butZIndex--;
+        }
+        createButtonForRoute(plans[i], i, butZIndex, routeDiv);
     }
     basicRoutes.addTo(map);
     $("#routes-panel").show("blind");
+    //$("#chart-panel").show("blind");
 
 }
 
@@ -156,9 +164,11 @@ function routeClick(e) {
     button.trigger("click").focus();
 }
 
-function createButtonForRoute(plan, routeIndex) {
+function createButtonForRoute(plan, routeIndex, butZIndex, routeDiv) {
+
     //data-toggle="collapse" data-target="#settings-panel"
-    var routeButton = $("<button>").addClass("btn btn-default route-but col-md-4");
+    var routeButton = $("<button>").addClass("btn btn-default route-but col-md-3");
+    routeButton.css("z-index", butZIndex);
     var routeDiv = $("<div>").addClass("route-desc");
     var routeSpan1 = $("<i>").addClass("fa fa-arrows-h");
     var planLength = (plan.length / 1000).toFixed(1);
@@ -176,6 +186,7 @@ function createButtonForRoute(plan, routeIndex) {
     routeDiv.appendTo(routeButton);
     routeButton.appendTo("#routes-panel");
     routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
+
 }
 var firstRouteClick=0;
 function routeButtonClick(e) {

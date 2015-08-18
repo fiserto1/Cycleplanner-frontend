@@ -21,9 +21,9 @@
 }
 .leaflet-contextmenu {
   border: none;
-  -webkit-box-shadow: black 4px 6px 20px;
-  -moz-box-shadow: black 4px 6px 20px;
-  box-shadow: black 4px 6px 20px;
+  -webkit-box-shadow: black 3px 3px 20px;
+  -moz-box-shadow: black 3px 3px 20px;
+  box-shadow: black 3px 3px 20px;
   background-color: white;
   border-radius: 2px;
   margin: 0px 0px 7px 0px;
@@ -50,6 +50,19 @@
   border: none;
   color: #060606;
   background-color: #a9a9a9;
+}
+.routes-panel {
+  margin: 0px 0px 7px 0px;
+}
+#chart-panel {
+  position: relative;
+  -webkit-box-shadow: black 3px 3px 20px;
+  -moz-box-shadow: black 3px 3px 20px;
+  box-shadow: black 3px 3px 20px;
+  background-color: white;
+  border-radius: 2px;
+  margin: 0px 0px 0px 0px;
+  z-index: 88888;
 }
 .panel,
 .input-group-addon {
@@ -85,9 +98,9 @@
   display: none;
 }
 .panel {
-  -webkit-box-shadow: black 4px 6px 20px;
-  -moz-box-shadow: black 4px 6px 20px;
-  box-shadow: black 4px 6px 20px;
+  -webkit-box-shadow: black 3px 3px 20px;
+  -moz-box-shadow: black 3px 3px 20px;
+  box-shadow: black 3px 3px 20px;
   background-color: white;
   border-radius: 2px;
   margin: 0px 0px 7px 0px;
@@ -113,6 +126,7 @@
 .input-group,
 .form-control {
   border-radius: 2px;
+  border: 0;
 }
 .awesome-marker i {
   /*font-size: 14px;*/
@@ -212,6 +226,9 @@
   /*background-color: #d5ddda;*/
 }
 .route-but {
+  -webkit-box-shadow: black 3px 3px 20px;
+  -moz-box-shadow: black 3px 3px 20px;
+  box-shadow: black 3px 3px 20px;
   /*margin: 1px;*/
 }
 #accordion {
@@ -221,7 +238,7 @@
 }
 #legend {
   background-color: white;
-  box-shadow: black 4px 6px 20px;
+  box-shadow: black 3px 3px 20px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
