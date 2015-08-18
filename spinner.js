@@ -7,7 +7,7 @@ $(document).ready(function() {
         lines: 9 // The number of lines to draw
         , length: 0 // The length of each line
         , width: 13 // The line thickness
-        , radius: 19 // The radius of the inner circle
+        , radius: 19 // The panel-radius of the inner circle
         , scale: 0.75 // Scales overall size of the spinner
         , corners: 0.4 // Corner roundness (0..1)
         , color: '#000' // #rgb or #rrggbb or array of colors
@@ -21,7 +21,7 @@ $(document).ready(function() {
         , className: 'spinner' // The CSS class to assign to the spinner
         , top: '50%' // Top position relative to parent
         , left: '50%' // Left position relative to parent
-        , shadow: false // Whether to render a shadow
+        , shadow: false // Whether to render a panel-shadow
         , hwaccel: false // Whether to use hardware acceleration
         , position: 'absolute' // Element positioning
     };

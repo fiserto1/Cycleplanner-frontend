@@ -1,3 +1,8 @@
+.selected-but {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
 .panel-shadow {
   -webkit-box-shadow: black 3px 3px 10px;
   -moz-box-shadow: black 3px 3px 10px;
@@ -9,35 +14,10 @@
 .glyphicon {
   top: 0;
 }
-.all-route-params i {
-  text-align: center;
-  font-size: 16px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-}
-.route-options {
-  border-left: solid #CCCCCC 1px;
-}
 .col-md-12,
 .col-md-1,
 .col-md-11 {
   padding: 0;
-}
-#full-route-description {
-  border-bottom: solid #CCCCCC 1px;
-}
-.leaflet-contextmenu {
-  border: none;
-  -webkit-box-shadow: black 3px 3px 10px;
-  -moz-box-shadow: black 3px 3px 10px;
-  box-shadow: black 3px 3px 10px;
-  background-color: white;
-  border-radius: 2px;
-  margin: 0px 0px 7px 0px;
-}
-.leaflet-contextmenu a.leaflet-contextmenu-item {
-  font-size: 14px;
-  line-height: 25px;
 }
 .nav-tabs > li {
   margin: 0;
@@ -55,35 +35,30 @@
 .nav-tabs > li.active > a:hover {
   overflow: hidden;
   border: none;
-  color: #060606;
-  background-color: #a9a9a9;
+  color: #333333;
+  background-color: #e6e6e6;
 }
-.routes-panel {
-  margin: 0px 0px 7px 0px;
-}
-#chart-panel {
-  position: relative;
+.leaflet-contextmenu {
   -webkit-box-shadow: black 3px 3px 10px;
   -moz-box-shadow: black 3px 3px 10px;
   box-shadow: black 3px 3px 10px;
   background-color: white;
   border-radius: 2px;
-  margin: 0px 0px 0px 0px;
-  z-index: 88888;
-}
-.panel,
-.input-group-addon {
+  margin: 0 0 7px 0;
   border: none;
+  padding: 0;
 }
-.one {
-  background-color: red;
+.leaflet-contextmenu a.leaflet-contextmenu-item {
+  line-height: 30px;
+  font-size: 14px;
 }
-.two {
-  background-color: green;
+.leaflet-contextmenu a.leaflet-contextmenu-item.over {
+  background-color: #eeeeee;
+}
+.leaflet-contextmenu-icon {
   margin: 0;
-}
-.three {
-  background-color: blue;
+  font-size: 18px;
+  line-height: 30px;
 }
 #map {
   position: absolute;
@@ -91,10 +66,21 @@
   bottom: 0;
   width: 100%;
 }
-.selected-but {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
+.left-block {
+  padding: 0;
+  margin: 10px;
+}
+.panel {
+  -webkit-box-shadow: black 3px 3px 10px;
+  -moz-box-shadow: black 3px 3px 10px;
+  box-shadow: black 3px 3px 10px;
+  background-color: white;
+  border-radius: 2px;
+  margin: 0 0 7px 0;
+}
+.panel,
+.input-group-addon {
+  border: none;
 }
 .remove-point {
   color: white;
@@ -104,17 +90,30 @@
 #chart-panel {
   display: none;
 }
-.panel {
+.routes-panel {
+  margin: 0 0 7px 0;
+}
+#chart-panel {
+  position: relative;
+  z-index: 88888;
   -webkit-box-shadow: black 3px 3px 10px;
   -moz-box-shadow: black 3px 3px 10px;
   box-shadow: black 3px 3px 10px;
   background-color: white;
   border-radius: 2px;
-  margin: 0px 0px 7px 0px;
+  margin: 0;
 }
-.left-block {
-  padding: 0px 0px 0px 0px;
-  margin: 10px;
+.all-route-params i {
+  text-align: center;
+  font-size: 16px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+.route-options {
+  border-left: solid #cccccc 1px;
+}
+#full-route-description {
+  border-bottom: solid #cccccc 1px;
 }
 .input-group,
 .form-control {
@@ -143,9 +142,6 @@
   border-radius: 0;
   border-left: 0;
   border-top: 0;
-}
-.awesome-marker i {
-  /*font-size: 14px;*/
 }
 .drag-drop :hover {
   cursor: -webkit-grab;
@@ -201,10 +197,6 @@
 #changeDirectionIcon {
   float: left;
 }
-/*#addPointIcon {*/
-/*left: 15px;*/
-/*padding: 5px;*/
-/*}*/
 /*.vCenter {*/
 /*text-align:center;*/
 /*line-height:90px;*/
@@ -217,37 +209,20 @@
   color: grey;
   background-color: grey;
   height: 1px;
-  /*clear:      both;*/
-  /*margin: 0;*/
-  margin: 0px 0px 0px 2px;
-  /*display:    block;*/
+  margin: 0 0 0 2px;
   width: 80%;
 }
 .route-desc {
-  /*background-color: blue;*/
   text-align: left;
   border-radius: 2px;
-  padding: 0px 0px 0px 10px;
-  /*padding-left: 10px;*/
+  padding: 0 0 0 10px;
   font-size: 14px;
   line-height: 20px;
-  /*word-spacing: -10px; !important*/
-  /*float: left;*/
-  /*border: 1px solid grey;*/
-}
-.route-desc:hover {
-  /*background-color: #d5ddda;*/
 }
 .route-but {
   -webkit-box-shadow: black 3px 3px 10px;
   -moz-box-shadow: black 3px 3px 10px;
   box-shadow: black 3px 3px 10px;
-  /*margin: 1px;*/
-}
-#accordion {
-  position: absolute;
-  top: 10px;
-  left: 365px;
 }
 #legend {
   -webkit-box-shadow: black 3px 3px 10px;

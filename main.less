@@ -1,16 +1,28 @@
-@radius: 2px;
+@panel-radius: 2px;
+@panel-shadow: black 3px 3px 10px;
 @panel-spacing: 7px;
 @panel-bgcolor: white;
-@button-pressed-bgcolor: #A9A9A9;
-@button-pressed-color: #060606;
+
+@button-pressed-bgcolor: #e6e6e6;
+@button-pressed-color: #333;
+@button-pressed-border-color: #adadad;
 @button-hover-color: #EEE;
 
-.panel-shadow {
-  -webkit-box-shadow: black 3px 3px 10px;
-  -moz-box-shadow: black 3px 3px 10px;
-  box-shadow: black 3px 3px 10px;
+@separator-border: solid #CCCCCC 1px;
+
+.selected-but {
+  color: @button-pressed-color;
+  background-color: @button-pressed-bgcolor;
+  border-color: @button-pressed-border-color;
 }
 
+.panel-shadow {
+  -webkit-box-shadow: @panel-shadow;
+  -moz-box-shadow: @panel-shadow;
+  box-shadow: @panel-shadow;
+}
+//////////////////////////////////////////////////////////////////////////////////
+//BOOTSTRAP OVERRIDE
 .row {
   margin: 0;
 }
@@ -19,38 +31,9 @@
   top: 0;
 }
 
-.all-route-params i {
-  text-align: center;
-  //line-height: 25px;
-  font-size: 16px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-  //border-top: solid #CCCCCC 1px;
-}
-
-
-
-.route-options {
-  border-left: solid #CCCCCC 1px;
-}
-
 .col-md-12, .col-md-1, .col-md-11 {
   padding: 0;
 }
-
-#full-route-description {
-  border-bottom: solid #CCCCCC 1px;
-}
-
-.leaflet-contextmenu {
-  .panel;
-}
-.leaflet-contextmenu a.leaflet-contextmenu-item {
-  font-size: 14px;
-  line-height: 25px;
-}
-
-
 
 .nav-tabs>li {
   margin: 0;
@@ -63,11 +46,6 @@
 .nav-tabs {
   border: none;
 }
-//.nav-tabs>li.active>a:hover {
-//  overflow: hidden;
-//  border: none;
-//  background-color: @button-hover-color;
-//}
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
   overflow: hidden;
@@ -76,48 +54,28 @@
   background-color: @button-pressed-bgcolor;
 }
 
-.routes-panel {
-  //.panel-shadow;
-  //background-color: @panel-bgcolor;
-  //border-radius: @radius;
-  margin: 0px 0px @panel-spacing 0px;
+///////////////////////////////////////////////////////////////////////////////////
+//LEAFLET.CONTEXTMENU OVERRIDE
+.leaflet-contextmenu {
+  .panel;
+  padding: 0;
 }
 
-#chart-panel {
-  position: relative;
-  .panel-shadow;
-  background-color: @panel-bgcolor;
-  border-radius: @radius;
-  margin: 0px 0px 0px 0px;
-  z-index: 88888;
+.leaflet-contextmenu a.leaflet-contextmenu-item {
+  line-height: 30px;
+  font-size: 14px;
+}
+.leaflet-contextmenu a.leaflet-contextmenu-item.over {
+  background-color: @button-hover-color;
 }
 
-//#contextMenu {
-//  position: absolute;
-//  display:none;
-//  overflow: hidden;
-//  z-index: 9999;
-//}
+.leaflet-contextmenu-icon {
+  margin: 0;
+  font-size: 18px;
+  line-height: 30px;
+}
+///////////////////////////////////////////////////////////////////////////////////
 
-.panel, .input-group-addon{
-  //margin:0;
-  //padding: 0;
-  border: none;
-}
-.one, .two, .three {
-  //height: 20px;
-}
-
-.one {
-  background-color: red;
-}
-.two {
-  background-color: green;
-  margin:0;
-}
-.three {
-  background-color: blue;
-}
 
 #map {
   position:absolute;
@@ -125,10 +83,21 @@
   bottom:0;
   width:100%;
 }
-.selected-but {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
+
+.left-block {
+  padding: 0;
+  margin: 10px;
+}
+
+.panel {
+  .panel-shadow;
+  background-color: @panel-bgcolor;
+  border-radius: @panel-radius;
+  margin: 0 0 @panel-spacing 0;
+}
+
+.panel, .input-group-addon{
+  border: none;
 }
 
 .remove-point {
@@ -139,31 +108,42 @@
   display: none;
 }
 
-.panel {
+.routes-panel {
+  //.panel-panel-shadow;
+  //background-color: @panel-bgcolor;
+  //border-panel-radius: @panel-radius;
+  margin: 0 0 @panel-spacing 0;
+}
 
-  //position: relative;
+#chart-panel {
+  position: relative;
+  z-index: 88888;
   .panel-shadow;
   background-color: @panel-bgcolor;
-  border-radius: @radius;
-  margin: 0px 0px @panel-spacing 0px;
-  //padding: 5px;
+  border-radius: @panel-radius;
+  margin: 0;
 }
 
-.left-block {
-  //position: relative;
-  //background-color: lightgrey;
-  padding: 0px 0px 0px 0px;
-  margin: 10px;
-  //z-index: -1;
-  //top: 5px;
-  //left: -5px;
-  //margin-left: 0px;
+.all-route-params i {
+  text-align: center;
+  //line-height: 25px;
+  font-size: 16px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  //border-top: solid #CCCCCC 1px;
 }
 
+.route-options {
+  border-left: @separator-border;
+}
+
+#full-route-description {
+  border-bottom: @separator-border;
+}
 
 .input-group, .form-control {
   :focus, :active {
-    //box-shadow: inset 0px -1px 4px -1px rgb(84, 157, 255);
+    //box-panel-shadow: inset 0px -1px 4px -1px rgb(84, 157, 255);
   }
   border:none;
   box-shadow: none;
@@ -175,10 +155,8 @@
     font-size: 18px;
     padding: 8px;
   }
-
-
-
 }
+
 .action-icon:hover {
   cursor: pointer;
   background-color: @button-hover-color;
@@ -195,14 +173,9 @@
 
 }
 
-.awesome-marker i {
-  /*font-size: 14px;*/
-}
 
 .drag-drop {
   //border: none;
-
-
   :hover {
     cursor: -webkit-grab;
     cursor: -moz-grab;
@@ -212,6 +185,7 @@
     cursor: -moz-grabbing;
   }
 }
+
 .focus-in {
   color: #666666;
 }
@@ -226,10 +200,6 @@
   .input-group:hover button {
     color: #666666;
   }
-  //input:focus {
-  //   background-color: red;
-  //}
-
 
   .search-destination {
     border:none;
@@ -270,16 +240,6 @@
 #addPointIcon, #changeDirectionIcon {
   float: left;
 }
-/*#addPointIcon {*/
-/*left: 15px;*/
-/*padding: 5px;*/
-/*}*/
-
-//#settingsIcon, #addPointIcon, #changeDirectionIcon{
-//  font-size: 18px;
-//  margin: 8px;
-//
-//}
 
 
 /*.vCenter {*/
@@ -290,58 +250,33 @@
 /*font-size:20px;*/
 /*float:left;*/
 /*}*/
+
 .route-desc > hr {
   color: grey;
   background-color: grey;
   height: 1px;
-  /*clear:      both;*/
-  /*margin: 0;*/
-  margin:      0px 0px 0px 2px;
-  /*display:    block;*/
+  margin: 0 0 0 2px;
   width: 80%;
 }
 .route-desc {
-  /*background-color: blue;*/
   text-align: left;
-  border-radius: @radius;
-  padding: 0px 0px 0px 10px;
-  /*padding-left: 10px;*/
-  //width:85px;
-  //height: 70px;
+  border-radius: @panel-radius;
+  padding: 0 0 0 10px;
   font-size: 14px;
   line-height:20px;
-  /*word-spacing: -10px; !important*/
-
-  /*float: left;*/
-  /*border: 1px solid grey;*/
 }
-
-.route-desc:hover {
-  /*background-color: #d5ddda;*/
-}
-
 
 .route-but {
   .panel-shadow;
-  /*margin: 1px;*/
 }
 
-
-
-#accordion {
-  position: absolute;
-  top: 10px;
-  left: 365px;
-}
 
 #legend {
   .panel-shadow;
   background-color: @panel-bgcolor;
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
-  border-radius: @radius;
-  //padding: 0.5em;
-  //width: 340px;
+  -webkit-border-radius: @panel-radius;
+  -moz-border-radius: @panel-radius;
+  border-radius: @panel-radius;
 }
 
 #legend label,
@@ -349,7 +284,6 @@
   display:block;
   float:left;
   height:15px;
-  //width:14%;
   text-align:center;
   font-size:10px;
   color:black;
@@ -364,10 +298,25 @@
   width: 12.5%;
 }
 
-.autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
-.autocomplete-suggestion { padding: 7px 5px; font-size: 12px; white-space: nowrap; overflow: hidden; }
-.autocomplete-selected { background: #f0f0f0; }
-.autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
+.autocomplete-suggestions {
+  border: 1px solid #999;
+  background: #fff;
+  cursor: default;
+  overflow: auto;
+}
+.autocomplete-suggestion {
+  padding: 7px 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.autocomplete-selected {
+  background: #f0f0f0;
+}
+.autocomplete-suggestions strong {
+  font-weight: normal;
+  color: #3399ff;
+}
 
 
 #tr{

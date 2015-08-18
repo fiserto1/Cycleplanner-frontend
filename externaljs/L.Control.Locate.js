@@ -202,7 +202,7 @@ L.Control.Locate = L.Control.extend({
                 self._locateOnNextLocationFound = false;
             }
 
-            // circle with the radius of the location's accuracy
+            // circle with the panel-radius of the location's accuracy
             var style, o;
             if (self.options.drawCircle) {
                 if (self._following) {
