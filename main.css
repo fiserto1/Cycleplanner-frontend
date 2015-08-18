@@ -133,6 +133,9 @@
   cursor: pointer;
   background-color: #eeeeee;
 }
+.btn-default {
+  text-shadow: none;
+}
 .btn,
 .input-group-addon,
 .input-group,
