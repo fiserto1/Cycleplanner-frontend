@@ -102,7 +102,7 @@ function addNewStartPoint() {
         var inputGroup = $("<div>").addClass("input-group");
         var markerAddon = $("<div>").addClass("input-group-addon drag-drop");
         var closeAddon = $("<div>").addClass("input-group-addon right-addon");
-        var closeButton = $("<button type='button'>").addClass("close remove-point");
+        var closeButton = $("<button type='button' tabindex='-1'>").addClass("close remove-point");
         closeButton.click(onRemovePointClick);
         $("<span>").html("&times").appendTo(closeButton);
         closeButton.appendTo(closeAddon);

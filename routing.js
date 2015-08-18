@@ -199,7 +199,9 @@ function routeButtonClick(e) {
     var plan = e.data.param2;
     showSegments(routeIndex, plan);
     createChart(allChartOptions[routeIndex], routeIndex);
-
+    //console.log(e);
+    $(".route-but").removeClass("selected-but");
+    $(e.currentTarget).addClass("selected-but");
     if (firstRouteClick == 0) {
         changeValuesInDescriptionPanel(plan);
     }
