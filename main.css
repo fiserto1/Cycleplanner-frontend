@@ -3,6 +3,9 @@
   -moz-box-shadow: black 3px 3px 10px;
   box-shadow: black 3px 3px 10px;
 }
+.row {
+  margin: 0;
+}
 .glyphicon {
   top: 0;
 }
@@ -13,7 +16,6 @@
   padding-top: 8px;
 }
 .route-options {
-  text-align: right;
   border-left: solid #CCCCCC 1px;
 }
 .col-md-12,
@@ -48,9 +50,13 @@
 .nav-tabs {
   border: none;
 }
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:focus,
 .nav-tabs > li.active > a:hover {
+  overflow: hidden;
+  border: none;
+  background-color: #eeeeee;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus {
   overflow: hidden;
   border: none;
   color: #060606;
@@ -120,11 +126,16 @@
   box-shadow: none;
 }
 .action-icon {
+  text-align: center;
+}
+.action-icon i,
+.action-icon span {
   font-size: 18px;
-  margin: 8px;
+  padding: 8px;
 }
 .action-icon:hover {
   cursor: pointer;
+  background-color: #eeeeee;
 }
 .btn,
 .input-group-addon,
@@ -186,9 +197,6 @@
   -ms-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
-}
-#settingsIcon {
-  float: right;
 }
 #addPointIcon,
 #changeDirectionIcon {

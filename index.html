@@ -187,10 +187,18 @@
 
 
         <!--<div class="row">-->
-        <div class="col-md-12">
-            <span class="glyphicon glyphicon-plus action-icon" id="addPointIcon" aria-hidden="true"></span>
-            <span class="glyphicon glyphicon-transfer action-icon" id="changeDirectionIcon" aria-hidden="true"></span>
-            <i class="fa fa-cog action-icon" id="settingsIcon" aria-hidden="true" data-toggle="collapse" data-target="#settings-panel"></i>
+        <div class="col-md-11">
+            <div class="row">
+                <div class="action-icon col-md-1">
+                    <i class="glyphicon glyphicon-plus" id="addPointIcon" aria-hidden="true"></i>
+                </div>
+                <div class="action-icon col-md-1">
+                    <i class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 action-icon">
+            <i class="fa fa-cog" id="settingsIcon" aria-hidden="true" data-toggle="collapse" data-target="#settings-panel"></i>
         </div>
         <!--</div>-->
 
@@ -198,7 +206,31 @@
     <div id="settings-panel" class="collapse row panel">Nastaveni</div>
     <div id="error-panel" class="alert alert-danger panel"></div>
     <div id="chart-panel" class="row">
-        <div id="full-route-description" class="col-md-12"></div>
+        <div id="full-route-description" class="col-md-12">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="all-route-params row">
+                        <i id="route-length" class="fa fa-arrows-h col-md-3"></i>
+                        <i id="route-duration" class="fa fa-clock-o col-md-3"></i>
+                        <i id="route-elevation-change" class="fa fa-area-chart col-md-3"></i>
+                        <i id="route-crossroads" class="fa fa-arrows col-md-3"></i>
+                        <i id="route-consumed-energy" class="fa fa-bolt col-md-3"></i>
+                        <i id="route-elevation-gain" class="fa fa-long-arrow-up col-md-3"></i>
+                        <i id="route-elevation-drop" class="fa fa-long-arrow-down col-md-3"></i>
+                        <i id="route-smog" class="fa fa-car col-md-3"></i>
+                    </div>
+                </div>
+                <div class="route-options col-md-1">
+                    <div class="action-icon">
+                        <i class="fa fa-share-alt"></i>
+                    </div>
+                    <div class="action-icon">
+                        <i class="fa fa-floppy-o"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="hChart"></div>
     </div>
     <div id="routes-panel" class=""></div>
