@@ -50,13 +50,9 @@
 .nav-tabs {
   border: none;
 }
-.nav-tabs > li.active > a:hover {
-  overflow: hidden;
-  border: none;
-  background-color: #eeeeee;
-}
 .nav-tabs > li.active > a,
-.nav-tabs > li.active > a:focus {
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
   overflow: hidden;
   border: none;
   color: #060606;
