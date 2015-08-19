@@ -59,6 +59,7 @@ $(document).ready(function() {
 });
 
 function onMapClick(e, input) {
+    //TODO pouzit $(document.activeElement) misto input... usetri starosti ktery input je aktivovany
     //console.log(e.target);
     //console.log(input);
 
