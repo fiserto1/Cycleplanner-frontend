@@ -24,9 +24,25 @@ function setAC() {
         transformResult: function(response) {
             return {
                 suggestions: $.map(response.features, function(dataItem) {
+                    //console.log(dataItem);
+                    //var p1 = map.getCenter();
+                    //var p2 = L.latLng(dataItem.geometry.coordinates[1], dataItem.geometry.coordinates[0]);
+                    //var distance = p1.distanceTo(p2)/1000;
+                    //distance = distance.toFixed( distance < 1 ? 2 : 0 );
                     return { value: dataItem.properties.text, data: dataItem.geometry.coordinates};
                 })
             };
+        },
+        formatResult: function(suggestion, currentValue) {
+            console.log(suggestion);
+            console.log(currentValue);
+            var p1 = map.getCenter(); //mozna pocitat od posledniho zadaneho bodu
+            var p2 = L.latLng(suggestion.data[1], suggestion.data[0]);
+            var distance = p1.distanceTo(p2)/1000;
+            distance = distance.toFixed( distance < 1 ? 2 : 0 );
+            var highlightedValue = "(" + currentValue.replace(RegExp("(\\/|\\.|\\*|\\+|\\?|\\||\\(|\\)|\\[|\\]|\\{|\\}|\\\\)", "g"), "\\$1") + ")";
+            highlightedValue = suggestion.value.replace(RegExp(highlightedValue, "gi"), "<strong>$1</strong>")
+            return highlightedValue + "<span class='autocomplete-distance'>" + distance + " km</span>";
         },
         //lookup: availableTags,
         onSelect: function(suggestion) {

@@ -117,7 +117,7 @@
 
 #chart-panel {
   position: relative;
-  z-index: 88888;
+  z-index: 8888;
   .panel-shadow;
   background-color: @panel-bgcolor;
   border-radius: @panel-radius;
@@ -127,7 +127,7 @@
 .all-route-params i {
   text-align: center;
   //line-height: 25px;
-  font-size: 16px;
+  //font-size: 16px;
   padding-bottom: 8px;
   padding-top: 8px;
   //border-top: solid #CCCCCC 1px;
@@ -305,7 +305,9 @@
   overflow: auto;
 }
 .autocomplete-suggestion {
-  padding: 7px 5px;
+  //padding: 7px 5px;
+  padding-left: 5px;
+  line-height: 25px;
   font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
@@ -316,6 +318,13 @@
 .autocomplete-suggestions strong {
   font-weight: normal;
   color: #3399ff;
+}
+.autocomplete-distance {
+  width: 15%;
+  text-align: center;
+  background-color: @button-pressed-bgcolor;
+  //padding: 4px;
+  float: right;
 }
 
 
