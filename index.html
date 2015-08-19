@@ -40,16 +40,8 @@
     <title>Cykloplánovaè</title>
 </head>
 <body>
-<div id="map">
-    <!--<div id="contextMenu" class="dropdown clearfix">-->
-        <!--<ul class="dropdown-menu panel" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">-->
-            <!--<li><a id="add-start-item" tabindex="-1" href="#"><i class="fa fa-map-marker start-icon"></i> Pøidat zaèátek</a></li>-->
-            <!--<li><a id="add-destination-item" tabindex="-1" href="#"><i class="fa fa-map-marker destination-icon"></i> Pøidat destinaci</a></li>-->
-            <!--&lt;!&ndash;<li class="divider"></li>&ndash;&gt;-->
-        <!--</ul>-->
-    <!--</div>-->
-</div>
-<div id='legend' style="display: none;">
+<div id="map"></div>
+<div id='legend'>
     <ul id="myTab" class="nav nav-tabs">
         <li class="active legend-button">
             <a href="#elevation-legend" data-toggle="tab">Pøevýšení</a>
@@ -67,13 +59,13 @@
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="elevation-legend">
             <nav class='legend clearfix'>
-                <span style='background:#0040FF;'></span>
-                <span style='background:#0080FF;'></span>
-                <span style='background:#15B0FF;'></span>
-                <span style='background:#90BB00;'></span>
-                <span style='background:#FFC000;'></span>
-                <span style='background:#FF5D54;'></span>
-                <span style='background:#FF0000;'></span>
+                <span class="level1"></span>
+                <span class="level2"></span>
+                <span class="level3"></span>
+                <span class="level4"></span>
+                <span class="level5"></span>
+                <span class="level7"></span>
+                <span class="level8"></span>
                 <label>Klesání</label>
                 <label></label>
                 <label></label>
@@ -85,13 +77,13 @@
         </div>
         <div class="tab-pane fade" id="speed-legend">
             <nav class='legend clearfix'>
-                <span style='background:#0040FF;'></span>
-                <span style='background:#0080FF;'></span>
-                <span style='background:#15B0FF;'></span>
-                <span style='background:#90BB00;'></span>
-                <span style='background:#FFC000;'></span>
-                <span style='background:#FF5D54;'></span>
-                <span style='background:#FF0000;'></span>
+                <span class="level1"></span>
+                <span class="level2"></span>
+                <span class="level3"></span>
+                <span class="level4"></span>
+                <span class="level5"></span>
+                <span class="level7"></span>
+                <span class="level8"></span>
                 <label>Rychlá</label>
                 <label></label>
                 <label></label>
@@ -103,27 +95,26 @@
         </div>
         <div class="tab-pane fade" id="surface-legend">
             <nav class='legend clearfix'>
-                <span style='background:#15B0FF;'></span>
-                <span style='background:#90BB00;'></span>
-                <span style='background:#FFC000;'></span>
-                <span style='background:#FF0000;'></span>
+                <span class="level3"></span>
+                <span class="level4"></span>
+                <span class="level5"></span>
+                <span class="level8"></span>
                 <label>Hladký</label>
                 <label>NEDEF</label>
                 <label>UNPAVED</label>
                 <label>Dlaž. kostky</label>
             </nav>
-
         </div>
         <div class="tab-pane fade" id="road-type-legend">
             <nav class='legend clearfix'>
-                <span style='background:#0040FF;'></span>
-                <span style='background:#0080FF;'></span>
-                <span style='background:#15B0FF;'></span>
-                <span style='background:#90BB00;'></span>
-                <span style='background:#FFC000;'></span>
-                <span style='background:#FF8115;'></span>
-                <span style='background:#FF5D54;'></span>
-                <span style='background:#FF0000;'></span>
+                <span class="level1"></span>
+                <span class="level2"></span>
+                <span class="level3"></span>
+                <span class="level4"></span>
+                <span class="level5"></span>
+                <span class="level6"></span>
+                <span class="level7"></span>
+                <span class="level8"></span>
                 <label>Cyklo</label>
                 <label>Pìší</label>
                 <label>STEPS</label>
@@ -135,27 +126,6 @@
             </nav>
         </div>
     </div>
-    <!--<strong id="legend-title">Pøevýšení trasy</strong>-->
-    <!--<button type="button" class="legend-button">elev</button>-->
-    <!--<button type="button" class="legend-button">speed</button>-->
-    <!--<button type="button" class="legend-button">surface</button>-->
-    <!--<button type="button" class="legend-button">type</button>-->
-    <!--<nav class='legend clearfix'>-->
-        <!--<span style='background:#FF0000;'></span>-->
-        <!--<span style='background:#FF5D54;'></span>-->
-        <!--<span style='background:#FFC000;'></span>-->
-        <!--<span style='background:#90BB00;'></span>-->
-        <!--<span style='background:#15B0FF;'></span>-->
-        <!--<span style='background:#0080FF;'></span>-->
-        <!--<span style='background:#0040FF;'></span>-->
-        <!--<label id="legend-left-label">Stoupání</label>-->
-        <!--<label></label>-->
-        <!--<label></label>-->
-        <!--<label id="legend-middle-label">Rovina</label>-->
-        <!--<label></label>-->
-        <!--<label></label>-->
-        <!--<label id="legend-right-label">Klesání</label>-->
-        <!--</nav>-->
 </div>
 
 
@@ -184,9 +154,6 @@
             </div>
         </div>
 
-
-
-        <!--<div class="row">-->
         <div class="col-md-11">
             <div class="row">
                 <div class="action-icon col-md-1">
@@ -200,7 +167,6 @@
         <div class="col-md-1 action-icon">
             <i class="fa fa-cog" id="settingsIcon" aria-hidden="true" data-toggle="collapse" data-target="#settings-panel"></i>
         </div>
-        <!--</div>-->
 
     </div>
     <div id="settings-panel" class="collapse row panel">Nastaveni</div>

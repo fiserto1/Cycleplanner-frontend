@@ -30,7 +30,19 @@ $(document).ready(function() {
         var routeIndex = basicRoutes.getLayers().indexOf(lastClickedRoute);
         showSegments(routeIndex, response.plans[routeIndex])
     });
+    drawSegmentsInLegend();
+
 });
+function drawSegmentsInLegend() {
+    $(".level1").css("background-color", LEGEND_LVL_1_COLOR);
+    $(".level2").css("background-color", LEGEND_LVL_2_COLOR);
+    $(".level3").css("background-color", LEGEND_LVL_3_COLOR);
+    $(".level4").css("background-color", LEGEND_LVL_4_MIDDLE_COLOR);
+    $(".level5").css("background-color", LEGEND_LVL_5_COLOR);
+    $(".level6").css("background-color", LEGEND_LVL_6_COLOR);
+    $(".level7").css("background-color", LEGEND_LVL_7_COLOR);
+    $(".level8").css("background-color", LEGEND_LVL_8_COLOR);
+}
 
 function showSegments(routeIndex, plan) {
 

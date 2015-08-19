@@ -87,7 +87,8 @@
 }
 #routes-panel,
 #error-panel,
-#chart-panel {
+#chart-panel,
+#legend {
   display: none;
 }
 .routes-panel {
