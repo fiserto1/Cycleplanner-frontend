@@ -65,8 +65,26 @@ var cycleLayer = L.geoJson(cycleRoutes, {
         layer.bindPopup(feature.properties.description);
     }
 });
+console.log(cycleSigns.features[0].properties.POPIS)
+var signLayer = L.geoJson(cycleSigns, {
+    style: function () {
+        return {
+            color: "purple"
+        };
+    },
+    //filter: function(feature, layer) {
+    //    return (feature.properties.DRUH == 302)
+    //},
+    onEachFeature: function (feature, layer) {
+        console.log(feature.properties.POPIS);
+        layer.bindPopup(feature.properties.POPIS);
+    }
+});
+
+
 var overlayMaps = {
-    "Cyklostezky": cycleLayer
+    "Cyklostezky": cycleLayer,
+    "Cykloznaèky": signLayer
 };
 
 L.control.locate({ position: 'topright', keepCurrentZoomLevel: true }).addTo(map);
