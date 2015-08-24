@@ -6,7 +6,7 @@
 var MIDDLE_POINT_LIMIT = 3;
 
 var startIcon, destinationIcon, middlePointIcon;
-var startMarker, destinationMarker;
+//var startMarker, destinationMarker;
 var allMarkers = [];
 
 $(document).ready(function() {
@@ -28,12 +28,12 @@ $(document).ready(function() {
         markerColor: 'orange',
         icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
     });
-    startMarker = L.marker(null, {
+    var startMarker = L.marker(null, {
         icon: startIcon,
         draggable: true
     });
 
-    destinationMarker = L.marker(null, {
+    var destinationMarker = L.marker(null, {
         icon: destinationIcon,
         draggable: true
     });
@@ -78,17 +78,29 @@ function onMarkerDrag(e) {
 }
 
 function onChangeDirectionClick() {
-    var latLng = startMarker.getLatLng();
-    startMarker.setLatLng(destinationMarker.getLatLng());
-    destinationMarker.setLatLng(latLng);
-    swapSearchForm();
+    allMarkers.reverse();
+    allMarkers[0].setIcon(startIcon);
+    allMarkers[allMarkers.length-1].setIcon(destinationIcon);
+    for(var i = 1; i<allMarkers.length-1; i++) {
+        allMarkers[i].setIcon(middlePointIcon);
+    }
+    reverseSearchForm();
     getPlans();
 }
 
-function swapSearchForm() {
+function reverseSearchForm() {
+    //TODO prepsat lepe
     var value = $(".search-start").val();
     $(".search-start").val($(".search-destination").val());
     $(".search-destination").val(value);
+    if (allMarkers.length > 3) {
+        var allForms = $("#search-group").children();
+        var secondInput = allForms.eq(1).find("input");
+        var preLastInput = allForms.eq(allForms.length - 2).find("input");
+        value = secondInput.val();
+        secondInput.val(preLastInput.val());
+        preLastInput.val(value);
+    }
 }
 
 ////TODO spojit fce addNewStartPoint() a onAddPointClick()... jedna vklada pred druha za seznam
@@ -125,7 +137,7 @@ function addNewStartPoint() {
             //$(".remove-point").css("color", "#333333");
         }
 
-        startMarker.setIcon(middlePointIcon);
+        allMarkers[0].setIcon(middlePointIcon);
 
         var newMarker = L.marker(null, {
             icon: startIcon,
@@ -133,7 +145,6 @@ function addNewStartPoint() {
         });
         newMarker.on('dragend', onMarkerDrag);
         allMarkers.unshift(newMarker);
-        startMarker = newMarker;
     }
 }
 
@@ -171,7 +182,7 @@ function onAddPointClick() {
             //$(".remove-point").css("color", "#333333");
         }
 
-        destinationMarker.setIcon(middlePointIcon);
+        allMarkers[allMarkers.length-1].setIcon(middlePointIcon);
 
         var newMarker = L.marker(null, {
             icon: destinationIcon,
@@ -179,8 +190,8 @@ function onAddPointClick() {
         });
         newMarker.on('dragend', onMarkerDrag);
         allMarkers.push(newMarker);
-        destinationMarker = newMarker;
         searchInput.focus();
+        console.log(allMarkers);
     }
 
 
@@ -195,10 +206,8 @@ function onRemovePointClick() {
         allMarkers.splice(wholeInput.index(), 1);
         wholeInput.remove();
 
-        startMarker = allMarkers[0];
-        startMarker.setIcon(startIcon);
-        destinationMarker = allMarkers[allMarkers.length - 1];
-        destinationMarker.setIcon(destinationIcon);
+        allMarkers[0].setIcon(startIcon);
+        allMarkers[allMarkers.length - 1].setIcon(destinationIcon);
 
         refreshSearchGroup();
         getPlans();
@@ -222,19 +231,35 @@ function onRemovePointClick() {
 function refreshSearchGroup() {
     $(".form-control").removeClass("search-start search-destination search-middle-point");
     $("#search-panel .fa-map-marker").removeClass("start-icon destination-icon middle-point-icon");
-    var allInputs = $("#search-group").children();
-    for (var i = 0; i < allInputs.length; i++) {
+    var allForms = $("#search-group").children();
+    for (var i = 0; i < allForms.length; i++) {
         if (i == 0) {
-            allInputs.eq(i).find("i").addClass("start-icon");
-            allInputs.eq(i).find("input").addClass("search-start");
-        } else if (i == (allInputs.length - 1)) {
-            allInputs.eq(i).find("i").addClass("destination-icon");
-            allInputs.eq(i).find("input").addClass("search-destination");
+            allForms.eq(i).find("i").addClass("start-icon");
+            allForms.eq(i).find("input").addClass("search-start");
+        } else if (i == (allForms.length - 1)) {
+            allForms.eq(i).find("i").addClass("destination-icon");
+            allForms.eq(i).find("input").addClass("search-destination");
         } else {
-            allInputs.eq(i).find("i").addClass("middle-point-icon");
-            allInputs.eq(i).find("input").addClass("search-middle-point"); //zatim k nicemu nepouzivam
+            allForms.eq(i).find("i").addClass("middle-point-icon");
+            allForms.eq(i).find("input").addClass("search-middle-point"); //zatim k nicemu nepouzivam
         }
     }
+}
+function findCoordinatesFromAdress(address, index) {
+    $.ajax({
+        url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/suggest/nearby?input=" + address
+        + "&size=1" + "&lat=" + map.getCenter().lat + "&lon=" + map.getCenter().lng,
+        success: function (data) {
+            //console.log(data);
+            console.log(address);
+            console.log(index);
+            console.log(data.features[0].geometry.coordinates);
+            //return data.features[0].geometry.coordinates;
+        },
+        error: function () {
+            console.log("SERVER ERROR")
+        }
+    });
 }
 //
 function assignMarkersToInputs() {
@@ -242,6 +267,8 @@ function assignMarkersToInputs() {
     var allInputs = $("#search-group").children();
     for (var i = 0; i < allInputs.length; i++) {
         var text = allInputs.eq(i).find("input").val();
+        findCoordinatesFromAdress(text, i);
+        //console.log();
         //if input is not empty {
         //
         //    allMarkers[i].setLatLng([50.07989, 14.39844]).addTo(map);
@@ -251,14 +278,40 @@ function assignMarkersToInputs() {
     }
 }
 //
+var dragIndex;
 $(function () {
     $("#search-group").sortable({
-        handle: ".drag-drop", update: function (event, ui) {
+        handle: ".drag-drop",
+        update: function (event, ui) {
+
+
             refreshSearchGroup();
             //console.log(event);
-            //console.log(ui);
+            //if prev index != curr index then change poradi
+            var dropIndex = ui.item.index();
+            console.log("from: " + dragIndex)
+            console.log("to: " + dropIndex);
+
+            var markerToMove = allMarkers[dragIndex];
+            allMarkers.splice(dragIndex, 1);
+            allMarkers.splice(dropIndex, 0, markerToMove);
+            allMarkers[0].setIcon(startIcon);
+            allMarkers[allMarkers.length-1].setIcon(destinationIcon);
+            for(var i = 1; i<allMarkers.length-1; i++) {
+                allMarkers[i].setIcon(middlePointIcon);
+            }
+            console.log("after");
+            console.log(allMarkers);
             //assignMarkersToInputs();
+        },
+        start: function (event, ui) {
+            console.log("before");
+            console.log(allMarkers);
+            dragIndex = ui.item.index();
         }
+        //stop: function (event, ui) {
+        //    console.log("to: " + ui.item.index());
+        //}
     });
     //$("#search-group").disableSelection(); //// nefunguje ve firefoxu
 });

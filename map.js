@@ -9,10 +9,10 @@ $(document).ready(function () {
         text: "Pøidat zaèátek",
         iconCls: "fa fa-map-marker start-icon",
         callback: function () {
-            if (startMarker.getLatLng() != null) {
+            if (allMarkers[0].getLatLng() != null) {
                 addNewStartPoint();
             }
-            startMarker.setLatLng(lastClickedPosition).addTo(map);
+            allMarkers[0].setLatLng(lastClickedPosition).addTo(map);
             findAddressFromCoordinates(0, lastClickedPosition);
             getPlans();
         }
@@ -20,10 +20,10 @@ $(document).ready(function () {
         text: "Pøidat destinaci",
         iconCls: "fa fa-map-marker destination-icon",
         callback: function () {
-            if (destinationMarker.getLatLng() != null) {
+            if (allMarkers[allMarkers.length-1].getLatLng() != null) {
                 onAddPointClick();
             }
-            destinationMarker.setLatLng(lastClickedPosition).addTo(map);
+            allMarkers[allMarkers.length-1].setLatLng(lastClickedPosition).addTo(map);
             findAddressFromCoordinates(allMarkers.length - 1, lastClickedPosition);
             getPlans();
         }

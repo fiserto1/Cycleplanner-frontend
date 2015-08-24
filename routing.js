@@ -68,6 +68,8 @@ function removeAllRoutesFromMap() {
 }
 
 function getPlans() {
+    var startMarker = allMarkers[0];
+    var destinationMarker = allMarkers[allMarkers.length-1];
     if (destinationMarker.getLatLng() != null && startMarker.getLatLng() != null) {
         //console.log("Start");
         var target = document.getElementById('map');
