@@ -37,10 +37,70 @@
     <script src="routing.js"></script>
     <script src="markers.js"></script>
     <script src="collapse.js"></script>
+    <script src="sidebar.js"></script>
 
     <title>Cykloplánovaè</title>
 </head>
 <body>
+<div id="menu-panel" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+<div class="modal-sm">
+    <div class="modal-content">
+        <div class="title">
+            <strong>Cykloplánovaè</strong>
+        </div>
+
+        <div class="list-group row">
+            <a class="list-group-item col-md-12" href="#">O Cykloplánovaèi</a>
+            <a class="list-group-item col-md-12" href="#">Zpìtná vazba</a>
+            <a class="list-group-item col-md-12" href="#">Chci API!</a>
+            <a class="list-group-item col-md-12" href="#" data-toggle="collapse" data-target="#language-dropdown">
+                Zmìnit jazyk
+                <i class="fa fa-chevron-left" id="language-dropdown-icon"></i>
+            </a>
+            <div id="language-dropdown" class="collapse  col-md-12">
+                <div class="row">
+                    <a class="list-group-item col-md-12" href="#">English</a>
+                    <a class="list-group-item col-md-12" href="#">Èeština</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="credits">
+            <div class="row">
+                <a class="col-md-6" href="http://www.cvut.cz/">
+                    <img src="img/CVUT_40.png">
+                </a>
+                <a class="col-md-6" href="http://agents.fel.cvut.cz/projects/agents4its">
+                    <img src="img/ATG_40.png">
+                </a>
+            </div>
+            <div class="row">
+                <a class="col-md-6" href="https://play.google.com/store/apps/details?id=cz.agents.cycleplanner">
+                    <img src="img/google_play.png">
+                </a>
+                <a class="col-md-6" href="http://www.dopracenakole.net/">
+                    <img src="img/dpnk.png">
+                </a>
+            </div>
+            <div class="row">
+
+                <div class="social-button col-md-6">
+                    <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 106px; height: 24px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 106px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1440424828065" name="I0_1440424828065" src="https://apis.google.com/u/0/se/0/_/+1/fastbutton?usegapi=1&amp;align=right&amp;hl=en_US&amp;origin=http%3A%2F%2Ftransport.felk.cvut.cz&amp;url=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.cs.B9QgnH3UoN4.O%2Fm%3D__features__%2Fam%3DEQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAGLTcCPRxTCGqjPRJ2Wt8d81qhGCZ63o-w#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh&amp;id=I0_1440424828065&amp;parent=http%3A%2F%2Ftransport.felk.cvut.cz&amp;pfname=&amp;rpctoken=22206277" data-gapiattached="true" title="+1"></iframe></div>
+                </div>
+                <div class="social-button twitter col-md-6">
+                    <iframe id="twitter-widget-i1440424827774557986" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" src="http://platform.twitter.com/widgets/tweet_button.eb4cec9922931259d39f7e6e609af430.en.html#_=1440424827866&amp;count=horizontal&amp;dnt=false&amp;id=twitter-widget-i1440424827774557986&amp;lang=en&amp;original_referer=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;size=m&amp;text=Otev%C5%99en%C3%BD%20pl%C3%A1nova%C4%8D%20cyklotras&amp;type=share&amp;url=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F" style="position: static; visibility: visible; width: 81px; height: 20px;"></iframe>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+                <div class="social-button-wide" id="fb-button">
+                        <div class="fb-like fb_iframe_widget" data-href="http://transport.felk.cvut.cz/cykloplanovac/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" id="fb-like" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=&amp;container_width=295&amp;href=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;layout=button_count&amp;locale=cs_CZ&amp;sdk=joey&amp;share=true&amp;show_faces=false"><span style="vertical-align: bottom; width: 165px; height: 20px;"><iframe name="f2b767e7e8" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="http://www.facebook.com/v2.0/plugins/like.php?action=like&amp;app_id=&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FPqAPbTuc2cR.js%3Fversion%3D41%23cb%3Df36e5e9918%26domain%3Dtransport.felk.cvut.cz%26origin%3Dhttp%253A%252F%252Ftransport.felk.cvut.cz%252Ff33e10938%26relation%3Dparent.parent&amp;container_width=295&amp;href=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;layout=button_count&amp;locale=cs_CZ&amp;sdk=joey&amp;share=true&amp;show_faces=false" style="border: none; visibility: visible; width: 165px; height: 20px;" class=""></iframe></span></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
 <div id="map"></div>
 <div id='legend'>
     <ul id="myTab" class="nav nav-tabs">
@@ -155,7 +215,7 @@
             </div>
         </div>
 
-        <div class="col-md-11">
+        <div class="col-md-10">
             <div class="row">
                 <div class="action-icon col-md-1">
                     <i class="glyphicon glyphicon-plus" id="addPointIcon" aria-hidden="true"></i>
@@ -164,6 +224,9 @@
                     <i class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></i>
                 </div>
             </div>
+        </div>
+        <div class="col-md-1 action-icon">
+            <i class="fa fa-bars" id="menu-icon" aria-hidden="true" data-toggle="modal" data-target="#menu-panel"></i>
         </div>
         <div class="col-md-1 action-icon">
             <i class="fa fa-cog" id="settings-icon" aria-hidden="true" data-toggle="collapse" data-target="#settings-panel"></i>

@@ -16,7 +16,9 @@
 }
 .col-md-12,
 .col-md-1,
-.col-md-11 {
+.col-md-11,
+.col-md-10,
+.col-md-6 {
   padding: 0;
 }
 .nav-tabs > li {
@@ -37,6 +39,14 @@
   border: none;
   color: #333333;
   background-color: #e6e6e6;
+}
+.modal-sm {
+  height: 100%;
+}
+.modal-content {
+  height: 100%;
+  border: none;
+  border-radius: 0;
 }
 .leaflet-contextmenu {
   -webkit-box-shadow: black 3px 3px 10px;
@@ -59,6 +69,33 @@
   margin: 0;
   font-size: 16px;
   line-height: 30px;
+}
+.title {
+  text-align: center;
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+a.list-group-item.col-md-12 {
+  border-radius: 0;
+}
+#language-dropdown-icon {
+  padding-left: 60%;
+}
+#language-dropdown .list-group-item {
+  padding-left: 50px;
+}
+.list-group-item {
+  line-height: 40px;
+  padding-left: 20px;
+}
+.credits {
+  padding-top: 20px;
+}
+.credits .row {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 #map {
   position: absolute;
