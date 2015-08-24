@@ -3,9 +3,9 @@
  */
 $(document).ready(function(){
     $("#settings-panel").on("hide.bs.collapse", function(){
-        $("#settingsIcon").css("color", "#333333");
+        $("#settings-icon").css("color", "#333333");
     });
     $("#settings-panel").on("show.bs.collapse", function(){
-        $("#settingsIcon").css("color", "deepskyblue");
+        $("#settings-icon").css("color", "deepskyblue");
     });
 });
