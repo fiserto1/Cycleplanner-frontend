@@ -54,50 +54,9 @@ $(document).ready(function () {
     //    "Streets": streetsMap
     //};
 
-    var cycleLayer = L.geoJson(cycleRoutes, {
-        style: function () {
-            return {
-                color: "purple",
-                opacity: 0.5,
-                weight: 2,
-                dashArray: "5, 10"
-            };
-        },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.description);
-        }
-    });
-
-    var myIcon = L.AwesomeMarkers.icon({
-        prefix: 'fa', //font awesome rather than bootstrap
-        markerColor: 'green',
-        //spin: true,
-        icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
-    });
-    var signLayer = L.geoJson(cycleSigns, {
-        style: function () {
-            return {
-                icon: myIcon
-            };
-        },
-        //filter: function(feature, layer) {
-        //    return (feature.properties.DRUH == 302)
-        //},
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.POPIS);
-        }
-    });
-
-    var overlayMaps = {
-        "Cyklostezky": cycleLayer,
-        "Cykloznaèky": signLayer
-    };
-
-    L.control.locate({position: 'topright', keepCurrentZoomLevel: true}).addTo(map);
-    L.control.layers(null, overlayMaps).addTo(map);
+    getCycleLayerFromFile();
 
     legend = L.control({position: 'bottomright'});
-
     legend.onAdd = function (map) {
         return document.getElementById("legend");
     };
@@ -117,6 +76,58 @@ $(document).ready(function () {
     legend.addTo(map);
 });
 
+function getCycleLayerFromFile() {
+    $.getJSON("./json/DOP_Cyklotrasy_l.json", function(data) {
+        var cycleLayer = L.geoJson(data, {
+            style: function () {
+                return {
+                    color: "purple",
+                    opacity: 0.5,
+                    weight: 2,
+                    dashArray: "5, 10"
+                };
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(feature.properties.CISLO_TRAS);
+            }
+        });
+        getRackLayerFromFile(cycleLayer);
+    });
+}
+
+function getRackLayerFromFile(cycleLayer) {
+    $.getJSON("./json/DOP_CykloZnacky_b.json", function(data) {
+        var myIcon = L.AwesomeMarkers.icon({
+            prefix: 'fa', //font awesome rather than bootstrap
+            markerColor: 'green',
+            extraClasses: 'rack-marker',
+            //spin: true,
+            icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
+        });
+        var rackLayer = L.geoJson(data, {
+            style: function () {
+                return {
+                    icon: myIcon
+                };
+            },
+            filter: function(feature, layer) {
+                return (feature.properties.DRUH == 101);
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(feature.properties.POPIS);
+            },
+            pointToLayer: function(feature, latlng) {
+                return L.marker(latlng, {icon: myIcon});
+            }
+        });
+        var overlayMaps = {
+            "Cyklostezky": cycleLayer,
+            "Stojany": rackLayer
+        };
+        L.control.locate({position: 'topright', keepCurrentZoomLevel: true}).addTo(map);
+        L.control.layers(null, overlayMaps).addTo(map);
+    });
+}
 
 $(function () {
     map.on("contextmenu", function (e) {
