@@ -140,7 +140,7 @@ a.list-group-item.col-md-12 {
 }
 #chart-panel {
   position: relative;
-  z-index: 8888;
+  z-index: 888;
   -webkit-box-shadow: black 3px 3px 10px;
   -moz-box-shadow: black 3px 3px 10px;
   box-shadow: black 3px 3px 10px;
