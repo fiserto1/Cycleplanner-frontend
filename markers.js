@@ -245,53 +245,30 @@ function refreshSearchGroup() {
         }
     }
 }
-function findCoordinatesFromAdress(address, index) {
-    $.ajax({
-        url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/suggest/nearby?input=" + address
-        + "&size=1" + "&lat=" + map.getCenter().lat + "&lon=" + map.getCenter().lng,
-        success: function (data) {
-            //console.log(data);
-            console.log(address);
-            console.log(index);
-            console.log(data.features[0].geometry.coordinates);
-            //return data.features[0].geometry.coordinates;
-        },
-        error: function () {
-            console.log("SERVER ERROR")
-        }
-    });
-}
-//
-function assignMarkersToInputs() {
+//function findCoordinatesFromAdress(address, index) {
+//    $.ajax({
+//        url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/suggest/nearby?input=" + address
+//        + "&size=1" + "&lat=" + map.getCenter().lat + "&lon=" + map.getCenter().lng,
+//        success: function (data) {
+//            //console.log(data);
+//            console.log(address);
+//            console.log(index);
+//            console.log(data.features[0].geometry.coordinates);
+//            //return data.features[0].geometry.coordinates;
+//        },
+//        error: function () {
+//            console.log("SERVER ERROR")
+//        }
+//    });
+//}
 
-    var allInputs = $("#search-group").children();
-    for (var i = 0; i < allInputs.length; i++) {
-        var text = allInputs.eq(i).find("input").val();
-        findCoordinatesFromAdress(text, i);
-        //console.log();
-        //if input is not empty {
-        //
-        //    allMarkers[i].setLatLng([50.07989, 14.39844]).addTo(map);
-        //} else {
-        //    map.removeLayer(allMarkers[i]);
-        //}
-    }
-}
-//
 var dragIndex;
 $(function () {
     $("#search-group").sortable({
         handle: ".drag-drop",
         update: function (event, ui) {
-
-
             refreshSearchGroup();
-            //console.log(event);
-            //if prev index != curr index then change poradi
             var dropIndex = ui.item.index();
-            console.log("from: " + dragIndex)
-            console.log("to: " + dropIndex);
-
             var markerToMove = allMarkers[dragIndex];
             allMarkers.splice(dragIndex, 1);
             allMarkers.splice(dropIndex, 0, markerToMove);
@@ -300,13 +277,9 @@ $(function () {
             for(var i = 1; i<allMarkers.length-1; i++) {
                 allMarkers[i].setIcon(middlePointIcon);
             }
-            console.log("after");
-            console.log(allMarkers);
-            //assignMarkersToInputs();
+            getPlans();
         },
         start: function (event, ui) {
-            console.log("before");
-            console.log(allMarkers);
             dragIndex = ui.item.index();
         }
         //stop: function (event, ui) {
