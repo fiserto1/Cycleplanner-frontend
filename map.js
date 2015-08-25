@@ -38,6 +38,7 @@ $(document).ready(function () {
     map = L.map('map', {
         layers: streetsMap,
         zoomControl: false,
+        attributionControl: false,
         contextmenu: true,
         contextmenuItems: contextMenuItems
     }).setView([50.08165, 14.40505], 14);
