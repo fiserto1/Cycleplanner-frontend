@@ -1222,7 +1222,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// Support: IE8, Opera 11-12.16
 			// Nothing should be selected when empty strings follow ^= or $= or *=
 			// The test attribute must be unknown in Opera but "safe" for WinRT
-			// http://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
+			// http://msdn.microsoft.com/en-US-us/library/ie/hh465388.aspx#attribute_section
 			if ( div.querySelectorAll("[msallowcapture^='']").length ) {
 				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
 			}
@@ -2602,7 +2602,7 @@ support.sortDetached = assert(function( div1 ) {
 
 // Support: IE<8
 // Prevent attribute/property "interpolation"
-// http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
+// http://msdn.microsoft.com/en-US-us/library/ms536429%28VS.85%29.aspx
 if ( !assert(function( div ) {
 	div.innerHTML = "<a href='#'></a>";
 	return div.firstChild.getAttribute("href") === "#" ;
@@ -4264,7 +4264,7 @@ var rcheckableType = (/^(?:checkbox|radio)$/i);
 		eventName = "on" + i;
 
 		if ( !(support[ i + "Bubbles" ] = eventName in window) ) {
-			// Beware of CSP restrictions (https://developer.mozilla.org/en/Security/CSP)
+			// Beware of CSP restrictions (https://developer.mozilla.org/en-US/Security/CSP)
 			div.setAttribute( eventName, "t" );
 			support[ i + "Bubbles" ] = div.attributes[ eventName ].expando === false;
 		}
@@ -6453,7 +6453,7 @@ var
 	ropacity = /opacity\s*=\s*([^)]*)/,
 
 	// swappable if display is none or starts with table except "table", "table-cell", or "table-caption"
-	// see here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	// see here for display values: https://developer.mozilla.org/en-US-US/docs/CSS/display
 	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
 	rnumsplit = new RegExp( "^(" + pnum + ")(.*)$", "i" ),
 	rrelNum = new RegExp( "^([+-])=(" + pnum + ")", "i" ),
@@ -8259,7 +8259,7 @@ jQuery.extend({
 });
 
 // Some attributes require a special call on IE
-// http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
+// http://msdn.microsoft.com/en-US-us/library/ms536429%28VS.85%29.aspx
 if ( !support.hrefNormalized ) {
 	// href/src property should get the full normalized URL (#10299/#12915)
 	jQuery.each([ "href", "src" ], function( i, name ) {
@@ -9576,7 +9576,7 @@ jQuery.ajaxSettings.xhr = window.ActiveXObject !== undefined ?
 
 			// Support: IE7-8
 			// oldIE XHR does not support non-RFC2616 methods (#13240)
-			// See http://msdn.microsoft.com/en-us/library/ie/ms536648(v=vs.85).aspx
+			// See http://msdn.microsoft.com/en-US-us/library/ie/ms536648(v=vs.85).aspx
 			// and http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9
 			// Although this check for six methods instead of eight
 			// since IE also does not support "trace" and "connect"

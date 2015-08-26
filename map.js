@@ -4,28 +4,40 @@ var map;
 var legend;
 var lastClickedPosition = null;
 
-$(document).ready(function () {
+function addStartClick() {
+    if (allMarkers[0].getLatLng() != null) {
+        addNewStartPoint();
+    }
+    allMarkers[0].setLatLng(lastClickedPosition).addTo(map);
+    findAddressFromCoordinates(0, lastClickedPosition);
+    getPlans();
+}
+
+function addDestinationClick() {
+    if (allMarkers[allMarkers.length-1].getLatLng() != null) {
+        onAddPointClick();
+    }
+    allMarkers[allMarkers.length-1].setLatLng(lastClickedPosition).addTo(map);
+    findAddressFromCoordinates(allMarkers.length - 1, lastClickedPosition);
+    getPlans();
+}
+
+function initializeMap() {
+
+    //var addStart = $.t("contextmenu.add-start");
+    //console.log(addStart);
+    //console.log("raz");
     var contextMenuItems = [{
-        text: "Pøidat zaèátek",
+        text: $.t("contextmenu.add-start"),
         iconCls: "fa fa-map-marker start-icon",
-        callback: function () {
-            if (allMarkers[0].getLatLng() != null) {
-                addNewStartPoint();
-            }
-            allMarkers[0].setLatLng(lastClickedPosition).addTo(map);
-            findAddressFromCoordinates(0, lastClickedPosition);
-            getPlans();
+        callback: function() {
+            addStartClick();
         }
     }, {
-        text: "Pøidat destinaci",
+        text: $.t("contextmenu.add-destination"),
         iconCls: "fa fa-map-marker destination-icon",
-        callback: function () {
-            if (allMarkers[allMarkers.length-1].getLatLng() != null) {
-                onAddPointClick();
-            }
-            allMarkers[allMarkers.length-1].setLatLng(lastClickedPosition).addTo(map);
-            findAddressFromCoordinates(allMarkers.length - 1, lastClickedPosition);
-            getPlans();
+        callback: function() {
+            addDestinationClick()
         }
     }];
 
@@ -42,20 +54,17 @@ $(document).ready(function () {
         contextmenu: true,
         contextmenuItems: contextMenuItems
     }).setView([50.08165, 14.40505], 14);
+    map.on("contextmenu", function (e) {
+        lastClickedPosition = e.latlng;
+        return false;
+
+    });
+
     var zoomControl = L.control.zoom({position: "topright"});
     zoomControl.addTo(map);
 
-    //var cycleMap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    //    maxZoom: 18,
-    //    id: 'fiserto1.mlpdi4he',
-    //    accessToken: 'pk.eyJ1IjoiZmlzZXJ0bzEiLCJhIjoiNmE1NzkzMjQ5ZjdhYTMxZDllNzhlNmQxNGMzZGIyMTAifQ.2xblvAvcBqHdhd3GnKNrbQ'
-    //});
-    //var baseMaps = {
-    //    "Streets + cyklostezky": cycleMap,
-    //    "Streets": streetsMap
-    //};
-
-    getCycleLayerFromFile();
+    //asynchronous
+    addControlLayers();
 
     legend = L.control({position: 'bottomright'});
     legend.onAdd = function (map) {
@@ -75,9 +84,12 @@ $(document).ready(function () {
         //TODO zapnout context menu
     });
     legend.addTo(map);
-});
 
-function getCycleLayerFromFile() {
+    setAC();
+    initializeMarkers();
+}
+
+function addControlLayers() {
     $.getJSON("./json/DOP_Cyklotrasy_l.json", function(data) {
         var cycleLayer = L.geoJson(data, {
             style: function () {
@@ -121,21 +133,18 @@ function getRackLayerFromFile(cycleLayer) {
                 return L.marker(latlng, {icon: myIcon});
             }
         });
-        var overlayMaps = {
-            "Cyklostezky": cycleLayer,
-            "Stojany": rackLayer
-        };
+
+        var overlayMaps = {};
+        overlayMaps[$.t("control-layers.cycle-paths")] = cycleLayer;
+        overlayMaps[$.t("control-layers.cycle-racks")] = rackLayer;
+
         L.control.locate({position: 'topright', keepCurrentZoomLevel: true}).addTo(map);
         L.control.layers(null, overlayMaps).addTo(map);
     });
 }
 
 $(function () {
-    map.on("contextmenu", function (e) {
-        lastClickedPosition = e.latlng;
-        return false;
 
-    });
 });
 
 function findAddressFromCoordinates(inputIndex, latlng) {

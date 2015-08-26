@@ -9,7 +9,7 @@ var startIcon, destinationIcon, middlePointIcon;
 //var startMarker, destinationMarker;
 var allMarkers = [];
 
-$(document).ready(function() {
+function initializeMarkers() {
 
     startIcon = L.AwesomeMarkers.icon({
         prefix: 'fa', //font awesome rather than bootstrap
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
     setShowCloseOnFocus($("input"));
 
-});
+}
 
 function onMapClick(e, input) {
     //TODO pouzit $(document.activeElement) misto input... usetri starosti ktery input je aktivovany

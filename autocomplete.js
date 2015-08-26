@@ -6,9 +6,6 @@
 //    { value: 'Anglicka 154', data: L.latLng(50.07697, 14.43226) },
 //    { value: 'Parlerova 1235', data: L.latLng(50.08744, 14.38728) },
 //];
-$(document).ready(function() {
-    setAC();
-});
 
 function setAC() {
 

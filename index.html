@@ -25,9 +25,11 @@
     <script type="text/javascript" src="externaljs/L.Control.Locate.js"></script>
     <script type="text/javascript" src="externaljs/leaflet.contextmenu.js"></script>
     <script type="text/javascript" src="externaljs/spin.min.js"></script>
+    <script type="text/javascript" src="externaljs/i18next-1.10.1.js"></script>
 
 
     <link rel="stylesheet" href="main.css" />
+    <script src="translation.js"></script>
     <script src="map.js"></script>
     <script src="spinner.js"></script>
     <script src="autocomplete.js"></script>
@@ -42,9 +44,9 @@
 <body>
 <div id="menu-panel" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 <div class="modal-sm">
-    <div class="modal-content">
+    <div class="modal-content left-sidebar">
         <div class="title">
-            <strong>Cykloplánovaè</strong>
+            <strong data-i18n="left-sidebar.title"></strong>
         </div>
         <div class="row bicycles">
             <i class="fa fa-bicycle col-md-1"></i>
@@ -59,17 +61,16 @@
         </div>
 
         <div class="list-group row">
-            <a class="list-group-item col-md-12" href="#">O Cykloplánovaèi</a>
-            <a class="list-group-item col-md-12" href="#">Zpìtná vazba</a>
-            <a class="list-group-item col-md-12" href="#">Chci API!</a>
+            <a class="list-group-item col-md-12" href="#" data-i18n="left-sidebar.menu.about"></a>
+            <a class="list-group-item col-md-12" href="#" data-i18n="left-sidebar.menu.feedback"></a>
+            <a class="list-group-item col-md-12" href="#" data-i18n="left-sidebar.menu.api"></a>
             <a class="list-group-item col-md-12" href="#" data-toggle="collapse" data-target="#language-dropdown">
-                Zmìnit jazyk
-                <i class="fa fa-chevron-left" id="language-dropdown-icon"></i>
+                <span class="col-md-11" data-i18n="left-sidebar.menu.language"></span><i class="fa fa-chevron-left col-md-1" id="language-dropdown-icon"></i>
             </a>
             <div id="language-dropdown" class="collapse  col-md-12">
                 <div class="row">
-                    <a class="list-group-item col-md-12" href="#">English</a>
-                    <a class="list-group-item col-md-12" href="#">Èeština</a>
+                    <a id="english" class="list-group-item col-md-12" href="#">English</a>
+                    <a id="czech" class="list-group-item col-md-12" href="#">Èeština</a>
                 </div>
             </div>
         </div>
@@ -114,16 +115,16 @@
 <div id='legend'>
     <ul id="myTab" class="nav nav-tabs">
         <li class="active legend-button">
-            <a href="#elevation-legend" data-toggle="tab">Pøevýšení</a>
+            <a href="#elevation-legend" data-toggle="tab" data-i18n="legend.tabs.elevation"></a>
         </li>
         <li class="legend-button">
-            <a href="#speed-legend" data-toggle="tab">Rychlost</a>
+            <a href="#speed-legend" data-toggle="tab" data-i18n="legend.tabs.speed"></a>
         </li>
         <li class="legend-button">
-            <a href="#surface-legend" data-toggle="tab">Povrch</a>
+            <a href="#surface-legend" data-toggle="tab" data-i18n="legend.tabs.surface"></a>
         </li>
         <li class="legend-button">
-            <a href="#road-type-legend" data-toggle="tab">Typ trasy</a>
+            <a href="#road-type-legend" data-toggle="tab" data-i18n="legend.tabs.road-type"></a>
         </li>
     </ul>
     <div id="myTabContent" class="tab-content">
@@ -136,13 +137,13 @@
                 <span class="level5"></span>
                 <span class="level7"></span>
                 <span class="level8"></span>
-                <label>Klesání</label>
+                <label data-i18n="legend.elevation.descent"></label>
                 <label></label>
                 <label></label>
-                <label>Rovina</label>
+                <label data-i18n="legend.elevation.plain"></label>
                 <label></label>
                 <label></label>
-                <label>Stoupání</label>
+                <label data-i18n="legend.elevation.gradient"></label>
             </nav>
         </div>
         <div class="tab-pane fade" id="speed-legend">
@@ -154,13 +155,13 @@
                 <span class="level5"></span>
                 <span class="level7"></span>
                 <span class="level8"></span>
-                <label>Rychlá</label>
+                <label data-i18n="legend.speed.fast"></label>
                 <label></label>
                 <label></label>
-                <label>Støední</label>
+                <label data-i18n="legend.speed.medium"></label>
                 <label></label>
                 <label></label>
-                <label>Pomalá</label>
+                <label data-i18n="legend.speed.slow"></label>
             </nav>
         </div>
         <div class="tab-pane fade" id="surface-legend">
@@ -169,10 +170,10 @@
                 <span class="level4"></span>
                 <span class="level5"></span>
                 <span class="level8"></span>
-                <label>Hladký</label>
-                <label>NEDEF</label>
-                <label>UNPAVED</label>
-                <label>Dlaž. kostky</label>
+                <label data-i18n="legend.surface.paved-smooth"></label>
+                <label data-i18n="legend.surface.undefined"></label>
+                <label data-i18n="legend.surface.unpaved"></label>
+                <label data-i18n="legend.surface.paved-cobblestone"></label>
             </nav>
         </div>
         <div class="tab-pane fade" id="road-type-legend">
@@ -185,14 +186,14 @@
                 <span class="level6"></span>
                 <span class="level7"></span>
                 <span class="level8"></span>
-                <label>Cyklo</label>
-                <label>Pìší</label>
-                <label>STEPS</label>
-                <label>NEDEF</label>
-                <label>ROAD</label>
-                <label>3.tøídy</label>
-                <label>2.tøídy</label>
-                <label>1.tøídy</label>
+                <label data-i18n="legend.road-type.cycleway">Cyklo</label>
+                <label data-i18n="legend.road-type.footway">Pìší</label>
+                <label data-i18n="legend.road-type.steps">STEPS</label>
+                <label data-i18n="legend.road-type.undefined">NEDEF</label>
+                <label data-i18n="legend.road-type.road">ROAD</label>
+                <label data-i18n="legend.road-type.tertiary">3.tøídy</label>
+                <label data-i18n="legend.road-type.secondary">2.tøídy</label>
+                <label data-i18n="legend.road-type.primary">1.tøídy</label>
             </nav>
         </div>
     </div>

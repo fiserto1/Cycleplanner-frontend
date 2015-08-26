@@ -86,15 +86,15 @@
 a.list-group-item.col-md-12 {
   border-radius: 0;
 }
-#language-dropdown-icon {
-  padding-left: 60%;
-}
 #language-dropdown .list-group-item {
   padding-left: 50px;
 }
 .list-group-item {
   line-height: 40px;
   padding-left: 20px;
+}
+#language-dropdown-icon {
+  line-height: 40px;
 }
 .credits {
   padding-top: 20px;
