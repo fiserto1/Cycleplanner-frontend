@@ -1,0 +1,10 @@
+{
+  "app": {
+    "name": "i18next"
+  },
+  "lnav": {
+    "home": "O cykloplanovaciii",
+    "page1": "Zpetna vazba",
+    "page2": "Chci API!"
+  }
+}

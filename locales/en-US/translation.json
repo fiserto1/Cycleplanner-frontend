@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "i18next"
+  },
+  "left-sidebar": {
+    "title": "Cycleplanner",
+    "menu": {
+      "about": "About",
+      "feedback": "Feedback",
+      "api": "I want API!",
+      "language": "Change language"
+    }
+  },
+  "contextmenu": {
+    "add-start": "Add start",
+    "add-destination": "Add destination"
+  },
+  "control-layers": {
+    "cycle-paths": "Cycle paths",
+    "cycle-racks": "Cycle racks"
+  },
+  "legend": {
+    "tabs": {
+      "elevation": "Elevation",
+      "speed": "Speed",
+      "surface": "Surface",
+      "road-type": "Road type"
+    },
+    "elevation": {
+      "descent": "Descent",
+      "plain": "Plain",
+      "gradient": "Gradient"
+    },
+    "speed": {
+      "fast": "Fast",
+      "medium": "Medium",
+      "slow": "Slow"
+    },
+    "surface": {
+      "paved-smooth": "Smooth",
+      "undefined": "Undef.",
+      "unpaved": "Unpaved",
+      "paved-cobblestone": "Cobblestone"
+    },
+    "road-type": {
+      "cycleway": "Cycleway",
+      "footway": "Footway",
+      "steps": "Steps",
+      "road": "Road",
+      "tertiary": "Tertiary",
+      "secondary": "Secondary",
+      "primary": "Primary",
+      "undefined": "Undef."
+    }
+  }
+}

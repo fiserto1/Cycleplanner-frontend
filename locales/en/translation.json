@@ -1,0 +1,19 @@
+{
+  "app": {
+    "name": "i18next"
+  },
+  "lnav": {
+    "home": "Abouttttt",
+    "page1": "Feedback",
+    "page2": "I want API!"
+  },
+  "left-sidebar": {
+    "title": "Cycleplanner",
+    "menu": {
+      "about": "About",
+      "feedback": "Feedback",
+      "api": "I want API!",
+      "language": "Change language"
+    }
+  }
+}

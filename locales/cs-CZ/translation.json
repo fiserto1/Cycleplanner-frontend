@@ -1,0 +1,56 @@
+﻿{
+  "app": {
+    "name": "i18next"
+  },
+  "left-sidebar": {
+    "title": "Cykloplánovač",
+    "menu": {
+      "about": "O Cykloplánovači",
+      "feedback": "Zpětná vazba",
+      "api": "Chci API!",
+      "language": "Změnit jazyk"
+    }
+  },
+  "contextmenu": {
+    "add-start": "Přidat začátek",
+    "add-destination": "Přidat destinaci"
+  },
+  "control-layers": {
+    "cycle-paths": "Cyklostezky",
+    "cycle-racks": "Stojany"
+  },
+  "legend": {
+    "tabs": {
+      "elevation": "Stoupání",
+      "speed": "Rychlost",
+      "surface": "Povrch",
+      "road-type": "Typ trasy"
+    },
+    "elevation": {
+      "descent": "Klesání",
+      "plain": "Rovina",
+      "gradient": "Stoupání"
+    },
+    "speed": {
+      "fast": "Rychlá",
+      "medium": "Střední",
+      "slow": "Pomalá"
+    },
+    "surface": {
+      "paved-smooth": "Hladký",
+      "undefined": "Nedef.",
+      "unpaved": "UNPAVED",
+      "paved-cobblestone": "Dlaž. kostky"
+    },
+    "road-type": {
+      "cycleway": "Cyklo",
+      "footway": "Pěší",
+      "steps": "STEPS",
+      "road": "ROAD",
+      "tertiary": "3.třídy",
+      "secondary": "2.třídy",
+      "primary": "1.třídy",
+      "undefined": "Nedef."
+    }
+  }
+}

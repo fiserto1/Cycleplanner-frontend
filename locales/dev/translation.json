@@ -1,0 +1,10 @@
+{
+  "app": {
+    "name": "i18next"
+  },
+  "lnav": {
+    "home": "About??",
+    "page1": "Feedback",
+    "page2": "I want API!"
+  }
+}
