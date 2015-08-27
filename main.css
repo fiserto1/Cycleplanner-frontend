@@ -11,6 +11,12 @@
 .row {
   margin: 0;
 }
+.input-group-addon {
+  padding: 0;
+}
+button.close {
+  padding: 6px 13px;
+}
 .glyphicon {
   top: 0;
 }
@@ -130,6 +136,7 @@ a.list-group-item.col-md-12 {
   border: none;
 }
 .remove-point {
+  padding: 6px 12px;
   color: white;
 }
 #routes-panel,
@@ -221,7 +228,8 @@ a.list-group-item.col-md-12 {
   background-color: white;
 }
 #search-group i {
-  font-size: 18px;
+  font-size: 17px;
+  padding: 6px 14px;
 }
 .start-icon {
   color: dodgerblue;
@@ -235,14 +243,14 @@ a.list-group-item.col-md-12 {
 .disabled-icon {
   color: gray;
 }
-#changeDirectionIcon {
+#change-direction-icon {
   -ms-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-#addPointIcon,
-#changeDirectionIcon {
-  float: left;
+#menu-button,
+#settings-button {
+  float: right;
 }
 /*.vCenter {*/
 /*text-align:center;*/

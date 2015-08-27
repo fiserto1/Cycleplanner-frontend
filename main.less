@@ -26,6 +26,12 @@
 .row {
   margin: 0;
 }
+.input-group-addon {
+  padding: 0;
+}
+button.close {
+  padding: 6px 13px;
+}
 
 .glyphicon {
   top: 0;
@@ -156,7 +162,10 @@ a.list-group-item.col-md-12 {
 }
 
 .remove-point {
+  padding: 6px 12px;
   color: @panel-bgcolor;
+  button {
+  }
 }
 
 #routes-panel, #error-panel, #chart-panel, #legend {
@@ -270,7 +279,8 @@ a.list-group-item.col-md-12 {
 
   //icons
   i {
-    font-size: 18px;
+    font-size: 17px;
+    padding: 6px 14px;
   }
 }
 
@@ -286,14 +296,14 @@ a.list-group-item.col-md-12 {
 .disabled-icon {
   color: gray;
 }
-#changeDirectionIcon {
+#change-direction-icon {
   -ms-transform:rotate(90deg);
   -webkit-transform:rotate(90deg);
   transform: rotate(90deg);
 }
 
-#addPointIcon, #changeDirectionIcon {
-  float: left;
+#menu-button, #settings-button {
+  float: right;
 }
 
 
