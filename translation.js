@@ -21,14 +21,24 @@ function translateContextmenu(t) {
     secondIcon.prependTo(secondItem);
 }
 
+function translateTooltips(t) {
+    $(".menu-tooltip").attr("data-original-title", t("tooltip.menu"));
+    $(".settings-tooltip").attr("data-original-title", t("tooltip.settings"));
+    $(".change-dir-tooltip").attr("data-original-title", t("tooltip.change-direction"));
+    $(".add-point-tooltip").attr("data-original-title", t("tooltip.add-point"));
+}
+
 function changeLanguage(language) {
     i18n.setLng(language, function(err, t) {
         // translate nav
         $(".left-sidebar").i18n();
         translateContextmenu(t);
         translateLayerControl(t);
+        translateTooltips(t);
         $(".legend").i18n();
         $("#myTab").i18n();
+        $("#web-title").i18n();
+
         //console.log($(".leaflet-contextmenu-item").eq(0).children());
         // programatical access
         var appName = t("app.name");
@@ -36,15 +46,17 @@ function changeLanguage(language) {
 }
 
 $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
     i18n.init({ lng: "en-US" }, function(err, t) {
         // translate nav
         $(".left-sidebar").i18n();
-
+        translateTooltips(t);
         translateContextmenu(t);
         translateLayerControl(t);
         initializeMap();
         $(".legend").i18n();
         $("#myTab").i18n();
+        $("#web-title").i18n();
 
         //addStart = t("contextmenu.add-start");
         //console.log(addStart);

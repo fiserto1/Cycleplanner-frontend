@@ -39,7 +39,7 @@
     <script src="collapse.js"></script>
     <script src="sidebar.js"></script>
 
-    <title>Cykloplánovaè</title>
+    <title id="web-title" data-i18n="title"></title>
 </head>
 <body>
 <div id="menu-panel" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -227,18 +227,18 @@
 
         <div class="col-md-10">
             <div class="row">
-                <div class="action-icon col-md-1">
+                <div class="action-icon col-md-1 add-point-tooltip" data-toggle="tooltip" data-placement="bottom">
                     <i class="glyphicon glyphicon-plus" id="addPointIcon" aria-hidden="true"></i>
                 </div>
-                <div class="action-icon col-md-1">
+                <div class="action-icon col-md-1 change-dir-tooltip" data-toggle="tooltip" data-placement="bottom">
                     <i class="glyphicon glyphicon-transfer" id="changeDirectionIcon" aria-hidden="true"></i>
                 </div>
             </div>
         </div>
-        <div class="col-md-1 action-icon">
+        <div class="col-md-1 action-icon menu-tooltip" data-toggle="tooltip" data-placement="bottom">
             <i class="fa fa-bars" id="menu-icon" aria-hidden="true" data-toggle="modal" data-target="#menu-panel"></i>
         </div>
-        <div class="col-md-1 action-icon">
+        <div class="col-md-1 action-icon settings-tooltip" data-toggle="tooltip" data-placement="bottom">
             <i class="fa fa-cog" id="settings-icon" aria-hidden="true" data-toggle="collapse" data-target="#settings-panel"></i>
         </div>
 
