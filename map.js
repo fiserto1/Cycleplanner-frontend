@@ -110,12 +110,18 @@ function addControlLayers() {
 
 function getRackLayerFromFile(cycleLayer) {
     $.getJSON("./json/DOP_CykloZnacky_b.json", function(data) {
-        var myIcon = L.AwesomeMarkers.icon({
-            prefix: 'fa', //font awesome rather than bootstrap
-            markerColor: 'green',
-            extraClasses: 'rack-marker',
-            //spin: true,
-            icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
+        //var myIcon = L.AwesomeMarkers.icon({
+        //    prefix: 'fa', //font awesome rather than bootstrap
+        //    markerColor: 'green',
+        //    extraClasses: 'rack-marker',
+        //    //spin: true,
+        //    icon: 'my' //http://fortawesome.github.io/Font-Awesome/icons/
+        //});
+        var myIcon = L.divIcon({
+            iconSize: [20, 20],
+            iconAnchor: [10,10],
+            className: "bike-stand",
+            html: '<img src="img/bike_rack.png">'
         });
         var rackLayer = L.geoJson(data, {
             style: function () {
