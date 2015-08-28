@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!--<link rel="stylesheet" href="externalcss/bootstrap-modal-bs3patch.css">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />-->
@@ -62,8 +63,8 @@
         </div>
 
         <div class="list-group row">
-            <a class="list-group-item col-md-12" href="#" data-i18n="left-sidebar.menu.about"></a>
-            <a class="list-group-item col-md-12" href="#" data-i18n="left-sidebar.menu.feedback"></a>
+            <a class="list-group-item col-md-12" data-toggle="modal" href="#about-panel" data-i18n="left-sidebar.menu.about"></a>
+            <a class="list-group-item col-md-12" id="feedback-item" href="#" data-i18n="left-sidebar.menu.feedback"></a>
             <a class="list-group-item col-md-12" href="#" data-i18n="left-sidebar.menu.api"></a>
             <a class="list-group-item col-md-12" href="#" data-toggle="collapse" data-target="#language-dropdown">
                 <span class="col-md-11" data-i18n="left-sidebar.menu.language"></span><i class="fa fa-chevron-left col-md-1" id="language-dropdown-icon"></i>
@@ -111,6 +112,85 @@
     </div>
 </div>
 </div>
+<div id="about-panel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" >
+    <div class="modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">About</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bicycle Route Planner is capable of computing routes for cyclists from an origin to a destination. It solves the bicycle route planning problem based on a formal model expressive enough to represent transport network features and cyclists' preferences grounded in the studies of <a href="http://www.sciencedirect.com/science/article/pii/S0965856412001164" class="external">real-world bicycle route choice behaviour</a>. Our solution employs the A* algorithm together with vectors of cost and heuristic functions – able to optimise routes for travel time, comfort, quietness, and flatness.</p>
+                <p>Currently, the Bicycle Route Planner is developed by Pavol Žilecký, Jan Hrnèíø, Qing Song and Jan Linka under the supervision of Michal Jakob at <a href="http://agents.fel.cvut.cz/" class="external">Agent Technology Center</a>, <a href="http://cs.fel.cvut.cz/en/content/about" class="external">Department of Computer Science and Engineering</a>, <a href="http://www.fel.cvut.cz/en/" class="external">Faculty of Electrical Engineering</a>, <a href="http://intranet.cvut.cz/en" class="external">Czech Technical University in Prague</a>. Initial version, <em>Open Bicycle Trip Planner</em>, has been designed and implemented as a <a href="https://dip.felk.cvut.cz/browse/pdfcache/nemetma1_2013bach.pdf" class="external">bachelor thesis</a> of Marcel Német under the supervision of Jan Hrnèíø and Michal Jakob in 2013.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popover-title" style="display: none">Feedback</div>
+<div id="popover-content" style="display: none"><div class="content">
+    <form class="ng-pristine ng-valid">
+        <label ng-bind="lang.FB_REQUEST" class="ng-binding">How do you like the route?</label><br>
+            <span ng-mouseleave="reset()" ng-keydown="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" class="rating ng-isolate-scope ng-pristine ng-valid" ng-model="form.rating" max="max" on-leave="overStar = null">
+    <!-- ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
+                <span class="sr-only ng-binding">( )</span>
+            </i><!-- end ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
+                <span class="sr-only ng-binding">( )</span>
+            </i><!-- end ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
+                <span class="sr-only ng-binding">( )</span>
+            </i><!-- end ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
+                <span class="sr-only ng-binding">( )</span>
+            </i><!-- end ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
+                <span class="sr-only ng-binding">( )</span>
+            </i><!-- end ngRepeat: r in range track by $index -->
+</span>
+<br>
+        <label ng-bind="lang.FB_REQ_NEG" class="ng-binding">Please check flaws</label>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="forbiddenManoeuvers" class="ng-pristine ng-valid">
+                <span class="ng-binding">Forbidden manoeuvers</span>
+                <small class="ng-binding">- e.g. go right, when forbidden by sign</small>
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="badProfileCorrespondence" class="ng-pristine ng-valid">
+                <span class="ng-binding">Bad profile corespondence</span>
+                <small class="ng-binding">- suggested route doesn't match selected profile</small>
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="dangerousPlaces" class="ng-pristine ng-valid">
+                <span class="ng-binding">Dangerous places</span>
+                <small class="ng-binding">- there is dangerous place on route</small>
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="pavementWhenNotNeeded" class="ng-pristine ng-valid">
+                <span class="ng-binding">On pavement</span>
+                <small class="ng-binding">- route uses pavement when not needed</small>
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="badMapData" class="ng-pristine ng-valid">
+                <span class="ng-binding">Bad map data</span>
+                <small class="ng-binding">- map data strongly differ from reality</small>
+            </label>
+        </div>
+
+        <!--<textarea class="form-control ng-pristine ng-valid" rows="3" id="textualFeedback" placeholder="Other comments (optional)"></textarea>-->
+    </form>
+    <div class="modal-footer feedback-footer">
+        <button type="button" class="btn btn-default ng-binding" >Close</button>
+        <button type="button" class="btn btn-primary ng-binding" >Send</button>
+    </div>
+</div></div>
 
 <div id="map"></div>
 <div id='legend'>
