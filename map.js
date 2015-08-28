@@ -46,7 +46,6 @@ function initializeMap() {
         id: 'fiserto1.3ed94b1c',
         accessToken: 'pk.eyJ1IjoiZmlzZXJ0bzEiLCJhIjoiNmE1NzkzMjQ5ZjdhYTMxZDllNzhlNmQxNGMzZGIyMTAifQ.2xblvAvcBqHdhd3GnKNrbQ'
     });
-
     map = L.map('map', {
         layers: streetsMap,
         zoomControl: false,
@@ -59,7 +58,7 @@ function initializeMap() {
         return false;
 
     });
-    var hash = L.hash(map);
+    //var hash = L.hash(map);
     var zoomControl = L.control.zoom({position: "topright"});
     zoomControl.addTo(map);
 

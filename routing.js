@@ -110,6 +110,13 @@ var basicRoutes = L.layerGroup();
 var response;
 
 function handler(obj) {
+    var startMarker = allMarkers[0];
+    var destinationMarker = allMarkers[allMarkers.length-1];
+    var hash = "#startLat=" + startMarker.getLatLng().lat
+        + "&startLon=" + startMarker.getLatLng().lng
+        + "&endLat=" + destinationMarker.getLatLng().lat
+        + "&endLon=" + destinationMarker.getLatLng().lng;
+    location.replace(hash);
     spinner.stop();
     console.log(obj);
     response = obj;
