@@ -134,6 +134,7 @@ function getRackLayerFromFile(cycleLayer) {
             },
             onEachFeature: function (feature, layer) {
                 layer.bindPopup(feature.properties.POPIS);
+                layer.setZIndexOffset(-1000);
             },
             pointToLayer: function(feature, latlng) {
                 return L.marker(latlng, {icon: myIcon});
