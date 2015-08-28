@@ -59,7 +59,7 @@ function initializeMap() {
         return false;
 
     });
-
+    var hash = L.hash(map);
     var zoomControl = L.control.zoom({position: "topright"});
     zoomControl.addTo(map);
 
