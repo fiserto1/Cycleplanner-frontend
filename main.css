@@ -54,23 +54,13 @@ button.close {
 }
 .modal-lg {
   position: fixed;
-  top: 20%;
-  left: 28%;
+  top: 15%;
+  left: 29%;
 }
 .modal-content {
   height: 100%;
   border: none;
   border-radius: 0;
-}
-.popover {
-  max-width: none;
-  width: 200%;
-  border-radius: 0;
-  border: none;
-  padding: 0;
-}
-.feedback-footer {
-  border: none;
 }
 .leaflet-contextmenu {
   -webkit-box-shadow: black 3px 3px 10px;
@@ -93,6 +83,9 @@ button.close {
   margin: 0;
   font-size: 16px;
   line-height: 30px;
+}
+#textFeedback {
+  resize: none;
 }
 .rack-marker {
   cursor: pointer;

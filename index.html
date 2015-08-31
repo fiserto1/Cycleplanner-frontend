@@ -15,6 +15,7 @@
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
     <link rel="stylesheet" href="externalcss/leaflet.contextmenu.css">
+    <link rel="stylesheet" href="externalcss/bootstrap-rating.css">
 
     <script src="externaljs/jquery-1.11.3.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -29,6 +30,7 @@
     <script type="text/javascript" src="externaljs/leaflet.contextmenu.js"></script>
     <script type="text/javascript" src="externaljs/spin.min.js"></script>
     <script type="text/javascript" src="externaljs/i18next-1.10.1.js"></script>
+    <script type="text/javascript" src="externaljs/bootstrap-rating.js"></script>
 
 
     <link rel="stylesheet" href="main.css" />
@@ -65,7 +67,7 @@
 
         <div class="list-group row">
             <a class="list-group-item col-md-12" data-toggle="modal" href="#about-panel" data-i18n="left-sidebar.menu.about"></a>
-            <a class="list-group-item col-md-12" id="feedback-item" href="#" data-i18n="left-sidebar.menu.feedback"></a>
+            <a class="list-group-item col-md-12" data-toggle="modal" href="#feedback-panel" data-i18n="left-sidebar.menu.feedback"></a>
             <a class="list-group-item col-md-12" href="#" data-i18n="left-sidebar.menu.api"></a>
             <a class="list-group-item col-md-12" href="#" data-toggle="collapse" data-target="#language-dropdown">
                 <span class="col-md-11" data-i18n="left-sidebar.menu.language"></span><i class="fa fa-chevron-left col-md-1" id="language-dropdown-icon"></i>
@@ -118,7 +120,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">About</h4>
+                <h4 class="modal-title">About</h4>
             </div>
             <div class="modal-body">
                 <p>Bicycle Route Planner is capable of computing routes for cyclists from an origin to a destination. It solves the bicycle route planning problem based on a formal model expressive enough to represent transport network features and cyclists' preferences grounded in the studies of <a href="http://www.sciencedirect.com/science/article/pii/S0965856412001164" class="external">real-world bicycle route choice behaviour</a>. Our solution employs the A* algorithm together with vectors of cost and heuristic functions – able to optimise routes for travel time, comfort, quietness, and flatness.</p>
@@ -130,68 +132,63 @@
         </div>
     </div>
 </div>
-<div id="popover-title" style="display: none">Feedback</div>
-<div id="popover-content" style="display: none"><div class="content">
-    <form class="ng-pristine ng-valid">
-        <label ng-bind="lang.FB_REQUEST" class="ng-binding">How do you like the route?</label><br>
-            <span ng-mouseleave="reset()" ng-keydown="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" class="rating ng-isolate-scope ng-pristine ng-valid" ng-model="form.rating" max="max" on-leave="overStar = null">
-    <!-- ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
-                <span class="sr-only ng-binding">( )</span>
-            </i><!-- end ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
-                <span class="sr-only ng-binding">( )</span>
-            </i><!-- end ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
-                <span class="sr-only ng-binding">( )</span>
-            </i><!-- end ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
-                <span class="sr-only ng-binding">( )</span>
-            </i><!-- end ngRepeat: r in range track by $index --><i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon ng-scope glyphicon-star-empty" ng-class="$index < value &amp;&amp; (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')">
-                <span class="sr-only ng-binding">( )</span>
-            </i><!-- end ngRepeat: r in range track by $index -->
-</span>
-<br>
-        <label ng-bind="lang.FB_REQ_NEG" class="ng-binding">Please check flaws</label>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="forbiddenManoeuvers" class="ng-pristine ng-valid">
-                <span class="ng-binding">Forbidden manoeuvers</span>
-                <small class="ng-binding">- e.g. go right, when forbidden by sign</small>
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="badProfileCorrespondence" class="ng-pristine ng-valid">
-                <span class="ng-binding">Bad profile corespondence</span>
-                <small class="ng-binding">- suggested route doesn't match selected profile</small>
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="dangerousPlaces" class="ng-pristine ng-valid">
-                <span class="ng-binding">Dangerous places</span>
-                <small class="ng-binding">- there is dangerous place on route</small>
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="pavementWhenNotNeeded" class="ng-pristine ng-valid">
-                <span class="ng-binding">On pavement</span>
-                <small class="ng-binding">- route uses pavement when not needed</small>
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="badMapData" class="ng-pristine ng-valid">
-                <span class="ng-binding">Bad map data</span>
-                <small class="ng-binding">- map data strongly differ from reality</small>
-            </label>
-        </div>
+<div id="feedback-panel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" >
+    <div class="modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Feedback</h4>
+            </div>
+            <div class="modal-body">
+                <p><strong>How do you like the route?</strong></p>
+                <p><input type="hidden" class="rating" data-filled="fa fa-star fa-2x" data-empty="fa fa-star-o fa-2x"/></p>
+                <p><strong>Please check flaws</strong></p>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            <span>Forbidden manoeuvers</span>
+                            <small>- e.g. go right, when forbidden by sign</small>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            <span>Bad profile corespondence</span>
+                            <small>- suggested route doesn't match selected profile</small>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            <span>Dangerous places</span>
+                            <small>- there is dangerous place on route</small>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            <span>On pavement</span>
+                            <small>- route uses pavement when not needed</small>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            <span>Bad map data</span>
+                            <small>- map data strongly differ from reality</small>
+                        </label>
+                    </div>
 
-        <!--<textarea class="form-control ng-pristine ng-valid" rows="3" id="textualFeedback" placeholder="Other comments (optional)"></textarea>-->
-    </form>
-    <div class="modal-footer feedback-footer">
-        <button type="button" class="btn btn-default ng-binding" >Close</button>
-        <button type="button" class="btn btn-primary ng-binding" >Send</button>
+                    <textarea class="form-control" rows="3" id="textFeedback" placeholder="Other comments (optional)"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
     </div>
-</div></div>
+</div>
 
 <div id="map"></div>
 <div id='legend'>

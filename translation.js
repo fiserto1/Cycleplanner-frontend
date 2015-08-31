@@ -46,20 +46,7 @@ function changeLanguage(language) {
 }
 
 $(document).ready(function() {
-    $("#feedback-item").popover({
-        html : true,
-        content: function() {
-            return $('#popover-content').html();
-        },
-        title: function() {
-            return $('#popover-title').html();
-        }
-    });
-    $('#feedback-item').on('shown.bs.popover', function () {
-        console.log($(this));
-        console.log($(this).next());
-        $(this).next().css("top", "10px");
-    });
+
     $('[data-toggle="tooltip"]').tooltip();
     i18n.init({ lng: "en-US" }, function(err, t) {
         // translate nav
