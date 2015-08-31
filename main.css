@@ -265,6 +265,15 @@ a.list-group-item.col-md-12 {
 #settings-button {
   float: right;
 }
+#settings-panel {
+  padding: 10px;
+}
+#avg-speed-input {
+  padding: 0;
+  width: 40px;
+  text-align: center;
+  border: solid #cccccc 1px;
+}
 /*.vCenter {*/
 /*text-align:center;*/
 /*line-height:90px;*/
