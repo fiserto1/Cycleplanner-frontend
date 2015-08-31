@@ -132,7 +132,7 @@ function addNewStartPoint() {
         setAC();
 
         if ($("#search-group").children().length == (MIDDLE_POINT_LIMIT + 2)) {
-            $("#addPointIcon").addClass("disabled-icon");
+            $("#add-point-icon").addClass("disabled-icon");
         }
         if ($("#search-group").children().length > 2) {
             //$(".remove-point").css("color", "#333333");
@@ -177,7 +177,7 @@ function onAddPointClick() {
         setAC();
 
         if ($("#search-group").children().length == (MIDDLE_POINT_LIMIT + 2)) {
-            $("#addPointIcon").addClass("disabled-icon");
+            $("#add-point-icon").addClass("disabled-icon");
         }
         if ($("#search-group").children().length > 2) {
             //$(".remove-point").css("color", "#333333");
@@ -215,7 +215,7 @@ function onRemovePointClick() {
 
 
         if ($("#search-group").children().length < (MIDDLE_POINT_LIMIT + 2)) {
-            $("#addPointIcon").removeClass("disabled-icon");
+            $("#add-point-icon").removeClass("disabled-icon");
         }
         if ($("#search-group").children().length == 2) {
             //$(".remove-point").css("color", white);
