@@ -55,6 +55,7 @@ function initializeMarkers() {
 
 
     setShowCloseOnFocus($("input"));
+    initializeRouting();
 
 }
 

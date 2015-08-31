@@ -20,7 +20,7 @@ var basicRouteOptions;
 var borderRouteOptions;
 var segmentRouteOptions;
 
-$(document).ready(function() {
+function initializeRouting() {
     basicRouteOptions = {
         color: ROUTE_COLOR,
         weight: ROUTE_WEIGHT,
@@ -51,7 +51,19 @@ $(document).ready(function() {
         smoothFactor: 0
         //noClip: false
     }
-});
+    var hash = location.hash;
+    if (hash != "") {
+        hash = hash.substr(1);
+        var coords = hash.split("&");
+        var startLatLng = L.latLng(parseFloat(coords[0]), parseFloat(coords[1]));
+        var destinationLatLng = L.latLng(parseFloat(coords[2]), parseFloat(coords[3]));
+        findAddressFromCoordinates(0, startLatLng);
+        findAddressFromCoordinates(1, destinationLatLng);
+        allMarkers[0].setLatLng(startLatLng).addTo(map);
+        allMarkers[allMarkers.length-1].setLatLng(destinationLatLng).addTo(map);
+        getPlans();
+    }
+}
 
 function hidePanelsExceptSearch() {
     $("#routes-panel").html("").hide();
@@ -112,10 +124,10 @@ var response;
 function handler(obj) {
     var startMarker = allMarkers[0];
     var destinationMarker = allMarkers[allMarkers.length-1];
-    var hash = "#startLat=" + startMarker.getLatLng().lat
-        + "&startLon=" + startMarker.getLatLng().lng
-        + "&endLat=" + destinationMarker.getLatLng().lat
-        + "&endLon=" + destinationMarker.getLatLng().lng;
+    var hash = "#" + startMarker.getLatLng().lat
+        + "&" + startMarker.getLatLng().lng
+        + "&" + destinationMarker.getLatLng().lat
+        + "&" + destinationMarker.getLatLng().lng;
     location.replace(hash);
     spinner.stop();
     console.log(obj);
