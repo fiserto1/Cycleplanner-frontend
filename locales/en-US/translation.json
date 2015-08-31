@@ -3,6 +3,9 @@
   "app": {
     "name": "i18next"
   },
+  "mobile-device": {
+    "app-download": "Download our android app!!!"
+  },
   "left-sidebar": {
     "title": "Cycleplanner",
     "menu": {
@@ -58,6 +61,12 @@
       "secondary": "Secondary",
       "primary": "Primary",
       "undefined": "Undef."
+    }
+  },
+  "error": {
+    "server": {
+      "message-400": "Start or destination marker is out of range.",
+      "message-50x": "Server is unavailable."
     }
   }
 }

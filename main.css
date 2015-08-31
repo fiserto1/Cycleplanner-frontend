@@ -84,6 +84,11 @@ button.close {
   font-size: 16px;
   line-height: 30px;
 }
+#mobile-app-panel {
+  display: none;
+  line-height: 400%;
+  text-align: center;
+}
 #textFeedback {
   resize: none;
 }

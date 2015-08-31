@@ -3,6 +3,9 @@
   "app": {
     "name": "i18next"
   },
+  "mobile-device": {
+    "app-download": "Stáhněte si naši aplikaci!!!"
+  },
   "left-sidebar": {
     "title": "Cykloplánovač",
     "menu": {
@@ -58,6 +61,12 @@
       "secondary": "2.třídy",
       "primary": "1.třídy",
       "undefined": "Nedef."
+    }
+  },
+  "error": {
+    "server": {
+      "message-400": "Zde není možné nalézt trasy.",
+      "message-50x": "Server nyní není dostupný."
     }
   }
 }

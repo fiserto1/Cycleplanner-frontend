@@ -13,9 +13,6 @@ var ROUTE_WEIGHT = 7;
 var BORDER_ROUTE_WEIGHT = 7;
 var SEGMENT_ROUTE_WEIGHT = 5;
 
-var SERVER_ERR_MSG_400 = "Zde není možné nalézt trasy.";
-var SERVER_ERR_MSG_50X = "Server nyní není dostupný.";
-
 var basicRouteOptions;
 var borderRouteOptions;
 var segmentRouteOptions;
@@ -109,9 +106,9 @@ function serverError(xhr,status,error) {
 
     var errorCode = xhr.status;
     if (errorCode == 400) {
-        $("#error-panel").text(SERVER_ERR_MSG_400).show();
+        $("#error-panel").text($.t("error.server.message-400")).show();
     } else if (errorCode >= 500 && errorCode < 510) {
-        $("#error-panel").text(SERVER_ERR_MSG_50X).show();
+        $("#error-panel").text($.t("error.server.message-50x")).show();
     }
 }
 
