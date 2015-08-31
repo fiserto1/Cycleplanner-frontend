@@ -126,6 +126,9 @@ a.list-group-item.col-md-12 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+body {
+  overflow: hidden;
+}
 #map {
   position: absolute;
   top: 0;
