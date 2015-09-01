@@ -115,7 +115,7 @@ function createChart(chartOptionsAndData, routeIndex) {
                     mouseOver: function () {
                         elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
                         elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Výška: " + this.y + " m.n.m.").openPopup();
+                        elevationCircle.bindPopup("VÃ½Å¡ka: " + this.y + " m.n.m.").openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {
