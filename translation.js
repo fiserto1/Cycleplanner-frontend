@@ -26,6 +26,12 @@ function translateTooltips(t) {
     $(".settings-tooltip").attr("data-original-title", t("tooltip.settings"));
     $(".change-dir-tooltip").attr("data-original-title", t("tooltip.change-direction"));
     $(".add-point-tooltip").attr("data-original-title", t("tooltip.add-point"));
+    $(".share-tooltip").attr("data-original-title", t("tooltip.share"));
+    $(".print-tooltip").attr("data-original-title", t("tooltip.print"));
+    $(".leaflet-control-locate").attr("data-original-title", t("tooltip.locate"));
+    $(".leaflet-control-zoom-in").attr("data-original-title", $.t("tooltip.zoom-in"));
+    $(".leaflet-control-zoom-out").attr("data-original-title", $.t("tooltip.zoom-out"));
+
 }
 
 function changeLanguage(language) {
@@ -63,7 +69,7 @@ $(document).ready(function() {
     //
     //}
 
-    $('[data-toggle="tooltip"]').tooltip();
+
 
 
     i18n.init({ lng: "en-US" }, function(err, t) {

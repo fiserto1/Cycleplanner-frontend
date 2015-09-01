@@ -61,7 +61,6 @@ function initializeMap() {
     //var hash = L.hash(map);
     var zoomControl = L.control.zoom({position: "topright"});
     zoomControl.addTo(map);
-
     //asynchronous
     addControlLayers();
 
@@ -146,6 +145,21 @@ function getRackLayerFromFile(cycleLayer) {
 
         L.control.locate({position: 'topright', keepCurrentZoomLevel: true}).addTo(map);
         L.control.layers(null, overlayMaps).addTo(map);
+
+
+        var controlLocate = $(".leaflet-control-locate");
+        var controlZoomIn = $(".leaflet-control-zoom-in");
+        var controlZoomOut = $(".leaflet-control-zoom-out");
+        controlLocate.attr("data-toggle", "tooltip");
+        controlLocate.attr("data-placement", "bottom");
+        controlLocate.attr("data-original-title", $.t("tooltip.locate"));
+        controlZoomIn.attr("data-toggle", "tooltip");
+        controlZoomIn.attr("data-placement", "bottom");
+        controlZoomIn.attr("data-original-title", $.t("tooltip.zoom-in"));
+        controlZoomOut.attr("data-toggle", "tooltip");
+        controlZoomOut.attr("data-placement", "bottom");
+        controlZoomOut.attr("data-original-title", $.t("tooltip.zoom-out"));
+        $('[data-toggle="tooltip"]').tooltip();
     });
 }
 

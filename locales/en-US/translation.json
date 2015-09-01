@@ -57,7 +57,12 @@
     "menu": "Menu",
     "settings": "Route settings",
     "change-direction": "Change direction",
-    "add-point": "Add point"
+    "add-point": "Add point",
+    "share": "Share",
+    "print": "Print",
+    "locate": "Locate me",
+    "zoom-in": "Zoom in",
+    "zoom-out": "Zoom out"
   },
   "contextmenu": {
     "add-start": "Add start",
