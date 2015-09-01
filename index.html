@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="windows-1250">
+    <meta charset="UTF-8">
+    <meta name="author" content="Agents4its">
+    <meta name="apple-itunes-app" content="app-id=">
+    <meta name="google-play-app" content="app-id=cz.agents.cycleplanner">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 
@@ -16,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
     <link rel="stylesheet" href="externalcss/leaflet.contextmenu.css">
     <link rel="stylesheet" href="externalcss/bootstrap-rating.css">
+    <link rel="stylesheet" href="externalcss/jquery.smartbanner.css" type="text/css" media="screen">
 
     <script src="externaljs/jquery-1.11.3.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -31,6 +35,7 @@
     <script type="text/javascript" src="externaljs/spin.min.js"></script>
     <script type="text/javascript" src="externaljs/i18next-1.10.1.js"></script>
     <script type="text/javascript" src="externaljs/bootstrap-rating.js"></script>
+    <script src="externaljs/jquery.smartbanner.js"></script>
 
 
     <link rel="stylesheet" href="main.css" />
@@ -75,7 +80,7 @@
             <div id="language-dropdown" class="collapse  col-md-12">
                 <div class="row">
                     <a id="english" class="list-group-item col-md-12" href="#">English</a>
-                    <a id="czech" class="list-group-item col-md-12" href="#">Čeština</a>
+                    <a id="czech" class="list-group-item col-md-12" href="#">ÄŚeĹˇtina</a>
                 </div>
             </div>
         </div>
@@ -120,12 +125,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">About</h4>
+                <h4 class="modal-title" data-i18n="about.title"></h4>
             </div>
-            <div class="modal-body">
-                <p>Bicycle Route Planner is capable of computing routes for cyclists from an origin to a destination. It solves the bicycle route planning problem based on a formal model expressive enough to represent transport network features and cyclists' preferences grounded in the studies of <a href="http://www.sciencedirect.com/science/article/pii/S0965856412001164" class="external">real-world bicycle route choice behaviour</a>. Our solution employs the A* algorithm together with vectors of cost and heuristic functions – able to optimise routes for travel time, comfort, quietness, and flatness.</p>
-                <p>Currently, the Bicycle Route Planner is developed by Pavol Žilecký, Jan Hrnčíř, Qing Song and Jan Linka under the supervision of Michal Jakob at <a href="http://agents.fel.cvut.cz/" class="external">Agent Technology Center</a>, <a href="http://cs.fel.cvut.cz/en/content/about" class="external">Department of Computer Science and Engineering</a>, <a href="http://www.fel.cvut.cz/en/" class="external">Faculty of Electrical Engineering</a>, <a href="http://intranet.cvut.cz/en" class="external">Czech Technical University in Prague</a>. Initial version, <em>Open Bicycle Trip Planner</em>, has been designed and implemented as a <a href="https://dip.felk.cvut.cz/browse/pdfcache/nemetma1_2013bach.pdf" class="external">bachelor thesis</a> of Marcel Német under the supervision of Jan Hrnčíř and Michal Jakob in 2013.</p>
-            </div>
+            <div class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
             </div>
@@ -137,54 +139,54 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Feedback</h4>
+                <h4 class="modal-title" data-i18n="feedback.title"></h4>
             </div>
             <div class="modal-body">
-                <p><strong>How do you like the route?</strong></p>
+                <p><strong data-i18n="feedback.rating-title"></strong></p>
                 <p><input type="hidden" class="rating" data-filled="fa fa-star fa-2x" data-empty="fa fa-star-o fa-2x"/></p>
-                <p><strong>Please check flaws</strong></p>
+                <p><strong data-i18n="feedback.checkbox-title"></strong></p>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox">
-                            <span>Forbidden manoeuvers</span>
-                            <small>- e.g. go right, when forbidden by sign</small>
+                            <span data-i18n="feedback.checkbox-1.label"></span>
+                            <small data-i18n="feedback.checkbox-1.description"></small>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox">
-                            <span>Bad profile corespondence</span>
-                            <small>- suggested route doesn't match selected profile</small>
+                            <span data-i18n="feedback.checkbox-2.label"></span>
+                            <small data-i18n="feedback.checkbox-2.description"></small>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox">
-                            <span>Dangerous places</span>
-                            <small>- there is dangerous place on route</small>
+                            <span data-i18n="feedback.checkbox-3.label"></span>
+                            <small data-i18n="feedback.checkbox-3.description"></small>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox">
-                            <span>On pavement</span>
-                            <small>- route uses pavement when not needed</small>
+                            <span data-i18n="feedback.checkbox-4.label"></span>
+                            <small data-i18n="feedback.checkbox-4.description"></small>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox">
-                            <span>Bad map data</span>
-                            <small>- map data strongly differ from reality</small>
+                            <span data-i18n="feedback.checkbox-5.label"></span>
+                            <small data-i18n="feedback.checkbox-5.description"></small>
                         </label>
                     </div>
 
-                    <textarea class="form-control" rows="3" id="textFeedback" placeholder="Other comments (optional)"></textarea>
+                    <textarea class="form-control" rows="3" id="textFeedback"></textarea>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-i18n="feedback.button.close"></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-i18n="feedback.button.send"></button>
             </div>
         </div>
     </div>
@@ -266,13 +268,13 @@
                 <span class="level7"></span>
                 <span class="level8"></span>
                 <label data-i18n="legend.road-type.cycleway">Cyklo</label>
-                <label data-i18n="legend.road-type.footway">Pěší</label>
+                <label data-i18n="legend.road-type.footway">PÄ›ĹˇĂ­</label>
                 <label data-i18n="legend.road-type.steps">STEPS</label>
                 <label data-i18n="legend.road-type.undefined">NEDEF</label>
                 <label data-i18n="legend.road-type.road">ROAD</label>
-                <label data-i18n="legend.road-type.tertiary">3.třídy</label>
-                <label data-i18n="legend.road-type.secondary">2.třídy</label>
-                <label data-i18n="legend.road-type.primary">1.třídy</label>
+                <label data-i18n="legend.road-type.tertiary">3.tĹ™Ă­dy</label>
+                <label data-i18n="legend.road-type.secondary">2.tĹ™Ă­dy</label>
+                <label data-i18n="legend.road-type.primary">1.tĹ™Ă­dy</label>
             </nav>
         </div>
     </div>
@@ -280,13 +282,6 @@
 
 
 <div class="col-md-4 left-block">
-    <div id="mobile-app-panel" class="alert-warning panel row" role="alert">
-        <strong class="col-md-6" data-i18n="mobile-device.app-download"></strong>
-        <a class="col-md-5" href="https://play.google.com/store/apps/details?id=cz.agents.cycleplanner">
-            <img src="img/google_play.png">
-        </a>
-        <button type="button" class="close col-md-1" data-dismiss="alert" data-target="#mobile-app-panel" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    </div>
     <div id="search-panel" class="row panel">
 
         <div id="search-group">
@@ -326,13 +321,13 @@
 
     </div>
     <div id="settings-panel" class="collapse row panel">
-        <span>Průměrná rychlost </span>
+        <span data-i18n="settings.avg-speed"></span>
         <input id="avg-speed-input" type="number" value="15" min="10" max="40">
         <span>km/h</span>
         <div class="checkbox">
             <label>
                 <input type="checkbox">
-                <span>Plánovat s MHD</span>
+                <span data-i18n="settings.public-transport">PlĂˇnovat s MHD</span>
             </label>
         </div>
     </div>
@@ -357,7 +352,7 @@
                         <i class="fa fa-share-alt"></i>
                     </div>
                     <div class="action-icon">
-                        <i class="fa fa-floppy-o"></i>
+                        <i class="fa fa-print"></i>
                     </div>
                 </div>
             </div>

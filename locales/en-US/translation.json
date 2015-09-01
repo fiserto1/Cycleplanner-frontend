@@ -15,6 +15,44 @@
       "language": "Change language"
     }
   },
+  "about": {
+    "title": "About",
+    "html": "<p>Bicycle Route Planner is capable of computing routes for cyclists from an origin to a destination. It solves the bicycle route planning problem based on a formal model expressive enough to represent transport network features and cyclists' preferences grounded in the studies of <a href=\"http://www.sciencedirect.com/science/article/pii/S0965856412001164\" class=\"external\">real-world bicycle route choice behaviour</a>. Our solution employs the A* algorithm together with vectors of cost and heuristic functions – able to optimise routes for travel time, comfort, quietness, and flatness.</p><p>Currently, the Bicycle Route Planner is developed by Pavol Žilecký, Jan Hrnèíø, Qing Song and Jan Linka under the supervision of Michal Jakob at <a href=\"http://agents.fel.cvut.cz/\" class=\"external\">Agent Technology Center</a>, <a href=\"http://cs.fel.cvut.cz/en/content/about\" class=\"external\">Department of Computer Science and Engineering</a>, <a href=\"http://www.fel.cvut.cz/en/\" class=\"external\">Faculty of Electrical Engineering</a>, <a href=\"http://intranet.cvut.cz/en\" class=\"external\">Czech Technical University in Prague</a>. Initial version, <em>Open Bicycle Trip Planner</em>, has been designed and implemented as a <a href=\"https://dip.felk.cvut.cz/browse/pdfcache/nemetma1_2013bach.pdf\" class=\"external\">bachelor thesis</a> of Marcel Német under the supervision of Jan Hrnèíø and Michal Jakob in 2013.</p>"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "rating-title": "How do you like the route?",
+    "checkbox-title": "Please check flaws",
+    "textarea-placeholder": "Other comments (optional)",
+    "button": {
+      "close": "Close",
+      "send": "Send"
+    },
+    "checkbox-1": {
+      "label": "Forbidden manoeuvers",
+      "description": "- e.g. go right, when forbidden by sign"
+    },
+    "checkbox-2": {
+      "label": "Bad profile corespondence",
+      "description": "- suggested route doesn't match selected profile"
+    },
+    "checkbox-3": {
+      "label": "Dangerous places",
+      "description": "- there is dangerous place on route"
+    },
+    "checkbox-4": {
+      "label": "On pavement",
+      "description": "- route uses pavement when not needed"
+    },
+    "checkbox-5": {
+      "label": "Bad map data",
+      "description": "- map data strongly differ from reality"
+    }
+  },
+  "settings": {
+    "avg-speed": "Average speed",
+    "public-transport": "Plan with public transport"
+  },
   "tooltip": {
     "menu": "Menu",
     "settings": "Route settings",
