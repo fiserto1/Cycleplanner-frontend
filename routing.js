@@ -103,7 +103,7 @@ function getPlans() {
             contentType: "application/json",
             //headers: {"Content-Type": "application/json"},
             data: JSON.stringify(data),
-            error: serverError2,
+            error: serverError,
             success: function(data, status, xhr) {
                 var location = xhr.getResponseHeader("Location");
                 console.log(location);
