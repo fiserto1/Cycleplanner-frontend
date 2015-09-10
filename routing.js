@@ -176,11 +176,13 @@ function handler(obj) {
     basicRoutes.addTo(map);
 
     var bbox = plans[0].boundingBox;
-    var southWest = L.latLng(bbox.bottomRight.latE6 / 1000000, (bbox.bottomRight.lonE6 / 1000000 - LONGITUDE_SHIFT));
-    var northEast = L.latLng(bbox.topLeft.latE6 / 1000000, (bbox.topLeft.lonE6 / 1000000) - LONGITUDE_SHIFT);
+    var southWest = L.latLng(bbox.bottomRight.latE6 / 1000000, (bbox.topLeft.lonE6 / 1000000));
+    var northEast = L.latLng(bbox.topLeft.latE6 / 1000000, (bbox.bottomRight.lonE6 / 1000000));
+    //L.marker(southWest).addTo(map);
+    //L.marker(northEast).addTo(map);
     var bounds = L.latLngBounds(southWest, northEast);
-    map.fitBounds(bounds);
-    map.zoomOut();
+    map.fitBounds(bounds, {paddingTopLeft: [500, 20], paddingBottomRight: [20,20]});
+    //map.zoomOut();
 
     $("#routes-panel").show("blind");
     //$("#chart-panel").show("blind");
