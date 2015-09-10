@@ -83,20 +83,45 @@ function getPlans() {
         //console.log("Start");
         var target = document.getElementById('map');
         spinner.spin(target);
+        console.log("start");
+        var data = {
+            "client":"multicriteria-cycleplanner",
+            "origin":{
+                "type":"ORIGIN",
+                "latE6": (startMarker.getLatLng().lat * 1000000),
+                "lonE6": (startMarker.getLatLng().lng * 1000000)
+            },
+            "destination":{
+                "type":"DESTINATION",
+                "latE6": (destinationMarker.getLatLng().lat * 1000000),
+                "lonE6": (destinationMarker.getLatLng().lng * 1000000)},
+            "averageSpeedKmPH": 20.0
+        };
         $.ajax({
-            url: "http://its.felk.cvut.cz/cycle-planner-mc/api/v2/journeys/mc?startLat=" + startMarker.getLatLng().lat
-            + "&startLon=" + startMarker.getLatLng().lng
-            + "&endLat=" + destinationMarker.getLatLng().lat
-            + "&endLon=" + destinationMarker.getLatLng().lng,
-
-            success: handler,
+            method: "POST",
+            url: "http://its.felk.cvut.cz/cycle-planner-1.5.0-SNAPSHOT/api/v3/planner/plan",
+            contentType: "application/json",
+            //headers: {"Content-Type": "application/json"},
+            data: JSON.stringify(data),
+            error: serverError2,
+            success: function(data, status, xhr) {
+                var location = xhr.getResponseHeader("Location");
+                console.log(location);
+                $.ajax({
+                    url: location,
+                    success: handler,
+                    error: serverError
+                });
+            },
             error: serverError
         });
+
     } else {
         removeAllRoutesFromMap();
         hidePanelsExceptSearch();
     }
 }
+
 function serverError(xhr,status,error) {
     spinner.stop();
     removeAllRoutesFromMap();
