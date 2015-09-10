@@ -123,13 +123,19 @@ function getPlans() {
 }
 
 function serverError(xhr,status,error) {
+
+    var errorCode = xhr.status;
+    handleServerError(errorCode);
+}
+
+function handleServerError(errorCode) {
     spinner.stop();
     removeAllRoutesFromMap();
     hidePanelsExceptSearch();
     //var text = xhr.responseText;
     //console.log(xhr.status);
 
-    var errorCode = xhr.status;
+
     if (errorCode == 400) {
         $("#error-panel").text($.t("error.server.message-400")).show();
     } else if (errorCode >= 500 && errorCode < 510) {
@@ -144,6 +150,12 @@ var basicRoutes = L.layerGroup();
 var response;
 
 function handler(obj) {
+    console.log(obj.status);
+
+    if (obj.status == "OUT_OF_BOUNDS") {
+        handleServerError(400);
+        return;
+    }
     var startMarker = allMarkers[0];
     var destinationMarker = allMarkers[allMarkers.length-1];
     var hash = "#" + startMarker.getLatLng().lat
