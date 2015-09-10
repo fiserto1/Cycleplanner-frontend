@@ -133,6 +133,10 @@ function getRackLayerFromFile(cycleLayer) {
             onEachFeature: function (feature, layer) {
                 layer.bindPopup(feature.properties.POPIS);
                 layer.setZIndexOffset(-1000);
+                layer.on("contextmenu", function() {
+                    lastClickedPosition = layer.getLatLng();
+                    map.contextmenu.showAt(layer.getLatLng());
+                });
             },
             pointToLayer: function(feature, latlng) {
                 return L.marker(latlng, {icon: myIcon});
