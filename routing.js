@@ -232,10 +232,11 @@ function routeButtonClick(e) {
         changeValuesInDescriptionPanel(plan);
     }
 
-    $("#chart-panel").show("blind", 500, afterChartShow(plan, routeIndex));
+    $("#chart-panel").show("blind", 500);
     $("#legend").show("blind", 500);
 }
 
+//vysunuti a zasunuti podrobneho popisu trasy po kliknuti na button
 function afterChartShow(plan, routeIndex) {
     if (firstRouteClick != 0) {
         //console.log("nth click");
