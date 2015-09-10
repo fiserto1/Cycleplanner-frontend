@@ -62,7 +62,17 @@
     "print": "Tisk",
     "locate": "Najdi mě",
     "zoom-in": "Přiblížit",
-    "zoom-out": "Oddálit"
+    "zoom-out": "Oddálit",
+    "route-description": {
+      "travel-time": "Čas trasy",
+      "stress": "Náročnost trasy",
+      "physical-effort": "Fyzická námaha",
+      "length": "Délka trasy",
+      "elevation-change": "Převýšení trasy",
+      "elevation-gain": "Stoupání",
+      "elevation-drop": "Klesání",
+      "crossroads": "Počet křižovatek"
+    }
   },
   "contextmenu": {
     "add-start": "Přidat začátek",

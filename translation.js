@@ -26,11 +26,21 @@ function translateTooltips(t) {
     $(".settings-tooltip").attr("data-original-title", t("tooltip.settings"));
     $(".change-dir-tooltip").attr("data-original-title", t("tooltip.change-direction"));
     $(".add-point-tooltip").attr("data-original-title", t("tooltip.add-point"));
+
+    $("#route-duration").attr("data-original-title", t("tooltip.route-description.travel-time"));
+    $("#route-stress").attr("data-original-title", t("tooltip.route-description.stress"));
+    $("#route-physical-effort").attr("data-original-title", t("tooltip.route-description.physical-effort"));
+    $("#route-length").attr("data-original-title", t("tooltip.route-description.length"));
+    $("#route-elevation-change").attr("data-original-title", t("tooltip.route-description.elevation-change"));
+    $("#route-elevation-gain").attr("data-original-title", t("tooltip.route-description.elevation-gain"));
+    $("#route-elevation-drop").attr("data-original-title", t("tooltip.route-description.elevation-drop"));
+    $("#route-crossroads").attr("data-original-title", t("tooltip.route-description.crossroads"));
     $(".share-tooltip").attr("data-original-title", t("tooltip.share"));
     $(".print-tooltip").attr("data-original-title", t("tooltip.print"));
+
     $(".leaflet-control-locate").attr("data-original-title", t("tooltip.locate"));
-    $(".leaflet-control-zoom-in").attr("data-original-title", $.t("tooltip.zoom-in"));
-    $(".leaflet-control-zoom-out").attr("data-original-title", $.t("tooltip.zoom-out"));
+    $(".leaflet-control-zoom-in").attr("data-original-title", t("tooltip.zoom-in"));
+    $(".leaflet-control-zoom-out").attr("data-original-title", t("tooltip.zoom-out"));
 
 }
 

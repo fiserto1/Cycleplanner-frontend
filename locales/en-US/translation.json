@@ -62,7 +62,17 @@
     "print": "Print",
     "locate": "Locate me",
     "zoom-in": "Zoom in",
-    "zoom-out": "Zoom out"
+    "zoom-out": "Zoom out",
+    "route-description": {
+      "travel-time": "Travel time",
+      "stress": "Stress",
+      "physical-effort": "Physical effort",
+      "length": "Length",
+      "elevation-change": "Elevation change",
+      "elevation-gain": "Elevation gain",
+      "elevation-drop": "Elevation drop",
+      "crossroads": "Number of crossroads"
+    }
   },
   "contextmenu": {
     "add-start": "Add start",

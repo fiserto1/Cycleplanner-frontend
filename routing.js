@@ -227,14 +227,14 @@ function createButtonForRoute(plan, routeIndex) {
     var routeButton = $("<button>").addClass("btn btn-default route-but col-md-3");
     //routeButton.css("z-index", butZIndex);
     var routeDiv = $("<div>").addClass("route-desc");
-    var routeSpan1 = $("<i>").addClass("fa fa-arrows-h");
+    var routeSpan1 = $("<i>").addClass("fa fa-clock-o");
     var planLength = (plan.length / 1000).toFixed(1);
-    var planDuration = (plan.duration / 60).toFixed(0);
-    routeSpan1.text(" " + planLength + " km");
-    var routeSpan2 = $("<i>").addClass("fa fa-clock-o");
-    routeSpan2.text(" " + planDuration + " min");
-    var routeSpan3 = $("<i>").addClass("fa fa-area-chart");
-    routeSpan3.text(" " + plan.elevationGain + " m");
+    var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
+    routeSpan1.text(" " + planDuration + " min");
+    var routeSpan2 = $("<i>").addClass("fa fa-car");
+    routeSpan2.text(" " + plan.criteria.stress);
+    var routeSpan3 = $("<i>").addClass("fa fa-gavel");
+    routeSpan3.text(" " + plan.criteria.physicalEffort);
     routeSpan1.appendTo(routeDiv);
     $("<hr>").appendTo(routeDiv);
     routeSpan2.appendTo(routeDiv);
@@ -278,14 +278,15 @@ function afterChartShow(plan, routeIndex) {
 
 function changeValuesInDescriptionPanel(plan) {
     var planLength = (plan.length / 1000).toFixed(1);
-    var planDuration = (plan.duration / 60).toFixed(0);
-    var consumedEnergy = (plan.consumedEnergy/1000).toFixed(0);
-    $("#route-length").text(" " + planLength + " km");
+    var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
+    var stress = (plan.criteria.stress);
+    var physicalEffort = (plan.criteria.physicalEffort);
     $("#route-duration").text(" " + planDuration + " min");
+    $("#route-stress").text(" " + stress);
+    $("#route-physical-effort").text(" " + physicalEffort);
+    $("#route-length").text(" " + planLength + " km");
     $("#route-elevation-change").text(" " + plan.elevationGain + " m");
     $("#route-crossroads").text(" -");
-    $("#route-consumed-energy").text(" " + consumedEnergy + " kJ");
     $("#route-elevation-gain").text(" " + plan.elevationGain + " m");
     $("#route-elevation-drop").text(" " + plan.elevationDrop + " m");
-    $("#route-smog").text(" - kg");
 }
