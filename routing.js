@@ -212,6 +212,26 @@ function handler(obj) {
     }
     basicRoutes.addTo(map);
 
+    //TODO sortovani- je potreba si ulozit do id buttonu index v poli vsech polyline a vsude pouzivat toto cislo misto indexu v danem divu
+    //TODO dale je potreba ulozit hodnotu jednotlivych kriterii jako samostatne divy aby se k ni dalo snadno pristupovat pri sortovani
+    //NASLEDUJE PREDPRIPRAVENY SORTING
+    //var allRouteDivs = $(".route-but");
+    //var orderedRouteButtons = allRouteDivs.sort(function (a, b) {
+    //    var divA = $(a);
+    //    var divB = $(b);
+    //    if (divA.find(".kriterium1").text() == divB.find(".kriterium1").text()) {
+    //        if (divA.find(".kriterium2").text() == divB.find(".kriterium2").text()) {
+    //            return divA.find(".kriterium3").text() > divB.find(".kriterium3").text();
+    //        } else {
+    //            return divA.find(".kriterium2").text() > divB.find(".kriterium2").text();
+    //        }
+    //    } else {
+    //        return divA.find(".kriterium1").text() > divB.find("kriterium1").text();
+    //    }
+    //});
+    //$("#routes-panel").html(orderedRouteButtons);
+
+
     var bbox = plans[0].boundingBox;
     var southWest = L.latLng(bbox.bottomRight.latE6 / 1000000, (bbox.topLeft.lonE6 / 1000000));
     var northEast = L.latLng(bbox.topLeft.latE6 / 1000000, (bbox.bottomRight.lonE6 / 1000000));
@@ -240,7 +260,6 @@ function createButtonForRoute(plan, routeIndex) {
     //routeButton.css("z-index", butZIndex);
     var routeDiv = $("<div>").addClass("route-desc");
     var routeSpan1 = $("<i>").addClass("fa fa-clock-o");
-    var planLength = (plan.length / 1000).toFixed(1);
     var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
     routeSpan1.text(" " + planDuration + " min");
     var routeSpan2 = $("<i>").addClass("fa fa-car");
