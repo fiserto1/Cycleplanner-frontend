@@ -260,20 +260,20 @@ function createButtonForRoute(plan, routeIndex) {
     //routeButton.css("z-index", butZIndex);
     var routeDiv = $("<div>").addClass("route-desc");
     //var routeSpan1 = $("<i>").addClass("fa fa-clock-o");
-    var routeSpan1 = $("<i>");
+    var routeSpan1 = $("<span>");
     var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
     var physicalEffort = (plan.criteria.physicalEffort / 1000).toFixed(1);
     if (planDuration >= 60) {
-        routeSpan1.text(" "+ Math.floor(planDuration/60) +" h " + (planDuration%60) + " min");
+        routeSpan1.text($.t("route-description.travel-time") + Math.floor(planDuration/60) +" h " + (planDuration%60) + " min");
     } else {
-        routeSpan1.text(" " + planDuration + " min");
+        routeSpan1.text($.t("route-description.travel-time") + planDuration + " min");
     }
     //var routeSpan2 = $("<i>").addClass("fa fa-car");
-    var routeSpan2 = $("<i>");
-    routeSpan2.text(" " + plan.criteria.stress + " SU");
+    var routeSpan2 = $("<span>");
+    routeSpan2.text($.t("route-description.stress") + plan.criteria.stress + " SU");
     //var routeSpan3 = $("<i>").addClass("fa fa-gavel");
-    var routeSpan3 = $("<i>");
-    routeSpan3.text(" " + physicalEffort + " kJ");
+    var routeSpan3 = $("<span>");
+    routeSpan3.text($.t("route-description.physical-effort") + physicalEffort + " kJ");
     routeSpan1.appendTo(routeDiv);
     $("<hr>").appendTo(routeDiv);
     routeSpan2.appendTo(routeDiv);
