@@ -53,6 +53,9 @@
     "title": "Multikriteriální cykloplánovač - API!",
     "body": {
       "title": "Chcete zahrnout multikriteriální cykloplánovač do vašich aplikací?",
+      "description": {
+        "html": "Tak napište e-mail na <a href=\"mailto:jan.hrncir@agents.fel.cvut.cz\" class=\"external\">jan.hrncir@agents.fel.cvut.cz</a> s předmětem \"Chci API k cykloplanovaci!\" a do zprávy uveďte důvod."
+      },
       "email": "Váš e-mail",
       "reason": "Chtěl bych využít API na ..."
     },

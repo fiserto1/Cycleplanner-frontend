@@ -53,6 +53,9 @@
     "title": "Multi-criteria cycleplanner - API!",
     "body": {
       "title": "Do you want to incorporate cycleplanner into your apps?",
+      "description": {
+        "html": "For the private early access send an e-mail to <a href=\"mailto:jan.hrncir@agents.fel.cvut.cz\" class=\"external\">jan.hrncir@agents.fel.cvut.cz</a>. Just write \"I want Cycleplanner API!\" to the subject and your reason in the message body."
+      },
       "email": "Your e-mail",
       "reason": "I want to use the API for ..."
     },
