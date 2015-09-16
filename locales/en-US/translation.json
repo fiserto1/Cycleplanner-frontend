@@ -65,7 +65,7 @@
     "zoom-out": "Zoom out",
     "route-description": {
       "travel-time": "Travel time",
-      "stress": "Stress",
+      "stress": "Stress, SU = stress unit",
       "physical-effort": "Physical effort",
       "length": "Length",
       "elevation-change": "Elevation change",
@@ -73,6 +73,16 @@
       "elevation-drop": "Elevation drop",
       "crossroads": "Number of crossroads"
     }
+  },
+  "route-description": {
+    "travel-time": "Time:",
+    "stress": "Stress:",
+    "physical-effort": "Effort:",
+    "length": "Length:",
+    "elevation-change": "Elevation change:",
+    "elevation-gain": "Elev. gain:",
+    "elevation-drop": "Elev. drop:",
+    "crossroads": "Number of crossroads:"
   },
   "contextmenu": {
     "add-start": "Add start",

@@ -65,7 +65,7 @@
     "zoom-out": "Oddálit",
     "route-description": {
       "travel-time": "Čas trasy",
-      "stress": "Náročnost trasy",
+      "stress": "Náročnost trasy, SU = stress unit",
       "physical-effort": "Fyzická námaha",
       "length": "Délka trasy",
       "elevation-change": "Převýšení trasy",
@@ -73,6 +73,16 @@
       "elevation-drop": "Klesání",
       "crossroads": "Počet křižovatek"
     }
+  },
+  "route-description": {
+    "travel-time": "Čas:",
+    "stress": "Náročnost:",
+    "physical-effort": "Námaha:",
+    "length": "Délka:",
+    "elevation-change": "Převýšení trasy:",
+    "elevation-gain": "Stoupání:",
+    "elevation-drop": "Klesání:",
+    "crossroads": "Počet křižovatek:"
   },
   "contextmenu": {
     "add-start": "Přidat začátek",

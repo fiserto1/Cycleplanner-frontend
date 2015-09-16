@@ -53,6 +53,7 @@ function changeLanguage(language) {
         translateLayerControl(t);
         translateTooltips(t);
         //TODO translateErrorPanel(t) or create error div for all errors..;
+        $(".all-route-params").i18n();
         $(".legend").i18n();
         $("#myTab").i18n();
         $("#web-title").i18n();
@@ -90,6 +91,7 @@ $(document).ready(function() {
         translateContextmenu(t);
         translateLayerControl(t);
         initializeMap();
+        $(".all-route-params").i18n();
         $(".legend").i18n();
         $("#myTab").i18n();
         $("#web-title").i18n();

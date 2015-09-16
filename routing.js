@@ -259,13 +259,21 @@ function createButtonForRoute(plan, routeIndex) {
     var routeButton = $("<button>").addClass("btn btn-default route-but col-md-3");
     //routeButton.css("z-index", butZIndex);
     var routeDiv = $("<div>").addClass("route-desc");
-    var routeSpan1 = $("<i>").addClass("fa fa-clock-o");
+    //var routeSpan1 = $("<i>").addClass("fa fa-clock-o");
+    var routeSpan1 = $("<i>");
     var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
-    routeSpan1.text(" " + planDuration + " min");
-    var routeSpan2 = $("<i>").addClass("fa fa-car");
-    routeSpan2.text(" " + plan.criteria.stress);
-    var routeSpan3 = $("<i>").addClass("fa fa-gavel");
-    routeSpan3.text(" " + plan.criteria.physicalEffort);
+    var physicalEffort = (plan.criteria.physicalEffort / 1000).toFixed(1);
+    if (planDuration >= 60) {
+        routeSpan1.text(" "+ Math.floor(planDuration/60) +" h " + (planDuration%60) + " min");
+    } else {
+        routeSpan1.text(" " + planDuration + " min");
+    }
+    //var routeSpan2 = $("<i>").addClass("fa fa-car");
+    var routeSpan2 = $("<i>");
+    routeSpan2.text(" " + plan.criteria.stress + " SU");
+    //var routeSpan3 = $("<i>").addClass("fa fa-gavel");
+    var routeSpan3 = $("<i>");
+    routeSpan3.text(" " + physicalEffort + " kJ");
     routeSpan1.appendTo(routeDiv);
     $("<hr>").appendTo(routeDiv);
     routeSpan2.appendTo(routeDiv);
@@ -308,16 +316,24 @@ function afterChartShow(plan, routeIndex) {
 }
 
 function changeValuesInDescriptionPanel(plan) {
-    var planLength = (plan.length / 1000).toFixed(1);
+    var planLength = plan.length;
     var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
     var stress = (plan.criteria.stress);
-    var physicalEffort = (plan.criteria.physicalEffort);
-    $("#route-duration").text(" " + planDuration + " min");
-    $("#route-stress").text(" " + stress);
-    $("#route-physical-effort").text(" " + physicalEffort);
-    $("#route-length").text(" " + planLength + " km");
-    $("#route-elevation-change").text(" " + plan.elevationGain + " m");
-    $("#route-crossroads").text(" -");
-    $("#route-elevation-gain").text(" " + plan.elevationGain + " m");
-    $("#route-elevation-drop").text(" " + plan.elevationDrop + " m");
+    var physicalEffort = (plan.criteria.physicalEffort/ 1000).toFixed(1);
+    if (planDuration >= 60) {
+        $("#route-duration-val").text(" "+ Math.floor(planDuration/60) +" h " + (planDuration%60) + " min");
+    } else {
+        $("#route-duration-val").text(" " + planDuration + " min");
+    }
+    $("#route-stress-val").text(" " + stress + " SU");
+    $("#route-physical-effort-val").text(" " + physicalEffort + " kJ");
+    if (planLength < 1000) {
+        $("#route-length-val").text(" " + planLength + " m");
+    } else {
+        $("#route-length-val").text(" " + (planLength/1000).toFixed(1) + " km");
+    }
+    $("#route-elevation-gain-val").text(" " + plan.elevationGain + " m");
+    $("#route-elevation-drop-val").text(" " + plan.elevationDrop + " m");
+    //$("#route-elevation-change-val").text(" " + plan.elevationGain + " m");
+    //$("#route-crossroads-val").text(" -");
 }
