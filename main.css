@@ -97,7 +97,7 @@ button.close {
   text-align: left;
 }
 .description-label {
-  text-align: center;
+  text-align: right;
 }
 #smartbanner {
   position: relative !important;
@@ -105,6 +105,15 @@ button.close {
 #text-feedback,
 #api-reason {
   resize: none;
+}
+.one-description {
+  text-align: center;
+}
+.one-description:hover {
+  background-color: #eeeeee;
+}
+#more-description-row {
+  line-height: 23px;
 }
 #api-reason {
   margin-top: 5px;

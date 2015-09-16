@@ -87,14 +87,14 @@
     }
   },
   "route-description": {
-    "travel-time": "Čas:",
-    "stress": "Náročnost:",
-    "physical-effort": "Námaha:",
-    "length": "Délka:",
-    "elevation-change": "Převýšení trasy:",
-    "elevation-gain": "Stoupání:",
-    "elevation-drop": "Klesání:",
-    "crossroads": "Počet křižovatek:"
+    "travel-time": "Čas: ",
+    "stress": "Stres: ",
+    "physical-effort": "Námaha: ",
+    "length": "Délka: ",
+    "elevation-change": "Převýšení trasy: ",
+    "elevation-gain": "Stoupání: ",
+    "elevation-drop": "Klesání: ",
+    "crossroads": "Počet křižovatek: "
   },
   "contextmenu": {
     "add-start": "Přidat začátek",
