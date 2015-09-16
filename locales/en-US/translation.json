@@ -49,6 +49,18 @@
       "description": "- map data strongly differ from reality"
     }
   },
+  "api": {
+    "title": "Multi-criteria cycleplanner - API!",
+    "body": {
+      "title": "Do you want to incorporate cycleplanner into your apps?",
+      "email": "Your e-mail",
+      "reason": "I want to use the API for ..."
+    },
+    "button": {
+      "close": "Close",
+      "send": "Send"
+    }
+  },
   "settings": {
     "avg-speed": "Average speed",
     "public-transport": "Plan with public transport"
@@ -65,7 +77,7 @@
     "zoom-out": "Zoom out",
     "route-description": {
       "travel-time": "Travel time",
-      "stress": "Stress, SU = stress unit",
+      "stress": "Stress, SU = Stress Unit",
       "physical-effort": "Physical effort",
       "length": "Length",
       "elevation-change": "Elevation change",

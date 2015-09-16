@@ -58,9 +58,12 @@ function changeLanguage(language) {
         $("#myTab").i18n();
         $("#web-title").i18n();
         $("#about-panel").find(".modal-body").html(t("about.html"));
-        $("#textFeedback").attr("placeholder", t("feedback.textarea-placeholder"));
+        $("#text-feedback").attr("placeholder", t("feedback.textarea-placeholder"));
         $("#feedback-panel").find(".modal-content").i18n();
         $("#about-panel").find(".modal-content").i18n();
+        $("#api-panel").find(".modal-content").i18n();
+        $("#api-reason").attr("placeholder", t("api.body.reason"));
+        $("#api-email").attr("placeholder", t("api.body.email"));
         $("#settings-panel").i18n();
 
         //console.log($(".leaflet-contextmenu-item").eq(0).children());
@@ -98,7 +101,10 @@ $(document).ready(function() {
         $("#about-panel").find(".modal-body").html(t("about.html"));
         $("#about-panel").find(".modal-content").i18n();
         $("#feedback-panel").find(".modal-content").i18n();
-        $("#textFeedback").attr("placeholder", t("feedback.textarea-placeholder"));
+        $("#text-feedback").attr("placeholder", t("feedback.textarea-placeholder"));
+        $("#api-panel").find(".modal-content").i18n();
+        $("#api-reason").attr("placeholder", t("api.body.reason"));
+        $("#api-email").attr("placeholder", t("api.body.email"));
         $("#settings-panel").i18n();
         $.smartbanner({
             icon: "img/app-icon.png"

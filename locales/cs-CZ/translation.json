@@ -49,6 +49,18 @@
       "description": "- mapové podklady zásadně neodpovídají realitě"
     }
   },
+  "api": {
+    "title": "Multikriteriální cykloplánovač - API!",
+    "body": {
+      "title": "Chcete zahrnout multikriteriální cykloplánovač do vašich aplikací?",
+      "email": "Váš e-mail",
+      "reason": "Chtěl bych využít API na ..."
+    },
+    "button": {
+      "close": "Zavřít",
+      "send": "Odeslat"
+    }
+  },
   "settings": {
     "avg-speed": "Průměrná rychlost",
     "public-transport": "Plánovat s MHD"
@@ -65,7 +77,7 @@
     "zoom-out": "Oddálit",
     "route-description": {
       "travel-time": "Čas trasy",
-      "stress": "Náročnost trasy, SU = stress unit",
+      "stress": "Náročnost trasy, SU = Stress Unit",
       "physical-effort": "Fyzická námaha",
       "length": "Délka trasy",
       "elevation-change": "Převýšení trasy",

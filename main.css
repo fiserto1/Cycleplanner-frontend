@@ -102,8 +102,12 @@ button.close {
 #smartbanner {
   position: relative !important;
 }
-#textFeedback {
+#text-feedback,
+#api-reason {
   resize: none;
+}
+#api-reason {
+  margin-top: 5px;
 }
 .rack-marker {
   cursor: pointer;
