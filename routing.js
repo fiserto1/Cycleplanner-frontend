@@ -50,16 +50,25 @@ function initializeRouting() {
     }
     var hash = location.hash;
     if (hash != "") {
-        hash = hash.substr(1);
-        var coords = hash.split("&");
-        var startLatLng = L.latLng(parseFloat(coords[0]), parseFloat(coords[1]));
-        var destinationLatLng = L.latLng(parseFloat(coords[2]), parseFloat(coords[3]));
-        findAddressFromCoordinates(0, startLatLng);
-        findAddressFromCoordinates(1, destinationLatLng);
-        allMarkers[0].setLatLng(startLatLng).addTo(map);
-        allMarkers[allMarkers.length-1].setLatLng(destinationLatLng).addTo(map);
-        getPlans();
+        var responseId = parseInt(hash.substr(12));
+        var prevLocation = "http://its.felk.cvut.cz/cycle-planner-1.5.0-SNAPSHOT/api/v3/planner/plans/responseId/" + responseId;
+        $.ajax({
+            url: prevLocation,
+            success: showPlanFromHash,
+            error: serverError
+        });
     }
+}
+function showPlanFromHash(obj) {
+    var origin = obj.request.origin;
+    var destination = obj.request.destination;
+    var startLatLng = L.latLng(origin.latE6/1000000, origin.lonE6/1000000);
+    var destinationLatLng = L.latLng(destination.latE6/1000000, destination.lonE6/1000000);
+    findAddressFromCoordinates(0, startLatLng);
+    findAddressFromCoordinates(1, destinationLatLng);
+    allMarkers[0].setLatLng(startLatLng).addTo(map);
+    allMarkers[allMarkers.length-1].setLatLng(destinationLatLng).addTo(map);
+    handler(obj);
 }
 
 function hidePanelsExceptSearch() {
@@ -83,7 +92,6 @@ function getPlans() {
         //console.log("Start");
         var target = document.getElementById('map');
         spinner.spin(target);
-        console.log("start");
         var data = {
             "client":"multicriteria-cycleplanner",
             "origin":{
@@ -156,12 +164,7 @@ function handler(obj) {
         handleServerError(400);
         return;
     }
-    var startMarker = allMarkers[0];
-    var destinationMarker = allMarkers[allMarkers.length-1];
-    var hash = "#" + startMarker.getLatLng().lat
-        + "&" + startMarker.getLatLng().lng
-        + "&" + destinationMarker.getLatLng().lat
-        + "&" + destinationMarker.getLatLng().lng;
+    var hash = "#responseId=" + obj.responseId;
     location.replace(hash);
     spinner.stop();
     console.log(obj);
