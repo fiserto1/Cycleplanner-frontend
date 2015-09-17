@@ -8,11 +8,10 @@ var elevationCircle = L.circleMarker(null,{
 }).setRadius(5);
 //});
 
-function createChart(chartOptionsAndData, routeIndex) {
-    var hChart = $('#hChart').highcharts({
+function createChart(chartOptionsAndData, routeIndex, target) {
+    var hChart = target.highcharts({
         chart: {
-            width: $("#search-panel").width(),
-            height: 80,
+            //height: 50,
             type: 'area',//areaspline
             borderRadius: 2,
             marginTop: 0,
@@ -23,6 +22,12 @@ function createChart(chartOptionsAndData, routeIndex) {
             //spacingTop: 0,
             //spacingLeft: 0,
             //spacingRight: 0,
+            events: {
+                load: function() {
+                    this.redraw()
+                    $(window).resize();
+                }
+            }
         },
         title: {
             text: null

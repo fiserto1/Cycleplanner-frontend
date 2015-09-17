@@ -256,36 +256,40 @@ function routeClick(e) {
     button.trigger("click").focus();
 }
 
+
+//<ul id="myTab" class="nav nav-tabs">
+//    <li class="active legend-button">
+//    <a href="#elevation-legend" data-toggle="tab" data-i18n="legend.tabs.elevation"></a>
+//    </li>
+//    <li class="legend-button">
+//    <a href="#speed-legend" data-toggle="tab" data-i18n="legend.tabs.speed"></a>
+//    </li>
+//    <li class="legend-button">
+//    <a href="#surface-legend" data-toggle="tab" data-i18n="legend.tabs.surface"></a>
+//    </li>
+//    <li class="legend-button">
+//    <a href="#road-type-legend" data-toggle="tab" data-i18n="legend.tabs.road-type"></a>
+//    </li>
+//    </ul>
 function createButtonForRoute(plan, routeIndex) {
 
-    //data-toggle="collapse" data-target="#settings-panel"
-    var routeButton = $("<button>").addClass("btn btn-default route-but col-md-3");
+    var routeButton = $("<div>").addClass("route-but col-md-12");
+    //id je index daneho planu v polich polyline, nezamenit se zobrazovanym poradim na strance
+    routeButton.attr("id", routeIndex);
     //routeButton.css("z-index", butZIndex);
-    var routeDiv = $("<div>").addClass("route-desc");
-    //var routeSpan1 = $("<i>").addClass("fa fa-clock-o");
-    var routeSpan1 = $("<span>");
-    var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
-    var physicalEffort = (plan.criteria.physicalEffort / 1000).toFixed(1);
-    if (planDuration >= 60) {
-        routeSpan1.text($.t("route-description.travel-time") + Math.floor(planDuration/60) +" h " + (planDuration%60) + " min");
-    } else {
-        routeSpan1.text($.t("route-description.travel-time") + planDuration + " min");
-    }
-    //var routeSpan2 = $("<i>").addClass("fa fa-car");
-    var routeSpan2 = $("<span>");
-    routeSpan2.text($.t("route-description.stress") + plan.criteria.stress + " SU");
-    //var routeSpan3 = $("<i>").addClass("fa fa-gavel");
-    var routeSpan3 = $("<span>");
-    routeSpan3.text($.t("route-description.physical-effort") + physicalEffort + " kJ");
-    routeSpan1.appendTo(routeDiv);
-    $("<hr>").appendTo(routeDiv);
-    routeSpan2.appendTo(routeDiv);
-    $("<hr>").appendTo(routeDiv);
-    routeSpan3.appendTo(routeDiv);
+    var routeDiv = $("<span>").addClass("route-desc row");
+
+    var durationTab = createDurationTab(plan, routeIndex);
+    var stressTab = createStressTab(plan, routeIndex);
+    var effortTab = createEffortTab(plan, routeIndex);
+
+    durationTab.appendTo(routeDiv);
+    stressTab.appendTo(routeDiv);
+    effortTab.appendTo(routeDiv);
+
     routeDiv.appendTo(routeButton);
-    //routeButton.appendTo(fourRoutesDiv);
     routeButton.appendTo($("#routes-panel"));
-    routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
+    //routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
 
 }
 var firstRouteClick=0;
@@ -303,6 +307,86 @@ function routeButtonClick(e) {
 
     $("#chart-panel").show("blind", 500);
     $("#legend").show("blind", 500);
+}
+function createDurationTab(plan, routeIndex) {
+    var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
+    var durationTab = $('<div href="#elevation-legend" data-toggle="tab">').addClass("duration-desc criteria-tab col-md-4");
+    durationTab.click(function() {
+        segChoice = ELEVATION_SEGMENTS;
+        //$("#legend").show("blind", 500);
+        showSegments(routeIndex, plan);
+    });
+    var durationDesc = $("<span>").addClass("one-criteria row");
+    var durationLabel = $('<span data-i18n="route-description.travel-time">').addClass("description-label");
+    durationLabel.text($.t("route-description.travel-time"));
+    durationLabel.appendTo(durationDesc);
+    var durationValue = $('<span>').addClass("description-value");
+    if (planDuration >= 60) {
+        durationValue.text(Math.floor(planDuration/60) +" h " + (planDuration%60) + " min");
+    } else {
+        durationValue.text(planDuration + " min");
+    }
+    durationValue.appendTo(durationDesc);
+    durationDesc.appendTo(durationTab);
+
+    var divId = "duration-chart-" + routeIndex;
+    var durationChart = $("<div>").attr("id", divId).addClass("small-chart row");
+    createChart(allChartOptions[routeIndex], routeIndex, durationChart);
+
+    //$(window).resize();
+    durationChart.appendTo(durationTab);
+
+    return durationTab;
+}
+
+function createStressTab(plan, routeIndex) {
+    var stressTab = $('<div href="#road-type-legend" data-toggle="tab">').addClass("stress-desc criteria-tab col-md-4");
+    stressTab.click(function() {
+        segChoice = ROAD_TYPE_SEGMENTS;
+        //$("#legend").show("blind", 500);
+        showSegments(routeIndex, plan);
+    });
+    var stressDesc = $("<span>").addClass("one-criteria row");
+    var stressLabel = $('<span data-i18n="route-description.stress">').addClass("description-label");
+    stressLabel.text($.t("route-description.stress"));
+    stressLabel.appendTo(stressDesc);
+    var stressValue = $('<span>').addClass("description-value");
+    stressValue.text(plan.criteria.stress + " SU");
+    stressValue.appendTo(stressDesc);
+    stressDesc.appendTo(stressTab);
+
+    var divId = "stress-chart-" + routeIndex;
+    var stressChart = $("<div>").attr("id", divId).addClass("small-chart row");
+    createChart(allChartOptions[routeIndex], routeIndex, stressChart);
+    stressChart.appendTo(stressTab);
+
+    return stressTab;
+}
+
+function createEffortTab(plan, routeIndex) {
+    var physicalEffort = (plan.criteria.physicalEffort / 1000).toFixed(1);
+
+    var effortTab = $('<div href="#surface-legend" data-toggle="tab">').addClass("effort-desc criteria-tab col-md-4");
+    effortTab.click(function() {
+        segChoice = SURFACE_SEGMENTS;
+        //$("#legend").show("blind", 500);
+        showSegments(routeIndex, plan);
+    });
+    var effortDesc = $("<span>").addClass("one-criteria row");
+    var effortLabel = $('<span data-i18n="route-description.physical-effort">').addClass("description-label");
+    effortLabel.text($.t("route-description.physical-effort"));
+    effortLabel.appendTo(effortDesc);
+    var effortValue = $('<span>').addClass("description-value");
+    effortValue.text(physicalEffort + " kJ");
+    effortValue.appendTo(effortDesc);
+    effortDesc.appendTo(effortTab);
+
+    var divId = "effort-chart-" + routeIndex;
+    var effortChart = $("<div>").attr("id", divId).addClass("small-chart row");
+    createChart(allChartOptions[routeIndex], routeIndex, effortChart);
+    effortChart.appendTo(effortTab);
+
+    return effortTab;
 }
 
 //vysunuti a zasunuti podrobneho popisu trasy po kliknuti na button
