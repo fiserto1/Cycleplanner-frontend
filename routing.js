@@ -215,6 +215,23 @@ function handler(obj) {
     }
     basicRoutes.addTo(map);
 
+    setTimeout(function(){
+        console.log("halo");
+        for(var i = 0; i < allChartOptions.length; i++){
+
+            var string = "#duration-chart-" + i;
+            console.log(string);
+            //var id = $(string);
+            createDurationChart(allChartOptions[i], i, $(string));
+            string = ("#stress-chart-" + i);
+            createStressChart(allChartOptions[i], i, $(string));
+            string = ("#effort-chart-" + i);
+            createEffortChart(allChartOptions[i], i, $(string));
+        }
+
+    }, 10);// bez timeoutu nefunguje...
+
+
     //TODO sortovani- je potreba si ulozit do id buttonu index v poli vsech polyline a vsude pouzivat toto cislo misto indexu v danem divu
     //TODO dale je potreba ulozit hodnotu jednotlivych kriterii jako samostatne divy aby se k ni dalo snadno pristupovat pri sortovani
     //NASLEDUJE PREDPRIPRAVENY SORTING
@@ -289,6 +306,7 @@ function createButtonForRoute(plan, routeIndex) {
 
     routeDiv.appendTo(routeButton);
     routeButton.appendTo($("#routes-panel"));
+
     //routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
 
 }
@@ -297,7 +315,7 @@ function routeButtonClick(e) {
     var routeIndex = e.data.param1;
     var plan = e.data.param2;
     showSegments(routeIndex, plan);
-    createChart(allChartOptions[routeIndex], routeIndex);
+    //createChart(allChartOptions[routeIndex], routeIndex);
     //console.log(e);
     $(".route-but").removeClass("selected-but");
     $(e.currentTarget).addClass("selected-but");
@@ -315,6 +333,8 @@ function createDurationTab(plan, routeIndex) {
         segChoice = ELEVATION_SEGMENTS;
         //$("#legend").show("blind", 500);
         showSegments(routeIndex, plan);
+        //var id = $("#duration-chart-0");
+        //createChart(allChartOptions[routeIndex], routeIndex, id);
     });
     var durationDesc = $("<span>").addClass("one-criteria row");
     var durationLabel = $('<span data-i18n="route-description.travel-time">').addClass("description-label");
@@ -331,7 +351,7 @@ function createDurationTab(plan, routeIndex) {
 
     var divId = "duration-chart-" + routeIndex;
     var durationChart = $("<div>").attr("id", divId).addClass("small-chart row");
-    createChart(allChartOptions[routeIndex], routeIndex, durationChart);
+    //createChart(allChartOptions[routeIndex], routeIndex, durationChart);
 
     //$(window).resize();
     durationChart.appendTo(durationTab);
@@ -357,7 +377,7 @@ function createStressTab(plan, routeIndex) {
 
     var divId = "stress-chart-" + routeIndex;
     var stressChart = $("<div>").attr("id", divId).addClass("small-chart row");
-    createChart(allChartOptions[routeIndex], routeIndex, stressChart);
+    //createChart(allChartOptions[routeIndex], routeIndex, stressChart);
     stressChart.appendTo(stressTab);
 
     return stressTab;
@@ -383,7 +403,7 @@ function createEffortTab(plan, routeIndex) {
 
     var divId = "effort-chart-" + routeIndex;
     var effortChart = $("<div>").attr("id", divId).addClass("small-chart row");
-    createChart(allChartOptions[routeIndex], routeIndex, effortChart);
+    //createChart(allChartOptions[routeIndex], routeIndex, effortChart);
     effortChart.appendTo(effortTab);
 
     return effortTab;

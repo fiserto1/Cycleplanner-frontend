@@ -92,7 +92,7 @@
   "route-description": {
     "travel-time": "Duration: ",
     "stress": "Stress: ",
-    "physical-effort": "Effort: ",
+    "physical-effort": "Physical Effort: ",
     "length": "Length: ",
     "elevation-change": "Elevation change: ",
     "elevation-gain": "Elev. gain: ",
