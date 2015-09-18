@@ -17,7 +17,7 @@ function createDurationChart(chartOptionsAndData, routeIndex, target) {
             marginTop: 5,
             marginRight: 5,
             marginLeft: 5,
-            marginBottom: 5,
+            marginBottom: 5
             //spacingBottom: 0,
             //spacingTop: 0,
             //spacingLeft: 0,
@@ -66,8 +66,8 @@ function createDurationChart(chartOptionsAndData, routeIndex, target) {
             lineWidth: 0,
             endOnTick: false,
             startOnTick: false,
-            max: chartOptionsAndData.max+15,
-            min: chartOptionsAndData.min-15,
+            max: chartOptionsAndData.max+5,
+            min: chartOptionsAndData.min,
             //labels: {
             //    formatter: function () {
             //        return this.value + ' m';
@@ -124,7 +124,7 @@ function createDurationChart(chartOptionsAndData, routeIndex, target) {
                     mouseOver: function () {
                         elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
                         elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Speed: " + this.y + " km/h" + this.x).openPopup();
+                        elevationCircle.bindPopup("Speed: " + this.y.toFixed(1) + " km/h").openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {
@@ -283,7 +283,7 @@ function createStressChart(chartOptionsAndData, routeIndex, target) {
                     mouseOver: function () {
                         elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
                         elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Stress: " + this.y + " SU" + this.x).openPopup();
+                        elevationCircle.bindPopup("Stress: " + this.y + " SU").openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {
@@ -335,7 +335,7 @@ function createEffortChart(chartOptionsAndData, routeIndex, target) {
             marginTop: 5,
             marginRight: 5,
             marginLeft: 5,
-            marginBottom: 5,
+            marginBottom: 5
             //spacingBottom: 0,
             //spacingTop: 0,
             //spacingLeft: 0,
@@ -371,7 +371,7 @@ function createEffortChart(chartOptionsAndData, routeIndex, target) {
             //showFirstLabel: true,
             //showLastLabel: true,
             labels: {
-                enabled: false,
+                enabled: false
                 //align: "right",
                 //x: -12,
                 //y: 5,
@@ -385,7 +385,7 @@ function createEffortChart(chartOptionsAndData, routeIndex, target) {
             endOnTick: false,
             startOnTick: false,
             max: chartOptionsAndData.max,
-            min: chartOptionsAndData.min,
+            min: chartOptionsAndData.min
             //labels: {
             //    formatter: function () {
             //        return this.value + ' m';
@@ -441,7 +441,7 @@ function createEffortChart(chartOptionsAndData, routeIndex, target) {
                     mouseOver: function () {
                         elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
                         elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Power: " + this.y + " W" + this.x).openPopup();
+                        elevationCircle.bindPopup("Power: " + this.y.toFixed(1) + " W").openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {
