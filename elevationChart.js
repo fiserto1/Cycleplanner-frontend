@@ -124,7 +124,7 @@ function createDurationChart(chartOptionsAndData, routeIndex, target) {
                     mouseOver: function () {
                         elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
                         elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Výška: " + this.y + " m.n.m.").openPopup();
+                        elevationCircle.bindPopup("Speed: " + this.y + " km/h" + this.x).openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {
@@ -225,8 +225,8 @@ function createStressChart(chartOptionsAndData, routeIndex, target) {
             lineWidth: 0,
             endOnTick: false,
             startOnTick: false,
-            max: chartOptionsAndData.max+15,
-            min: chartOptionsAndData.min-15,
+            max: chartOptionsAndData.max + 2,
+            min: chartOptionsAndData.min - 2,
             //labels: {
             //    formatter: function () {
             //        return this.value + ' m';
@@ -283,7 +283,7 @@ function createStressChart(chartOptionsAndData, routeIndex, target) {
                     mouseOver: function () {
                         elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
                         elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Výška: " + this.y + " m.n.m.").openPopup();
+                        elevationCircle.bindPopup("Stress: " + this.y + " SU" + this.x).openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {
@@ -384,8 +384,8 @@ function createEffortChart(chartOptionsAndData, routeIndex, target) {
             lineWidth: 0,
             endOnTick: false,
             startOnTick: false,
-            max: chartOptionsAndData.max+15,
-            min: chartOptionsAndData.min-15,
+            max: chartOptionsAndData.max,
+            min: chartOptionsAndData.min,
             //labels: {
             //    formatter: function () {
             //        return this.value + ' m';
@@ -441,7 +441,7 @@ function createEffortChart(chartOptionsAndData, routeIndex, target) {
                     mouseOver: function () {
                         elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
                         elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Výška: " + this.y + " m.n.m.").openPopup();
+                        elevationCircle.bindPopup("Power: " + this.y + " W" + this.x).openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {

@@ -178,24 +178,74 @@ function handler(obj) {
     for (var i = 0; i < plans.length; i++) {
         var oneBasicRouteLatLngs = [];
         var distanceFromStart = 0;
-        var XYData = []; //TODO graf bude taky lazy nacitanej
-        var minElevation = Number.MAX_VALUE;
+        var XYData = [];
+        var XYSpeedData = [];
+        var XYStressData = [];
+        var XYPowerData = [];
         var maxElevation = Number.MIN_VALUE;
+        var minElevation = Number.MAX_VALUE;
+        var maxSpeed = Number.MIN_VALUE;
+        var minSpeed = Number.MAX_VALUE;
+        var maxStress = Number.MIN_VALUE;
+        var minStress = Number.MAX_VALUE;
+        var maxPower = Number.MIN_VALUE;
+        var minPower = Number.MAX_VALUE;
         var steps = plans[i].steps;
         for (var j = 0; j < (steps.length); j++) {
             var coordinate = steps[j].coordinate;
             var lat = coordinate.latE6 / 1000000;
             var lng = coordinate.lonE6 / 1000000;
+            var sectionLength = steps[j].distanceToNextStep;
+            var sectionTime = steps[j].travelTimeToNextStep;
+            if (j != steps.length-1) {
+                var sectionSpeed = (sectionLength/sectionTime)*3.6;
+                maxSpeed = Math.max(maxSpeed, sectionSpeed);
+                minSpeed = Math.min(minSpeed, sectionSpeed);
+                XYSpeedData.push([distanceFromStart + (sectionLength/2), sectionSpeed]);
+
+                var sectionStress = steps[j].stressToNextStep;
+                maxStress = Math.max(maxStress, sectionStress);
+                minStress = Math.min(minStress, sectionStress);
+                XYStressData.push([distanceFromStart + (sectionLength/2), sectionStress]);
+
+                var sectionEffort = steps[j].physicalEffortToNextStep;
+                var sectionPower = sectionEffort/sectionTime;
+                maxPower = Math.max(maxPower, sectionPower);
+                minPower = Math.min(minPower, sectionPower);
+                XYPowerData.push([distanceFromStart + (sectionLength/2), sectionPower]);
+            }
             XYData.push([distanceFromStart, coordinate.elevation]);
             maxElevation = Math.max(maxElevation, coordinate.elevation);
             minElevation = Math.min(minElevation, coordinate.elevation);
             distanceFromStart += steps[j].distanceToNextStep;
             oneBasicRouteLatLngs.push(L.latLng(lat, lng));
         }
+        console.log(maxStress);
+        console.log(minStress);
+        console.log(maxPower);
+        console.log(minPower);
         var chOptions = {
-            max: maxElevation,
-            min: minElevation,
-            data: XYData
+            elevation: {
+                max: maxElevation,
+                min: minElevation,
+                data: XYData
+            },
+            speed: {
+                max: maxSpeed,
+                min: minSpeed,
+                data: XYSpeedData
+            },
+            stress: {
+                max: maxStress,
+                min: minStress,
+                data: XYStressData
+            },
+            power: {
+                max: maxPower,
+                min: minPower,
+                data: XYPowerData
+            }
+
         };
         allChartOptions.push(chOptions);
 
@@ -219,17 +269,20 @@ function handler(obj) {
         console.log("halo");
         for(var i = 0; i < allChartOptions.length; i++){
 
-            var string = "#duration-chart-" + i;
-            console.log(string);
+            var chartDivId = "#duration-chart-" + i;
             //var id = $(string);
-            createDurationChart(allChartOptions[i], i, $(string));
-            string = ("#stress-chart-" + i);
-            createStressChart(allChartOptions[i], i, $(string));
-            string = ("#effort-chart-" + i);
-            createEffortChart(allChartOptions[i], i, $(string));
+            createDurationChart(allChartOptions[i].speed, i, $(chartDivId));
+            chartDivId = ("#stress-chart-" + i);
+            createStressChart(allChartOptions[i].stress, i, $(chartDivId));
+            chartDivId = ("#effort-chart-" + i);
+            createEffortChart(allChartOptions[i].power, i, $(chartDivId));
+
+
+            //createDurationChart(allChartOptions[i].stress, i, $("#hChart"));
+            //$("#chart-panel").show();
         }
 
-    }, 10);// bez timeoutu nefunguje...
+    }, 200);// bez timeoutu nefunguje...
 
 
     //TODO sortovani- je potreba si ulozit do id buttonu index v poli vsech polyline a vsude pouzivat toto cislo misto indexu v danem divu
