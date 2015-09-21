@@ -8,7 +8,7 @@ var elevationCircle = L.circleMarker(null,{
 }).setRadius(5);
 //});
 
-function createDurationChart(chartOptionsAndData, routeIndex, target) {
+function createDurationChart(data, routeIndex, target, max, min) {
     var hChart = target.highcharts({
         chart: {
             //height: 50,
@@ -66,8 +66,8 @@ function createDurationChart(chartOptionsAndData, routeIndex, target) {
             lineWidth: 0,
             endOnTick: false,
             startOnTick: false,
-            max: chartOptionsAndData.max+5,
-            min: chartOptionsAndData.min,
+            max: max+5,
+            min: min
             //labels: {
             //    formatter: function () {
             //        return this.value + ' m';
@@ -107,7 +107,7 @@ function createDurationChart(chartOptionsAndData, routeIndex, target) {
             color: '#6BA448',
             animation: false,
             //name: 'Trasa',
-            data: chartOptionsAndData.data,
+            data: data,
             zoneAxis: "x",
             //TODO obarvit zony v grafu stejne jako segmenty
             //zones: [{
@@ -167,7 +167,7 @@ function createDurationChart(chartOptionsAndData, routeIndex, target) {
 };
 
 
-function createStressChart(chartOptionsAndData, routeIndex, target) {
+function createStressChart(data, routeIndex, target, max, min) {
     var hChart = target.highcharts({
         chart: {
             //height: 50,
@@ -176,7 +176,7 @@ function createStressChart(chartOptionsAndData, routeIndex, target) {
             marginTop: 5,
             marginRight: 5,
             marginLeft: 5,
-            marginBottom: 5,
+            marginBottom: 5
             //spacingBottom: 0,
             //spacingTop: 0,
             //spacingLeft: 0,
@@ -212,7 +212,7 @@ function createStressChart(chartOptionsAndData, routeIndex, target) {
             //showFirstLabel: true,
             //showLastLabel: true,
             labels: {
-                enabled: false,
+                enabled: false
                 //align: "right",
                 //x: -12,
                 //y: 5,
@@ -225,8 +225,8 @@ function createStressChart(chartOptionsAndData, routeIndex, target) {
             lineWidth: 0,
             endOnTick: false,
             startOnTick: false,
-            max: chartOptionsAndData.max + 2,
-            min: chartOptionsAndData.min - 2,
+            max: max + 2,
+            min: min - 2
             //labels: {
             //    formatter: function () {
             //        return this.value + ' m';
@@ -266,7 +266,7 @@ function createStressChart(chartOptionsAndData, routeIndex, target) {
             color: '#D34A45',
             animation: false,
             //name: 'Trasa',
-            data: chartOptionsAndData.data,
+            data: data,
             zoneAxis: "x",
             //TODO obarvit zony v grafu stejne jako segmenty
             //zones: [{
@@ -326,7 +326,7 @@ function createStressChart(chartOptionsAndData, routeIndex, target) {
 };
 
 
-function createEffortChart(chartOptionsAndData, routeIndex, target) {
+function createEffortChart(data, routeIndex, target, max, min) {
     var hChart = target.highcharts({
         chart: {
             //height: 50,
@@ -384,8 +384,8 @@ function createEffortChart(chartOptionsAndData, routeIndex, target) {
             lineWidth: 0,
             endOnTick: false,
             startOnTick: false,
-            max: chartOptionsAndData.max,
-            min: chartOptionsAndData.min
+            max: max,
+            min: min
             //labels: {
             //    formatter: function () {
             //        return this.value + ' m';
@@ -424,7 +424,7 @@ function createEffortChart(chartOptionsAndData, routeIndex, target) {
         series: [{
             animation: false,
             //name: 'Trasa',
-            data: chartOptionsAndData.data,
+            data: data,
             zoneAxis: "x",
             //TODO obarvit zony v grafu stejne jako segmenty
             //zones: [{

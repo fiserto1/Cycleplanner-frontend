@@ -158,7 +158,7 @@ var basicRoutes = L.layerGroup();
 var response;
 
 function handler(obj) {
-    console.log(obj.status);
+    //console.log(obj.status);
 
     if (obj.status == "OUT_OF_BOUNDS") {
         handleServerError(400);
@@ -169,11 +169,33 @@ function handler(obj) {
     spinner.stop();
     console.log(obj);
     response = obj;
-    allChartOptions = []; //TODO prepsat na lokalni promennou
+    allChartOptions = {
+        elevation: {
+            data: []
+        },
+        speed: {
+            data: []
+        },
+        stress: {
+            data: []
+        },
+        power: {
+            data: []
+        }
+    }; //TODO prepsat na lokalni promennou
     removeAllRoutesFromMap();
     hidePanelsExceptSearch();
     var plans = obj.plans;
     var butZIndex = 500;
+
+    var maxElevation = Number.MIN_VALUE;
+    var minElevation = Number.MAX_VALUE;
+    var maxSpeed = Number.MIN_VALUE;
+    var minSpeed = Number.MAX_VALUE;
+    var maxStress = Number.MIN_VALUE;
+    var minStress = Number.MAX_VALUE;
+    var maxPower = Number.MIN_VALUE;
+    var minPower = Number.MAX_VALUE;
     //var fourRoutesDiv = $("<div>").addClass("four-routes-panel");
     for (var i = 0; i < plans.length; i++) {
         var oneBasicRouteLatLngs = [];
@@ -182,14 +204,7 @@ function handler(obj) {
         var XYSpeedData = [];
         var XYStressData = [];
         var XYPowerData = [];
-        var maxElevation = Number.MIN_VALUE;
-        var minElevation = Number.MAX_VALUE;
-        var maxSpeed = Number.MIN_VALUE;
-        var minSpeed = Number.MAX_VALUE;
-        var maxStress = Number.MIN_VALUE;
-        var minStress = Number.MAX_VALUE;
-        var maxPower = Number.MIN_VALUE;
-        var minPower = Number.MAX_VALUE;
+
         var steps = plans[i].steps;
         for (var j = 0; j < (steps.length); j++) {
             var coordinate = steps[j].coordinate;
@@ -220,34 +235,26 @@ function handler(obj) {
             distanceFromStart += steps[j].distanceToNextStep;
             oneBasicRouteLatLngs.push(L.latLng(lat, lng));
         }
-        console.log(maxStress);
-        console.log(minStress);
-        console.log(maxPower);
-        console.log(minPower);
-        var chOptions = {
-            elevation: {
-                max: maxElevation,
-                min: minElevation,
-                data: XYData
-            },
-            speed: {
-                max: maxSpeed,
-                min: minSpeed,
-                data: XYSpeedData
-            },
-            stress: {
-                max: maxStress,
-                min: minStress,
-                data: XYStressData
-            },
-            power: {
-                max: maxPower,
-                min: minPower,
-                data: XYPowerData
-            }
-
-        };
-        allChartOptions.push(chOptions);
+        allChartOptions.elevation.data.push(XYData);
+        allChartOptions.speed.data.push(XYSpeedData);
+        allChartOptions.stress.data.push(XYStressData);
+        allChartOptions.power.data.push(XYPowerData);
+        //var chOptions = {
+        //    elevation: {
+        //        data: XYData
+        //    },
+        //    speed: {
+        //        data: XYSpeedData
+        //    },
+        //    stress: {
+        //        data: XYStressData
+        //    },
+        //    power: {
+        //        data: XYPowerData
+        //    }
+        //
+        //};
+        //allChartOptions.push(chOptions);
 
         var oneBasicRoute = L.polyline(oneBasicRouteLatLngs, basicRouteOptions);
         oneBasicRoute.on('click', routeClick);
@@ -263,19 +270,27 @@ function handler(obj) {
         //createButtonForRoute(plans[i], i, butZIndex, fourRoutesDiv);
         createButtonForRoute(plans[i], i);
     }
+
+    allChartOptions.elevation.max = maxElevation;
+    allChartOptions.elevation.min = minElevation;
+    allChartOptions.speed.max = maxSpeed;
+    allChartOptions.speed.min = minSpeed;
+    allChartOptions.stress.max = maxStress;
+    allChartOptions.stress.min = minStress;
+    allChartOptions.power.max = maxPower;
+    allChartOptions.power.min = minPower;
     basicRoutes.addTo(map);
 
     setTimeout(function(){
-        console.log("halo");
-        for(var i = 0; i < allChartOptions.length; i++){
+        for(var i = 0; i < plans.length; i++){
 
             var chartDivId = "#duration-chart-" + i;
             //var id = $(string);
-            createDurationChart(allChartOptions[i].speed, i, $(chartDivId));
+            createDurationChart(allChartOptions.speed.data[i], i, $(chartDivId), allChartOptions.speed.max, allChartOptions.speed.min);
             chartDivId = ("#stress-chart-" + i);
-            createStressChart(allChartOptions[i].stress, i, $(chartDivId));
+            createStressChart(allChartOptions.stress.data[i], i, $(chartDivId), allChartOptions.stress.max, allChartOptions.stress.min);
             chartDivId = ("#effort-chart-" + i);
-            createEffortChart(allChartOptions[i].power, i, $(chartDivId));
+            createEffortChart(allChartOptions.power.data[i], i, $(chartDivId), allChartOptions.power.max, allChartOptions.power.min);
 
 
             //createDurationChart(allChartOptions[i].stress, i, $("#hChart"));
