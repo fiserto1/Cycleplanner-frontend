@@ -23,7 +23,7 @@ var lastClickedRoute;
 var segChoice;
 $(document).ready(function() {
     segmentRoute = L.layerGroup();
-    segChoice = ELEVATION_SEGMENTS;
+    segChoice = SPEED_SEGMENTS;
 
     $(".legend-button").click(function(e) {
         segChoice = $(e.target).parent().index();

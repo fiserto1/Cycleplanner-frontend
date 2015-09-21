@@ -336,9 +336,21 @@ function handler(obj) {
 
 function routeClick(e) {
     var routeIndex = basicRoutes.getLayers().indexOf(e.target);
-    console.log(routeIndex);
-    var button = $(".route-but").eq(routeIndex);
-    button.trigger("click").focus();
+    console.log("route index: " + routeIndex);
+    var button = $("#route-but-" + routeIndex);
+    var criteriaTab;
+    switch (segChoice) {
+        case SPEED_SEGMENTS:
+            criteriaTab = button.find(".duration-desc");
+            break;
+        case SURFACE_SEGMENTS:
+            criteriaTab = button.find(".stress-desc");
+            break;
+        case ROAD_TYPE_SEGMENTS:
+            criteriaTab = button.find(".effort-desc");
+            break;
+    }
+    criteriaTab.trigger("click").focus();
 }
 
 
@@ -360,7 +372,7 @@ function createButtonForRoute(plan, routeIndex) {
 
     var routeButton = $("<div>").addClass("route-but col-md-12");
     //id je index daneho planu v polich polyline, nezamenit se zobrazovanym poradim na strance
-    routeButton.attr("id", routeIndex);
+    routeButton.attr("id", "route-but-" + routeIndex);
     //routeButton.css("z-index", butZIndex);
     var routeDiv = $("<span>").addClass("route-desc row");
 
@@ -397,8 +409,10 @@ function routeButtonClick(e) {
 function createDurationTab(plan, routeIndex) {
     var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
     var durationTab = $('<div href="#elevation-legend" data-toggle="tab">').addClass("duration-desc criteria-tab col-md-4");
-    durationTab.click(function() {
-        segChoice = ELEVATION_SEGMENTS;
+    durationTab.click(function(e) {
+        segChoice = SPEED_SEGMENTS;
+        $(".criteria-tab").removeClass("selected-but");
+        $(e.currentTarget).addClass("selected-but");
         //$("#legend").show("blind", 500);
         showSegments(routeIndex, plan);
         //var id = $("#duration-chart-0");
@@ -429,8 +443,10 @@ function createDurationTab(plan, routeIndex) {
 
 function createStressTab(plan, routeIndex) {
     var stressTab = $('<div href="#road-type-legend" data-toggle="tab">').addClass("stress-desc criteria-tab col-md-4");
-    stressTab.click(function() {
-        segChoice = ROAD_TYPE_SEGMENTS;
+    stressTab.click(function(e) {
+        segChoice = SURFACE_SEGMENTS;
+        $(".criteria-tab").removeClass("selected-but");
+        $(e.currentTarget).addClass("selected-but");
         //$("#legend").show("blind", 500);
         showSegments(routeIndex, plan);
     });
@@ -455,8 +471,10 @@ function createEffortTab(plan, routeIndex) {
     var physicalEffort = (plan.criteria.physicalEffort / 1000).toFixed(1);
 
     var effortTab = $('<div href="#surface-legend" data-toggle="tab">').addClass("effort-desc criteria-tab col-md-4");
-    effortTab.click(function() {
-        segChoice = SURFACE_SEGMENTS;
+    effortTab.click(function(e) {
+        segChoice = ROAD_TYPE_SEGMENTS;
+        $(".criteria-tab").removeClass("selected-but");
+        $(e.currentTarget).addClass("selected-but");
         //$("#legend").show("blind", 500);
         showSegments(routeIndex, plan);
     });
