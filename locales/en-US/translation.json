@@ -71,6 +71,7 @@
   "tooltip": {
     "menu": "Menu",
     "settings": "Route settings",
+    "cancel": "Cancel plans",
     "change-direction": "Change direction",
     "add-point": "Add point",
     "share": "Share",

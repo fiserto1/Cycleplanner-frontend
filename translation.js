@@ -24,6 +24,7 @@ function translateContextmenu(t) {
 function translateTooltips(t) {
     $(".menu-tooltip").attr("data-original-title", t("tooltip.menu"));
     $(".settings-tooltip").attr("data-original-title", t("tooltip.settings"));
+    $(".cancel-tooltip").attr("data-original-title", t("tooltip.cancel"));
     $(".change-dir-tooltip").attr("data-original-title", t("tooltip.change-direction"));
     $(".add-point-tooltip").attr("data-original-title", t("tooltip.add-point"));
 

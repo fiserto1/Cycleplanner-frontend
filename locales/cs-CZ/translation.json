@@ -71,6 +71,7 @@
   "tooltip": {
     "menu": "Menu",
     "settings": "Nastavení trasy",
+    "cancel": "Zrušit trasy",
     "change-direction": "Změnit směr",
     "add-point": "Přidat bod",
     "share": "Sdílet",

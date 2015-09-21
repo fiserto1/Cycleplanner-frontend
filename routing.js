@@ -61,6 +61,18 @@ function initializeRouting() {
             error: serverError
         });
     }
+
+    $("#cancel-button").click(cancelRoute);
+}
+function cancelRoute() {
+    hidePanelsExceptSearch();
+    removeAllRoutesFromMap();
+    location.replace("#");
+    for (var i = 0; i < allMarkers.length; i++) {
+        map.removeLayer(allMarkers[i]);
+        allMarkers[i].setLatLng(null);
+        $("input").val("");
+    }
 }
 
 function showPlanFromHash(obj) {
