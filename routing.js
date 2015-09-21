@@ -4,6 +4,9 @@
 
 var ROUTE_COLOR = "#717171"; //2382FF
 var BORDER_ROUTE_COLOR = "#6F9000";
+var SPEED_BORDER_ROUTE_COLOR = "#6F9000";
+var STRESS_BORDER_ROUTE_COLOR = "#99000d";
+var POWER_BORDER_ROUTE_COLOR = "#084594";
 
 var ROUTE_OPACITY = 0.5;
 var BORDER_ROUTE_OPACITY = 1;
@@ -47,7 +50,7 @@ function initializeRouting() {
         //dashArray: "5, 10",
         smoothFactor: 0
         //noClip: false
-    }
+    };
     var hash = location.hash;
     if (hash != "") {
         var responseId = parseInt(hash.substr(12));
@@ -59,6 +62,7 @@ function initializeRouting() {
         });
     }
 }
+
 function showPlanFromHash(obj) {
     var origin = obj.request.origin;
     var destination = obj.request.destination;
@@ -343,10 +347,10 @@ function routeClick(e) {
         case SPEED_SEGMENTS:
             criteriaTab = button.find(".duration-desc");
             break;
-        case SURFACE_SEGMENTS:
+        case STRESS_SEGMENTS:
             criteriaTab = button.find(".stress-desc");
             break;
-        case ROAD_TYPE_SEGMENTS:
+        case POWER_SEGMENTS:
             criteriaTab = button.find(".effort-desc");
             break;
     }
@@ -444,7 +448,7 @@ function createDurationTab(plan, routeIndex) {
 function createStressTab(plan, routeIndex) {
     var stressTab = $('<div href="#road-type-legend" data-toggle="tab">').addClass("stress-desc criteria-tab col-md-4");
     stressTab.click(function(e) {
-        segChoice = SURFACE_SEGMENTS;
+        segChoice = STRESS_SEGMENTS;
         $(".criteria-tab").removeClass("selected-but");
         $(e.currentTarget).addClass("selected-but");
         //$("#legend").show("blind", 500);
@@ -472,7 +476,7 @@ function createEffortTab(plan, routeIndex) {
 
     var effortTab = $('<div href="#surface-legend" data-toggle="tab">').addClass("effort-desc criteria-tab col-md-4");
     effortTab.click(function(e) {
-        segChoice = ROAD_TYPE_SEGMENTS;
+        segChoice = POWER_SEGMENTS;
         $(".criteria-tab").removeClass("selected-but");
         $(e.currentTarget).addClass("selected-but");
         //$("#legend").show("blind", 500);
