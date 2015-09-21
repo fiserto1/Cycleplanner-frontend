@@ -44,12 +44,13 @@ function initializeMap() {
     var streetsMap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         maxZoom: 18,
         id: 'fiserto1.3ed94b1c',
-        accessToken: 'pk.eyJ1IjoiZmlzZXJ0bzEiLCJhIjoiNmE1NzkzMjQ5ZjdhYTMxZDllNzhlNmQxNGMzZGIyMTAifQ.2xblvAvcBqHdhd3GnKNrbQ'
+        accessToken: 'pk.eyJ1IjoiZmlzZXJ0bzEiLCJhIjoiNmE1NzkzMjQ5ZjdhYTMxZDllNzhlNmQxNGMzZGIyMTAifQ.2xblvAvcBqHdhd3GnKNrbQ',
+        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>| &copy; <a href="http://mapbox.com">Mapbox</a>'
     });
     map = L.map('map', {
         layers: streetsMap,
         zoomControl: false,
-        attributionControl: false,
+        //attributionControl: false,
         contextmenu: true,
         contextmenuItems: contextMenuItems
     }).setView([50.08165, 14.40505], 14);
