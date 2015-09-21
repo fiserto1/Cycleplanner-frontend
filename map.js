@@ -45,7 +45,7 @@ function initializeMap() {
         maxZoom: 18,
         id: 'fiserto1.3ed94b1c',
         accessToken: 'pk.eyJ1IjoiZmlzZXJ0bzEiLCJhIjoiNmE1NzkzMjQ5ZjdhYTMxZDllNzhlNmQxNGMzZGIyMTAifQ.2xblvAvcBqHdhd3GnKNrbQ',
-        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>| &copy; <a href="http://mapbox.com">Mapbox</a>'
+        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> | &copy; <a href="http://mapbox.com">Mapbox</a>'
     });
     map = L.map('map', {
         layers: streetsMap,

@@ -1,6 +1,18 @@
 // data format: [[x1,y1],[x2,y2],[x3,y3],...]
 //$(document).ready(function() {
-var elevationCircle = L.circleMarker(null,{
+var speedCircle = L.circleMarker(null,{
+    fillColor: "#6BA448",
+    color: "white",
+    opacity: 1,
+    fillOpacity: 1
+}).setRadius(5);
+var stressCircle = L.circleMarker(null,{
+    fillColor: "#D34A45",
+    color: "white",
+    opacity: 1,
+    fillOpacity: 1
+}).setRadius(5);
+var powerCircle = L.circleMarker(null,{
     fillColor: "#2A98FF",
     color: "white",
     opacity: 1,
@@ -104,6 +116,7 @@ function createDurationChart(data, routeIndex, target, max, min) {
             }
         },
         series: [{
+            lineWidth: 1,
             color: '#6BA448',
             animation: false,
             //name: 'Trasa',
@@ -122,9 +135,9 @@ function createDurationChart(data, routeIndex, target, max, min) {
             point: {
                 events: {
                     mouseOver: function () {
-                        elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
-                        elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Speed: " + this.y.toFixed(1) + " km/h").openPopup();
+                        speedCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
+                        speedCircle.addTo(map);
+                        speedCircle.bindPopup("Speed: " + this.y.toFixed(1) + " km/h").openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {
@@ -146,7 +159,7 @@ function createDurationChart(data, routeIndex, target, max, min) {
                         //    });
                     },
                     mouseOut: function () {
-                        map.removeLayer(elevationCircle);
+                        map.removeLayer(speedCircle);
                     }
                 }
             }
@@ -263,6 +276,7 @@ function createStressChart(data, routeIndex, target, max, min) {
             }
         },
         series: [{
+            lineWidth: 1,
             color: '#D34A45',
             animation: false,
             //name: 'Trasa',
@@ -281,9 +295,9 @@ function createStressChart(data, routeIndex, target, max, min) {
             point: {
                 events: {
                     mouseOver: function () {
-                        elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
-                        elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Stress: " + this.y + " SU").openPopup();
+                        stressCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
+                        stressCircle.addTo(map);
+                        stressCircle.bindPopup("Stress: " + this.y + " SU").openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {
@@ -305,7 +319,7 @@ function createStressChart(data, routeIndex, target, max, min) {
                         //    });
                     },
                     mouseOut: function () {
-                        map.removeLayer(elevationCircle);
+                        map.removeLayer(stressCircle);
                     }
                 }
             }
@@ -422,6 +436,7 @@ function createEffortChart(data, routeIndex, target, max, min) {
             }
         },
         series: [{
+            lineWidth: 1,
             animation: false,
             //name: 'Trasa',
             data: data,
@@ -439,9 +454,9 @@ function createEffortChart(data, routeIndex, target, max, min) {
             point: {
                 events: {
                     mouseOver: function () {
-                        elevationCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
-                        elevationCircle.addTo(map);
-                        elevationCircle.bindPopup("Power: " + this.y.toFixed(1) + " W").openPopup();
+                        powerCircle.setLatLng(basicRoutes.getLayers()[routeIndex].getLatLngs()[this.index]);
+                        powerCircle.addTo(map);
+                        powerCircle.bindPopup("Power: " + this.y.toFixed(1) + " W").openPopup();
                         //elevationP(map);
                         //var chart = this.series.chart;
                         //if (!chart.lbl) {
@@ -463,7 +478,7 @@ function createEffortChart(data, routeIndex, target, max, min) {
                         //    });
                     },
                     mouseOut: function () {
-                        map.removeLayer(elevationCircle);
+                        map.removeLayer(powerCircle);
                     }
                 }
             }
