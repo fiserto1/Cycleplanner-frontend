@@ -57,6 +57,7 @@ function changeLanguage(language) {
         $(".legend").i18n();
         $("#myTab").i18n();
         $("#web-title").i18n();
+        $(".description-label").i18n();
         $("#about-panel").find(".modal-body").html(t("about.html"));
         $("#api-description").html(t("api.body.description.html"));
         $("#text-feedback").attr("placeholder", t("feedback.textarea-placeholder"));
@@ -99,6 +100,7 @@ $(document).ready(function() {
         $(".legend").i18n();
         $("#myTab").i18n();
         $("#web-title").i18n();
+        $(".description-label").i18n();
         $("#about-panel").find(".modal-body").html(t("about.html"));
         $("#api-description").html(t("api.body.description.html"));
         $("#about-panel").find(".modal-content").i18n();
