@@ -36,7 +36,7 @@ function initializeRouting() {
         weight: SEGMENT_ROUTE_WEIGHT,
         opacity: SEGMENT_ROUTE_OPACITY,
         lineJoin: 'round',
-        lineCap: 'butt', //"butt"
+        lineCap: 'square', //"butt"
         //dashArray: "5, 10",
         smoothFactor: 0
         //noClip: false
