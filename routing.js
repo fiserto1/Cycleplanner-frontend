@@ -71,7 +71,7 @@ function cancelRoute() {
     for (var i = 0; i < allMarkers.length; i++) {
         map.removeLayer(allMarkers[i]);
         allMarkers[i].setLatLng(null);
-        $("input").val("");
+        $("#search-panel").find("input").val("");
     }
 }
 
