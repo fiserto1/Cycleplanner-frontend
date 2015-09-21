@@ -32,6 +32,17 @@ button.close {
 .col-md-5 {
   padding: 0;
 }
+.navbar {
+  margin-bottom: 0;
+  border: none;
+  box-shadow: black 3px 3px 10px;
+}
+.navbar-header {
+  float: none;
+}
+.container-fluid {
+  padding-left: 0;
+}
 .nav > li > a {
   padding: 10px 25px;
 }
@@ -164,7 +175,7 @@ body {
 }
 #map {
   position: absolute;
-  top: 0;
+  top: 50px;
   bottom: 0;
   width: 100%;
 }
@@ -306,7 +317,9 @@ body {
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-#menu-button,
+#menu-button {
+  line-height: 50px;
+}
 #settings-button,
 #cancel-button {
   float: right;
