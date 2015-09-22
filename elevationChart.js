@@ -24,7 +24,7 @@ function createDurationChart(data, routeIndex, target, max, min) {
     var hChart = target.highcharts({
         chart: {
             //height: 50,
-            type: 'area',//areaspline
+            type: 'line',//areaspline
             borderRadius: 0,
             marginTop: 5,
             marginRight: 5,
@@ -49,6 +49,8 @@ function createDurationChart(data, routeIndex, target, max, min) {
             maxPadding: 0,
             minPadding: 0,
             allowDecimals: true,
+            gridLineWidth: 0,
+            lineWidth: 0,
             labels: {
                 enabled: false,
                 formatter: function () {
@@ -116,7 +118,7 @@ function createDurationChart(data, routeIndex, target, max, min) {
             }
         },
         series: [{
-            lineWidth: 1,
+            lineWidth: 2,
             color: '#6BA448',
             animation: false,
             //name: 'Trasa',
@@ -184,7 +186,7 @@ function createStressChart(data, routeIndex, target, max, min) {
     var hChart = target.highcharts({
         chart: {
             //height: 50,
-            type: 'area',//areaspline
+            type: 'line',//areaspline
             borderRadius: 0,
             marginTop: 5,
             marginRight: 5,
@@ -209,6 +211,8 @@ function createStressChart(data, routeIndex, target, max, min) {
             maxPadding: 0,
             minPadding: 0,
             allowDecimals: true,
+            gridLineWidth: 0,
+            lineWidth: 0,
             labels: {
                 enabled: false,
                 formatter: function () {
@@ -239,7 +243,7 @@ function createStressChart(data, routeIndex, target, max, min) {
             endOnTick: false,
             startOnTick: false,
             max: max + 2,
-            min: min - 2
+            min: min - 1
             //labels: {
             //    formatter: function () {
             //        return this.value + ' m';
@@ -276,7 +280,7 @@ function createStressChart(data, routeIndex, target, max, min) {
             }
         },
         series: [{
-            lineWidth: 1,
+            lineWidth: 2,
             color: '#D34A45',
             animation: false,
             //name: 'Trasa',
@@ -344,7 +348,7 @@ function createEffortChart(data, routeIndex, target, max, min) {
     var hChart = target.highcharts({
         chart: {
             //height: 50,
-            type: 'area',//areaspline
+            type: 'line',//areaspline
             borderRadius: 0,
             marginTop: 5,
             marginRight: 5,
@@ -369,6 +373,8 @@ function createEffortChart(data, routeIndex, target, max, min) {
             maxPadding: 0,
             minPadding: 0,
             allowDecimals: true,
+            gridLineWidth: 0,
+            lineWidth: 0,
             labels: {
                 enabled: false,
                 formatter: function () {
@@ -436,7 +442,7 @@ function createEffortChart(data, routeIndex, target, max, min) {
             }
         },
         series: [{
-            lineWidth: 1,
+            lineWidth: 2,
             animation: false,
             //name: 'Trasa',
             data: data,
