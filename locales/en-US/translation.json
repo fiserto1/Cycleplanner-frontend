@@ -9,6 +9,7 @@
   "left-sidebar": {
     "title": "Cycleplanner",
     "menu": {
+      "settings": "Settings",
       "about": "About",
       "feedback": "Feedback",
       "api": "I want API!",
@@ -65,8 +66,13 @@
     }
   },
   "settings": {
+    "title": "Settings",
     "avg-speed": "Average speed",
-    "public-transport": "Plan with public transport"
+    "public-transport": "Plan with public transport",
+    "button": {
+      "cancel": "Cancel",
+      "save": "Save"
+    }
   },
   "tooltip": {
     "menu": "Menu",

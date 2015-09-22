@@ -9,6 +9,7 @@
   "left-sidebar": {
     "title": "Cykloplánovač",
     "menu": {
+      "settings": "Nastavení",
       "about": "O Cykloplánovači",
       "feedback": "Zpětná vazba",
       "api": "Chci API!",
@@ -65,8 +66,13 @@
     }
   },
   "settings": {
+    "title": "Nastavení",
     "avg-speed": "Průměrná rychlost",
-    "public-transport": "Plánovat s MHD"
+    "public-transport": "Plánovat s MHD",
+    "button": {
+      "cancel": "Zrušit",
+      "save": "Uložit"
+    }
   },
   "tooltip": {
     "menu": "Menu",
