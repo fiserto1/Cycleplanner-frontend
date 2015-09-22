@@ -386,10 +386,12 @@ function createButtonForRoute(plan, routeIndex) {
     var durationTab = createDurationTab(plan, routeIndex);
     var stressTab = createStressTab(plan, routeIndex);
     var effortTab = createEffortTab(plan, routeIndex);
+    var lengthTab = createLengthTab(plan, routeIndex);
 
     durationTab.appendTo(routeDiv);
     stressTab.appendTo(routeDiv);
     effortTab.appendTo(routeDiv);
+    lengthTab.appendTo(routeDiv);
 
     routeDiv.appendTo(routeButton);
     routeButton.appendTo($("#routes-panel"));
@@ -495,6 +497,40 @@ function createEffortTab(plan, routeIndex) {
     effortChart.appendTo(effortTab);
 
     return effortTab;
+}
+
+function createLengthTab(plan, routeIndex) {
+    var length = plan.length;
+    var elevationGain = plan.elevationGain;
+    var elevationDrop = plan.elevationDrop;
+    var lengthTab = $("<div>").addClass("criteria-tab col-md-12");
+    var lengthDesc = $("<span>").addClass("one-criteria");
+    var lengthLabel = $('<span data-i18n="route-description.length">').addClass("description-label");
+    lengthLabel.text($.t("route-description.length"));
+    lengthLabel.appendTo(lengthDesc);
+    var lengthValue = $('<span>').addClass("description-value");
+    lengthValue.text(length + " m,");
+    lengthValue.appendTo(lengthDesc);
+    lengthDesc.appendTo(lengthTab);
+    
+    var elevationGainDesc = $("<span>").addClass("one-criteria");
+    var elevationGainLabel = $('<span data-i18n="route-description.elevation-gain">').addClass("description-label");
+    elevationGainLabel.text($.t("route-description.elevation-gain"));
+    elevationGainLabel.appendTo(elevationGainDesc);
+    var elevationGainValue = $('<span>').addClass("description-value");
+    elevationGainValue.text(elevationGain + " m,");
+    elevationGainValue.appendTo(elevationGainDesc);
+    elevationGainDesc.appendTo(lengthTab);
+
+    var elevationDropDesc = $("<span>").addClass("one-criteria");
+    var elevationDropLabel = $('<span data-i18n="route-description.elevation-drop">').addClass("description-label");
+    elevationDropLabel.text($.t("route-description.elevation-drop"));
+    elevationDropLabel.appendTo(elevationDropDesc);
+    var elevationDropValue = $('<span>').addClass("description-value");
+    elevationDropValue.text(elevationDrop + " m");
+    elevationDropValue.appendTo(elevationDropDesc);
+    elevationDropDesc.appendTo(lengthTab);
+    return lengthTab;
 }
 
 //vysunuti a zasunuti podrobneho popisu trasy po kliknuti na button
