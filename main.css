@@ -111,6 +111,7 @@ button.close {
 }
 .description-label {
   text-align: right;
+  padding-left: 5px;
 }
 #smartbanner {
   position: relative !important;
@@ -340,7 +341,7 @@ body {
 /*float:left;*/
 /*}*/
 .route-desc {
-  text-align: center;
+  text-align: left;
 }
 .route-but {
   border-bottom: solid #CCCCCC 1px;
