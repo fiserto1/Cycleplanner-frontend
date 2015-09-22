@@ -299,18 +299,9 @@ function handler(obj) {
 
     setTimeout(function(){
         for(var i = 0; i < plans.length; i++){
-
-            var chartDivId = "#duration-chart-" + i;
-            //var id = $(string);
-            createDurationChart(allChartOptions.speed.data[i], i, $(chartDivId), allChartOptions.speed.max, allChartOptions.speed.min);
-            chartDivId = ("#stress-chart-" + i);
-            createStressChart(allChartOptions.stress.data[i], i, $(chartDivId), allChartOptions.stress.max, allChartOptions.stress.min);
-            chartDivId = ("#effort-chart-" + i);
-            createEffortChart(allChartOptions.power.data[i], i, $(chartDivId), allChartOptions.power.max, allChartOptions.power.min);
-
-
-            //createDurationChart(allChartOptions[i].stress, i, $("#hChart"));
-            //$("#chart-panel").show();
+            createSpeedChart(i);
+            createStressChart(i);
+            createPowerChart(i);
         }
 
     }, 200);// bez timeoutu nefunguje...

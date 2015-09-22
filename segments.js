@@ -8,17 +8,35 @@ var POWER_SEGMENTS = 3;
 var SURFACE_SEGMENTS = 4;
 var ROAD_TYPE_SEGMENTS = 5;
 
+var SPEED_LIMIT_LVL_1 = 5;
+var SPEED_LIMIT_LVL_2 = 12;
+var SPEED_LIMIT_LVL_3 = 24;
+var SPEED_LIMIT_LVL_4 = 30;
+//var SPEED_LIMIT_LVL_5 = ; // maxvalue
+
 var SPEED_COLOR_LVL_1 = "#c7e9c0";
 var SPEED_COLOR_LVL_2 = "#a1d99b";
 var SPEED_COLOR_LVL_3 = "#74c476";
 var SPEED_COLOR_LVL_4 = "#31a354";
 var SPEED_COLOR_LVL_5 = "#006d2c";
 
+var STRESS_LIMIT_LVL_1 = 2;
+var STRESS_LIMIT_LVL_2 = 3;
+var STRESS_LIMIT_LVL_3 = 4;
+var STRESS_LIMIT_LVL_4 = 5;
+//var STRESS_LIMIT_LVL_5 = ; // maxvalue
+
 var STRESS_COLOR_LVL_1 = "#fcbba1";
 var STRESS_COLOR_LVL_2 = "#fc9272";
 var STRESS_COLOR_LVL_3 = "#fb6a4a";
 var STRESS_COLOR_LVL_4 = "#de2d26";
 var STRESS_COLOR_LVL_5 = "#a50f15";
+
+var POWER_LIMIT_LVL_1 = 20;
+var POWER_LIMIT_LVL_2 = 60;
+var POWER_LIMIT_LVL_3 = 100;
+var POWER_LIMIT_LVL_4 = 140;
+//var POWER_LIMIT_LVL_5 = ; // maxvalue
 
 var POWER_COLOR_LVL_1 = "#c6dbef";
 var POWER_COLOR_LVL_2 = "#9ecae1";
@@ -183,16 +201,16 @@ function showSpeedSegments(plan, routeIndex) {
 
             var speedInKmh = (segmentDistance/time) * 3.6;
 
-            if (speedInKmh < 5) {
-                oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_5});
-            } else if (speedInKmh < 12) {
-                oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_4});
-            } else if (speedInKmh < 24) {
-                oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_3});
-            } else if (speedInKmh < 30) {
-                oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_2});
-            } else {
+            if (speedInKmh < SPEED_LIMIT_LVL_1) {
                 oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_1});
+            } else if (speedInKmh < SPEED_LIMIT_LVL_2) {
+                oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_2});
+            } else if (speedInKmh < SPEED_LIMIT_LVL_3) {
+                oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_3});
+            } else if (speedInKmh < SPEED_LIMIT_LVL_4) {
+                oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_4});
+            } else {
+                oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_5});
             }
             segmentRoute.addLayer(oneSpeedPath);
 
@@ -222,13 +240,13 @@ function showStressSegments(plan, routeIndex) {
 
         var oneStressPath = L.polyline(pathLatLngs, segmentRouteOptions);
         var stress = steps[i].stressToNextStep;
-        if (stress < 2) {
+        if (stress < STRESS_LIMIT_LVL_1) {
             oneStressPath.setStyle({color: STRESS_COLOR_LVL_1});
-        } else if (stress < 3) {
+        } else if (stress < STRESS_LIMIT_LVL_2) {
             oneStressPath.setStyle({color: STRESS_COLOR_LVL_2});
-        } else if (stress < 4) {
+        } else if (stress < STRESS_LIMIT_LVL_3) {
             oneStressPath.setStyle({color: STRESS_COLOR_LVL_3});
-        } else if (stress < 5) {
+        } else if (stress < STRESS_LIMIT_LVL_4) {
             oneStressPath.setStyle({color: STRESS_COLOR_LVL_4});
         } else {
             oneStressPath.setStyle({color: STRESS_COLOR_LVL_5});
@@ -256,13 +274,13 @@ function showPowerSegments(plan, routeIndex) {
             //var speedInKmh = (segmentDistance/time) * 3.6;
             var powerInW = effort / time;
 //            console.log("power: " + powerInW);
-            if (powerInW < 20) {
+            if (powerInW < POWER_LIMIT_LVL_1) {
                 oneSpeedPath.setStyle({color: POWER_COLOR_LVL_1});
-            } else if (powerInW < 60) {
+            } else if (powerInW < POWER_LIMIT_LVL_2) {
                 oneSpeedPath.setStyle({color: POWER_COLOR_LVL_2});
-            } else if (powerInW < 100) {
+            } else if (powerInW < POWER_LIMIT_LVL_3) {
                 oneSpeedPath.setStyle({color: POWER_COLOR_LVL_3});
-            } else if (powerInW < 140) {
+            } else if (powerInW < POWER_LIMIT_LVL_4) {
                 oneSpeedPath.setStyle({color: POWER_COLOR_LVL_4});
             } else {
                 oneSpeedPath.setStyle({color: POWER_COLOR_LVL_5});
