@@ -44,7 +44,7 @@ function initializeMarkers() {
 
 
     $("#change-direction-icon").click(onChangeDirectionClick);
-    $("#add-point-icon").click(onAddPointClick);
+    //$("#add-point-icon").click(onAddPointClick);
     $(".remove-point").click(onRemovePointClick);
 
     //map.on('click', onMapClick);
