@@ -112,6 +112,8 @@
     "tabs": {
       "elevation": "Elevation",
       "speed": "Speed",
+      "stress": "Stress",
+      "power": "Power",
       "surface": "Surface",
       "road-type": "Road type"
     },
@@ -124,6 +126,16 @@
       "fast": "Fast",
       "medium": "Medium",
       "slow": "Slow"
+    },
+    "stress" : {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "power": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
     },
     "surface": {
       "paved-smooth": "Smooth",

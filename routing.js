@@ -424,15 +424,13 @@ function routeButtonClick(e) {
 }
 function createDurationTab(plan, routeIndex) {
     var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
-    var durationTab = $('<div href="#elevation-legend" data-toggle="tab">').addClass("duration-desc criteria-tab col-md-4");
+    var durationTab = $('<div href="#speed-legend" data-toggle="tab">').addClass("duration-desc criteria-tab col-md-4");
     durationTab.click(function(e) {
         segChoice = SPEED_SEGMENTS;
         $(".criteria-tab").removeClass("selected-but");
         $(e.currentTarget).addClass("selected-but");
-        //$("#legend").show("blind", 500);
+        $("#legend").show();
         showSegments(routeIndex, plan);
-        //var id = $("#duration-chart-0");
-        //createChart(allChartOptions[routeIndex], routeIndex, id);
     });
     var durationDesc = $("<span>").addClass("one-criteria row");
     var durationLabel = $('<span data-i18n="route-description.travel-time">').addClass("description-label");
@@ -449,7 +447,6 @@ function createDurationTab(plan, routeIndex) {
 
     var divId = "duration-chart-" + routeIndex;
     var durationChart = $("<div>").attr("id", divId).addClass("small-chart row");
-    //createChart(allChartOptions[routeIndex], routeIndex, durationChart);
 
     //$(window).resize();
     durationChart.appendTo(durationTab);
@@ -458,12 +455,12 @@ function createDurationTab(plan, routeIndex) {
 }
 
 function createStressTab(plan, routeIndex) {
-    var stressTab = $('<div href="#road-type-legend" data-toggle="tab">').addClass("stress-desc criteria-tab col-md-4");
+    var stressTab = $('<div href="#stress-legend" data-toggle="tab">').addClass("stress-desc criteria-tab col-md-4");
     stressTab.click(function(e) {
         segChoice = STRESS_SEGMENTS;
         $(".criteria-tab").removeClass("selected-but");
         $(e.currentTarget).addClass("selected-but");
-        //$("#legend").show("blind", 500);
+        $("#legend").show();
         showSegments(routeIndex, plan);
     });
     var stressDesc = $("<span>").addClass("one-criteria row");
@@ -477,7 +474,6 @@ function createStressTab(plan, routeIndex) {
 
     var divId = "stress-chart-" + routeIndex;
     var stressChart = $("<div>").attr("id", divId).addClass("small-chart row");
-    //createChart(allChartOptions[routeIndex], routeIndex, stressChart);
     stressChart.appendTo(stressTab);
 
     return stressTab;
@@ -486,12 +482,12 @@ function createStressTab(plan, routeIndex) {
 function createEffortTab(plan, routeIndex) {
     var physicalEffort = (plan.criteria.physicalEffort / 1000).toFixed(1);
 
-    var effortTab = $('<div href="#surface-legend" data-toggle="tab">').addClass("effort-desc criteria-tab col-md-4");
+    var effortTab = $('<div href="#power-legend" data-toggle="tab">').addClass("effort-desc criteria-tab col-md-4");
     effortTab.click(function(e) {
         segChoice = POWER_SEGMENTS;
         $(".criteria-tab").removeClass("selected-but");
         $(e.currentTarget).addClass("selected-but");
-        //$("#legend").show("blind", 500);
+        $("#legend").show();
         showSegments(routeIndex, plan);
     });
     var effortDesc = $("<span>").addClass("one-criteria row");
@@ -505,7 +501,6 @@ function createEffortTab(plan, routeIndex) {
 
     var divId = "effort-chart-" + routeIndex;
     var effortChart = $("<div>").attr("id", divId).addClass("small-chart row");
-    //createChart(allChartOptions[routeIndex], routeIndex, effortChart);
     effortChart.appendTo(effortTab);
 
     return effortTab;

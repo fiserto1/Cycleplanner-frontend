@@ -442,24 +442,46 @@ body {
   border-radius: @panel-radius;
 }
 
-#legend label,
-#legend span {
-  display:block;
-  float:left;
-  height:15px;
-  text-align:center;
-  font-size:10px;
-  color:black;
+#legend {
+  background-color: rgba(255, 255, 255, 0.7);
 }
-#speed-legend label, #speed-legend span, #elevation-legend label, #elevation-legend span, {
-  width: 14.28%;
+.legend-color-block {
+  width: 20px;
+  height: 20px;
+  float: left;
 }
-#surface-legend label, #surface-legend span{
-  width: 25%;
+.legend-label {
+  font-size: 10px;
+  float: left;
+  font-weight: bold;
+  padding-left: 5px;
+  padding-right: 5px;
 }
-#road-type-legend label, #road-type-legend span{
-  width: 12.5%;
+.legend-title{
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
 }
+
+//#legend label,
+//#legend span {
+//  display:block;
+//  float:left;
+//  height:15px;
+//  text-align:center;
+//  font-size:10px;
+//  color:black;
+//}
+//#speed-legend label, #speed-legend span, #elevation-legend label, #elevation-legend span, {
+//  width: 14.28%;
+//}
+//#surface-legend label, #surface-legend span{
+//  width: 25%;
+//}
+//#road-type-legend label, #road-type-legend span{
+//  width: 12.5%;
+//}
 
 .autocomplete-suggestions {
   border: 1px solid #999;

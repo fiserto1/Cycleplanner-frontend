@@ -55,14 +55,26 @@ $(document).ready(function() {
 
 });
 function drawSegmentsInLegend() {
-    $(".level1").css("background-color", LEGEND_LVL_1_COLOR);
-    $(".level2").css("background-color", LEGEND_LVL_2_COLOR);
-    $(".level3").css("background-color", LEGEND_LVL_3_COLOR);
-    $(".level4").css("background-color", LEGEND_LVL_4_MIDDLE_COLOR);
-    $(".level5").css("background-color", LEGEND_LVL_5_COLOR);
-    $(".level6").css("background-color", LEGEND_LVL_6_COLOR);
-    $(".level7").css("background-color", LEGEND_LVL_7_COLOR);
-    $(".level8").css("background-color", LEGEND_LVL_8_COLOR);
+    var speedLegend = $("#speed-legend");
+    speedLegend.find(".level1").css("background-color", SPEED_COLOR_LVL_1);
+    speedLegend.find(".level2").css("background-color", SPEED_COLOR_LVL_2);
+    speedLegend.find(".level3").css("background-color", SPEED_COLOR_LVL_3);
+    speedLegend.find(".level4").css("background-color", SPEED_COLOR_LVL_4);
+    speedLegend.find(".level5").css("background-color", SPEED_COLOR_LVL_5);
+
+    var stressLegend = $("#stress-legend");
+    stressLegend.find(".level1").css("background-color", STRESS_COLOR_LVL_1);
+    stressLegend.find(".level2").css("background-color", STRESS_COLOR_LVL_2);
+    stressLegend.find(".level3").css("background-color", STRESS_COLOR_LVL_3);
+    stressLegend.find(".level4").css("background-color", STRESS_COLOR_LVL_4);
+    stressLegend.find(".level5").css("background-color", STRESS_COLOR_LVL_5);
+
+    var powerLegend = $("#power-legend");
+    powerLegend.find(".level1").css("background-color", POWER_COLOR_LVL_1);
+    powerLegend.find(".level2").css("background-color", POWER_COLOR_LVL_2);
+    powerLegend.find(".level3").css("background-color", POWER_COLOR_LVL_3);
+    powerLegend.find(".level4").css("background-color", POWER_COLOR_LVL_4);
+    powerLegend.find(".level5").css("background-color", POWER_COLOR_LVL_5);
 }
 
 function showSegments(routeIndex, plan) {

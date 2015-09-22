@@ -112,6 +112,8 @@
     "tabs": {
       "elevation": "Stoupání",
       "speed": "Rychlost",
+      "stress": "Stres",
+      "power": "Výkon",
       "surface": "Povrch",
       "road-type": "Typ trasy"
     },
@@ -124,6 +126,16 @@
       "fast": "Rychlá",
       "medium": "Střední",
       "slow": "Pomalá"
+    },
+    "stress" : {
+      "high": "Vysoký",
+      "medium": "Střední",
+      "low": "Nízký"
+    },
+    "power": {
+      "high": "Vysoký",
+      "medium": "Střední",
+      "low": "Nízký"
     },
     "surface": {
       "paved-smooth": "Hladký",
