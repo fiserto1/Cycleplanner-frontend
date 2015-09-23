@@ -184,7 +184,8 @@ function showElevationSegments(plan, routeIndex) {
     }
 }
 
-function showSpeedSegments(plan, routeIndex) {
+//omezeni minimalni delky segmentu
+function showSpeedSegments2(plan, routeIndex) {
     var pathLatLngs = [];
     var segmentDistance = 0;
     var time = 0;
@@ -225,6 +226,38 @@ function showSpeedSegments(plan, routeIndex) {
     }
 }
 
+function showSpeedSegments(plan, routeIndex) {
+    var steps = plan.steps;
+    for (var i = 0; i < steps.length-1; i++) {
+        var coordinate = steps[i].coordinate;
+        var nextCoordinate = steps[i+1].coordinate;
+        var lat = coordinate.latE6 / 1000000;
+        var lng = coordinate.lonE6 / 1000000;
+        var nextLat = nextCoordinate.latE6 / 1000000;
+        var nextLng = nextCoordinate.lonE6 / 1000000;
+        var pathLatLngs = [];
+        pathLatLngs.push(L.latLng(lat, lng));
+        pathLatLngs.push(L.latLng(nextLat, nextLng));
+
+        var oneSpeedPath = L.polyline(pathLatLngs, segmentRouteOptions);
+        var segmentDistance = steps[i].distanceToNextStep;
+        var time = steps[i].travelTimeToNextStep;
+        var speedInKmh = (segmentDistance/time) * 3.6;
+        if (speedInKmh < SPEED_LIMIT_LVL_1) {
+            oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_1});
+        } else if (speedInKmh < SPEED_LIMIT_LVL_2) {
+            oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_2});
+        } else if (speedInKmh < SPEED_LIMIT_LVL_3) {
+            oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_3});
+        } else if (speedInKmh < SPEED_LIMIT_LVL_4) {
+            oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_4});
+        } else {
+            oneSpeedPath.setStyle({color: SPEED_COLOR_LVL_5});
+        }
+        segmentRoute.addLayer(oneSpeedPath);
+    }
+}
+
 function showStressSegments(plan, routeIndex) {
     var steps = plan.steps;
     for (var i = 0; i < steps.length-1; i++) {
@@ -256,6 +289,38 @@ function showStressSegments(plan, routeIndex) {
 }
 
 function showPowerSegments(plan, routeIndex) {
+    var steps = plan.steps;
+    for (var i = 0; i < steps.length-1; i++) {
+        var coordinate = steps[i].coordinate;
+        var nextCoordinate = steps[i+1].coordinate;
+        var lat = coordinate.latE6 / 1000000;
+        var lng = coordinate.lonE6 / 1000000;
+        var nextLat = nextCoordinate.latE6 / 1000000;
+        var nextLng = nextCoordinate.lonE6 / 1000000;
+        var pathLatLngs = [];
+        pathLatLngs.push(L.latLng(lat, lng));
+        pathLatLngs.push(L.latLng(nextLat, nextLng));
+        var time = steps[i].travelTimeToNextStep;
+        var effort = steps[i].physicalEffortToNextStep;
+        var onePowerPath = L.polyline(pathLatLngs, segmentRouteOptions);
+        var powerInW = effort / time;
+        if (powerInW < POWER_LIMIT_LVL_1) {
+            onePowerPath.setStyle({color: POWER_COLOR_LVL_1});
+        } else if (powerInW < POWER_LIMIT_LVL_2) {
+            onePowerPath.setStyle({color: POWER_COLOR_LVL_2});
+        } else if (powerInW < POWER_LIMIT_LVL_3) {
+            onePowerPath.setStyle({color: POWER_COLOR_LVL_3});
+        } else if (powerInW < POWER_LIMIT_LVL_4) {
+            onePowerPath.setStyle({color: POWER_COLOR_LVL_4});
+        } else {
+            onePowerPath.setStyle({color: POWER_COLOR_LVL_5});
+        }
+        segmentRoute.addLayer(onePowerPath);
+    }
+}
+
+//omezeni minimalni velikosti segmentu
+function showPowerSegments2(plan, routeIndex) {
     var pathLatLngs = [];
     var segmentDistance = 0;
     var time = 0;
@@ -268,24 +333,24 @@ function showPowerSegments(plan, routeIndex) {
         pathLatLngs.push(L.latLng(lat, lng));
 
         if (segmentDistance > MAX_POWER_SEGMENT_DISTANCE || i == steps.length-1) {
-            var oneSpeedPath = L.polyline(pathLatLngs, segmentRouteOptions);
+            var onePowerPath = L.polyline(pathLatLngs, segmentRouteOptions);
 
 
             //var speedInKmh = (segmentDistance/time) * 3.6;
             var powerInW = effort / time;
 //            console.log("power: " + powerInW);
             if (powerInW < POWER_LIMIT_LVL_1) {
-                oneSpeedPath.setStyle({color: POWER_COLOR_LVL_1});
+                onePowerPath.setStyle({color: POWER_COLOR_LVL_1});
             } else if (powerInW < POWER_LIMIT_LVL_2) {
-                oneSpeedPath.setStyle({color: POWER_COLOR_LVL_2});
+                onePowerPath.setStyle({color: POWER_COLOR_LVL_2});
             } else if (powerInW < POWER_LIMIT_LVL_3) {
-                oneSpeedPath.setStyle({color: POWER_COLOR_LVL_3});
+                onePowerPath.setStyle({color: POWER_COLOR_LVL_3});
             } else if (powerInW < POWER_LIMIT_LVL_4) {
-                oneSpeedPath.setStyle({color: POWER_COLOR_LVL_4});
+                onePowerPath.setStyle({color: POWER_COLOR_LVL_4});
             } else {
-                oneSpeedPath.setStyle({color: POWER_COLOR_LVL_5});
+                onePowerPath.setStyle({color: POWER_COLOR_LVL_5});
             }
-            segmentRoute.addLayer(oneSpeedPath);
+            segmentRoute.addLayer(onePowerPath);
 
             segmentDistance = steps[i].distanceToNextStep;
             time = steps[i].travelTimeToNextStep;
@@ -295,7 +360,7 @@ function showPowerSegments(plan, routeIndex) {
         } else {
             segmentDistance += steps[i].distanceToNextStep;
             time += steps[i].travelTimeToNextStep;
-            effort += steps[i].physicalEffortToNextStep
+            effort += steps[i].physicalEffortToNextStep;
         }
     }
 }
