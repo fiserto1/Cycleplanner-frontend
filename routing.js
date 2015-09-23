@@ -425,7 +425,8 @@ function createDurationTab(plan, routeIndex) {
         $("#legend").show();
         showSegments(routeIndex, plan);
     });
-    var durationDesc = $("<span>").addClass("one-criteria row");
+    var durationDesc = $('<span data-toggle="tooltip" data-placement="top">').addClass("one-criteria row");
+    durationDesc.attr("data-original-title", $.t("tooltip.route-description.travel-time"));
     var durationLabel = $('<span data-i18n="route-description.travel-time">').addClass("description-label");
     durationLabel.text($.t("route-description.travel-time"));
     durationLabel.appendTo(durationDesc);
@@ -456,7 +457,8 @@ function createStressTab(plan, routeIndex) {
         $("#legend").show();
         showSegments(routeIndex, plan);
     });
-    var stressDesc = $("<span>").addClass("one-criteria row");
+    var stressDesc = $('<span data-toggle="tooltip" data-placement="top">').addClass("one-criteria row");
+    stressDesc.attr("data-original-title", $.t("tooltip.route-description.stress"));
     var stressLabel = $('<span data-i18n="route-description.stress">').addClass("description-label");
     stressLabel.text($.t("route-description.stress"));
     stressLabel.appendTo(stressDesc);
@@ -483,7 +485,8 @@ function createEffortTab(plan, routeIndex) {
         $("#legend").show();
         showSegments(routeIndex, plan);
     });
-    var effortDesc = $("<span>").addClass("one-criteria row");
+    var effortDesc = $('<span data-toggle="tooltip" data-placement="top">').addClass("one-criteria row");
+    effortDesc.attr("data-original-title", $.t("tooltip.route-description.physical-effort"));
     var effortLabel = $('<span data-i18n="route-description.physical-effort">').addClass("description-label");
     effortLabel.text($.t("route-description.physical-effort"));
     effortLabel.appendTo(effortDesc);
@@ -503,17 +506,23 @@ function createLengthTab(plan, routeIndex) {
     var length = plan.length;
     var elevationGain = plan.elevationGain;
     var elevationDrop = plan.elevationDrop;
-    var lengthTab = $("<div>").addClass("criteria-tab col-md-12");
-    var lengthDesc = $("<span>").addClass("one-criteria");
+    var lengthTab = $("<div>").addClass("description-tab col-md-12");
+    var lengthDesc = $('<span data-toggle="tooltip" data-placement="bottom">').addClass("one-description");
+    lengthDesc.attr("data-original-title", $.t("tooltip.route-description.length"));
     var lengthLabel = $('<span data-i18n="route-description.length">').addClass("description-label");
     lengthLabel.text($.t("route-description.length"));
     lengthLabel.appendTo(lengthDesc);
     var lengthValue = $('<span>').addClass("description-value");
-    lengthValue.text(length + " m,");
+    if (length < 1000) {
+        lengthValue.text(length + " m,");
+    } else {
+        lengthValue.text((length/1000).toFixed(1) + " km,");
+    }
     lengthValue.appendTo(lengthDesc);
     lengthDesc.appendTo(lengthTab);
     
-    var elevationGainDesc = $("<span>").addClass("one-criteria");
+    var elevationGainDesc = $('<span data-toggle="tooltip" data-placement="bottom">').addClass("one-description");
+    elevationGainDesc.attr("data-original-title", $.t("tooltip.route-description.elevation-gain"));
     var elevationGainLabel = $('<span data-i18n="route-description.elevation-gain">').addClass("description-label");
     elevationGainLabel.text($.t("route-description.elevation-gain"));
     elevationGainLabel.appendTo(elevationGainDesc);
@@ -522,7 +531,8 @@ function createLengthTab(plan, routeIndex) {
     elevationGainValue.appendTo(elevationGainDesc);
     elevationGainDesc.appendTo(lengthTab);
 
-    var elevationDropDesc = $("<span>").addClass("one-criteria");
+    var elevationDropDesc = $('<span data-toggle="tooltip" data-placement="bottom">').addClass("one-description");
+    elevationDropDesc.attr("data-original-title", $.t("tooltip.route-description.elevation-drop"));
     var elevationDropLabel = $('<span data-i18n="route-description.elevation-drop">').addClass("description-label");
     elevationDropLabel.text($.t("route-description.elevation-drop"));
     elevationDropLabel.appendTo(elevationDropDesc);
@@ -530,6 +540,19 @@ function createLengthTab(plan, routeIndex) {
     elevationDropValue.text(elevationDrop + " m");
     elevationDropValue.appendTo(elevationDropDesc);
     elevationDropDesc.appendTo(lengthTab);
+
+    var shareBut = $('<span data-toggle="tooltip" data-placement="bottom">').addClass("description-icon");
+    shareBut.attr("id", "share-button");
+    shareBut.attr("data-original-title", $.t("tooltip.share"));
+    var shareIcon = $("<i>").addClass("fa fa-share-alt fa-lg");
+    shareIcon.appendTo(shareBut);
+    shareBut.appendTo(lengthTab);
+    var exportBut = $('<span data-toggle="tooltip" data-placement="bottom">').addClass("description-icon");
+    exportBut.attr("id", "export-button");
+    exportBut.attr("data-original-title", $.t("tooltip.export"));
+    var exportIcon = $("<i>").addClass("fa fa-external-link fa-lg");
+    exportIcon.appendTo(exportBut);
+    exportBut.appendTo(lengthTab);
     return lengthTab;
 }
 

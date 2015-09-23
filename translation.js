@@ -38,7 +38,8 @@ function translateTooltips(t) {
     $("#route-crossroads").attr("data-original-title", t("tooltip.route-description.crossroads"));
     $(".share-tooltip").attr("data-original-title", t("tooltip.share"));
     $(".print-tooltip").attr("data-original-title", t("tooltip.print"));
-
+    $("#share-button").attr("data-original-title", t("tooltip.share"));
+    $("#export-button").attr("data-original-title", t("tooltip.export"));
     $(".leaflet-control-locate").attr("data-original-title", t("tooltip.locate"));
     $(".leaflet-control-zoom-in").attr("data-original-title", t("tooltip.zoom-in"));
     $(".leaflet-control-zoom-out").attr("data-original-title", t("tooltip.zoom-out"));

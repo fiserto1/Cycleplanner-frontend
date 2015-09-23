@@ -124,6 +124,11 @@ button.close {
   line-height: 25px;
   font-weight: bold;
 }
+.one-description {
+  text-align: left;
+  font-size: 11px;
+}
+
 .description-value {
   text-align: left;
 }
@@ -131,6 +136,15 @@ button.close {
   text-align: right;
   padding-left: 5px;
 }
+
+.description-icon {
+  text-align: center;
+  i, span {
+    font-size: 12px;
+    padding: 5px;
+  }
+}
+
 
 #smartbanner {
   position: relative !important;
@@ -143,13 +157,10 @@ button.close {
 #text-feedback, #api-reason {
   resize: none;
 }
-.one-description {
-  text-align: center;
 
-}
-.one-description:hover {
-  background-color: @button-hover-color;
-}
+//.one-description:hover {
+//  background-color: @button-hover-color;
+//}
 #more-description-row {
   line-height: 23px;
 }
@@ -259,6 +270,7 @@ body {
 }
 .small-chart {
   position: relative;
+  overflow: hidden;
   width: 100%;
   height: 40px;
 }
@@ -294,10 +306,12 @@ body {
     padding: 8px;
   }
 }
-.criteria-tab {
-  overflow: hidden;
+
+.description-tab {
+  line-height: 16px;
 }
-.action-icon:hover, .criteria-tab:hover {
+
+.action-icon:hover, .criteria-tab:hover, .description-icon:hover {
   cursor: pointer;
   background-color: @button-hover-color;
 }
@@ -390,7 +404,7 @@ body {
   line-height: 50px;
 }
 
-#settings-button, #cancel-button {
+#settings-button, #cancel-button, #share-button, #export-button {
   float: right;
 }
 //#settings-panel {
