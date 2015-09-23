@@ -17,7 +17,7 @@ var powerCircle = L.circleMarker(null,{
     opacity: 1,
     fillOpacity: 1
 }).setRadius(5);
-
+var segmentLine;
 
 var SPEED_ZONES = [{
     value: SPEED_LIMIT_LVL_1,
@@ -184,24 +184,36 @@ function createChart(options) {
             zones: options.zones,
             point: {
                 events: {
-                    mouseOver: function () {
+                    mouseOver: function (e) {
+                        console.log(e.target);
+                        //console.log(response.plans[options.routeIndex].steps[e.target.index].coordinate);
+                        var chartValueIndex = e.target.index;
+                        var planSteps = response.plans[options.routeIndex].steps;
+                        var coord = planSteps[chartValueIndex].coordinate;
+                        var latLng = L.latLng(coord.latE6/1000000,coord.lonE6/1000000);
+                        var nextCoord = planSteps[chartValueIndex + 1].coordinate;
+                        var nextLatLng = L.latLng(nextCoord.latE6/1000000,nextCoord.lonE6/1000000);
+                        segmentLine = L.polyline([latLng,nextLatLng], {
+                            color: "black",
+                            weight: 3,
+                            opacity: 1
+                        });
+                        segmentLine.addTo(map);
+                        var popupOptions = {autoPan: false, closeButton: false};
+                        var popupString = "";
+                        segmentLine.bindPopup("Speed: " + this.y.toFixed(1) + " km/h", popupOptions).openPopup();
                         switch (options.dataType) {
                             case SPEED_SEGMENTS:
-                                speedCircle.setLatLng(basicRoutes.getLayers()[options.routeIndex].getLatLngs()[this.index]);
-                                speedCircle.addTo(map);
-                                speedCircle.bindPopup("Speed: " + this.y.toFixed(1) + " km/h").openPopup();
+                                popupString = "Speed: " + this.y.toFixed(1) + " km/h";
                                 break;
                             case STRESS_SEGMENTS:
-                                stressCircle.setLatLng(basicRoutes.getLayers()[options.routeIndex].getLatLngs()[this.index]);
-                                stressCircle.addTo(map);
-                                stressCircle.bindPopup("Stress: " + this.y + " SU").openPopup();
+                                popupString = "Stress: " + this.y + " SU";
                                 break;
                             case POWER_SEGMENTS:
-                                powerCircle.setLatLng(basicRoutes.getLayers()[options.routeIndex].getLatLngs()[this.index]);
-                                powerCircle.addTo(map);
-                                powerCircle.bindPopup("Power: " + this.y.toFixed(1) + " W").openPopup();
+                                popupString = "Power: " + this.y.toFixed(1) + " W";
                                 break;
                         }
+                        segmentLine.bindPopup(popupString, popupOptions).openPopup();
 
 
 
@@ -226,17 +238,18 @@ function createChart(options) {
                         //    });
                     },
                     mouseOut: function () {
-                        switch (options.dataType) {
-                            case SPEED_SEGMENTS:
-                                map.removeLayer(speedCircle);
-                                break;
-                            case STRESS_SEGMENTS:
-                                map.removeLayer(stressCircle);
-                                break;
-                            case POWER_SEGMENTS:
-                                map.removeLayer(powerCircle);
-                                break;
-                        }
+                        map.removeLayer(segmentLine);
+                        //switch (options.dataType) {
+                        //    case SPEED_SEGMENTS:
+                        //        map.removeLayer(speedCircle);
+                        //        break;
+                        //    case STRESS_SEGMENTS:
+                        //        map.removeLayer(stressCircle);
+                        //        break;
+                        //    case POWER_SEGMENTS:
+                        //        map.removeLayer(powerCircle);
+                        //        break;
+                        //}
                     }
                 }
             }
