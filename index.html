@@ -9,14 +9,15 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <!--<link rel="stylesheet" href="externalcss/bootstrap-modal-bs3patch.css">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />-->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet'/>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css'
+          rel='stylesheet'/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
     <link rel="stylesheet" href="externalcss/leaflet.contextmenu.css">
     <link rel="stylesheet" href="externalcss/bootstrap-rating.css">
     <link rel="stylesheet" href="externalcss/jquery.smartbanner.css" type="text/css" media="screen">
@@ -38,7 +39,7 @@
     <script src="externaljs/jquery.smartbanner.js"></script>
 
 
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="main.css"/>
     <script src="translation.js"></script>
     <script src="map.js"></script>
     <script src="spinner.js"></script>
@@ -59,97 +60,140 @@
             <div class="col-md-1">
                 <div class="row">
                     <div class="col-md-6" data-toggle="modal" data-target="#menu-panel">
-                        <div id="menu-button" class="action-icon menu-tooltip" data-toggle="tooltip" data-placement="bottom">
-                            <i class="fa fa-bars" id="menu-icon" aria-hidden="true" ></i>
+                        <div id="menu-button" class="action-icon menu-tooltip" data-toggle="tooltip"
+                             data-placement="bottom">
+                            <i class="fa fa-bars" id="menu-icon" aria-hidden="true"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <a class="navbar-brand" >Cykloplánovač.cz</a>
+            <a class="navbar-brand">Cykloplánovač.cz</a>
         </div>
     </div>
 </nav>
 
-<div id="menu-panel" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-<div class="modal-sm">
-    <div class="modal-content left-sidebar">
-        <div class="title">
-            <strong data-i18n="left-sidebar.title"></strong>
-        </div>
-        <div class="row bicycles">
-            <i class="fa fa-bicycle col-md-1"></i>
-            <i class="fa fa-bicycle col-md-2"></i>
-            <i class="fa fa-bicycle col-md-1"></i>
-            <i class="fa fa-bicycle col-md-2"></i>
-            <i class="fa fa-bicycle col-md-1"></i>
-            <i class="fa fa-bicycle col-md-1"></i>
-            <i class="fa fa-bicycle col-md-1"></i>
-            <i class="fa fa-bicycle col-md-2"></i>
-            <i class="fa fa-bicycle col-md-1"></i>
-        </div>
+<div id="menu-panel" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-sm">
+        <div class="modal-content left-sidebar">
+            <div class="title">
+                <strong data-i18n="left-sidebar.title"></strong>
+            </div>
+            <div class="row bicycles">
+                <i class="fa fa-bicycle col-md-1"></i>
+                <i class="fa fa-bicycle col-md-2"></i>
+                <i class="fa fa-bicycle col-md-1"></i>
+                <i class="fa fa-bicycle col-md-2"></i>
+                <i class="fa fa-bicycle col-md-1"></i>
+                <i class="fa fa-bicycle col-md-1"></i>
+                <i class="fa fa-bicycle col-md-1"></i>
+                <i class="fa fa-bicycle col-md-2"></i>
+                <i class="fa fa-bicycle col-md-1"></i>
+            </div>
 
-        <div class="list-group row">
-            <a class="list-group-item col-md-12" data-toggle="modal" href="#settings-panel" data-i18n="left-sidebar.menu.settings"></a>
-            <a class="list-group-item col-md-12" data-toggle="modal" href="#about-panel" data-i18n="left-sidebar.menu.about"></a>
-            <a class="list-group-item col-md-12" data-toggle="modal" href="#feedback-panel" data-i18n="left-sidebar.menu.feedback"></a>
-            <a class="list-group-item col-md-12" data-toggle="modal" href="#api-panel" data-i18n="left-sidebar.menu.api"></a>
-            <a class="list-group-item col-md-12" data-toggle="collapse" data-target="#language-dropdown">
-                <span class="col-md-11" data-i18n="left-sidebar.menu.language"></span><i class="fa fa-chevron-left col-md-1" id="language-dropdown-icon"></i>
-            </a>
-            <div id="language-dropdown" class="collapse col-md-12">
+            <div class="list-group row">
+                <a class="list-group-item col-md-12" data-toggle="modal" href="#settings-panel"
+                   data-i18n="left-sidebar.menu.settings"></a>
+                <a class="list-group-item col-md-12" data-toggle="modal" href="#about-panel"
+                   data-i18n="left-sidebar.menu.about"></a>
+                <a class="list-group-item col-md-12" data-toggle="modal" href="#feedback-panel"
+                   data-i18n="left-sidebar.menu.feedback"></a>
+                <a class="list-group-item col-md-12" data-toggle="modal" href="#api-panel"
+                   data-i18n="left-sidebar.menu.api"></a>
+                <a class="list-group-item col-md-12" data-toggle="collapse" data-target="#language-dropdown">
+                    <span class="col-md-11" data-i18n="left-sidebar.menu.language"></span>
+                    <i class="fa fa-chevron-left col-md-1" id="language-dropdown-icon"></i>
+                </a>
+
+                <div id="language-dropdown" class="collapse col-md-12">
+                    <div class="row">
+                        <a id="english" class="list-group-item col-md-12">English</a>
+                        <a id="czech" class="list-group-item col-md-12">Čeština</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="credits">
                 <div class="row">
-                    <a id="english" class="list-group-item col-md-12">English</a>
-                    <a id="czech" class="list-group-item col-md-12">Čeština</a>
+                    <a class="col-md-6" href="http://www.cvut.cz/">
+                        <img src="img/CVUT_40.png">
+                    </a>
+                    <a class="col-md-6" href="http://agents.fel.cvut.cz/projects/agents4its">
+                        <img src="img/ATG_40.png">
+                    </a>
                 </div>
-            </div>
-        </div>
+                <div class="row">
+                    <a class="col-md-6" href="https://play.google.com/store/apps/details?id=cz.agents.cycleplanner">
+                        <img src="img/google_play.png">
+                    </a>
+                    <a class="col-md-6" href="http://www.dopracenakole.net/">
+                        <img src="img/dpnk.png">
+                    </a>
+                </div>
+                <div class="row">
 
-        <div class="credits">
-            <div class="row">
-                <a class="col-md-6" href="http://www.cvut.cz/">
-                    <img src="img/CVUT_40.png">
-                </a>
-                <a class="col-md-6" href="http://agents.fel.cvut.cz/projects/agents4its">
-                    <img src="img/ATG_40.png">
-                </a>
-            </div>
-            <div class="row">
-                <a class="col-md-6" href="https://play.google.com/store/apps/details?id=cz.agents.cycleplanner">
-                    <img src="img/google_play.png">
-                </a>
-                <a class="col-md-6" href="http://www.dopracenakole.net/">
-                    <img src="img/dpnk.png">
-                </a>
-            </div>
-            <div class="row">
-
-                <div class="social-button col-md-6">
-                    <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 106px; height: 24px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 106px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1440424828065" name="I0_1440424828065" src="https://apis.google.com/u/0/se/0/_/+1/fastbutton?usegapi=1&amp;align=right&amp;hl=en_US&amp;origin=http%3A%2F%2Ftransport.felk.cvut.cz&amp;url=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.cs.B9QgnH3UoN4.O%2Fm%3D__features__%2Fam%3DEQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAGLTcCPRxTCGqjPRJ2Wt8d81qhGCZ63o-w#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh&amp;id=I0_1440424828065&amp;parent=http%3A%2F%2Ftransport.felk.cvut.cz&amp;pfname=&amp;rpctoken=22206277" data-gapiattached="true" title="+1"></iframe></div>
+                    <div class="social-button col-md-6">
+                        <div id="___plusone_0"
+                             style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 106px; height: 24px; background: transparent;">
+                            <iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no"
+                                    style="position: static; top: 0px; width: 106px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;"
+                                    tabindex="0" vspace="0" width="100%" id="I0_1440424828065" name="I0_1440424828065"
+                                    src="https://apis.google.com/u/0/se/0/_/+1/fastbutton?usegapi=1&amp;align=right&amp;hl=en_US&amp;origin=http%3A%2F%2Ftransport.felk.cvut.cz&amp;url=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.cs.B9QgnH3UoN4.O%2Fm%3D__features__%2Fam%3DEQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAGLTcCPRxTCGqjPRJ2Wt8d81qhGCZ63o-w#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh&amp;id=I0_1440424828065&amp;parent=http%3A%2F%2Ftransport.felk.cvut.cz&amp;pfname=&amp;rpctoken=22206277"
+                                    data-gapiattached="true" title="+1"></iframe>
+                        </div>
+                    </div>
+                    <div class="social-button twitter col-md-6">
+                        <iframe id="twitter-widget-i1440424827774557986" scrolling="no" frameborder="0"
+                                allowtransparency="true"
+                                class="twitter-share-button twitter-share-button-rendered twitter-tweet-button"
+                                src="http://platform.twitter.com/widgets/tweet_button.eb4cec9922931259d39f7e6e609af430.en.html#_=1440424827866&amp;count=horizontal&amp;dnt=false&amp;id=twitter-widget-i1440424827774557986&amp;lang=en&amp;original_referer=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;size=m&amp;text=Otev%C5%99en%C3%BD%20pl%C3%A1nova%C4%8D%20cyklotras&amp;type=share&amp;url=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F"
+                                style="position: static; visibility: visible; width: 81px; height: 20px;"></iframe>
+                        <script>!function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = p + '://platform.twitter.com/widgets.js';
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, 'script', 'twitter-wjs');</script>
+                    </div>
+                    <div class="social-button-wide" id="fb-button">
+                        <div class="fb-like fb_iframe_widget" data-href="http://transport.felk.cvut.cz/cykloplanovac/"
+                             data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"
+                             id="fb-like" fb-xfbml-state="rendered"
+                             fb-iframe-plugin-query="action=like&amp;app_id=&amp;container_width=295&amp;href=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;layout=button_count&amp;locale=cs_CZ&amp;sdk=joey&amp;share=true&amp;show_faces=false">
+                            <span style="vertical-align: bottom; width: 165px; height: 20px;"><iframe name="f2b767e7e8"
+                                                                                                      width="1000px"
+                                                                                                      height="1000px"
+                                                                                                      frameborder="0"
+                                                                                                      allowtransparency="true"
+                                                                                                      allowfullscreen="true"
+                                                                                                      scrolling="no"
+                                                                                                      title="fb:like Facebook Social Plugin"
+                                                                                                      src="http://www.facebook.com/v2.0/plugins/like.php?action=like&amp;app_id=&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FPqAPbTuc2cR.js%3Fversion%3D41%23cb%3Df36e5e9918%26domain%3Dtransport.felk.cvut.cz%26origin%3Dhttp%253A%252F%252Ftransport.felk.cvut.cz%252Ff33e10938%26relation%3Dparent.parent&amp;container_width=295&amp;href=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;layout=button_count&amp;locale=cs_CZ&amp;sdk=joey&amp;share=true&amp;show_faces=false"
+                                                                                                      style="border: none; visibility: visible; width: 165px; height: 20px;"
+                                                                                                      class=""></iframe></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="social-button twitter col-md-6">
-                    <iframe id="twitter-widget-i1440424827774557986" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" src="http://platform.twitter.com/widgets/tweet_button.eb4cec9922931259d39f7e6e609af430.en.html#_=1440424827866&amp;count=horizontal&amp;dnt=false&amp;id=twitter-widget-i1440424827774557986&amp;lang=en&amp;original_referer=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;size=m&amp;text=Otev%C5%99en%C3%BD%20pl%C3%A1nova%C4%8D%20cyklotras&amp;type=share&amp;url=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F" style="position: static; visibility: visible; width: 81px; height: 20px;"></iframe>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                </div>
-                <div class="social-button-wide" id="fb-button">
-                        <div class="fb-like fb_iframe_widget" data-href="http://transport.felk.cvut.cz/cykloplanovac/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" id="fb-like" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=&amp;container_width=295&amp;href=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;layout=button_count&amp;locale=cs_CZ&amp;sdk=joey&amp;share=true&amp;show_faces=false"><span style="vertical-align: bottom; width: 165px; height: 20px;"><iframe name="f2b767e7e8" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="http://www.facebook.com/v2.0/plugins/like.php?action=like&amp;app_id=&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FPqAPbTuc2cR.js%3Fversion%3D41%23cb%3Df36e5e9918%26domain%3Dtransport.felk.cvut.cz%26origin%3Dhttp%253A%252F%252Ftransport.felk.cvut.cz%252Ff33e10938%26relation%3Dparent.parent&amp;container_width=295&amp;href=http%3A%2F%2Ftransport.felk.cvut.cz%2Fcykloplanovac%2F&amp;layout=button_count&amp;locale=cs_CZ&amp;sdk=joey&amp;share=true&amp;show_faces=false" style="border: none; visibility: visible; width: 165px; height: 20px;" class=""></iframe></span></div>
-                </div>
-
             </div>
         </div>
     </div>
-</div>
 </div>
 <div id="settings-panel" class="modal fade bs-example-modal-lg">
     <div class="modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" data-i18n="settings.title"></h4>
             </div>
             <div class="modal-body">
                 <span data-i18n="settings.avg-speed"></span>
                 <input id="avg-speed-input" type="number" value="15" min="10" max="40">
                 <span>km/h</span>
+
                 <div class="checkbox">
                     <label>
                         <input type="checkbox">
@@ -158,18 +202,20 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" data-i18n="settings.button.cancel"></button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-i18n="settings.button.save"></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"
+                        data-i18n="settings.button.cancel"></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        data-i18n="settings.button.save"></button>
             </div>
         </div>
     </div>
-
 </div>
-<div id="about-panel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" >
+<div id="about-panel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
     <div class="modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" data-i18n="about.title"></h4>
             </div>
             <div class="modal-body"></div>
@@ -179,78 +225,87 @@
         </div>
     </div>
 </div>
-<div id="feedback-panel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" >
+<div id="feedback-panel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
     <div class="modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" data-i18n="feedback.title"></h4>
             </div>
             <div class="modal-body">
                 <p><strong data-i18n="feedback.rating-title"></strong></p>
-                <p><input type="hidden" class="rating" data-filled="fa fa-star fa-2x" data-empty="fa fa-star-o fa-2x"/></p>
-                <p><strong data-i18n="feedback.checkbox-title"></strong></p>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            <span data-i18n="feedback.checkbox-1.label"></span>
-                            <small data-i18n="feedback.checkbox-1.description"></small>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            <span data-i18n="feedback.checkbox-2.label"></span>
-                            <small data-i18n="feedback.checkbox-2.description"></small>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            <span data-i18n="feedback.checkbox-3.label"></span>
-                            <small data-i18n="feedback.checkbox-3.description"></small>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            <span data-i18n="feedback.checkbox-4.label"></span>
-                            <small data-i18n="feedback.checkbox-4.description"></small>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            <span data-i18n="feedback.checkbox-5.label"></span>
-                            <small data-i18n="feedback.checkbox-5.description"></small>
-                        </label>
-                    </div>
 
-                    <textarea class="form-control" rows="2" id="text-feedback"></textarea>
-                </form>
+                <p><input type="hidden" class="rating" data-filled="fa fa-star fa-2x" data-empty="fa fa-star-o fa-2x"/>
+                </p>
+
+                <p><strong data-i18n="feedback.checkbox-title"></strong></p>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span data-i18n="feedback.checkbox-1.label"></span>
+                        <small data-i18n="feedback.checkbox-1.description"></small>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span data-i18n="feedback.checkbox-2.label"></span>
+                        <small data-i18n="feedback.checkbox-2.description"></small>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span data-i18n="feedback.checkbox-3.label"></span>
+                        <small data-i18n="feedback.checkbox-3.description"></small>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span data-i18n="feedback.checkbox-4.label"></span>
+                        <small data-i18n="feedback.checkbox-4.description"></small>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span data-i18n="feedback.checkbox-5.label"></span>
+                        <small data-i18n="feedback.checkbox-5.description"></small>
+                    </label>
+                </div>
+                <textarea class="form-control" rows="2" id="text-feedback"></textarea>
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" data-i18n="feedback.button.close"></button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-i18n="feedback.button.send"></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"
+                        data-i18n="feedback.button.close"></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        data-i18n="feedback.button.send"></button>
             </div>
         </div>
     </div>
 </div>
-<div id="api-panel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" >
+<div id="api-panel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
     <div class="modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" data-i18n="api.title"></h4>
             </div>
             <div class="modal-body">
                 <p><strong data-i18n="api.body.title"></strong></p>
+
                 <p id="api-description"></p>
                 <!--<input type="text" class="form-control" id="api-email">-->
                 <!--<textarea class="form-control" rows="3" id="api-reason"></textarea>-->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" data-i18n="api.button.close"></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"
+                        data-i18n="api.button.close"></button>
                 <!--<button type="button" class="btn btn-primary" data-dismiss="modal" data-i18n="api.button.send"></button>-->
             </div>
         </div>
@@ -259,39 +314,7 @@
 
 <div id="map"></div>
 <div id='legend'>
-    <!--<ul id="myTab" class="nav nav-tabs">-->
-        <!--<li class="active legend-button">-->
-            <!--<a href="#elevation-legend" data-toggle="tab" data-i18n="legend.tabs.elevation"></a>-->
-        <!--</li>-->
-        <!--<li class="legend-button">-->
-            <!--<a href="#speed-legend" data-toggle="tab" data-i18n="legend.tabs.speed"></a>-->
-        <!--</li>-->
-        <!--<li class="legend-button">-->
-            <!--<a href="#surface-legend" data-toggle="tab" data-i18n="legend.tabs.surface"></a>-->
-        <!--</li>-->
-        <!--<li class="legend-button">-->
-            <!--<a href="#road-type-legend" data-toggle="tab" data-i18n="legend.tabs.road-type"></a>-->
-        <!--</li>-->
-    <!--</ul>-->
     <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="elevation-legend">
-            <nav class='legend clearfix'>
-                <span class="level1"></span>
-                <span class="level2"></span>
-                <span class="level3"></span>
-                <span class="level4"></span>
-                <span class="level5"></span>
-                <span class="level7"></span>
-                <span class="level8"></span>
-                <label data-i18n="legend.elevation.descent"></label>
-                <label></label>
-                <label></label>
-                <label data-i18n="legend.elevation.plain"></label>
-                <label></label>
-                <label></label>
-                <label data-i18n="legend.elevation.gradient"></label>
-            </nav>
-        </div>
         <div class="tab-pane fade" id="speed-legend">
             <nav class='legend clearfix'>
                 <div class="row">
@@ -376,18 +399,18 @@
     </div>
 </div>
 
-
 <div class="col-md-4 left-block">
     <div id="search-panel" class="row panel">
 
         <div id="search-group">
             <div class="input-group">
-                <div class="input-group-addon drag-drop" >
+                <div class="input-group-addon drag-drop">
                     <i class="fa fa-map-marker start-icon"></i>
                 </div>
                 <input type="search" class="form-control search-start whisper">
+
                 <div class="input-group-addon right-addon">
-                    <button type="button" tabindex="-1" class="close remove-point" ><span>&times;</span></button>
+                    <button type="button" tabindex="-1" class="close remove-point"><span>&times;</span></button>
                 </div>
             </div>
 
@@ -396,8 +419,9 @@
                     <i class="fa fa-map-marker destination-icon"></i>
                 </div>
                 <input type="search" class="form-control search-destination whisper">
+
                 <div class="input-group-addon right-addon">
-                    <button type="button" tabindex="-1" class="close remove-point" ><span>&times;</span></button>
+                    <button type="button" tabindex="-1" class="close remove-point"><span>&times;</span></button>
                 </div>
             </div>
         </div>
@@ -408,114 +432,13 @@
         <div class="action-icon col-md-1 change-dir-tooltip" data-toggle="tooltip" data-placement="bottom">
             <i class="glyphicon glyphicon-transfer" id="change-direction-icon" aria-hidden="true"></i>
         </div>
-        <div id="cancel-button" class="col-md-1 action-icon cancel-tooltip" data-toggle="tooltip" data-placement="bottom">
+        <div id="cancel-button" class="col-md-1 action-icon cancel-tooltip" data-toggle="tooltip"
+             data-placement="bottom">
             <i class="fa fa-times" id="cancel-icon" aria-hidden="true"></i>
         </div>
-        <!--<div id="settings-button" class="col-md-1 action-icon settings-tooltip" data-toggle="tooltip" data-placement="bottom">-->
-            <!--<i class="fa fa-cog" id="settings-icon" aria-hidden="true" data-toggle="collapse" data-target="#settings-panel"></i>-->
-        <!--</div>-->
-
     </div>
-    <!--<div id="settings-panel" class="collapse row panel">-->
-        <!--<span data-i18n="settings.avg-speed"></span>-->
-        <!--<input id="avg-speed-input" type="number" value="15" min="10" max="40">-->
-        <!--<span>km/h</span>-->
-        <!--<div class="checkbox">-->
-            <!--<label>-->
-                <!--<input type="checkbox">-->
-                <!--<span data-i18n="settings.public-transport">Plánovat s MHD</span>-->
-            <!--</label>-->
-        <!--</div>-->
-    <!--</div>-->
     <div id="error-panel" class="alert alert-danger panel"></div>
-    <!--<div id="chart-panel" class="row">-->
-        <!--<div id="full-route-description" class="col-md-12">-->
-            <!--<div class="row">-->
-                <!--<div class="col-md-11">-->
-                    <!--<div class="all-route-params row">-->
-                        <!--<div class="col-md-12">-->
-                            <!--<div class="row" id="criteria-row">-->
-                                <!--<span class="col-md-4 one-description" id="route-duration" data-toggle="tooltip" data-placement="top">-->
-                                        <!--&lt;!&ndash;<i id="route-duration" class="fa fa-clock-o col-md-3" data-toggle="tooltip" data-placement="top"></i>&ndash;&gt;-->
-                                        <!--<span class=" description-label" data-i18n="route-description.travel-time"></span>-->
-                                        <!--<span class="description-value" id="route-duration-val"></span>-->
-                                <!--</span>-->
-                                <!--<span class="col-md-4 one-description" id="route-stress" data-toggle="tooltip" data-placement="top">-->
-                                        <!--&lt;!&ndash;<i id="route-stress" class="fa fa-car col-md-3" data-toggle="tooltip" data-placement="top"></i>&ndash;&gt;-->
-                                        <!--<span class=" description-label" data-i18n="route-description.stress"></span>-->
-                                        <!--<span class="description-value" id="route-stress-val"></span>-->
-                                <!--</span>-->
-                                <!--<span class="col-md-4 one-description" id="route-physical-effort" data-toggle="tooltip" data-placement="top">-->
-                                        <!--&lt;!&ndash;<i id="route-physical-effort" class="fa fa-gavel col-md-3" data-toggle="tooltip" data-placement="top"></i>&ndash;&gt;-->
-                                        <!--<span class=" description-label" data-i18n="route-description.physical-effort"></span>-->
-                                        <!--<span class=" description-value" id="route-physical-effort-val"></span>-->
-                                <!--</span>-->
-                            <!--</div>-->
-                            <!--<div class="row" id="more-description-row">-->
-                                <!--<span class="col-md-4 one-description" id="route-length" data-toggle="tooltip" data-placement="bottom">-->
-                                        <!--&lt;!&ndash;<i id="route-length" class="fa fa-arrows-h col-md-3" data-toggle="tooltip" data-placement="top"></i>&ndash;&gt;-->
-                                        <!--<span class="description-label" data-i18n="route-description.length"></span>-->
-                                        <!--<span class="description-value" id="route-length-val"></span>-->
-                                <!--</span>-->
-                                <!--<span class="col-md-4 one-description" id="route-elevation-gain" data-toggle="tooltip" data-placement="bottom">-->
-                                        <!--&lt;!&ndash;<i id="route-elevation-gain" class="fa fa-long-arrow-up col-md-3" data-toggle="tooltip" data-placement="bottom"></i>&ndash;&gt;-->
-                                        <!--<span class="description-label" data-i18n="route-description.elevation-gain"></span>-->
-                                        <!--<span class="description-value" id="route-elevation-gain-val"></span>-->
-                                <!--</span>-->
-                                <!--<span class="col-md-4 one-description" id="route-elevation-drop" data-toggle="tooltip" data-placement="bottom">-->
-                                        <!--&lt;!&ndash;<i id="route-elevation-drop" class="fa fa-long-arrow-down col-md-3" data-toggle="tooltip" data-placement="bottom"></i>&ndash;&gt;-->
-                                        <!--<span class="description-label" data-i18n="route-description.elevation-drop"></span>-->
-                                        <!--<span class="description-value" id="route-elevation-drop-val"></span>-->
-                                <!--</span>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash;<i id="route-elevation-change" class="fa fa-area-chart col-md-3" data-toggle="tooltip" data-placement="bottom"></i>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<i id="route-crossroads" class="fa fa-arrows col-md-3" data-toggle="tooltip" data-placement="bottom"></i>&ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="route-options col-md-1">-->
-                    <!--<div class="action-icon share-tooltip" data-toggle="tooltip" data-placement="right">-->
-                        <!--<i class="fa fa-share-alt"></i>-->
-                    <!--</div>-->
-                    <!--<div class="action-icon print-tooltip" data-toggle="tooltip" data-placement="right">-->
-                        <!--<i class="fa fa-print"></i>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div id="hChart"></div>-->
-    <!--</div>-->
     <div id="routes-panel" class="row panel"></div>
-    <!--<script src="elevationChart.js"></script>-->
 </div>
-
-
-
-
-<!--<svg height="210" width="500">-->
-<!--<polygon class="tr1" id="tr" points="50 0 100 60 0 60" fill="transparent" stroke="darkorange" stroke-width="2"/>-->
-<!--</svg>-->
-<!--<svg viewbox="-2 -2 104 64">-->
-<!--<polygon id="tr2" points="50 0 100 60 0 60" fill="transparent" stroke="darkorange" stroke-width="2"/>-->
-<!--</svg>-->
-<!--<svg viewbox="-2 -2 104 64">-->
-<!--<polygon id="tr3" points="50 0 100 60 0 60" fill="transparent" stroke="darkorange" stroke-width="2"/>-->
-<!--</svg>-->
-<!--<svg viewbox="-2 -2 104 64">-->
-<!--<polygon id="tr4" points="50 0 100 60 0 60" fill="transparent" stroke="darkorange" stroke-width="2"/>-->
-<!--</svg>-->
-
-<!--TRIANGLES v2-->
-<!--<div class="triangle" id="tFirst"><div class="tInner"></div></div>-->
-<!--<div class="triangle" id="tSecond"><div class="tInner"></div></div>-->
-<!--<div class="triangle" id="tThird"><div class="tInner"></div></div>-->
-<!--<div class="triangle" id="tFourth"><div class="tInner"></div></div>-->
-
-
-<!--<script src="routing.js"></script>-->
-<!--<script src="markers.js"></script>-->
-<!--<script src="collapse.js"></script>-->
-
 </body>
 </html>
