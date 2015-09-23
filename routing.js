@@ -297,6 +297,8 @@ function handler(obj) {
     allChartOptions.power.min = minPower;
     basicRoutes.addTo(map);
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     setTimeout(function(){
         for(var i = 0; i < plans.length; i++){
             createSpeedChart(i);
@@ -426,6 +428,7 @@ function createDurationTab(plan, routeIndex) {
         showSegments(routeIndex, plan);
     });
     var durationDesc = $('<span data-toggle="tooltip" data-placement="top">').addClass("one-criteria row");
+    durationDesc.attr("id", "route-duration");
     durationDesc.attr("data-original-title", $.t("tooltip.route-description.travel-time"));
     var durationLabel = $('<span data-i18n="route-description.travel-time">').addClass("description-label");
     durationLabel.text($.t("route-description.travel-time"));
@@ -458,6 +461,7 @@ function createStressTab(plan, routeIndex) {
         showSegments(routeIndex, plan);
     });
     var stressDesc = $('<span data-toggle="tooltip" data-placement="top">').addClass("one-criteria row");
+    stressDesc.attr("id", "route-stress");
     stressDesc.attr("data-original-title", $.t("tooltip.route-description.stress"));
     var stressLabel = $('<span data-i18n="route-description.stress">').addClass("description-label");
     stressLabel.text($.t("route-description.stress"));
@@ -486,6 +490,7 @@ function createEffortTab(plan, routeIndex) {
         showSegments(routeIndex, plan);
     });
     var effortDesc = $('<span data-toggle="tooltip" data-placement="top">').addClass("one-criteria row");
+    effortDesc.attr("id", "route-physical-effort");
     effortDesc.attr("data-original-title", $.t("tooltip.route-description.physical-effort"));
     var effortLabel = $('<span data-i18n="route-description.physical-effort">').addClass("description-label");
     effortLabel.text($.t("route-description.physical-effort"));
