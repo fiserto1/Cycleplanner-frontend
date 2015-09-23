@@ -78,6 +78,9 @@ button.close {
   border: none;
   border-radius: 0;
 }
+.list-group-item:hover {
+  cursor: pointer;
+}
 .leaflet-contextmenu {
   -webkit-box-shadow: black 3px 3px 10px;
   -moz-box-shadow: black 3px 3px 10px;
