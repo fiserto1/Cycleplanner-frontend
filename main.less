@@ -44,6 +44,7 @@ button.close {
   margin-bottom: 0;
   border: none;
   box-shadow: black 3px 3px 10px;
+  background-color: @panel-bgcolor;
   //.panel;
 }
 
@@ -278,6 +279,10 @@ body {
 
 #routes-panel, #error-panel, #chart-panel, #legend {
   display: none;
+}
+#error-panel {
+  box-shadow: black 3px 3px 10px;
+  border-radius: 2px;
 }
 
 .routes-panel {
