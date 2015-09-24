@@ -107,6 +107,9 @@ button.close {
   box-shadow: black 3px 3px 10px;
   border-radius: 2px;
 }
+.leaflet-control {
+  z-index: initial;
+}
 .criteria-weight-tab,
 .criteria-weight {
   height: 3px;
