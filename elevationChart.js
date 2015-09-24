@@ -144,23 +144,29 @@ function createChart(options) {
             enabled: false
         },
         plotOptions: {
-            area: {
-                //pointStart: 0,
+            //area: {
+            //    //pointStart: 0,
+            //    marker: {
+            //        enabled: false,
+            //        symbol: 'circle',
+            //        radius: 2,
+            //        states: {
+            //            hover: {
+            //                enabled: true
+            //            }
+            //        }
+            //    }
+            //},
+            series: {
                 marker: {
-                    enabled: false,
-                    symbol: 'circle',
                     radius: 2,
-                    states: {
-                        hover: {
-                            enabled: true
-                        }
-                    }
+                    lineWidth: 1,
+                    fillColor: options.pointerColor
                 }
             }
         },
         series: [{
             lineWidth: 2,
-            //color: '#6BA448',
             animation: false,
             //name: 'Trasa',
             data: options.data,
@@ -280,6 +286,7 @@ function createSpeedChart(routeIndex) {
         min: allChartOptions.speed.min,
         routeIndex: routeIndex,
         dataType: SPEED_SEGMENTS,
+        pointerColor: SPEED_COLOR_LVL_3,
         zones: SPEED_ZONES
     };
     createChart(options);
@@ -294,6 +301,7 @@ function createStressChart(routeIndex) {
         min: allChartOptions.stress.min - 1,
         routeIndex: routeIndex,
         dataType: STRESS_SEGMENTS,
+        pointerColor: STRESS_COLOR_LVL_3,
         zones: STRESS_ZONES
     };
     createChart(options);
@@ -308,6 +316,7 @@ function createPowerChart(routeIndex) {
         min: allChartOptions.power.min,
         routeIndex: routeIndex,
         dataType: POWER_SEGMENTS,
+        pointerColor: POWER_COLOR_LVL_3,
         zones: POWER_ZONES
     };
     createChart(options);
