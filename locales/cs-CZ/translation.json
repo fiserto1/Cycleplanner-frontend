@@ -22,6 +22,12 @@
   },
   "feedback": {
     "title": "Zpětná vazba",
+    "body": {
+      "title": "Máte nějaké připomínky k Cykloplánovači?",
+      "description": {
+        "html": "Tak napište e-mail na <a href=\"mailto:jan.hrncir@agents.fel.cvut.cz\" class=\"external\">jan.hrncir@agents.fel.cvut.cz</a> s předmětem <strong>\"Cykloplánovač - Feedback\"</strong> a do zprávy uveďte vaše připomínky."
+      }
+    },
     "rating-title": "Jak se vám líbila trasa?",
     "checkbox-title": "Zaškrtněte prosím nedostatky",
     "textarea-placeholder": "Další připomínky (nepovinné)",

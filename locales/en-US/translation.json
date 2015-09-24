@@ -22,6 +22,12 @@
   },
   "feedback": {
     "title": "Feedback",
+    "body": {
+      "title": "Do you have some comments or questions about the Cycleplanner?",
+      "description": {
+        "html": "Please, send an email with your feedback to <a href=\"mailto:jan.hrncir@agents.fel.cvut.cz\" class=\"external\">jan.hrncir@agents.fel.cvut.cz</a> and write <strong>\"Cycleplanner Feedback\"</strong> to the subject."
+      }
+    },
     "rating-title": "How do you like the route?",
     "checkbox-title": "Please check flaws",
     "textarea-placeholder": "Other comments (optional)",

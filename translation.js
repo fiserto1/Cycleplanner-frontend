@@ -62,6 +62,7 @@ function changeLanguage(language) {
         $(".description-label").i18n();
         $("#about-panel").find(".modal-body").html(t("about.html"));
         $("#api-description").html(t("api.body.description.html"));
+        $("#feedback-description").html(t("feedback.body.description.html"));
         $("#text-feedback").attr("placeholder", t("feedback.textarea-placeholder"));
         $("#feedback-panel").find(".modal-content").i18n();
         $("#about-panel").find(".modal-content").i18n();
@@ -105,6 +106,7 @@ $(document).ready(function() {
         $(".description-label").i18n();
         $("#about-panel").find(".modal-body").html(t("about.html"));
         $("#api-description").html(t("api.body.description.html"));
+        $("#feedback-description").html(t("feedback.body.description.html"));
         $("#about-panel").find(".modal-content").i18n();
         $("#feedback-panel").find(".modal-content").i18n();
         $("#text-feedback").attr("placeholder", t("feedback.textarea-placeholder"));
