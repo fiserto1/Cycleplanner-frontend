@@ -318,7 +318,7 @@ function handler(obj) {
             createPowerChart(i);
         }
 
-    }, 200);// bez timeoutu nefunguje...
+    }, 20);// bez timeoutu nefunguje...
 
 
     //TODO sortovani- je potreba si ulozit do id buttonu index v poli vsech polyline a vsude pouzivat toto cislo misto indexu v danem divu
@@ -477,14 +477,7 @@ function routeButtonClick(e) {
 }
 
 function createCriteriaWeightTab(plan, routeIndex) {
-    var duration = plan.criteria.travelTime;
-    var stress = plan.criteria.stress;
-    var effort = plan.criteria.physicalEffort;
-
-
-
-    var durationWeight = $('<div>').addClass("duration-desc criteria-weight-tab col-md-12");
-    //durationWeight.css("background-color", SPEED_COLOR_LVL_3);
+    var durationWeight = $('<div>').addClass("criteria-weight-tab col-md-12");
     return durationWeight;
 }
 
@@ -496,7 +489,7 @@ function createDurationTab(plan, routeIndex) {
         $(".criteria-tab").removeClass("selected-but");
         var currentTarget = $(e.currentTarget);
         currentTarget.addClass("selected-but");
-
+        showSegments(routeIndex, plan);
     });
     //var durationWeight = $("<div>").addClass("criteria-weight");
     //durationWeight.attr("id", "duration-weight");
