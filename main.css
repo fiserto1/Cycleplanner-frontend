@@ -365,6 +365,9 @@ body {
 #export-button {
   float: right;
 }
+#cancel-button {
+  display: none;
+}
 #avg-speed-input {
   padding: 0;
   width: 40px;

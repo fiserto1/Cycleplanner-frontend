@@ -67,6 +67,7 @@ function initializeRouting() {
 function cancelRoute() {
     hidePanelsExceptSearch();
     removeAllRoutesFromMap();
+    $("#cancel-button").hide();
     location.replace("#");
     for (var i = 0; i < allMarkers.length; i++) {
         map.removeLayer(allMarkers[i]);
@@ -90,7 +91,6 @@ function showPlanFromHash(obj) {
 function hidePanelsExceptSearch() {
     $("#routes-panel").html("").hide();
     $("#legend").hide();
-    $("#chart-panel").hide();
     firstRouteClick = 0;
     $("#error-panel").hide();
 }
@@ -175,6 +175,7 @@ var response;
 
 function handler(obj) {
     //console.log(obj.status);
+    $("#cancel-button").show();
 
     if (obj.status == "OUT_OF_BOUNDS") {
         handleServerError(400);
@@ -198,11 +199,10 @@ function handler(obj) {
         power: {
             data: []
         }
-    }; //TODO prepsat na lokalni promennou
+    };
     removeAllRoutesFromMap();
     hidePanelsExceptSearch();
     var plans = obj.plans;
-    var butZIndex = 500;
 
     var maxElevation = Number.MIN_VALUE;
     var minElevation = Number.MAX_VALUE;
@@ -351,6 +351,7 @@ function handler(obj) {
     //map.zoomOut();
 
     $("#routes-panel").show("blind");
+
     //$("#chart-panel").show("blind");
 
 }
