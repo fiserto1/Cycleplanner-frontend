@@ -1,6 +1,7 @@
 
 var segmentLine;
 var segmentLineBorder;
+var segmentLineShadow;
 
 var SPEED_ZONES = [{
     value: SPEED_LIMIT_LVL_1,
@@ -175,39 +176,82 @@ function createChart(options) {
                         var latLng = L.latLng(coord.latE6/1000000,coord.lonE6/1000000);
                         var nextCoord = planSteps[chartValueIndex + 1].coordinate;
                         var nextLatLng = L.latLng(nextCoord.latE6/1000000,nextCoord.lonE6/1000000);
-                        segmentLine = L.polyline([latLng,nextLatLng], {
-                            color: POWER_COLOR_LVL_3,
-                            weight: 10,
-                            opacity: 1
-                        });
-                        segmentLineBorder = L.polyline([latLng,nextLatLng], {
-                            color: POWER_BORDER_ROUTE_COLOR,
-                            weight: 15,
-                            opacity: 0.7
-                        });
-                        segmentLineBorder.addTo(map);
-                        segmentLine.addTo(map);
+                        var segmentLineOptions;
+                        var segmentLineBorderOptions;
+                        var segmentLineShadowOptions;
                         var popupOptions = {autoPan: false, closeButton: false};
                         var popupString = "";
-                        segmentLine.bindPopup("Speed: " + this.y.toFixed(1) + " km/h", popupOptions).openPopup();
                         //segmentLine.bringToBack();
 
                         switch (options.dataType) {
                             case SPEED_SEGMENTS:
+                                segmentLineOptions = {
+                                    color: SPEED_COLOR_LVL_3,
+                                    weight: 7,
+                                    opacity: 1
+                                };
+                                segmentLineBorderOptions = {
+                                    color: "white",
+                                    weight: 10,
+                                    opacity: 1
+                                };
+                                segmentLineShadowOptions = {
+                                    color: SPEED_COLOR_LVL_3,
+                                    weight: 17,
+                                    opacity: 0.7
+                                };
                                 popupString = "Speed: " + this.y.toFixed(1) + " km/h";
                                 break;
                             case STRESS_SEGMENTS:
+                                segmentLineOptions = {
+                                    color: STRESS_COLOR_LVL_3,
+                                    weight: 7,
+                                    opacity: 1
+                                };
+                                segmentLineBorderOptions = {
+                                    color: "white",
+                                    weight: 10,
+                                    opacity: 1
+                                };
+                                segmentLineShadowOptions = {
+                                    color: STRESS_COLOR_LVL_3,
+                                    weight: 17,
+                                    opacity: 0.7
+                                };
                                 popupString = "Stress: " + this.y + " SU";
                                 break;
                             case POWER_SEGMENTS:
+                                segmentLineOptions = {
+                                    color: POWER_COLOR_LVL_3,
+                                    weight: 7,
+                                    opacity: 1
+                                };
+                                segmentLineBorderOptions = {
+                                    color: "white",
+                                    weight: 10,
+                                    opacity: 1
+                                };
+                                segmentLineShadowOptions = {
+                                    color: POWER_COLOR_LVL_3,
+                                    weight: 17,
+                                    opacity: 0.7
+                                };
                                 popupString = "Power: " + this.y.toFixed(1) + " W";
                                 break;
                         }
+                        segmentLine = L.polyline([latLng,nextLatLng], segmentLineOptions);
+                        segmentLineBorder = L.polyline([latLng,nextLatLng], segmentLineBorderOptions);
+                        segmentLineShadow = L.polyline([latLng,nextLatLng], segmentLineShadowOptions);
+
+                        segmentLineShadow.addTo(map);
+                        segmentLineBorder.addTo(map);
+                        segmentLine.addTo(map);
                         segmentLine.bindPopup(popupString, popupOptions).openPopup();
                     },
                     mouseOut: function () {
                         map.removeLayer(segmentLine);
                         map.removeLayer(segmentLineBorder);
+                        map.removeLayer(segmentLineShadow);
                     }
                 }
             }
