@@ -311,14 +311,14 @@ function handler(obj) {
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    setTimeout(function(){
-        for(var i = 0; i < plans.length; i++){
-            createSpeedChart(i);
-            createStressChart(i);
-            createPowerChart(i);
-        }
-
-    }, 200);// bez timeoutu nefunguje...
+    //setTimeout(function(){
+    //    for(var i = 0; i < plans.length; i++){
+    //        createSpeedChart(i);
+    //        createStressChart(i);
+    //        createPowerChart(i);
+    //    }
+    //
+    //}, 200);// bez timeoutu nefunguje...
 
 
     //TODO sortovani- je potreba si ulozit do id buttonu index v poli vsech polyline a vsude pouzivat toto cislo misto indexu v danem divu
@@ -370,14 +370,13 @@ function countCriteriaWeight(maxDuration, maxStress, maxEffort) {
         var stressWeight = stressPerc / sumPerc;
         var effortWeight = effortPerc / sumPerc;
 
-        console.log("dur " + (durationWeight*100).toFixed(1));
-        console.log("stress " + (stressWeight*100).toFixed(1));
-        console.log("eff " + (effortWeight*100).toFixed(1));
+        //console.log("duration: " + (durationWeight*100).toFixed(1));
+        //console.log("stress: " + (stressWeight*100).toFixed(1));
+        //console.log("effort: " + (effortWeight*100).toFixed(1));
 
         var divId = "#route-but-" + i;
         var criteriaWeightTab = $(divId).find(".criteria-weight-tab");
         var criteriaWeightSpan = $("<div>").addClass("row criteria-weight-tab");
-            console.log(criteriaWeightTab);
         var durationWeightSpan = $("<div>").css("width", (durationWeight*100) + "%");
         durationWeightSpan.css("background-color", SPEED_COLOR_LVL_3);
         durationWeightSpan.addClass("criteria-weight");
@@ -452,24 +451,28 @@ function createButtonForRoute(plan, routeIndex) {
     routeDiv.appendTo(routeButton);
     routeButton.appendTo($("#routes-panel"));
 
-    //routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
+    routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
 
 }
 var firstRouteClick=0;
 function routeButtonClick(e) {
     var routeIndex = e.data.param1;
     var plan = e.data.param2;
+    $("#legend").show();
+    $(".small-chart").hide();
+    $(".description-tab").hide();
+    var buttonDivId = "#route-but-" + routeIndex;
+    $(buttonDivId).find(".small-chart").show();
+    $(buttonDivId).find(".description-tab").show();
+    $(".selected-weight").removeClass("selected-weight");
+    $(buttonDivId).find(".criteria-weight-tab").addClass("selected-weight");
+    $(buttonDivId).find(".criteria-weight").addClass("selected-weight");
     showSegments(routeIndex, plan);
-    //createChart(allChartOptions[routeIndex], routeIndex);
-    //console.log(e);
-    $(".route-but").removeClass("selected-but");
-    $(e.currentTarget).addClass("selected-but");
-    if (firstRouteClick == 0) {
-        changeValuesInDescriptionPanel(plan);
-    }
-
-    $("#chart-panel").show("blind", 500);
-    $("#legend").show("blind", 500);
+    setTimeout(function(){
+        createSpeedChart(routeIndex);
+        createStressChart(routeIndex);
+        createPowerChart(routeIndex);
+    }, 10);
 }
 
 function createCriteriaWeightTab(plan, routeIndex) {
@@ -490,9 +493,9 @@ function createDurationTab(plan, routeIndex) {
     durationTab.click(function(e) {
         segChoice = SPEED_SEGMENTS;
         $(".criteria-tab").removeClass("selected-but");
-        $(e.currentTarget).addClass("selected-but");
-        $("#legend").show();
-        showSegments(routeIndex, plan);
+        var currentTarget = $(e.currentTarget);
+        currentTarget.addClass("selected-but");
+
     });
     //var durationWeight = $("<div>").addClass("criteria-weight");
     //durationWeight.attr("id", "duration-weight");
@@ -555,7 +558,7 @@ function createStressTab(plan, routeIndex) {
 }
 
 function createEffortTab(plan, routeIndex) {
-    var physicalEffort = (plan.criteria.physicalEffort / 1000).toFixed(1);
+    var physicalEffort = (plan.criteria.physicalEffort / 1000).toFixed(0);
 
     var effortTab = $('<div href="#power-legend" data-toggle="tab">').addClass("effort-desc criteria-tab col-md-4");
     effortTab.click(function(e) {

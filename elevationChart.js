@@ -175,7 +175,6 @@ function createChart(options) {
             point: {
                 events: {
                     mouseOver: function (e) {
-                        console.log(e.target);
                         var chartValueIndex = e.target.index;
                         var planSteps = response.plans[options.routeIndex].steps;
                         var coord = planSteps[chartValueIndex].coordinate;
