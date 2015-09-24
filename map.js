@@ -3,6 +3,10 @@ var LONGITUDE_SHIFT = 0.015;
 var map;
 var legend;
 var lastClickedPosition = null;
+//var lastClickedPosition = {
+//    position: null,
+//    address: ""
+//};
 
 function addStartClick() {
     if (allMarkers[0].getLatLng() != null) {
@@ -135,6 +139,8 @@ function getRackLayerFromFile(cycleLayer) {
                 layer.bindPopup(feature.properties.POPIS);
                 layer.setZIndexOffset(-1000);
                 layer.on("contextmenu", function() {
+                    //lastClickedPosition.position = layer.getLatLng();
+                    //lastClickedPosition.address = feature.properties.POPIS;
                     lastClickedPosition = layer.getLatLng();
                     map.contextmenu.showAt(layer.getLatLng());
                 });

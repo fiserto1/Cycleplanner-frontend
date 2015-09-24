@@ -127,7 +127,6 @@ button.close {
 }
 .description-tab {
   border-top: solid #cccccc 1px;
-  display: none;
 }
 #criteria-row,
 .one-criteria {
@@ -263,7 +262,6 @@ body {
   overflow: hidden;
   width: 100%;
   height: 40px;
-  display: none;
 }
 .all-route-params i {
   text-align: center;

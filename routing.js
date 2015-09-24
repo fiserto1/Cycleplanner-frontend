@@ -311,14 +311,14 @@ function handler(obj) {
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    //setTimeout(function(){
-    //    for(var i = 0; i < plans.length; i++){
-    //        createSpeedChart(i);
-    //        createStressChart(i);
-    //        createPowerChart(i);
-    //    }
-    //
-    //}, 200);// bez timeoutu nefunguje...
+    setTimeout(function(){
+        for(var i = 0; i < plans.length; i++){
+            createSpeedChart(i);
+            createStressChart(i);
+            createPowerChart(i);
+        }
+
+    }, 200);// bez timeoutu nefunguje...
 
 
     //TODO sortovani- je potreba si ulozit do id buttonu index v poli vsech polyline a vsude pouzivat toto cislo misto indexu v danem divu
@@ -452,7 +452,7 @@ function createButtonForRoute(plan, routeIndex) {
     routeDiv.appendTo(routeButton);
     routeButton.appendTo($("#routes-panel"));
 
-    routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
+    //routeButton.click({param1: routeIndex, param2: plan}, routeButtonClick);
 
 }
 var firstRouteClick=0;
