@@ -3,7 +3,7 @@
  */
 //var startLatLng = L.latLng(50.07697, 14.43226);
 //var endLatLng = L.latLng(50.08744, 14.38728);
-var MIDDLE_POINT_LIMIT = 3;
+var MIDDLE_POINT_LIMIT = 0;
 
 var startIcon, destinationIcon, middlePointIcon;
 //var startMarker, destinationMarker;
