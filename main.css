@@ -103,6 +103,20 @@ button.close {
   font-size: 16px;
   line-height: 30px;
 }
+.criteria-weight-tab,
+.criteria-weight {
+  height: 2px;
+}
+.criteria-weight {
+  float: left;
+}
+.duration-desc,
+.stress-desc {
+  border-right: solid #cccccc 1px;
+}
+.description-tab {
+  border-top: solid #cccccc 1px;
+}
 #criteria-row,
 .one-criteria {
   font-size: 11px;

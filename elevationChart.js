@@ -1,5 +1,6 @@
 
 var segmentLine;
+var segmentLineBorder;
 
 var SPEED_ZONES = [{
     value: SPEED_LIMIT_LVL_1,
@@ -175,14 +176,22 @@ function createChart(options) {
                         var nextCoord = planSteps[chartValueIndex + 1].coordinate;
                         var nextLatLng = L.latLng(nextCoord.latE6/1000000,nextCoord.lonE6/1000000);
                         segmentLine = L.polyline([latLng,nextLatLng], {
-                            color: "black",
-                            weight: 3,
+                            color: POWER_COLOR_LVL_3,
+                            weight: 10,
                             opacity: 1
                         });
+                        segmentLineBorder = L.polyline([latLng,nextLatLng], {
+                            color: POWER_BORDER_ROUTE_COLOR,
+                            weight: 15,
+                            opacity: 0.7
+                        });
+                        segmentLineBorder.addTo(map);
                         segmentLine.addTo(map);
                         var popupOptions = {autoPan: false, closeButton: false};
                         var popupString = "";
                         segmentLine.bindPopup("Speed: " + this.y.toFixed(1) + " km/h", popupOptions).openPopup();
+                        //segmentLine.bringToBack();
+
                         switch (options.dataType) {
                             case SPEED_SEGMENTS:
                                 popupString = "Speed: " + this.y.toFixed(1) + " km/h";
@@ -198,6 +207,7 @@ function createChart(options) {
                     },
                     mouseOut: function () {
                         map.removeLayer(segmentLine);
+                        map.removeLayer(segmentLineBorder);
                     }
                 }
             }

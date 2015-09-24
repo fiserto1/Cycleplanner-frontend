@@ -32,7 +32,7 @@ function initializeRouting() {
         //noClip: false
     };
     segmentRouteOptions = {
-        color: LEGEND_LVL_4_MIDDLE_COLOR,
+        color: "#90BB00",
         weight: SEGMENT_ROUTE_WEIGHT,
         opacity: SEGMENT_ROUTE_OPACITY,
         lineJoin: 'round',
@@ -212,8 +212,20 @@ function handler(obj) {
     var minStress = Number.MAX_VALUE;
     var maxPower = Number.MIN_VALUE;
     var minPower = Number.MAX_VALUE;
+
+    var maxDuration = Number.MIN_VALUE;
+    var maxPlanStress = Number.MIN_VALUE;
+    var maxEffort = Number.MIN_VALUE;
     //var fourRoutesDiv = $("<div>").addClass("four-routes-panel");
     for (var i = 0; i < plans.length; i++) {
+        var planDuration = plans[i].criteria.travelTime;
+        var planStress = plans[i].criteria.stress;
+        var planEffort = plans[i].criteria.physicalEffort;
+
+        maxDuration = Math.max(maxDuration, planDuration);
+        maxPlanStress = Math.max(planStress, planStress);
+        maxEffort = Math.max(maxDuration, planEffort);
+
         var oneBasicRouteLatLngs = [];
         var distanceFromStart = 0;
         var XYData = [];
@@ -286,7 +298,7 @@ function handler(obj) {
         //createButtonForRoute(plans[i], i, butZIndex, fourRoutesDiv);
         createButtonForRoute(plans[i], i);
     }
-
+    countCriteriaWeight(maxDuration, maxPlanStress, maxEffort);
     allChartOptions.elevation.max = maxElevation;
     allChartOptions.elevation.min = minElevation;
     allChartOptions.speed.max = maxSpeed;
@@ -343,6 +355,46 @@ function handler(obj) {
 
 }
 
+function countCriteriaWeight(maxDuration, maxStress, maxEffort) {
+    var plans = response.plans;
+    for (var i = 0; i < plans.length; i++) {
+        var planDuration = plans[i].criteria.travelTime;
+        var planStress = plans[i].criteria.stress;
+        var planEffort = plans[i].criteria.physicalEffort;
+
+        var durationPerc = planDuration/maxDuration;
+        var stressPerc = planStress/maxStress;
+        var effortPerc = planEffort/maxEffort;
+        var sumPerc = (durationPerc + stressPerc + effortPerc);
+        var durationWeight = durationPerc / sumPerc;
+        var stressWeight = stressPerc / sumPerc;
+        var effortWeight = effortPerc / sumPerc;
+
+        console.log("dur " + (durationWeight*100).toFixed(1));
+        console.log("stress " + (stressWeight*100).toFixed(1));
+        console.log("eff " + (effortWeight*100).toFixed(1));
+
+        var divId = "#route-but-" + i;
+        var criteriaWeightTab = $(divId).find(".criteria-weight-tab");
+        var criteriaWeightSpan = $("<div>").addClass("row criteria-weight-tab");
+            console.log(criteriaWeightTab);
+        var durationWeightSpan = $("<div>").css("width", (durationWeight*100) + "%");
+        durationWeightSpan.css("background-color", SPEED_COLOR_LVL_3);
+        durationWeightSpan.addClass("criteria-weight");
+        var stressWeightSpan = $("<div>").css("width", (stressWeight*100) + "%");
+        stressWeightSpan.css("background-color", STRESS_COLOR_LVL_3);
+        stressWeightSpan.addClass("criteria-weight");
+        var effortWeightSpan = $("<div>").css("width", (effortWeight*100) + "%");
+        effortWeightSpan.css("background-color", POWER_COLOR_LVL_3);
+        effortWeightSpan.addClass("criteria-weight");
+        durationWeightSpan.appendTo(criteriaWeightSpan);
+        stressWeightSpan.appendTo(criteriaWeightSpan);
+        effortWeightSpan.appendTo(criteriaWeightSpan);
+        criteriaWeightSpan.appendTo(criteriaWeightTab);
+
+    }
+}
+
 function routeClick(e) {
     var routeIndex = basicRoutes.getLayers().indexOf(e.target);
     console.log("route index: " + routeIndex);
@@ -385,11 +437,13 @@ function createButtonForRoute(plan, routeIndex) {
     //routeButton.css("z-index", butZIndex);
     var routeDiv = $("<span>").addClass("route-desc row");
 
+    var criteriaWeightTab = createCriteriaWeightTab(plan, routeIndex);
     var durationTab = createDurationTab(plan, routeIndex);
     var stressTab = createStressTab(plan, routeIndex);
     var effortTab = createEffortTab(plan, routeIndex);
     var lengthTab = createLengthTab(plan, routeIndex);
 
+    criteriaWeightTab.appendTo(routeDiv);
     durationTab.appendTo(routeDiv);
     stressTab.appendTo(routeDiv);
     effortTab.appendTo(routeDiv);
@@ -417,6 +471,19 @@ function routeButtonClick(e) {
     $("#chart-panel").show("blind", 500);
     $("#legend").show("blind", 500);
 }
+
+function createCriteriaWeightTab(plan, routeIndex) {
+    var duration = plan.criteria.travelTime;
+    var stress = plan.criteria.stress;
+    var effort = plan.criteria.physicalEffort;
+
+
+
+    var durationWeight = $('<div>').addClass("duration-desc criteria-weight-tab col-md-12");
+    //durationWeight.css("background-color", SPEED_COLOR_LVL_3);
+    return durationWeight;
+}
+
 function createDurationTab(plan, routeIndex) {
     var planDuration = (plan.criteria.travelTime / 60).toFixed(0);
     var durationTab = $('<div href="#speed-legend" data-toggle="tab">').addClass("duration-desc criteria-tab col-md-4");
@@ -427,6 +494,10 @@ function createDurationTab(plan, routeIndex) {
         $("#legend").show();
         showSegments(routeIndex, plan);
     });
+    //var durationWeight = $("<div>").addClass("criteria-weight");
+    //durationWeight.attr("id", "duration-weight");
+    //durationWeight.css("background-color", SPEED_COLOR_LVL_3);
+    //durationWeight.appendTo(durationTab);
     var durationDesc = $('<span data-toggle="tooltip" data-placement="top">').addClass("one-criteria row");
     durationDesc.attr("id", "route-duration");
     durationDesc.attr("data-original-title", $.t("tooltip.route-description.travel-time"));
@@ -460,6 +531,11 @@ function createStressTab(plan, routeIndex) {
         $("#legend").show();
         showSegments(routeIndex, plan);
     });
+
+    //var stressWeight = $("<div>").addClass("criteria-weight");
+    //stressWeight.attr("id", "stress-weight");
+    //stressWeight.css("background-color", STRESS_COLOR_LVL_3);
+    //stressWeight.appendTo(stressTab);
     var stressDesc = $('<span data-toggle="tooltip" data-placement="top">').addClass("one-criteria row");
     stressDesc.attr("id", "route-stress");
     stressDesc.attr("data-original-title", $.t("tooltip.route-description.stress"));
@@ -489,6 +565,10 @@ function createEffortTab(plan, routeIndex) {
         $("#legend").show();
         showSegments(routeIndex, plan);
     });
+    //var effortWeight = $("<div>").addClass("criteria-weight");
+    //effortWeight.attr("id", "effort-weight");
+    //effortWeight.css("background-color", POWER_COLOR_LVL_3);
+    //effortWeight.appendTo(effortTab);
     var effortDesc = $('<span data-toggle="tooltip" data-placement="top">').addClass("one-criteria row");
     effortDesc.attr("id", "route-physical-effort");
     effortDesc.attr("data-original-title", $.t("tooltip.route-description.physical-effort"));
