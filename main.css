@@ -153,6 +153,9 @@ button.close {
   font-size: 12px;
   padding: 5px;
 }
+#settings-body {
+  color: gray;
+}
 #smartbanner {
   position: relative !important;
 }
