@@ -5,13 +5,11 @@ $(document).ready(function() {
     $("#menu-button").click(function(e) {
         //$(".modal-sm").show("slide");
     });
-    $("#about-panel").on("hidden.bs.modal", function(e) {
+    $(".menu-modal").on("hidden.bs.modal", function(e) {
+        $("#menu-panel").css("opacity", "1");
         focusout();
     });
-    $("#feedback-panel").on("hidden.bs.modal", function(e) {
-        focusout();
-    });
-    $("#api-panel").on("hidden.bs.modal", function(e) {
-        focusout();
+    $(".menu-modal").on("show.bs.modal", function(e) {
+        $("#menu-panel").css("opacity", "0.8");
     });
 });

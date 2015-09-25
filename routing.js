@@ -20,6 +20,9 @@ var basicRouteOptions;
 var borderRouteOptions;
 var segmentRouteOptions;
 
+//var ROUTE_BUT_PANEL_LIMIT = 4;
+//var firstShowedRouteButId = 0;
+
 function initializeRouting() {
     basicRouteOptions = {
         color: ROUTE_COLOR,
@@ -352,9 +355,39 @@ function handler(obj) {
 
     $("#routes-panel").show("blind");
 
-    //$("#chart-panel").show("blind");
+    //showLimitedRouteButs(plans.length);
+    //$("#show-item-top").click(function() {
+    //    if (firstShowedRouteButId > 0) {
+    //        firstShowedRouteButId--;
+    //        console.log(firstShowedRouteButId);
+    //        showLimitedRouteButs(plans.length);
+    //    }
+    //});
+    //$("#show-item-bottom").click(function() {
+    //    console.log(plans.length-ROUTE_BUT_PANEL_LIMIT);
+    //    if (firstShowedRouteButId < (plans.length-ROUTE_BUT_PANEL_LIMIT)) {
+    //        firstShowedRouteButId++;
+    //        console.log(firstShowedRouteButId);
+    //        showLimitedRouteButs(plans.length);
+    //    }
+    //});
 
 }
+
+//function showLimitedRouteButs(plansLength) {
+//    $(".route-but").hide();
+//    for (var k = firstShowedRouteButId; (k < (firstShowedRouteButId + ROUTE_BUT_PANEL_LIMIT)) && (k < plansLength); k++) {
+//        $("#route-but-" + k).show();
+//    }
+//    setTimeout(function(){
+//        for(var i = 0; i < plansLength; i++){
+//            createSpeedChart(i);
+//            createStressChart(i);
+//            createPowerChart(i);
+//        }
+//
+//    }, 200);
+//}
 
 function countCriteriaWeight(maxDuration, maxStress, maxEffort) {
     var plans = response.plans;

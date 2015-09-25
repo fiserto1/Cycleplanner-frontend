@@ -247,7 +247,7 @@ body {
   box-shadow: black 3px 3px 10px;
   border-radius: 2px;
 }
-.routes-panel {
+#routes-panel {
   margin: 0 0 7px 0;
 }
 #chart-panel {
