@@ -5,7 +5,7 @@ To enable middle points
     3) remove class "disabled-icon" for element "#add-point-icon" in index.html
  */
 
-var MIDDLE_POINT_LIMIT = 3;
+var MIDDLE_POINT_LIMIT = 0;
 
 var START_MARKER_ICON = L.AwesomeMarkers.icon({
     prefix: 'fa', //font awesome
@@ -40,7 +40,7 @@ function initializeMarkers() {
     allMarkers.push(startMarker);
     allMarkers.push(destinationMarker);
 
-    $("#add-point-icon").click(addNewDestinationPoint);
+    //$("#add-point-icon").click(addNewDestinationPoint);
     $("#change-direction-icon").click(onChangeDirectionClick);
     $(".remove-point").click(onRemovePointClick);
 
