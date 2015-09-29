@@ -85,7 +85,7 @@ function showPlanFromHash(obj) {
     var startLatLng = L.latLng(origin.latE6/1000000, origin.lonE6/1000000);
     var destinationLatLng = L.latLng(destination.latE6/1000000, destination.lonE6/1000000);
     findAddressFromCoordinates(0, startLatLng);
-    findAddressFromCoordinates(1, destinationLatLng);
+    findAddressFromCoordinates(allMarkers.length-1, destinationLatLng);
     allMarkers[0].setLatLng(startLatLng).addTo(map);
     allMarkers[allMarkers.length-1].setLatLng(destinationLatLng).addTo(map);
     handler(obj);

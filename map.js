@@ -1,36 +1,8 @@
-var LONGITUDE_SHIFT = 0.015;
 
 var map;
-var legend;
 var lastClickedPosition = null;
-//var lastClickedPosition = {
-//    position: null,
-//    address: ""
-//};
-
-function addStartClick() {
-    if (allMarkers[0].getLatLng() != null) {
-        addNewStartPoint();
-    }
-    allMarkers[0].setLatLng(lastClickedPosition).addTo(map);
-    findAddressFromCoordinates(0, lastClickedPosition);
-    getPlans();
-}
-
-function addDestinationClick() {
-    if (allMarkers[allMarkers.length-1].getLatLng() != null) {
-        onAddPointClick();
-    }
-    allMarkers[allMarkers.length-1].setLatLng(lastClickedPosition).addTo(map);
-    findAddressFromCoordinates(allMarkers.length - 1, lastClickedPosition);
-    getPlans();
-}
 
 function initializeMap() {
-
-    //var addStart = $.t("contextmenu.add-start");
-    //console.log(addStart);
-    //console.log("raz");
     var contextMenuItems = [{
         text: $.t("contextmenu.add-start"),
         iconCls: "fa fa-map-marker start-icon",
@@ -54,42 +26,46 @@ function initializeMap() {
     map = L.map('map', {
         layers: streetsMap,
         zoomControl: false,
-        //attributionControl: false,
         contextmenu: true,
         contextmenuItems: contextMenuItems
     }).setView([50.08165, 14.40505], 14);
+
     map.on("contextmenu", function (e) {
         lastClickedPosition = e.latlng;
-        return false;
-
     });
-    //var hash = L.hash(map);
     var zoomControl = L.control.zoom({position: "topright"});
     zoomControl.addTo(map);
+    L.control.locate({position: 'topright', keepCurrentZoomLevel: true}).addTo(map);
+
     //asynchronous
     addControlLayers();
 
-    legend = L.control({position: 'bottomright'});
-    legend.onAdd = function (map) {
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function () {
         return document.getElementById("legend");
     };
-
-    $("#legend").hover(function () {
-        map.dragging.disable();
-        map.doubleClickZoom.disable();
-        map.touchZoom.disable();
-        map.off("click");//nejlepe ho zase zapnout, takto
-        //TODO vypnout context menu map.off("contextmenu");
-    }, function () {
-        map.dragging.enable();
-        map.doubleClickZoom.enable();
-        map.touchZoom.enable();
-        //TODO zapnout context menu
-    });
     legend.addTo(map);
 
     setAC();
     initializeMarkers();
+}
+
+function addStartClick() {
+    if (allMarkers[0].getLatLng() != null) {
+        addNewStartPoint();
+    }
+    allMarkers[0].setLatLng(lastClickedPosition).addTo(map);
+    findAddressFromCoordinates(0, lastClickedPosition);
+    getPlans();
+}
+
+function addDestinationClick() {
+    if (allMarkers[allMarkers.length-1].getLatLng() != null) {
+        onAddPointClick();
+    }
+    allMarkers[allMarkers.length-1].setLatLng(lastClickedPosition).addTo(map);
+    findAddressFromCoordinates(allMarkers.length - 1, lastClickedPosition);
+    getPlans();
 }
 
 function addControlLayers() {
@@ -107,19 +83,12 @@ function addControlLayers() {
                 layer.bindPopup(feature.properties.CISLO_TRAS);
             }
         });
-        getRackLayerFromFile(cycleLayer);
+        addRackLayerFromFile(cycleLayer);
     });
 }
 
-function getRackLayerFromFile(cycleLayer) {
+function addRackLayerFromFile(cycleLayer) {
     $.getJSON("./json/DOP_CykloZnacky_b.json", function(data) {
-        //var myIcon = L.AwesomeMarkers.icon({
-        //    prefix: 'fa', //font awesome rather than bootstrap
-        //    markerColor: 'green',
-        //    extraClasses: 'rack-marker',
-        //    //spin: true,
-        //    icon: 'my' //http://fortawesome.github.io/Font-Awesome/icons/
-        //});
         var myIcon = L.divIcon({
             iconSize: [20, 20],
             iconAnchor: [10,10],
@@ -139,8 +108,6 @@ function getRackLayerFromFile(cycleLayer) {
                 layer.bindPopup(feature.properties.POPIS);
                 layer.setZIndexOffset(-1000);
                 layer.on("contextmenu", function() {
-                    //lastClickedPosition.position = layer.getLatLng();
-                    //lastClickedPosition.address = feature.properties.POPIS;
                     lastClickedPosition = layer.getLatLng();
                     map.contextmenu.showAt(layer.getLatLng());
                 });
@@ -154,22 +121,23 @@ function getRackLayerFromFile(cycleLayer) {
         overlayMaps[$.t("control-layers.cycle-paths")] = cycleLayer;
         overlayMaps[$.t("control-layers.cycle-racks")] = rackLayer;
 
-        L.control.locate({position: 'topright', keepCurrentZoomLevel: true}).addTo(map);
         L.control.layers(null, overlayMaps).addTo(map);
-
-
-        var controlLocate = $(".leaflet-control-locate");
-        var controlZoomIn = $(".leaflet-control-zoom-in");
-        var controlZoomOut = $(".leaflet-control-zoom-out");
-        controlLocate.attr("data-toggle", "tooltip");
-        controlLocate.attr("data-placement", "bottom");
-        controlLocate.attr("data-original-title", $.t("tooltip.locate"));
-        controlZoomIn.attr("data-toggle", "tooltip");
-        controlZoomIn.attr("data-placement", "bottom");
-        controlZoomIn.attr("data-original-title", $.t("tooltip.zoom-in"));
-        controlZoomOut.attr("data-toggle", "tooltip");
-        controlZoomOut.attr("data-placement", "bottom");
-        controlZoomOut.attr("data-original-title", $.t("tooltip.zoom-out"));
-        $('[data-toggle="tooltip"]').tooltip();
+        addControlLayersTooltips();
     });
+}
+
+function addControlLayersTooltips() {
+    var controlLocate = $(".leaflet-control-locate");
+    var controlZoomIn = $(".leaflet-control-zoom-in");
+    var controlZoomOut = $(".leaflet-control-zoom-out");
+    controlLocate.attr("data-toggle", "tooltip");
+    controlLocate.attr("data-placement", "bottom");
+    controlLocate.attr("data-original-title", $.t("tooltip.locate"));
+    controlZoomIn.attr("data-toggle", "tooltip");
+    controlZoomIn.attr("data-placement", "bottom");
+    controlZoomIn.attr("data-original-title", $.t("tooltip.zoom-in"));
+    controlZoomOut.attr("data-toggle", "tooltip");
+    controlZoomOut.attr("data-placement", "bottom");
+    controlZoomOut.attr("data-original-title", $.t("tooltip.zoom-out"));
+    $('[data-toggle="tooltip"]').tooltip();
 }

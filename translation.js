@@ -70,4 +70,5 @@ function translateTooltips(t) {
     $(".leaflet-control-locate").attr("data-original-title", t("tooltip.locate"));
     $(".leaflet-control-zoom-in").attr("data-original-title", t("tooltip.zoom-in"));
     $(".leaflet-control-zoom-out").attr("data-original-title", t("tooltip.zoom-out"));
+    $('[data-toggle="tooltip"]').tooltip();
 }
