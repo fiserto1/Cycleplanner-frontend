@@ -74,11 +74,11 @@ function showSegments(routeIndex, plan) {
 
     removeSegmentRouteFromMap();
     if (lastClickedRoute != null) {
-        lastClickedRoute.setStyle(basicRouteOptions);
+        lastClickedRoute.setStyle(BASIC_ROUTE_OPTIONS);
     }
 
     lastClickedRoute = basicRoutes.getLayers()[routeIndex];
-    lastClickedRoute.setStyle(borderRouteOptions);
+    lastClickedRoute.setStyle(BORDER_ROUTE_OPTIONS);
     lastClickedRoute.bringToFront();
     chooseTypeOfSegments(plan, routeIndex);
     segmentRoute.addTo(map);
@@ -118,7 +118,7 @@ function createOneSegment(steps, stepIndex) {
     var pathLatLons = [];
     pathLatLons.push(L.latLng(lat, lon));
     pathLatLons.push(L.latLng(nextLat, nextLon));
-    return L.polyline(pathLatLons, segmentRouteOptions);
+    return L.polyline(pathLatLons, SEGMENT_ROUTE_OPTIONS);
 }
 
 function createSpeedSegments(plan, routeIndex) {
