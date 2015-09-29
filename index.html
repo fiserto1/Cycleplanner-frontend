@@ -36,6 +36,7 @@
 
 
     <link rel="stylesheet" href="main.css"/>
+    <script src="main.js"></script>
     <script src="translation.js"></script>
     <script src="map.js"></script>
     <script src="spinner.js"></script>
@@ -46,7 +47,7 @@
     <script src="collapse.js"></script>
     <script src="sidebar.js"></script>
     <script src="elevationChart.js"></script>
-    <title id="web-title" data-i18n="title"></title>
+    <title id="web-title" class="translate" data-i18n="title"></title>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -71,7 +72,7 @@
 <div id="menu-panel" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
      aria-labelledby="mySmallModalLabel">
     <div class="modal-sm">
-        <div class="modal-content left-sidebar">
+        <div class="modal-content left-sidebar translate">
             <div class="title">
                 <strong data-i18n="left-sidebar.title"></strong>
             </div>
@@ -179,7 +180,7 @@
 </div>
 <div id="settings-panel" class="modal fade bs-example-modal-lg menu-modal">
     <div class="modal-lg">
-        <div class="modal-content">
+        <div class="modal-content translate">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
@@ -208,13 +209,13 @@
 </div>
 <div id="about-panel" class="modal fade bs-example-modal-lg menu-modal" tabindex="-1" role="dialog">
     <div class="modal-lg">
-        <div class="modal-content">
+        <div class="modal-content translate">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" data-i18n="about.title"></h4>
             </div>
-            <div class="modal-body"></div>
+            <div id="about-description" class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
             </div>
@@ -223,7 +224,7 @@
 </div>
 <div id="feedback-panel" class="modal fade bs-example-modal-lg menu-modal" tabindex="-1" role="dialog">
     <div class="modal-lg">
-        <div class="modal-content">
+        <div class="modal-content translate">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
@@ -291,7 +292,7 @@
 </div>
 <div id="api-panel" class="modal fade bs-example-modal-lg menu-modal" tabindex="-1" role="dialog">
     <div class="modal-lg">
-        <div class="modal-content">
+        <div class="modal-content translate">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
@@ -314,7 +315,7 @@
 </div>
 
 <div id="map"></div>
-<div id='legend'>
+<div id='legend' class="translate">
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade" id="speed-legend">
             <nav class='legend clearfix'>

@@ -7,7 +7,6 @@ var SPEED_LIMIT_LVL_1 = 5;
 var SPEED_LIMIT_LVL_2 = 12;
 var SPEED_LIMIT_LVL_3 = 24;
 var SPEED_LIMIT_LVL_4 = 30;
-//var SPEED_LIMIT_LVL_5 = ; // maxvalue
 
 var SPEED_COLOR_LVL_1 = "#c7e9c0";
 var SPEED_COLOR_LVL_2 = "#a1d99b";
@@ -19,7 +18,6 @@ var STRESS_LIMIT_LVL_1 = 2;
 var STRESS_LIMIT_LVL_2 = 3;
 var STRESS_LIMIT_LVL_3 = 4;
 var STRESS_LIMIT_LVL_4 = 5;
-//var STRESS_LIMIT_LVL_5 = ; // maxvalue
 
 var STRESS_COLOR_LVL_1 = "#fcbba1";
 var STRESS_COLOR_LVL_2 = "#fc9272";
@@ -31,7 +29,6 @@ var POWER_LIMIT_LVL_1 = 20;
 var POWER_LIMIT_LVL_2 = 60;
 var POWER_LIMIT_LVL_3 = 100;
 var POWER_LIMIT_LVL_4 = 140;
-//var POWER_LIMIT_LVL_5 = ; // maxvalue
 
 var POWER_COLOR_LVL_1 = "#c6dbef";
 var POWER_COLOR_LVL_2 = "#9ecae1";
@@ -126,7 +123,8 @@ function createOneSegment(steps, stepIndex) {
 
 function createSpeedSegments(plan, routeIndex) {
     var steps = plan.steps;
-    for (var i = 0; i < steps.length-1; i++) {
+    var limit = steps.length-1;
+    for (var i = 0; i < limit; i++) {
         var segmentDistance = steps[i].distanceToNextStep;
         var time = steps[i].travelTimeToNextStep;
         var speedInKmh = (segmentDistance/time) * 3.6;
@@ -149,7 +147,8 @@ function createSpeedSegments(plan, routeIndex) {
 
 function createStressSegments(plan, routeIndex) {
     var steps = plan.steps;
-    for (var i = 0; i < steps.length-1; i++) {
+    var limit = steps.length-1;
+    for (var i = 0; i < limit; i++) {
         var stress = steps[i].stressToNextStep;
 
         var oneStressSegment = createOneSegment(steps, i);
@@ -170,7 +169,8 @@ function createStressSegments(plan, routeIndex) {
 
 function createPowerSegments(plan, routeIndex) {
     var steps = plan.steps;
-    for (var i = 0; i < steps.length-1; i++) {
+    var limit = steps.length-1;
+    for (var i = 0; i < limit; i++) {
         var time = steps[i].travelTimeToNextStep;
         var effort = steps[i].physicalEffortToNextStep;
         var powerInW = effort / time;

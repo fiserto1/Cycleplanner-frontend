@@ -1,10 +1,5 @@
-/**
- * Created by Tomas on 24.08.2015.
- */
-$(document).ready(function() {
-    $("#menu-button").click(function(e) {
-        //$(".modal-sm").show("slide");
-    });
+
+function initializeSidebar() {
     $(".menu-modal").on("hidden.bs.modal", function(e) {
         $("#menu-panel").css("opacity", "1");
         focusout();
@@ -12,4 +7,5 @@ $(document).ready(function() {
     $(".menu-modal").on("show.bs.modal", function(e) {
         $("#menu-panel").css("opacity", "0.8");
     });
-});
+    initializeMap();
+}
