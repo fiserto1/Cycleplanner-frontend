@@ -61,7 +61,7 @@ function addStartClick() {
 
 function addDestinationClick() {
     if (allMarkers[allMarkers.length-1].getLatLng() != null) {
-        onAddPointClick();
+        addNewDestinationPoint();
     }
     allMarkers[allMarkers.length-1].setLatLng(lastClickedPosition).addTo(map);
     findAddressFromCoordinates(allMarkers.length - 1, lastClickedPosition);

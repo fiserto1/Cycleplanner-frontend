@@ -1,118 +1,133 @@
-/**
- * Created by Tomas on 14. 7. 2015.
+/*
+To enable middle points
+    1) set MIDDLE_POINT_LIMIT
+    2) uncomment "$("#add-point-icon").click(onAddPointClick);"
+    3) remove class "disabled-icon" for element "#add-point-icon" in index.html
  */
-//var startLatLng = L.latLng(50.07697, 14.43226);
-//var endLatLng = L.latLng(50.08744, 14.38728);
-var MIDDLE_POINT_LIMIT = 0;
 
-var startIcon, destinationIcon, middlePointIcon;
-//var startMarker, destinationMarker;
+var MIDDLE_POINT_LIMIT = 3;
+
+var START_MARKER_ICON = L.AwesomeMarkers.icon({
+    prefix: 'fa', //font awesome
+    markerColor: 'blue',
+    icon: 'bicycle'
+});
+var DESTINATION_MARKER_ICON = L.AwesomeMarkers.icon({
+    prefix: 'fa', //font awesome
+    markerColor: 'red',
+    icon: 'bicycle'
+});
+var MIDDLE_POINT_MARKER_ICON = L.AwesomeMarkers.icon({
+    prefix: 'fa', //font awesome
+    markerColor: 'orange',
+    icon: 'bicycle'
+});
+
 var allMarkers = [];
+var dragIndex;
 
 function initializeMarkers() {
 
-    startIcon = L.AwesomeMarkers.icon({
-        prefix: 'fa', //font awesome rather than bootstrap
-        markerColor: 'blue',
-        //spin: true,
-        icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
-    });
-    destinationIcon = L.AwesomeMarkers.icon({
-        prefix: 'fa', //font awesome rather than bootstrap
-        markerColor: 'red',
-        icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
-    });
-
-    middlePointIcon = L.AwesomeMarkers.icon({
-        prefix: 'fa', //font awesome rather than bootstrap
-        markerColor: 'orange',
-        icon: 'bicycle' //http://fortawesome.github.io/Font-Awesome/icons/
-    });
     var startMarker = L.marker(null, {
-        icon: startIcon,
+        icon: START_MARKER_ICON,
         draggable: true
     });
 
     var destinationMarker = L.marker(null, {
-        icon: destinationIcon,
+        icon: DESTINATION_MARKER_ICON,
         draggable: true
     });
     allMarkers.push(startMarker);
     allMarkers.push(destinationMarker);
 
-
-
-
+    $("#add-point-icon").click(addNewDestinationPoint);
     $("#change-direction-icon").click(onChangeDirectionClick);
-    //$("#add-point-icon").click(onAddPointClick);
     $(".remove-point").click(onRemovePointClick);
 
-    //map.on('click', onMapClick);
     map.on('moveend', changeParams);
     startMarker.on('dragend', onMarkerDrag);
     destinationMarker.on('dragend', onMarkerDrag);
 
-
-
     setShowCloseOnFocus($("input"));
-    initializeSegments();
 
+    $("#search-group").sortable({
+        handle: ".drag-drop",
+        update: function (event, ui) {
+            refreshSearchGroup();
+            var dropIndex = ui.item.index();
+            var markerToMove = allMarkers[dragIndex];
+            allMarkers.splice(dragIndex, 1);
+            allMarkers.splice(dropIndex, 0, markerToMove);
+            allMarkers[0].setIcon(START_MARKER_ICON);
+            allMarkers[allMarkers.length-1].setIcon(DESTINATION_MARKER_ICON);
+            for(var i = 1; i<allMarkers.length-1; i++) {
+                allMarkers[i].setIcon(MIDDLE_POINT_MARKER_ICON);
+            }
+            getPlans();
+        },
+        start: function (event, ui) {
+            dragIndex = ui.item.index();
+        }
+    });
+
+    initializeSegments();
 }
 
 function onMapClick(e, input) {
-    //TODO pouzit $(document.activeElement) misto input... usetri starosti ktery input je aktivovany
-    //console.log(e.target);
-    //console.log(input);
-
+    var latLon = e.latlng;
     var $input = $(input.target);
-    allMarkers[$input.parent().index()].setLatLng(e.latlng).addTo(map);
-    findAddressFromCoordinates($input.parent().index(), e.latlng);
-    getPlans();
+    var inputIndex = $input.parent().index();
+
+    allMarkers[inputIndex].setLatLng(latLon).addTo(map);
+    findAddressFromCoordinates(inputIndex, latLon);
     map.off("click");
+    getPlans();
 }
 
 function onMarkerDrag(e) {
-    $("#chart-panel").hide();
-    $("#legend").hide();
-    findAddressFromCoordinates(allMarkers.indexOf(e.target), e.target.getLatLng());
+    var markerIndex = allMarkers.indexOf(e.target);
+    findAddressFromCoordinates(markerIndex, e.target.getLatLng());
     getPlans();
 }
 
 function onChangeDirectionClick() {
     allMarkers.reverse();
-    allMarkers[0].setIcon(startIcon);
-    allMarkers[allMarkers.length-1].setIcon(destinationIcon);
-    for(var i = 1; i<allMarkers.length-1; i++) {
-        allMarkers[i].setIcon(middlePointIcon);
+    allMarkers[0].setIcon(START_MARKER_ICON);
+    var destinationIndex = allMarkers.length-1;
+    allMarkers[destinationIndex].setIcon(DESTINATION_MARKER_ICON);
+    for(var i = 1; i < destinationIndex; i++) {
+        allMarkers[i].setIcon(MIDDLE_POINT_MARKER_ICON);
     }
     reverseSearchForm();
     getPlans();
 }
 
 function reverseSearchForm() {
-    //TODO prepsat lepe
-    var value = $(".search-start").val();
-    $(".search-start").val($(".search-destination").val());
-    $(".search-destination").val(value);
-    if (allMarkers.length > 3) {
-        var allForms = $("#search-group").children();
-        var secondInput = allForms.eq(1).find("input");
-        var preLastInput = allForms.eq(allForms.length - 2).find("input");
-        value = secondInput.val();
-        secondInput.val(preLastInput.val());
-        preLastInput.val(value);
+    var fromTopIndex = 0;
+    var fromBottomIndex = allMarkers.length-1;
+    var limit = Math.floor(allMarkers.length/2);
+    var allForms = $("#search-group").children();
+    while (limit > fromTopIndex) {
+        var fromTopInput = allForms.eq(fromTopIndex).find("input");
+        var fromBottomInput = allForms.eq(fromBottomIndex).find("input");
+        var value = fromBottomInput.val();
+        fromBottomInput.val(fromTopInput.val());
+        fromTopInput.val(value);
+        fromTopIndex++;
+        fromBottomIndex--;
     }
 }
 
-////TODO spojit fce addNewStartPoint() a onAddPointClick()... jedna vklada pred druha za seznam
 function addNewStartPoint() {
+    var searchGroup = $("#search-group");
+    if (searchGroup.children().length < (MIDDLE_POINT_LIMIT + 2)) {
 
-    if ($("#search-group").children().length < (MIDDLE_POINT_LIMIT + 2)) {
+        searchGroup.find(".start-icon").addClass("middle-point-icon");
+        searchGroup.find(".start-icon").removeClass("start-icon");
+        var startInput = $(".search-start");
+        startInput.addClass("search-middle-point");
+        startInput.removeClass("search-start");
 
-        $("#search-panel .start-icon").addClass("middle-point-icon");
-        $("#search-panel .start-icon").removeClass("start-icon");
-        $(".search-start").addClass("search-middle-point");
-        $(".search-start").removeClass("search-start");
         var inputGroup = $("<div>").addClass("input-group");
         var markerAddon = $("<div>").addClass("input-group-addon drag-drop");
         var closeAddon = $("<div>").addClass("input-group-addon right-addon");
@@ -121,27 +136,23 @@ function addNewStartPoint() {
         $("<span>").html("&times").appendTo(closeButton);
         closeButton.appendTo(closeAddon);
         $("<i>").addClass("fa fa-map-marker start-icon").appendTo(markerAddon);
-        //$("<i>").addClass("fa fa-times").appendTo(closeAddon);
         markerAddon.appendTo(inputGroup);
         var searchInput = $("<input type='search'>").addClass("form-control search-start whisper");
         setShowCloseOnFocus(searchInput);
         searchInput.appendTo(inputGroup);
         closeAddon.appendTo(inputGroup);
-        inputGroup.prependTo($("#search-group"));
+        inputGroup.prependTo(searchGroup);
 
         setAC();
 
-        if ($("#search-group").children().length == (MIDDLE_POINT_LIMIT + 2)) {
+        if (searchGroup.children().length == (MIDDLE_POINT_LIMIT + 2)) {
             $("#add-point-icon").addClass("disabled-icon");
         }
-        if ($("#search-group").children().length > 2) {
-            //$(".remove-point").css("color", "#333333");
-        }
 
-        allMarkers[0].setIcon(middlePointIcon);
+        allMarkers[0].setIcon(MIDDLE_POINT_MARKER_ICON);
 
         var newMarker = L.marker(null, {
-            icon: startIcon,
+            icon: START_MARKER_ICON,
             draggable: true
         });
         newMarker.on('dragend', onMarkerDrag);
@@ -149,15 +160,16 @@ function addNewStartPoint() {
     }
 }
 
-function onAddPointClick() {
-    //if allMarkers.length < limit
-    //console.log($("#search-group").children().length);
-    if ($("#search-group").children().length < (MIDDLE_POINT_LIMIT + 2)) {
+function addNewDestinationPoint() {
+    var searchGroup = $("#search-group");
+    if (searchGroup.children().length < (MIDDLE_POINT_LIMIT + 2)) {
 
-        $("#search-panel .destination-icon").addClass("middle-point-icon");
-        $("#search-panel .destination-icon").removeClass("destination-icon");
-        $(".search-destination").addClass("search-middle-point");
-        $(".search-destination").removeClass("search-destination");
+        searchGroup.find(".destination-icon").addClass("middle-point-icon");
+        searchGroup.find(".destination-icon").removeClass("destination-icon");
+        var destinationInput = $(".search-destination");
+        destinationInput.addClass("search-middle-point");
+        destinationInput.removeClass("search-destination");
+
         var inputGroup = $("<div>").addClass("input-group");
         var markerAddon = $("<div>").addClass("input-group-addon drag-drop");
         var closeAddon = $("<div>").addClass("input-group-addon right-addon");
@@ -166,74 +178,62 @@ function onAddPointClick() {
         $("<span>").html("&times").appendTo(closeButton);
         closeButton.appendTo(closeAddon);
         $("<i>").addClass("fa fa-map-marker destination-icon").appendTo(markerAddon);
-        //$("<i>").addClass("fa fa-times").appendTo(closeAddon);
         markerAddon.appendTo(inputGroup);
         var searchInput = $("<input type='search'>").addClass("form-control search-destination whisper");
         setShowCloseOnFocus(searchInput);
         searchInput.appendTo(inputGroup);
         closeAddon.appendTo(inputGroup);
-        inputGroup.appendTo($("#search-group"));
+        inputGroup.appendTo(searchGroup);
 
         setAC();
 
-        if ($("#search-group").children().length == (MIDDLE_POINT_LIMIT + 2)) {
+        if (searchGroup.children().length == (MIDDLE_POINT_LIMIT + 2)) {
             $("#add-point-icon").addClass("disabled-icon");
         }
-        if ($("#search-group").children().length > 2) {
-            //$(".remove-point").css("color", "#333333");
-        }
 
-        allMarkers[allMarkers.length-1].setIcon(middlePointIcon);
-
+        allMarkers[allMarkers.length-1].setIcon(MIDDLE_POINT_MARKER_ICON);
         var newMarker = L.marker(null, {
-            icon: destinationIcon,
+            icon: DESTINATION_MARKER_ICON,
             draggable: true
         });
         newMarker.on('dragend', onMarkerDrag);
         allMarkers.push(newMarker);
         searchInput.focus();
-        console.log(allMarkers);
     }
-
-
 }
 
 function onRemovePointClick() {
     var wholeInput = $(this).parent().parent();
-
-    if ($("#search-group").children().length > 2) {
-        //$(this).parent().parent().hide( "slide", { direction: "up" }, "slow" );
+    var searchGroup = $("#search-group");
+    if (searchGroup.children().length > 2) {
         map.removeLayer(allMarkers[wholeInput.index()]);
         allMarkers.splice(wholeInput.index(), 1);
         wholeInput.remove();
 
-        allMarkers[0].setIcon(startIcon);
-        allMarkers[allMarkers.length - 1].setIcon(destinationIcon);
+        allMarkers[0].setIcon(START_MARKER_ICON);
+        allMarkers[allMarkers.length - 1].setIcon(DESTINATION_MARKER_ICON);
 
         refreshSearchGroup();
         getPlans();
 
-
-        if ($("#search-group").children().length < (MIDDLE_POINT_LIMIT + 2)) {
+        if (searchGroup.children().length < (MIDDLE_POINT_LIMIT + 2)) {
             $("#add-point-icon").removeClass("disabled-icon");
-        }
-        if ($("#search-group").children().length == 2) {
-            //$(".remove-point").css("color", white);
         }
     } else {
         map.removeLayer(allMarkers[wholeInput.index()]);
         allMarkers[wholeInput.index()].setLatLng(null);
         $(this).parent().prev().val("");
         getPlans();
-
     }
 }
 
 function refreshSearchGroup() {
+    var searchGroup = $("#search-group");
     $(".form-control").removeClass("search-start search-destination search-middle-point");
-    $("#search-panel .fa-map-marker").removeClass("start-icon destination-icon middle-point-icon");
-    var allForms = $("#search-group").children();
-    for (var i = 0; i < allForms.length; i++) {
+    searchGroup.find(".fa-map-marker").removeClass("start-icon destination-icon middle-point-icon");
+    var allForms = searchGroup.children();
+    var limit = allForms.length;
+    for (var i = 0; i < limit; i++) {
         if (i == 0) {
             allForms.eq(i).find("i").addClass("start-icon");
             allForms.eq(i).find("input").addClass("search-start");
@@ -246,51 +246,7 @@ function refreshSearchGroup() {
         }
     }
 }
-//function findCoordinatesFromAdress(address, index) {
-//    $.ajax({
-//        url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/suggest/nearby?input=" + address
-//        + "&size=1" + "&lat=" + map.getCenter().lat + "&lon=" + map.getCenter().lng,
-//        success: function (data) {
-//            //console.log(data);
-//            console.log(address);
-//            console.log(index);
-//            console.log(data.features[0].geometry.coordinates);
-//            //return data.features[0].geometry.coordinates;
-//        },
-//        error: function () {
-//            console.log("SERVER ERROR")
-//        }
-//    });
-//}
 
-var dragIndex;
-$(function () {
-    $("#search-group").sortable({
-        handle: ".drag-drop",
-        update: function (event, ui) {
-            refreshSearchGroup();
-            var dropIndex = ui.item.index();
-            var markerToMove = allMarkers[dragIndex];
-            allMarkers.splice(dragIndex, 1);
-            allMarkers.splice(dropIndex, 0, markerToMove);
-            allMarkers[0].setIcon(startIcon);
-            allMarkers[allMarkers.length-1].setIcon(destinationIcon);
-            for(var i = 1; i<allMarkers.length-1; i++) {
-                allMarkers[i].setIcon(middlePointIcon);
-            }
-            getPlans();
-        },
-        start: function (event, ui) {
-            dragIndex = ui.item.index();
-        }
-        //stop: function (event, ui) {
-        //    console.log("to: " + ui.item.index());
-        //}
-    });
-    //$("#search-group").disableSelection(); //// nefunguje ve firefoxu
-});
-//
-//
 function setShowCloseOnFocus(focusedElement) {
     focusedElement.focus(function (eFocus) {
         $(this).next().children().addClass("focus-in");
@@ -305,6 +261,5 @@ function setShowCloseOnFocus(focusedElement) {
             map.off("click");
         }
         $(this).next().children().removeClass("focus-in");
-
     });
 }
