@@ -51,36 +51,28 @@ var POWER_ZONES = [{
     color: POWER_COLOR_LVL_5
 }];
 
-//data format: [[x1,y1],[x2,y2],[x3,y3],...]
-//dataType = speed/stress/power
-//var options = {
-//    data: [],
-//    routeIndex: 1,
-//    targetDiv: div,
-//    max: maxValue,
-//    min: minValue,
-//    dataType: (speed/stress/power)
-//};
+/*
+data format: [[x1,y1],[x2,y2],[x3,y3],...]
+dataType = speed/stress/power
+var options = {
+    data: [],
+    routeIndex: 1,
+    target: divElement,
+    max: maxValue,
+    min: minValue,
+    dataType: (speed/stress/power),
+    pointerColor: "#ff0000"
+};
+*/
 function createChart(options) {
     var hChart = options.target.highcharts({
         chart: {
-            //height: 50,
-            type: 'line',//areaspline
+            type: 'line',
             borderRadius: 0,
             marginTop: 5,
             marginRight: 5,
             marginLeft: 5,
             marginBottom: 5
-            //spacingBottom: 0,
-            //spacingTop: 0,
-            //spacingLeft: 0,
-            //spacingRight: 0,
-            //events: {
-            //    load: function() {
-            //        this.redraw()
-            //        $(window).resize();
-            //    }
-            //}
         },
         title: {
             text: null
@@ -100,34 +92,22 @@ function createChart(options) {
             }
         },
         yAxis: {
-
-            //tickPositions: [chartOptionsAndData.min, chartOptionsAndData.max],
+            //showFirstLabel: true,
+            //showLastLabel: true,
+            //tickPositions: [options.min, options.max],
             title: {
                 text: null
             },
-            //showFirstLabel: true,
-            //showLastLabel: true,
             labels: {
                 enabled: false
-                //align: "right",
-                //x: -12,
-                //y: 5,
-
             },
             tickWidth: 0,
-            //tickPosition: "inside",
-            //opposite: true,
             gridLineWidth: 0,
             lineWidth: 0,
             endOnTick: false,
             startOnTick: false,
             max: options.max,
             min: options.min
-            //labels: {
-            //    formatter: function () {
-            //        return this.value + ' m';
-            //    }
-            //}
         },
         credits: {
             enabled: false
@@ -144,19 +124,6 @@ function createChart(options) {
             enabled: false
         },
         plotOptions: {
-            //area: {
-            //    //pointStart: 0,
-            //    marker: {
-            //        enabled: false,
-            //        symbol: 'circle',
-            //        radius: 2,
-            //        states: {
-            //            hover: {
-            //                enabled: true
-            //            }
-            //        }
-            //    }
-            //},
             series: {
                 marker: {
                     radius: 2,
@@ -168,9 +135,7 @@ function createChart(options) {
         series: [{
             lineWidth: 2,
             animation: false,
-            //name: 'Trasa',
             data: options.data,
-            //zoneAxis: "x",
             zones: options.zones,
             point: {
                 events: {
@@ -186,7 +151,6 @@ function createChart(options) {
                         var segmentLineShadowOptions;
                         var popupOptions = {autoPan: false, closeButton: false};
                         var popupString = "";
-                        //segmentLine.bringToBack();
 
                         switch (options.dataType) {
                             case SPEED_SEGMENTS:
@@ -260,21 +224,9 @@ function createChart(options) {
                     }
                 }
             }
-            //fillColor : {
-            //    linearGradient : {
-            //        x1: 0,
-            //        y1: 0,
-            //        x2: 0,
-            //        y2: 1
-            //    },
-            //    stops : [
-            //        [0, Highcharts.getOptions().colors[0]],
-            //        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-            //    ]
-            //}
         }]
     });
-};
+}
 
 function createSpeedChart(routeIndex) {
     var chartDivId = "#duration-chart-" + routeIndex;
