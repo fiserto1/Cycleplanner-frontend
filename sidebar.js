@@ -1,11 +1,25 @@
 
 function initializeSidebar() {
-    $(".menu-modal").on("hidden.bs.modal", function(e) {
+    var menuModal = $(".menu-modal");
+    menuModal.on("hidden.bs.modal", function() {
         $("#menu-panel").css("opacity", "1");
         focusout();
     });
-    $(".menu-modal").on("show.bs.modal", function(e) {
+    menuModal.on("show.bs.modal", function() {
         $("#menu-panel").css("opacity", "0.8");
     });
+
+    var languageDropdown = $("#language-dropdown");
+    languageDropdown.on("show.bs.collapse", function(){
+        var dropdownIcon = $("#language-dropdown-icon");
+        dropdownIcon.removeClass("fa-chevron-left");
+        dropdownIcon.addClass("fa-chevron-down");
+    });
+    languageDropdown.on("hide.bs.collapse", function(){
+        var dropdownIcon = $("#language-dropdown-icon");
+        dropdownIcon.removeClass("fa-chevron-down");
+        dropdownIcon.addClass("fa-chevron-left");
+    });
+
     initializeMap();
 }
