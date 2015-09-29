@@ -173,21 +173,3 @@ function getRackLayerFromFile(cycleLayer) {
         $('[data-toggle="tooltip"]').tooltip();
     });
 }
-
-$(function () {
-
-});
-
-function findAddressFromCoordinates(inputIndex, latlng) {
-    $.ajax({
-        url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/reverse?lat=" + latlng.lat
-        + "&lon=" + latlng.lng,
-        success: function (data) {
-            var lastClickedAddress = data.features[0].properties.text;
-            $("#search-group").children().eq(inputIndex).find("input").val(lastClickedAddress);
-        },
-        error: function () {
-            $("#search-group").children().eq(inputIndex).find("input").val(latlng);
-        }
-    });
-}
