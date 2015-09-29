@@ -1,8 +1,6 @@
-/**
- * Created by Tomas on 14.08.2015.
- */
+
 var spinner;
-$(document).ready(function() {
+function initializeSpinner() {
     var opts = {
         lines: 9 // The number of lines to draw
         , length: 0 // The length of each line
@@ -27,4 +25,4 @@ $(document).ready(function() {
     };
 
     spinner = new Spinner(opts);
-});
+}

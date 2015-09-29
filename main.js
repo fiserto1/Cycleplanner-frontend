@@ -3,6 +3,7 @@ $(document).ready(function() {
     $.smartbanner({
         icon: "img/app-icon.png"
     });
+    initializeSpinner();
     initializeTranslation();
 });
 
