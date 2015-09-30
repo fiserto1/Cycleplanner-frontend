@@ -3,7 +3,6 @@ function initializeTranslation() {
     var defaultLanguage = "en-US";
     i18n.init({ lng: defaultLanguage }, function(err, t) {
         changeLanguage(defaultLanguage);
-        initializeSidebar();
     });
 
     $("#english").click(function() {

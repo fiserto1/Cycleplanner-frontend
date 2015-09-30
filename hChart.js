@@ -3,6 +3,9 @@ var segmentLine;
 var segmentLineBorder;
 var segmentLineShadow;
 
+/*
+ colored zones in charts
+ */
 var SPEED_ZONES = [{
     value: SPEED_LIMIT_LVL_1,
     color: SPEED_COLOR_LVL_1
@@ -64,6 +67,19 @@ var options = {
     pointerColor: "#ff0000"
 };
 */
+/**
+ * Creates chart from options
+ * var options = {
+ *    data: [[x1,y1],[x2,y2],[x3,y3],...],
+ *    routeIndex: 1,
+ *    target: divElement,
+ *    max: maxValue,
+ *    min: minValue,
+ *    dataType: (speed/stress/power),
+ *    pointerColor: "#ff0000"
+ *  };
+ * @param options
+ */
 function createChart(options) {
     var hChart = options.target.highcharts({
         chart: {
@@ -228,6 +244,10 @@ function createChart(options) {
     });
 }
 
+/**
+ * Set options and create speed chart to specified small-chart div by route index
+ * @param routeIndex
+ */
 function createSpeedChart(routeIndex) {
     var chartDivId = "#duration-chart-" + routeIndex;
     var options = {
@@ -243,6 +263,10 @@ function createSpeedChart(routeIndex) {
     createChart(options);
 }
 
+/**
+ * Set options and create stress chart to specified small-chart div by route index
+ * @param routeIndex
+ */
 function createStressChart(routeIndex) {
     var chartDivId = "#stress-chart-" + routeIndex;
     var options = {
@@ -258,6 +282,10 @@ function createStressChart(routeIndex) {
     createChart(options);
 }
 
+/**
+ * Set options and create power chart to specified small-chart div by route index
+ * @param routeIndex
+ */
 function createPowerChart(routeIndex) {
     var chartDivId = "#effort-chart-" + routeIndex;
     var options = {

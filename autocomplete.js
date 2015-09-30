@@ -1,4 +1,6 @@
-
+/**
+ * set autocomplete to elements with class "whisper"
+ */
 function setAC() {
     $(".whisper").autocomplete( {
         serviceUrl: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/suggest/nearby",
@@ -40,6 +42,9 @@ function setAC() {
     });
 }
 
+/**
+ * set center of the map to autocomplete parameters to all elements with class "whisper"
+ */
 function changeParams() {
     $(".whisper").autocomplete().setOptions({
         params: {
@@ -49,6 +54,11 @@ function changeParams() {
     })
 }
 
+/**
+ * reverse geocoding, set address value to input from coordinates
+ * @param inputIndex input index in search group
+ * @param latLon coordinates
+ */
 function findAddressFromCoordinates(inputIndex, latLon) {
     $.ajax({
         url: "http://ec2-52-28-222-45.eu-central-1.compute.amazonaws.com:3100/reverse?lat=" + latLon.lat

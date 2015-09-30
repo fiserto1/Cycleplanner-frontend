@@ -20,6 +20,4 @@ function initializeSidebar() {
         dropdownIcon.removeClass("fa-chevron-down");
         dropdownIcon.addClass("fa-chevron-left");
     });
-
-    initializeMap();
 }

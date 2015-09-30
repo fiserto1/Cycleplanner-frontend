@@ -47,7 +47,6 @@ function initializeMap() {
     legend.addTo(map);
 
     setAC();
-    initializeMarkers();
 }
 
 function addStartClick() {

@@ -69,8 +69,6 @@ function initializeMarkers() {
             dragIndex = ui.item.index();
         }
     });
-
-    initializeSegments();
 }
 
 function onMapClick(e, input) {

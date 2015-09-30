@@ -44,7 +44,6 @@ function initializeSegments() {
     segmentRoute = L.layerGroup();
     segChoice = SPEED_SEGMENTS;
     fillColorLegend();
-    initializeRouting();
 }
 
 function fillColorLegend() {
