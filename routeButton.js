@@ -1,5 +1,7 @@
 /**
- * Created by Tomas on 29.09.2015.
+ * create one route button element and add to routes panel
+ * @param plan
+ * @param routeIndex
  */
 function createButtonForRoute(plan, routeIndex) {
 

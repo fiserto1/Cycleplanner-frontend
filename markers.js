@@ -26,6 +26,11 @@ var MIDDLE_POINT_MARKER_ICON = L.AwesomeMarkers.icon({
 var allMarkers = [];
 var dragIndex;
 
+/**
+ * create start and destination markers,
+ * set sortable to search group,
+ * set action listenners for markers
+ */
 function initializeMarkers() {
 
     var startMarker = L.marker(null, {
@@ -48,7 +53,7 @@ function initializeMarkers() {
     startMarker.on('dragend', onMarkerDrag);
     destinationMarker.on('dragend', onMarkerDrag);
 
-    setShowCloseOnFocus($("input"));
+    setShowRemoveOnFocus($("input"));
 
     $("#search-group").sortable({
         handle: ".drag-drop",
@@ -71,6 +76,11 @@ function initializeMarkers() {
     });
 }
 
+/**
+ * action listener for filling search input
+ * @param e event
+ * @param input active input element
+ */
 function onMapClick(e, input) {
     var latLon = e.latlng;
     var $input = $(input.target);
@@ -82,12 +92,19 @@ function onMapClick(e, input) {
     getPlans();
 }
 
+/**
+ * fill search input on marker drag
+ * @param e event
+ */
 function onMarkerDrag(e) {
     var markerIndex = allMarkers.indexOf(e.target);
     findAddressFromCoordinates(markerIndex, e.target.getLatLng());
     getPlans();
 }
 
+/**
+ * action listener for change diraction
+ */
 function onChangeDirectionClick() {
     allMarkers.reverse();
     allMarkers[0].setIcon(START_MARKER_ICON);
@@ -136,7 +153,7 @@ function addNewStartPoint() {
         $("<i>").addClass("fa fa-map-marker start-icon").appendTo(markerAddon);
         markerAddon.appendTo(inputGroup);
         var searchInput = $("<input type='search'>").addClass("form-control search-start whisper");
-        setShowCloseOnFocus(searchInput);
+        setShowRemoveOnFocus(searchInput);
         searchInput.appendTo(inputGroup);
         closeAddon.appendTo(inputGroup);
         inputGroup.prependTo(searchGroup);
@@ -178,7 +195,7 @@ function addNewDestinationPoint() {
         $("<i>").addClass("fa fa-map-marker destination-icon").appendTo(markerAddon);
         markerAddon.appendTo(inputGroup);
         var searchInput = $("<input type='search'>").addClass("form-control search-destination whisper");
-        setShowCloseOnFocus(searchInput);
+        setShowRemoveOnFocus(searchInput);
         searchInput.appendTo(inputGroup);
         closeAddon.appendTo(inputGroup);
         inputGroup.appendTo(searchGroup);
@@ -200,6 +217,9 @@ function addNewDestinationPoint() {
     }
 }
 
+/**
+ * action listener for remove cross in input
+ */
 function onRemovePointClick() {
     var wholeInput = $(this).parent().parent();
     var searchGroup = $("#search-group");
@@ -225,6 +245,9 @@ function onRemovePointClick() {
     }
 }
 
+/**
+ * refresh search group after search group change
+ */
 function refreshSearchGroup() {
     var searchGroup = $("#search-group");
     $(".form-control").removeClass("search-start search-destination search-middle-point");
@@ -245,7 +268,11 @@ function refreshSearchGroup() {
     }
 }
 
-function setShowCloseOnFocus(focusedElement) {
+/**
+ * set show remove cross in input on focus
+ * @param focusedElement focused input
+ */
+function setShowRemoveOnFocus(focusedElement) {
     focusedElement.focus(function (eFocus) {
         $(this).next().children().addClass("focus-in");
         map.off("click");

@@ -2,6 +2,10 @@
 var map;
 var lastClickedPosition = null;
 
+/**
+ * create map with mapbox tiles
+ * set context menu, layers, locate, legend, autocomplete
+ */
 function initializeMap() {
     var contextMenuItems = [{
         text: $.t("contextmenu.add-start"),
@@ -67,6 +71,9 @@ function addDestinationClick() {
     getPlans();
 }
 
+/**
+ * add racks and cyclepaths layers
+ */
 function addControlLayers() {
     $.getJSON("./json/DOP_Cyklotrasy_l.json", function(data) {
         var cycleLayer = L.geoJson(data, {
@@ -125,6 +132,9 @@ function addRackLayerFromFile(cycleLayer) {
     });
 }
 
+/**
+ * set tooltips for zoom, and locate control
+ */
 function addControlLayersTooltips() {
     var controlLocate = $(".leaflet-control-locate");
     var controlZoomIn = $(".leaflet-control-zoom-in");

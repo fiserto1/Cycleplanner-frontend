@@ -1,5 +1,8 @@
 
 var spinner;
+/**
+ * initialize spinner for loading
+ */
 function initializeSpinner() {
     var opts = {
         lines: 9 // The number of lines to draw

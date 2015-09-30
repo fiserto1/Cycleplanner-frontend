@@ -1,10 +1,176 @@
-{
+﻿{
+  "title": "Cykloplánovač",
   "app": {
     "name": "i18next"
   },
-  "lnav": {
-    "home": "O cykloplanovaciii",
-    "page1": "Zpetna vazba",
-    "page2": "Chci API!"
+  "mobile-device": {
+    "app-download": "Stáhněte si naši aplikaci!!!"
+  },
+  "left-sidebar": {
+    "title": "Cykloplánovač",
+    "menu": {
+      "settings": "Nastavení",
+      "about": "O Cykloplánovači",
+      "feedback": "Zpětná vazba",
+      "api": "Chci API!",
+      "language": "Změnit jazyk"
+    }
+  },
+  "about": {
+    "title": "O Cykloplánovači",
+    "html": "<p>Cykloplánovač je schopen najít trasu pro cyklisty mezi zvoleným výchozím a koncovým bodem. Cykloplánovač optimalizuje trasu vzhledem k době jízdy, komfortu, klidnosti trasy a převýšení.</p><p><em>Cykloplánovač je ve verzi beta, aplikace je určena pouze pro účely plánování. Vzhledem k pracím na silnici, stavu dopravy, počasí a jiným událostem mohou být podmínky na trase odlišné od výsledků na mapě, a proto by vaše jízda na trase měla probíhat s ohledem na tyto okolnosti. Buďte prosím opatrní a řiďte se všemi značkami a upozorněními, které se týkají vaší trasy.</em></p><p>Naše řešení využívá <a href=\"http://drops.dagstuhl.de/opus/volltexte/2015/5458/pdf/9.pdf\" class=\"external\">multikriteriálního algoritmu s kombinací několika zrychlujícich heuristik</a> pro dosažení rychlých časů pro naplánování trasy. Optimalizujeme na tři kritéria: čas jízdy, cyklostres a fyzická námaha.</p><p>Cykloplánovač jako jeden ze zdrojů pro plánování používá mapy <a href='http://www.openstreetmap.org/copyright' class='external'>OpenStreetMap</a>. OpenStreetMap je kolaborativní projekt, jehož cílem je tvorba volně dostupných geografických dat pod licencí <a href='http://opendatacommons.org/licenses/odbl/' class='external'>Open Database License</a>.</p><h4>Autoři</h4><p>Cykloplánovač je vyvíjen v <a href=\"http://agents.fel.cvut.cz/\" class=\"external\">Centru Agentních Technologií</a> na <a href=\"http://cs.fel.cvut.cz/\" class=\"external\">Katedře počítačů</a> <a href=\"http://www.fel.cvut.cz/en/\" class=\"external\">Fakulty elektrotechnické</a> <a href=\"http://www.cvut.cz/\" class=\"external\">Českého vysokého učení technického v Praze</a>. Původní verze, Otevřený plánovač cyklistických tras, byla vyvinuta jako bakalářská práce Marcel Németa pod vedením Jana Hrnčíře a Michala Jakoba v roce 2013.</p><p>V případě potřeby nás můžete kontaktovat na adrese <a href=\"mailto:agents4its@agents.fel.cvut.cz\" class=\"external\">agents4its@agents.fel.cvut.cz</a>, rádi uvítáme zpětnou vazbu a zodpovíme vaše případné dotazy.</p><p>Aplikace vzniká ve spolupráci s následujícími partnery:</p><ul><li>sdružení <a href=\"http://www.auto-mat.cz/\" class=\"external\">Auto*Mat</a></li><li>soutěž <a href=\"http://www.dopracenakole.net/\" class=\"external\">Do práce na kole</a></li><li><a href=\"http://www.iprpraha.cz/\" class=\"external\">Institut plánování a rozvoje hl. m. Prahy</a></li></ul><p></p>"
+  },
+  "feedback": {
+    "title": "Zpětná vazba",
+    "body": {
+      "title": "Máte nějaké připomínky k Cykloplánovači?",
+      "description": {
+        "html": "Tak napište e-mail na <a href=\"mailto:jan.hrncir@agents.fel.cvut.cz\" class=\"external\">jan.hrncir@agents.fel.cvut.cz</a> s předmětem <strong>\"Cykloplánovač - Feedback\"</strong> a do zprávy uveďte vaše připomínky."
+      }
+    },
+    "rating-title": "Jak se vám líbila trasa?",
+    "checkbox-title": "Zaškrtněte prosím nedostatky",
+    "textarea-placeholder": "Další připomínky (nepovinné)",
+    "button": {
+      "close": "Zavřít",
+      "send": "Odeslat"
+    },
+    "checkbox-1": {
+      "label": "Zakázané manévry",
+      "description": "- např. jet doprava, když je to zakázáno značkou"
+    },
+    "checkbox-2": {
+      "label": "Neodpovídá profilu",
+      "description": "- navržená trasa neodpovídá zvolenému profilu"
+    },
+    "checkbox-3": {
+      "label": "Nebezpečné místo",
+      "description": "- navržená trasa obsahuje nebezpečné místo"
+    },
+    "checkbox-4": {
+      "label": "Vede po chodníku",
+      "description": "- navržená trasa vede po chodníku, i když to není potřeba"
+    },
+    "checkbox-5": {
+      "label": "Špatný mapový podklad",
+      "description": "- mapové podklady zásadně neodpovídají realitě"
+    }
+  },
+  "api": {
+    "title": "Multikriteriální cykloplánovač - API!",
+    "body": {
+      "title": "Chcete zahrnout multikriteriální cykloplánovač do vašich aplikací?",
+      "description": {
+        "html": "Tak napište e-mail na <a href=\"mailto:jan.hrncir@agents.fel.cvut.cz\" class=\"external\">jan.hrncir@agents.fel.cvut.cz</a> s předmětem \"Chci API k cykloplanovaci!\" a do zprávy uveďte důvod."
+      },
+      "email": "Váš e-mail",
+      "reason": "Chtěl bych využít API na ..."
+    },
+    "button": {
+      "close": "Zavřít",
+      "send": "Odeslat"
+    }
+  },
+  "settings": {
+    "title": "Nastavení",
+    "avg-speed": "Průměrná rychlost",
+    "public-transport": "Plánovat s MHD",
+    "button": {
+      "cancel": "Zrušit",
+      "save": "Uložit"
+    }
+  },
+  "tooltip": {
+    "menu": "Menu",
+    "settings": "Nastavení trasy",
+    "cancel": "Zrušit trasy",
+    "change-direction": "Změnit směr",
+    "add-point": "Přidat bod",
+    "share": "Sdílet",
+    "export": "Exportovat",
+    "print": "Tisk",
+    "locate": "Najdi mě",
+    "zoom-in": "Přiblížit",
+    "zoom-out": "Oddálit",
+    "route-description": {
+      "travel-time": "Čas trasy",
+      "stress": "Stres, SU = Stress Unit",
+      "physical-effort": "Fyzická námaha",
+      "length": "Délka trasy",
+      "elevation-change": "Převýšení trasy",
+      "elevation-gain": "Stoupání",
+      "elevation-drop": "Klesání",
+      "crossroads": "Počet křižovatek"
+    }
+  },
+  "route-description": {
+    "travel-time": "Čas: ",
+    "stress": "Stres: ",
+    "physical-effort": "Fyzická námaha: ",
+    "length": "Délka: ",
+    "elevation-change": "Převýšení trasy: ",
+    "elevation-gain": "Stoupání: ",
+    "elevation-drop": "Klesání: ",
+    "crossroads": "Počet křižovatek: "
+  },
+  "contextmenu": {
+    "add-start": "Přidat začátek",
+    "add-destination": "Přidat destinaci"
+  },
+  "control-layers": {
+    "cycle-paths": "Cyklostezky",
+    "cycle-racks": "Stojany"
+  },
+  "legend": {
+    "tabs": {
+      "elevation": "Stoupání",
+      "speed": "Rychlost",
+      "stress": "Stres",
+      "power": "Výkon",
+      "surface": "Povrch",
+      "road-type": "Typ trasy"
+    },
+    "elevation": {
+      "descent": "Klesání",
+      "plain": "Rovina",
+      "gradient": "Stoupání"
+    },
+    "speed": {
+      "fast": "Rychlá",
+      "medium": "Střední",
+      "slow": "Pomalá"
+    },
+    "stress" : {
+      "high": "Vysoký",
+      "medium": "Střední",
+      "low": "Nízký"
+    },
+    "power": {
+      "high": "Vysoký",
+      "medium": "Střední",
+      "low": "Nízký"
+    },
+    "surface": {
+      "paved-smooth": "Hladký",
+      "undefined": "Nedef.",
+      "unpaved": "UNPAVED",
+      "paved-cobblestone": "Dlaž. kostky"
+    },
+    "road-type": {
+      "cycleway": "Cyklo",
+      "footway": "Pěší",
+      "steps": "STEPS",
+      "road": "ROAD",
+      "tertiary": "3.třídy",
+      "secondary": "2.třídy",
+      "primary": "1.třídy",
+      "undefined": "Nedef."
+    }
+  },
+  "error": {
+    "server": {
+      "message-400": "Zde není možné nalézt trasy.",
+      "message-50x": "Server nyní není dostupný."
+    }
   }
 }

@@ -1,19 +1,176 @@
 {
+  "title": "Cycleplanner",
   "app": {
     "name": "i18next"
   },
-  "lnav": {
-    "home": "Abouttttt",
-    "page1": "Feedback",
-    "page2": "I want API!"
+  "mobile-device": {
+    "app-download": "Download our android app!!!"
   },
   "left-sidebar": {
     "title": "Cycleplanner",
     "menu": {
+      "settings": "Settings",
       "about": "About",
       "feedback": "Feedback",
       "api": "I want API!",
       "language": "Change language"
+    }
+  },
+  "about": {
+    "title": "About",
+    "html": "<p>Bicycle Route Planner is capable of computing routes for cyclists from an origin to a destination. It solves the multi-criteria bicycle routing problem based on a formal model expressive enough to represent transport network features and cyclists' preferences grounded in the studies of <a href=\"http://www.sciencedirect.com/science/article/pii/S0965856412001164\" class=\"external\">real-world bicycle route choice behaviour</a>. Our solution employs the <a href=\"http://drops.dagstuhl.de/opus/volltexte/2015/5458/pdf/9.pdf\" class=\"external\">heuristic-enabled multi-criteria label-setting algorithm</a> together with a combination of heuristic speedups enabling fast query runtimes. We optimise for three criteria: travel time, cycling stress, and physical effort.</p><p>Bicycle Route Planner is developed by <a href=\"http://agents4its.net/\" class=\"external\">the Agent-based Computing for Intelligent Transport Systems group</a>, <a href=\"http://www.fel.cvut.cz/en/\" class=\"external\">Faculty of Electrical Engineering</a>, <a href=\"http://intranet.cvut.cz/en\" class=\"external\">Czech Technical University in Prague</a>.</p><p>As one of the data sources for routing, Bicycle Route Planner uses <a href='http://www.openstreetmap.org/copyright' class='external'>OpenStreetMap</a> maps, a&nbsp;collaborative project to create a&nbsp;free editable map of the world based on the&nbsp;<a href='http://opendatacommons.org/licenses/odbl/' class='external'>Open Database License</a>.</p>"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "body": {
+      "title": "Do you have some comments or questions about the Cycleplanner?",
+      "description": {
+        "html": "Please, send an email with your feedback to <a href=\"mailto:jan.hrncir@agents.fel.cvut.cz\" class=\"external\">jan.hrncir@agents.fel.cvut.cz</a> and write <strong>\"Cycleplanner Feedback\"</strong> to the subject."
+      }
+    },
+    "rating-title": "How do you like the route?",
+    "checkbox-title": "Please check flaws",
+    "textarea-placeholder": "Other comments (optional)",
+    "button": {
+      "close": "Close",
+      "send": "Send"
+    },
+    "checkbox-1": {
+      "label": "Forbidden manoeuvers",
+      "description": "- e.g. go right, when forbidden by sign"
+    },
+    "checkbox-2": {
+      "label": "Bad profile corespondence",
+      "description": "- suggested route doesn't match selected profile"
+    },
+    "checkbox-3": {
+      "label": "Dangerous places",
+      "description": "- there is dangerous place on route"
+    },
+    "checkbox-4": {
+      "label": "On pavement",
+      "description": "- route uses pavement when not needed"
+    },
+    "checkbox-5": {
+      "label": "Bad map data",
+      "description": "- map data strongly differ from reality"
+    }
+  },
+  "api": {
+    "title": "Multi-criteria cycleplanner - API!",
+    "body": {
+      "title": "Do you want to incorporate cycleplanner into your apps?",
+      "description": {
+        "html": "For the private early access send an e-mail to <a href=\"mailto:jan.hrncir@agents.fel.cvut.cz\" class=\"external\">jan.hrncir@agents.fel.cvut.cz</a>. Just write \"I want Cycleplanner API!\" to the subject and your reason in the message body."
+      },
+      "email": "Your e-mail",
+      "reason": "I want to use the API for ..."
+    },
+    "button": {
+      "close": "Close",
+      "send": "Send"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "avg-speed": "Average speed",
+    "public-transport": "Plan with public transport",
+    "button": {
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  },
+  "tooltip": {
+    "menu": "Menu",
+    "settings": "Route settings",
+    "cancel": "Cancel plans",
+    "change-direction": "Change direction",
+    "add-point": "Add point",
+    "share": "Share",
+    "export": "Export",
+    "print": "Print",
+    "locate": "Locate me",
+    "zoom-in": "Zoom in",
+    "zoom-out": "Zoom out",
+    "route-description": {
+      "travel-time": "Duration",
+      "stress": "Stress, SU = Stress Unit",
+      "physical-effort": "Physical effort",
+      "length": "Length",
+      "elevation-change": "Elevation change",
+      "elevation-gain": "Elevation gain",
+      "elevation-drop": "Elevation drop",
+      "crossroads": "Number of crossroads"
+    }
+  },
+  "route-description": {
+    "travel-time": "Duration: ",
+    "stress": "Stress: ",
+    "physical-effort": "Physical Effort: ",
+    "length": "Length: ",
+    "elevation-change": "Elevation change: ",
+    "elevation-gain": "Elev. gain: ",
+    "elevation-drop": "Elev. drop: ",
+    "crossroads": "Number of crossroads: "
+  },
+  "contextmenu": {
+    "add-start": "Add start",
+    "add-destination": "Add destination"
+  },
+  "control-layers": {
+    "cycle-paths": "Cycle paths",
+    "cycle-racks": "Bicycle stands"
+  },
+  "legend": {
+    "tabs": {
+      "elevation": "Elevation",
+      "speed": "Speed",
+      "stress": "Stress",
+      "power": "Power",
+      "surface": "Surface",
+      "road-type": "Road type"
+    },
+    "elevation": {
+      "descent": "Descent",
+      "plain": "Plain",
+      "gradient": "Gradient"
+    },
+    "speed": {
+      "fast": "Fast",
+      "medium": "Medium",
+      "slow": "Slow"
+    },
+    "stress" : {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "power": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "surface": {
+      "paved-smooth": "Smooth",
+      "undefined": "Undef.",
+      "unpaved": "Unpaved",
+      "paved-cobblestone": "Cobblestone"
+    },
+    "road-type": {
+      "cycleway": "Cycleway",
+      "footway": "Footway",
+      "steps": "Steps",
+      "road": "Road",
+      "tertiary": "Tertiary",
+      "secondary": "Secondary",
+      "primary": "Primary",
+      "undefined": "Undef."
+    }
+  },
+  "error": {
+    "server": {
+      "message-400": "Start or destination marker is out of range.",
+      "message-50x": "Server is unavailable."
     }
   }
 }

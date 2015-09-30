@@ -40,6 +40,10 @@ var segmentRoute;
 var lastClickedRoute;
 var segChoice;
 
+/**
+ * fill legends with level colors and set segChoice
+ * segChoice - active type of segments to show
+ */
 function initializeSegments() {
     segmentRoute = L.layerGroup();
     segChoice = SPEED_SEGMENTS;
@@ -69,6 +73,11 @@ function fillColorLegend() {
     powerLegend.find(".level5").css("background-color", POWER_COLOR_LVL_5);
 }
 
+/**
+ * show related segments on the route with specified routeIndex
+ * @param routeIndex
+ * @param plan
+ */
 function showSegments(routeIndex, plan) {
 
     removeSegmentRouteFromMap();

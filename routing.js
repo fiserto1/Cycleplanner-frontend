@@ -44,7 +44,9 @@ var allChartOptions = [];
 var basicRoutes = L.layerGroup();
 var response;
 
-
+/**
+ * recognize hash and load plans from responseId
+ */
 function initializeRouting() {
     var hash = location.hash;
     if (hash != "") {
@@ -57,7 +59,7 @@ function initializeRouting() {
         });
     }
 
-    $("#cancel-button").click(cancelRoute);
+    $("#cancel-button").click(cancelPlans);
 }
 
 function showPlanFromHash(obj) {
@@ -72,7 +74,7 @@ function showPlanFromHash(obj) {
     showPlans(obj);
 }
 
-function cancelRoute() {
+function cancelPlans() {
     hidePanelsExceptSearch();
     removeAllRoutesFromMap();
     $("#cancel-button").hide();
@@ -96,6 +98,9 @@ function removeAllRoutesFromMap() {
     basicRoutes.clearLayers();
 }
 
+/**
+ * post json object with start and destination coordinates, then get response by responseId
+ */
 function getPlans() {
     var startMarker = allMarkers[0];
     var destinationMarker = allMarkers[allMarkers.length-1];
@@ -157,6 +162,10 @@ function handleServerError(errorCode) {
     }
 }
 
+/**
+ * show plans from response json object to the map
+ * @param obj
+ */
 function showPlans(obj) {
     $("#cancel-button").show();
 
@@ -211,6 +220,10 @@ function showPlans(obj) {
     $("#routes-panel").show("blind");
 }
 
+/**
+ * find max and min values for duration/stress/effort and save step coordinates to polylines
+ * @param plans
+ */
 function iterateAllPlans(plans) {
     var maxElevation = Number.MIN_VALUE;
     var minElevation = Number.MAX_VALUE;
@@ -329,6 +342,10 @@ function countCriteriaWeight(maxDuration, maxStress, maxEffort) {
     }
 }
 
+/**
+ * action listener for click on the route on the map
+ * @param e
+ */
 function routeClick(e) {
     var routeIndex = basicRoutes.getLayers().indexOf(e.target);
     console.log("route index: " + routeIndex);

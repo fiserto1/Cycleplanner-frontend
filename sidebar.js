@@ -1,4 +1,6 @@
-
+/**
+ * set modal actions in left sidebar menu
+ */
 function initializeSidebar() {
     var menuModal = $(".menu-modal");
     menuModal.on("hidden.bs.modal", function() {

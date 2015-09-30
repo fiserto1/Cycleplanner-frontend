@@ -1,4 +1,7 @@
-
+/**
+ * set default language and initialize i18next
+ * add action listeners for changing language
+ */
 function initializeTranslation() {
     var defaultLanguage = "en-US";
     i18n.init({ lng: defaultLanguage }, function(err, t) {
