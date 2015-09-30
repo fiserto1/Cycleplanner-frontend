@@ -230,8 +230,8 @@ function iterateAllPlans(plans) {
         var planEffort = plans[i].criteria.physicalEffort;
 
         maxDuration = Math.max(maxDuration, planDuration);
-        maxPlanStress = Math.max(planStress, planStress);
-        maxEffort = Math.max(maxDuration, planEffort);
+        maxPlanStress = Math.max(maxPlanStress, planStress);
+        maxEffort = Math.max(maxEffort, planEffort);
 
         var oneBasicRouteLatLngs = [];
         var distanceFromStart = 0;
