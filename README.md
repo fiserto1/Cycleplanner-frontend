@@ -7,6 +7,13 @@ Bicycle Route Planner is developed by [the Agent-based Computing for Intelligent
 As one of the data sources for routing, Bicycle Route Planner uses [OpenStreetMap maps](http://www.openstreetmap.org/copyright), a collaborative project to create a free editable map of the world based on the [Open Database License](http://opendatacommons.org/licenses/odbl/).
 
 
+## Screenshots
+
+![screenshot1](https://github.com/fiserto1/Cycleplanner-frontend/blob/master/cycleplannerfrontend1.PNG "Homepage")
+
+![screenshot2](https://github.com/fiserto1/Cycleplanner-frontend/blob/master/cycleplannerfrontend3.PNG?raw=true "Plan visualization")
+
+
 ## License
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
